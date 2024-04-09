@@ -1,0 +1,27 @@
+<mat-dialog-content>
+    <h1 class="title">Filtros</h1>
+    <section class="example-section" [formGroup]="toppings">
+        <p>
+            <mat-checkbox class="checkbox" formControlName="filtro1">Filtro 1</mat-checkbox>
+            <mat-checkbox class="checkbox" formControlName="filtro2">Filtro 2</mat-checkbox>
+            <mat-checkbox class="checkbox" formControlName="filtro3">Filtro 3</mat-checkbox>
+            <mat-checkbox class="checkbox" formControlName="filtro4">Filtro 4</mat-checkbox>
+        </p>
+        <p>
+            <mat-checkbox class="checkbox" formControlName="filtro5">Filtro 5</mat-checkbox>
+            <mat-checkbox class="checkbox" formControlName="filtro6">Filtro 6</mat-checkbox>
+            <mat-checkbox class="checkbox" formControlName="filtro7">Filtro 7</mat-checkbox>
+            <mat-checkbox class="checkbox" formControlName="filtro8">Filtro 8</mat-checkbox>
+        </p>
+        <p>
+            <mat-checkbox class="checkbox" formControlName="filtro9">Filtro 9</mat-checkbox>
+            <mat-checkbox class="checkbox" formControlName="filtro10">Filtro 10</mat-checkbox>
+            <mat-checkbox class="checkbox" formControlName="filtro11">Filtro 11</mat-checkbox>
+            <mat-checkbox class="checkbox" formControlName="filtro12">Filtro 12</mat-checkbox>
+        </p>
+      </section>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-flat-button color="warn" style="margin-right: 3%;" [mat-dialog-close]="true">Cancelar</button>
+    <button mat-flat-button (click)="filtrar()">Aceptar</button>
+</mat-dialog-actions>
