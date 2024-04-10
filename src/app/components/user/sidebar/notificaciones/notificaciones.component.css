@@ -1,0 +1,28 @@
+/* .fijo {} */
+
+.desplazable {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.title {
+    text-align: center;
+    margin-top: 1%;
+    color: #434982;
+    font-size: 210%;
+}
+
+.linea-title {
+    border: none;
+    height: 10px;
+    background: linear-gradient(251.18deg, #730068 28.25%, #434982 37.09%, #434982 56.69%, #01D28E 65.98%);
+    width: 100%;
+    margin: 20px 0;
+}
+
+.post {
+    width: 70%;
+    height: 90%;
+    background: rgba(67, 73, 130, 0.8);
+    border-radius: 10px;    
+}

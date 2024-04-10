@@ -9,7 +9,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { SharedModule } from './components/shared/shared.module';
 
 // Componentes
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SidebarComponent } from './components/user/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [

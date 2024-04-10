@@ -8,7 +8,7 @@ import { EconomiaDomesticaComponent } from './economia-domestica/economia-domest
 import { LimpiezaComponent } from './limpieza/limpieza.component';
 import { OtrosComponent } from './otros/otros.component';
 import { GuardadosComponent } from './guardados/guardados.component';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../../shared/shared.module';
 import { ConversacionComponent } from './conversacion/conversacion.component';
 import { VerUsuarioComponent } from './conversacion/ver-usuario/ver-usuario.component';
 import { PonerDenunciaComponent } from './poner-denuncia/poner-denuncia.component';
