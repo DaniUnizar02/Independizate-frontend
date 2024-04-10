@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-mapa',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './mapa.component.css'
 })
 export class MapaComponent {
+  constructor(private location: Location) { }
 
+  goBack(): void {
+    this.location.back();
+  }
 }

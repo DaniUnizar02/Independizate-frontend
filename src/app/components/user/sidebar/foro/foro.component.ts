@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-foro',
@@ -6,6 +7,10 @@ import { Component } from '@angular/core';
   styleUrl: './foro.component.css'
 })
 export class ForoComponent {
-  
+  constructor(private location: Location) { }
+
+  goBack(): void {
+    this.location.back();
+  }
 }
 

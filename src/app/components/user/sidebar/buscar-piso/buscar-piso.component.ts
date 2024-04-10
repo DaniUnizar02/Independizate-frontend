@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-buscar-piso',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './buscar-piso.component.css'
 })
 export class BuscarPisoComponent {
+  constructor(private location: Location) { }
 
+  goBack(): void {
+    this.location.back();
+  }
 }
