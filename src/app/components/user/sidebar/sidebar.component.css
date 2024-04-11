@@ -33,3 +33,24 @@
     position: absolute;
     left: 7%;
 }
+
+.usuario {
+    font-size: 140%;
+    text-decoration: none !important;
+    color: white;
+    position: absolute;
+    top: 10%;
+}
+
+.insignia {
+    height: 40%;
+    margin-left: 1%;
+}
+
+.reputacion {
+    font-size: 140%;
+    text-decoration: none !important;
+    color: white;
+    position: absolute;
+    bottom: 0%;
+}

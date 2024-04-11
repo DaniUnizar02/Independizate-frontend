@@ -14,16 +14,6 @@
             <mat-grid-tile colspan="1"></mat-grid-tile>
             <mat-grid-tile colspan="1"></mat-grid-tile>
             <mat-grid-tile colspan="1"></mat-grid-tile>
-            <!-- <mat-grid-tile colspan="1"></mat-grid-tile>
-            <mat-grid-tile colspan="1"></mat-grid-tile>
-            <mat-grid-tile colspan="1"><mat-icon color="accent" class="icon">place</mat-icon></mat-grid-tile>
-            <mat-grid-tile colspan="1"><mat-icon color="accent" class="icon">home</mat-icon></mat-grid-tile>
-            <mat-grid-tile colspan="1"><mat-icon color="accent" class="icon">map</mat-icon></mat-grid-tile>
-            <mat-grid-tile colspan="1"><mat-icon color="accent" class="icon">flag</mat-icon></mat-grid-tile>
-            <mat-grid-tile colspan="1"><mat-icon color="accent" class="icon">question_answer</mat-icon></mat-grid-tile>
-            <mat-grid-tile colspan="1"><mat-icon color="accent" class="icon">question_mark</mat-icon></mat-grid-tile>
-            <mat-grid-tile colspan="1"><mat-icon color="accent" class="icon">phone_iphone</mat-icon></mat-grid-tile>
-            <mat-grid-tile colspan="1"><mat-icon color="accent" class="icon">logout</mat-icon></mat-grid-tile> -->
         </mat-grid-list>
     </mat-sidenav>
 
@@ -34,55 +24,81 @@
             <mat-grid-tile colspan="2"><mat-icon color="accent" (click)="sidenav.close()" (click)="sidenav1.open()"
                     (click)="toggle()">menu</mat-icon></mat-grid-tile>
             <mat-grid-tile colspan="3"></mat-grid-tile>
-            <mat-grid-tile colspan="2"><mat-icon color="accent" routerLink="/sidebar/notificaciones">notifications</mat-icon></mat-grid-tile>
+            <mat-grid-tile colspan="2"><mat-icon color="accent"
+                    routerLink="/sidebar/notificaciones">notifications</mat-icon></mat-grid-tile>
 
-            <mat-grid-tile colspan="7">
-                <p class="opcion-text">foto perfil</p>
+            <mat-grid-tile colspan="7" rowspan="2">
+                <img mat-sm-image src="./assets/img/badge1.png" alt="Foto de perfil" style="height: 90%;">
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="7">
-                <p class="opcion-text">nombre usuario</p>
+            <mat-grid-tile colspan="7" rowspan="2">
+                <p class="usuario">Nombre Usuario</p>
+                <img mat-sm-image class="insignia" src="./assets/img/badge1.png" alt="Foto de perfil">
+                <img mat-sm-image class="insignia" src="./assets/img/badge1.png" alt="Foto de perfil">
+                <img mat-sm-image class="insignia" src="./assets/img/badge1.png" alt="Foto de perfil">
+                <p class="reputacion">Reputación: 256</p>
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="1" routerLink="/sidebar/buscar-piso"><mat-icon color="accent">place</mat-icon></mat-grid-tile>
+            <!-- <mat-grid-tile colspan="2"></mat-grid-tile>
+            <mat-grid-tile colspan="1">
+                <img mat-sm-image src="./assets/img/badge1.png" alt="Foto de perfil" style="height: 40%;">
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1">
+                <img mat-sm-image src="./assets/img/badge1.png" alt="Foto de perfil" style="height: 40%;">
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1">
+                <img mat-sm-image src="./assets/img/badge1.png" alt="Foto de perfil" style="height: 40%;">
+            </mat-grid-tile>
+            <mat-grid-tile colspan="2"></mat-grid-tile> -->
+
+            <!-- <mat-grid-tile colspan="7">
+                <p class="opcion-text">Reputación: 256</p>
+            </mat-grid-tile> -->
+
+            <mat-grid-tile colspan="1" routerLink="/sidebar/buscar-piso"><mat-icon
+                    color="accent">place</mat-icon></mat-grid-tile>
             <mat-grid-tile colspan="6" mat-align="start" routerLink="/sidebar/buscar-piso">
                 <p class="opcion-text">Buscar piso</p>
             </mat-grid-tile>
 
             <mat-grid-tile colspan="1"></mat-grid-tile>
-            <mat-grid-tile colspan="1" routerLink="/sidebar/buscar-piso/lista"><mat-icon color="accent">home</mat-icon></mat-grid-tile>
+            <mat-grid-tile colspan="1" routerLink="/sidebar/buscar-piso/lista"><mat-icon
+                    color="accent">home</mat-icon></mat-grid-tile>
             <mat-grid-tile colspan="5" mat-align="start" routerLink="/sidebar/buscar-piso/lista">
                 <p class="opcion-text">Lista</p>
             </mat-grid-tile>
 
             <mat-grid-tile colspan="1"></mat-grid-tile>
-            <mat-grid-tile colspan="1" routerLink="/sidebar/buscar-piso/mapa"><mat-icon color="accent">map</mat-icon></mat-grid-tile>
+            <mat-grid-tile colspan="1" routerLink="/sidebar/buscar-piso/mapa"><mat-icon
+                    color="accent">map</mat-icon></mat-grid-tile>
             <mat-grid-tile colspan="5" mat-align="start" routerLink="/sidebar/buscar-piso/mapa">
                 <p class="opcion-text">Mapa</p>
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="1" routerLink="/sidebar/mapa"><mat-icon color="accent">flag</mat-icon></mat-grid-tile>
+            <mat-grid-tile colspan="1" routerLink="/sidebar/mapa"><mat-icon
+                    color="accent">flag</mat-icon></mat-grid-tile>
             <mat-grid-tile colspan="6" mat-align="left" routerLink="/sidebar/mapa">
                 <p class="opcion-text">Mapa</p>
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="1" routerLink="/sidebar/foro"><mat-icon color="accent">question_answer</mat-icon></mat-grid-tile>
+            <mat-grid-tile colspan="1" routerLink="/sidebar/foro"><mat-icon
+                    color="accent">question_answer</mat-icon></mat-grid-tile>
             <mat-grid-tile colspan="6" routerLink="/sidebar/foro">
                 <p class="opcion-text">Foro</p>
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="1" routerLink="/sidebar/faq"><mat-icon color="accent">question_mark</mat-icon></mat-grid-tile>
+            <mat-grid-tile colspan="1" routerLink="/sidebar/faq"><mat-icon
+                    color="accent">question_mark</mat-icon></mat-grid-tile>
             <mat-grid-tile colspan="6" routerLink="/sidebar/faq">
                 <p class="opcion-text">FAQ</p>
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="1" routerLink="/sidebar/contact-us"><mat-icon color="accent">phone_iphone</mat-icon></mat-grid-tile>
+            <mat-grid-tile colspan="1" routerLink="/sidebar/contact-us"><mat-icon
+                    color="accent">phone_iphone</mat-icon></mat-grid-tile>
             <mat-grid-tile colspan="6" routerLink="/sidebar/contact-us">
                 <p class="opcion-text">Contact us</p>
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="7"></mat-grid-tile>
-            <mat-grid-tile colspan="7"></mat-grid-tile>
             <mat-grid-tile colspan="7"></mat-grid-tile>
 
             <mat-grid-tile colspan="1"><mat-icon color="accent">logout</mat-icon></mat-grid-tile>
