@@ -1,0 +1,35 @@
+.example-container {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+}
+
+.example-sidenav1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+    background: linear-gradient(213.58deg, #01D28E 3.95%, #434982 24.82%, #434982 71.13%, #730068 93.06%);
+}
+
+.example-sidenav2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5%;
+    background: linear-gradient(213.58deg, #01D28E 3.95%, #434982 24.82%, #434982 71.13%, #730068 93.06%);
+}
+
+.example-sidenav-content {
+    margin-left: 15%;
+}
+
+.opcion-text {
+    font-size: 140%;
+    text-decoration: none !important;
+    color: white;
+    position: absolute;
+    left: 7%;
+}
