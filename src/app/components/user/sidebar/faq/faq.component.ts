@@ -18,8 +18,8 @@ export class FaqComponent {
     { pregunta: '¿Cuál es la política de devolución de productos?', respuesta: 'Aceptamos devoluciones dentro de los 30 días posteriores a la compra, siempre y cuando los productos estén en su estado original y no hayan sido usados.' },
     { pregunta: '¿Tienen tiendas físicas?', respuesta: 'Actualmente no contamos con tiendas físicas. Sin embargo, puedes comprar nuestros productos en línea a través de nuestro sitio web.' },
     { pregunta: '¿Cómo puedo realizar un seguimiento de mi pedido?', respuesta: 'Puedes realizar un seguimiento de tu pedido iniciando sesión en tu cuenta y visitando la sección de historial de pedidos. También recibirás actualizaciones por correo electrónico.' }
-  ];  
-  
+  ];
+
   constructor(private location: Location) { }
 
   goBack(): void {

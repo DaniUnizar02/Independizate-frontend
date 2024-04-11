@@ -1,6 +1,7 @@
 <div class="fijo">
     <mat-grid-list cols="11" rowHeight="2:1">
-        <mat-grid-tile colspan="1"><mat-icon style="margin-top: 15%;" (click)="goBack()">arrow_back_ios</mat-icon></mat-grid-tile>
+        <mat-grid-tile colspan="1"><mat-icon style="margin-top: 15%;"
+                (click)="goBack()">arrow_back_ios</mat-icon></mat-grid-tile>
         <mat-grid-tile colspan="9">
             <h1 class="title" style="margin-top: 3%;">NOTIFICACIONES</h1>
         </mat-grid-tile>
@@ -11,167 +12,22 @@
 
 <div class="desplazable">
     <mat-grid-list cols="2" rowHeight="3:1">
-        <mat-grid-tile>
-            <mat-card class="post">
+        <mat-grid-tile *ngFor="let notificacion of notificaciones">
+            <mat-card class="post" [style.background-color]="notificacion.color">
                 <mat-card-header>
                     <mat-card-title-group>
                         <mat-card-title style="color: white;">
-                            Foro al que pertenece
-                            <hr style="border-color: white; width: 166%;">
+                            {{ notificacion.titulo }}
+                            <hr style="border-color: white;">
                         </mat-card-title>
-                        <mat-icon color="warn">priority_high</mat-icon>
                         <mat-card-subtitle style="color: white;">
-                            TITULO DE NOTIFICACIÓN
+                            {{ notificacion.subtitulo }}
                         </mat-card-subtitle>
                     </mat-card-title-group>
                 </mat-card-header>
-                <mat-card-content style="color: white;">Cuerpo de la notificación</mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-card class="post">
-                <mat-card-header>
-                    <mat-card-title-group>
-                        <mat-card-title style="color: white;">
-                            Foro al que pertenece
-                            <hr style="border-color: white; width: 166%;">
-                        </mat-card-title>
-                        <mat-icon color="warn">priority_high</mat-icon>
-                        <mat-card-subtitle style="color: white;">
-                            TITULO DE NOTIFICACIÓN
-                        </mat-card-subtitle>
-                    </mat-card-title-group>
-                </mat-card-header>
-                <mat-card-content style="color: white;">Cuerpo de la notificación</mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-card class="post">
-                <mat-card-header>
-                    <mat-card-title-group>
-                        <mat-card-title style="color: white;">
-                            Foro al que pertenece
-                            <hr style="border-color: white; width: 166%;">
-                        </mat-card-title>
-                        <mat-icon color="warn">priority_high</mat-icon>
-                        <mat-card-subtitle style="color: white;">
-                            TITULO DE NOTIFICACIÓN
-                        </mat-card-subtitle>
-                    </mat-card-title-group>
-                </mat-card-header>
-                <mat-card-content style="color: white;">Cuerpo de la notificación</mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-card class="post" style="background-color: #727294;">
-                <mat-card-header>
-                    <mat-card-title-group>
-                        <mat-card-title style="color: white;">
-                            Foro al que pertenece
-                            <hr style="border-color: white; width: 166%;">
-                        </mat-card-title>
-                        <mat-card-subtitle style="color: white;">
-                            TITULO DE NOTIFICACIÓN
-                        </mat-card-subtitle>
-                    </mat-card-title-group>
-                </mat-card-header>
-                <mat-card-content style="color: white;">Cuerpo de la notificación</mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-card class="post" style="background-color: #727294;">
-                <mat-card-header>
-                    <mat-card-title-group>
-                        <mat-card-title style="color: white;">
-                            Foro al que pertenece
-                            <hr style="border-color: white; width: 166%;">
-                        </mat-card-title>
-                        <mat-card-subtitle style="color: white;">
-                            TITULO DE NOTIFICACIÓN
-                        </mat-card-subtitle>
-                    </mat-card-title-group>
-                </mat-card-header>
-                <mat-card-content style="color: white;">Cuerpo de la notificación</mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-card class="post" style="background-color: #727294;">
-                <mat-card-header>
-                    <mat-card-title-group>
-                        <mat-card-title style="color: white;">
-                            Foro al que pertenece
-                            <hr style="border-color: white; width: 166%;">
-                        </mat-card-title>
-                        <mat-card-subtitle style="color: white;">
-                            TITULO DE NOTIFICACIÓN
-                        </mat-card-subtitle>
-                    </mat-card-title-group>
-                </mat-card-header>
-                <mat-card-content style="color: white;">Cuerpo de la notificación</mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-card class="post" style="background-color: #727294;">
-                <mat-card-header>
-                    <mat-card-title-group>
-                        <mat-card-title style="color: white;">
-                            Foro al que pertenece
-                            <hr style="border-color: white; width: 166%;">
-                        </mat-card-title>
-                        <mat-card-subtitle style="color: white;">
-                            TITULO DE NOTIFICACIÓN
-                        </mat-card-subtitle>
-                    </mat-card-title-group>
-                </mat-card-header>
-                <mat-card-content style="color: white;">Cuerpo de la notificación</mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-card class="post" style="background-color: #727294;">
-                <mat-card-header>
-                    <mat-card-title-group>
-                        <mat-card-title style="color: white;">
-                            Foro al que pertenece
-                            <hr style="border-color: white; width: 166%;">
-                        </mat-card-title>
-                        <mat-card-subtitle style="color: white;">
-                            TITULO DE NOTIFICACIÓN
-                        </mat-card-subtitle>
-                    </mat-card-title-group>
-                </mat-card-header>
-                <mat-card-content style="color: white;">Cuerpo de la notificación</mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-card class="post" style="background-color: #727294;">
-                <mat-card-header>
-                    <mat-card-title-group>
-                        <mat-card-title style="color: white;">
-                            Foro al que pertenece
-                            <hr style="border-color: white; width: 166%;">
-                        </mat-card-title>
-                        <mat-card-subtitle style="color: white;">
-                            TITULO DE NOTIFICACIÓN
-                        </mat-card-subtitle>
-                    </mat-card-title-group>
-                </mat-card-header>
-                <mat-card-content style="color: white;">Cuerpo de la notificación</mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-card class="post" style="background-color: #727294;">
-                <mat-card-header>
-                    <mat-card-title-group>
-                        <mat-card-title style="color: white;">
-                            Foro al que pertenece
-                            <hr style="border-color: white; width: 166%;">
-                        </mat-card-title>
-                        <mat-card-subtitle style="color: white;">
-                            TITULO DE NOTIFICACIÓN
-                        </mat-card-subtitle>
-                    </mat-card-title-group>
-                </mat-card-header>
-                <mat-card-content style="color: white;">Cuerpo de la notificación</mat-card-content>
+                <mat-card-content style="color: white;">
+                    {{ notificacion.cuerpo }}
+                </mat-card-content>
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>
