@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-otros',
@@ -20,4 +22,18 @@ export class OtrosComponent {
     { userName: 'ElenaDiaz', title: 'Cómo empezar un diario de gratitud y sus beneficios', description: 'Llevar un diario de gratitud puede ayudarte a apreciar las pequeñas cosas de la vida y mejorar tu bienestar emocional. Aprende cómo puedes empezar.' },
     { userName: 'AndresMartinez', title: 'Consejos para mejorar tu técnica de escritura creativa', description: 'Si te gusta escribir, siempre hay espacio para mejorar. Descubre algunos consejos y ejercicios para potenciar tu creatividad y mejorar tu técnica de escritura.' }
   ];  
+
+  constructor(private router: Router) {}
+
+  cambiarRoute(event: MatTabChangeEvent) {
+    var ruta = event.tab.textLabel.toLowerCase().replace(' ', '-');
+    console.log(ruta);
+    if (ruta=="compañero-de piso") {
+      ruta = "piso";
+    } else if (ruta=="economía-doméstica") {
+      ruta = "economia";
+    }
+    console.log(ruta);
+    this.router.navigate(['sidebar','foro', ruta])
+  } 
 }

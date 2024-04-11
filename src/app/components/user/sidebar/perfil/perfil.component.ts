@@ -18,10 +18,10 @@ export class PerfilComponent {
 
   cambiarRoute(event: MatTabChangeEvent) {
     var ruta = event.tab.textLabel.toLowerCase().replace(' ', '-');
-    if (ruta=="estadísticas") {
-      ruta = "estadisticas";
-    } else if (ruta=="datos-personales") {
+    if (ruta=="datos-personales") {
       ruta = "info";
+    } else if (ruta=="estadísticas") {
+      ruta = "estadisticas";
     }
     console.log(ruta);
     this.router.navigate(['sidebar','perfil', ruta])

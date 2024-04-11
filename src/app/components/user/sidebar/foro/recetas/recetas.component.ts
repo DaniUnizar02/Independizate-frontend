@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recetas',
@@ -20,5 +22,18 @@ export class RecetasComponent {
     { userName: 'ElenaDiaz', title: 'Receta de tortilla española', description: 'La tortilla española es un clásico de la gastronomía española. Te enseño cómo hacerla paso a paso para que te salga perfecta.' },
     { userName: 'AndresMartinez', title: 'Deliciosa receta de tiramisú', description: 'El tiramisú es un postre italiano irresistible. Aquí tienes mi receta favorita para que puedas sorprender a tus invitados con un postre delicioso.' }
   ];
-  
+
+  constructor(private router: Router) {}
+
+  cambiarRoute(event: MatTabChangeEvent) {
+    var ruta = event.tab.textLabel.toLowerCase().replace(' ', '-');
+    console.log(ruta);
+    if (ruta=="compañero-de piso") {
+      ruta = "piso";
+    } else if (ruta=="economía-doméstica") {
+      ruta = "economia";
+    }
+    console.log(ruta);
+    this.router.navigate(['sidebar','foro', ruta])
+  }  
 }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-economia-domestica',
@@ -20,4 +22,18 @@ export class EconomiaDomesticaComponent {
     { userName: 'ElenaDiaz', title: 'Cómo negociar mejores tarifas con proveedores', description: 'Negociar tarifas más bajas con proveedores puede ayudarte a reducir tus gastos mensuales. Aprende cómo puedes negociar de manera efectiva para obtener mejores precios.' },
     { userName: 'AndresMartinez', title: 'Cómo generar ingresos adicionales desde casa', description: 'A veces, la solución para mejorar tu situación financiera está en generar ingresos adicionales. Aquí te doy algunas ideas para empezar a ganar dinero desde casa.' }
   ];  
+
+  constructor(private router: Router) {}
+
+  cambiarRoute(event: MatTabChangeEvent) {
+    var ruta = event.tab.textLabel.toLowerCase().replace(' ', '-');
+    console.log(ruta);
+    if (ruta=="compañero-de piso") {
+      ruta = "piso";
+    } else if (ruta=="economía-doméstica") {
+      ruta = "economia";
+    }
+    console.log(ruta);
+    this.router.navigate(['sidebar','foro', ruta])
+  } 
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { PonerDenunciaComponent } from '../poner-denuncia/poner-denuncia.component';
@@ -25,6 +26,18 @@ export class CompaneroPisoComponent {
   ];
 
   constructor(public dialog: MatDialog, private router: Router) {}
+
+  cambiarRoute(event: MatTabChangeEvent) {
+    var ruta = event.tab.textLabel.toLowerCase().replace(' ', '-');
+    console.log(ruta);
+    if (ruta=="compañero-de piso") {
+      ruta = "piso";
+    } else if (ruta=="economía-doméstica") {
+      ruta = "economia";
+    }
+    console.log(ruta);
+    this.router.navigate(['sidebar','foro', ruta])
+  }
 
   navigateToConversacion() {
     this.router.navigate(['sidebar','foro','conversacion'])
