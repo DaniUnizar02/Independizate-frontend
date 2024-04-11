@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ForoRoutingModule } from './foro-routing.module';
-import { CompaneroPisoComponent } from './companero-piso/companero-piso.component';
-import { RecetasComponent } from './recetas/recetas.component';
-import { EconomiaDomesticaComponent } from './economia-domestica/economia-domestica.component';
-import { LimpiezaComponent } from './limpieza/limpieza.component';
-import { OtrosComponent } from './otros/otros.component';
-import { GuardadosComponent } from './guardados/guardados.component';
+import { CompaneroPisoComponent } from './posts/companero-piso/companero-piso.component';
+import { RecetasComponent } from './posts/recetas/recetas.component';
+import { EconomiaDomesticaComponent } from './posts/economia-domestica/economia-domestica.component';
+import { LimpiezaComponent } from './posts/limpieza/limpieza.component';
+import { OtrosComponent } from './posts/otros/otros.component';
+import { GuardadosComponent } from './posts/guardados/guardados.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { ConversacionComponent } from './conversacion/conversacion.component';
 import { VerUsuarioComponent } from './conversacion/ver-usuario/ver-usuario.component';

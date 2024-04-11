@@ -10,20 +10,14 @@ import { Router } from '@angular/router';
   styleUrl: './perfil.component.css'
 })
 export class PerfilComponent {
+  navLinks = [
+    { path: "info", label: "Datos personales" },
+    { path: "estadisticas", label: "Estadísticas" },
+  ];
+
   constructor(private location: Location, private router: Router) { }
 
   goBack(): void {
     this.location.back();
-  }
-
-  cambiarRoute(event: MatTabChangeEvent) {
-    var ruta = event.tab.textLabel.toLowerCase().replace(' ', '-');
-    if (ruta=="datos-personales") {
-      ruta = "info";
-    } else if (ruta=="estadísticas") {
-      ruta = "estadisticas";
-    }
-    console.log(ruta);
-    this.router.navigate(['sidebar','perfil', ruta])
   }
 }

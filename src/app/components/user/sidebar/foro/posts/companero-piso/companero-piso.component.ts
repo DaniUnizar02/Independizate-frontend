@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { PonerDenunciaComponent } from '../poner-denuncia/poner-denuncia.component';
-import { AnadirPostComponent } from '../anadir-post/anadir-post.component';
+import { PonerDenunciaComponent } from '../../poner-denuncia/poner-denuncia.component';
+import { AnadirPostComponent } from '../../anadir-post/anadir-post.component';
 
 @Component({
   selector: 'app-companero-piso',
