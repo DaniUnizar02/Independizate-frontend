@@ -9,14 +9,13 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { MapaComponent } from './mapa/mapa.component';
 
-
 @NgModule({
   declarations: [
     ForoComponent,
     FaqComponent,
     ContactUsComponent,
     NotificacionesComponent,
-    MapaComponent
+    MapaComponent,
   ],
   imports: [
     CommonModule,

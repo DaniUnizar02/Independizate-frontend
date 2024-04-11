@@ -1,0 +1,20 @@
+<div class="fijo">
+    <mat-grid-list cols="11" rowHeight="2:1">
+        <mat-grid-tile colspan="1"><mat-icon style="margin-top: 15%;"
+                (click)="goBack()">arrow_back_ios</mat-icon></mat-grid-tile>
+        <mat-grid-tile colspan="9">
+            <h1 class="title" style="margin-top: 3%;">PERFIL</h1>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+    <hr class="linea-title">
+
+    <mat-tab-group (selectedTabChange)="cambiarRoute($event)">
+        <mat-tab label="Datos personales"></mat-tab>
+        <mat-tab label="Estadísticas"></mat-tab>
+    </mat-tab-group>
+</div>
+
+<div class="desplazable">
+    <router-outlet></router-outlet>
+</div>
