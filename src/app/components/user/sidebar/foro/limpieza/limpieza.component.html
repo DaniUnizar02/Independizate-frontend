@@ -36,152 +36,19 @@
     </mat-grid-list>
 </div>
 
-<mat-grid-list cols="2" rowHeight="3:1">
-    <mat-grid-tile >
+<mat-grid-list cols="2" rowHeight="2.5:1">
+    <mat-grid-tile *ngFor="let post of posts">
         <mat-card class="post">
             <mat-card-header>
                 <mat-card-title-group>
                     <mat-card-title style="color: white;">
                         <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 10%;">
-                        Nombre de usuario
+                        {{ post.userName }}
                     </mat-card-title>
-                    <mat-card-subtitle style="color: white;">Título</mat-card-subtitle>
+                    <mat-card-subtitle style="color: white;">{{ post.title }}</mat-card-subtitle>
                 </mat-card-title-group>
             </mat-card-header>
-            <mat-card-content style="color: white;">Descipción breve con la información a comentar</mat-card-content>
-            <mat-card-actions align="end">
-                <mat-icon style="color: white;">favorite</mat-icon>
-                <mat-icon style="color: white;">bookmark</mat-icon>
-                <mat-icon style="color: white;">report_problem</mat-icon>
-            </mat-card-actions>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile >
-        <mat-card class="post">
-            <mat-card-header>
-                <mat-card-title-group>
-                    <mat-card-title style="color: white;">
-                        <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 10%;">
-                        Nombre de usuario
-                    </mat-card-title>
-                    <mat-card-subtitle style="color: white;">Título</mat-card-subtitle>
-                </mat-card-title-group>
-            </mat-card-header>
-            <mat-card-content style="color: white;">Descipción breve con la información a comentar</mat-card-content>
-            <mat-card-actions align="end">
-                <mat-icon style="color: white;">favorite</mat-icon>
-                <mat-icon style="color: white;">bookmark</mat-icon>
-                <mat-icon style="color: white;">report_problem</mat-icon>
-            </mat-card-actions>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile >
-        <mat-card class="post">
-            <mat-card-header>
-                <mat-card-title-group>
-                    <mat-card-title style="color: white;">
-                        <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 10%;">
-                        Nombre de usuario
-                    </mat-card-title>
-                    <mat-card-subtitle style="color: white;">Título</mat-card-subtitle>
-                </mat-card-title-group>
-            </mat-card-header>
-            <mat-card-content style="color: white;">Descipción breve con la información a comentar</mat-card-content>
-            <mat-card-actions align="end">
-                <mat-icon style="color: white;">favorite</mat-icon>
-                <mat-icon style="color: white;">bookmark</mat-icon>
-                <mat-icon style="color: white;">report_problem</mat-icon>
-            </mat-card-actions>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile >
-        <mat-card class="post">
-            <mat-card-header>
-                <mat-card-title-group>
-                    <mat-card-title style="color: white;">
-                        <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 10%;">
-                        Nombre de usuario
-                    </mat-card-title>
-                    <mat-card-subtitle style="color: white;">Título</mat-card-subtitle>
-                </mat-card-title-group>
-            </mat-card-header>
-            <mat-card-content style="color: white;">Descipción breve con la información a comentar</mat-card-content>
-            <mat-card-actions align="end">
-                <mat-icon style="color: white;">favorite</mat-icon>
-                <mat-icon style="color: white;">bookmark</mat-icon>
-                <mat-icon style="color: white;">report_problem</mat-icon>
-            </mat-card-actions>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile >
-        <mat-card class="post">
-            <mat-card-header>
-                <mat-card-title-group>
-                    <mat-card-title style="color: white;">
-                        <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 10%;">
-                        Nombre de usuario
-                    </mat-card-title>
-                    <mat-card-subtitle style="color: white;">Título</mat-card-subtitle>
-                </mat-card-title-group>
-            </mat-card-header>
-            <mat-card-content style="color: white;">Descipción breve con la información a comentar</mat-card-content>
-            <mat-card-actions align="end">
-                <mat-icon style="color: white;">favorite</mat-icon>
-                <mat-icon style="color: white;">bookmark</mat-icon>
-                <mat-icon style="color: white;">report_problem</mat-icon>
-            </mat-card-actions>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile >
-        <mat-card class="post">
-            <mat-card-header>
-                <mat-card-title-group>
-                    <mat-card-title style="color: white;">
-                        <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 10%;">
-                        Nombre de usuario
-                    </mat-card-title>
-                    <mat-card-subtitle style="color: white;">Título</mat-card-subtitle>
-                </mat-card-title-group>
-            </mat-card-header>
-            <mat-card-content style="color: white;">Descipción breve con la información a comentar</mat-card-content>
-            <mat-card-actions align="end">
-                <mat-icon style="color: white;">favorite</mat-icon>
-                <mat-icon style="color: white;">bookmark</mat-icon>
-                <mat-icon style="color: white;">report_problem</mat-icon>
-            </mat-card-actions>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile >
-        <mat-card class="post">
-            <mat-card-header>
-                <mat-card-title-group>
-                    <mat-card-title style="color: white;">
-                        <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 10%;">
-                        Nombre de usuario
-                    </mat-card-title>
-                    <mat-card-subtitle style="color: white;">Título</mat-card-subtitle>
-                </mat-card-title-group>
-            </mat-card-header>
-            <mat-card-content style="color: white;">Descipción breve con la información a comentar</mat-card-content>
-            <mat-card-actions align="end">
-                <mat-icon style="color: white;">favorite</mat-icon>
-                <mat-icon style="color: white;">bookmark</mat-icon>
-                <mat-icon style="color: white;">report_problem</mat-icon>
-            </mat-card-actions>
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile >
-        <mat-card class="post">
-            <mat-card-header>
-                <mat-card-title-group>
-                    <mat-card-title style="color: white;">
-                        <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 10%;">
-                        Nombre de usuario
-                    </mat-card-title>
-                    <mat-card-subtitle style="color: white;">Título</mat-card-subtitle>
-                </mat-card-title-group>
-            </mat-card-header>
-            <mat-card-content style="color: white;">Descipción breve con la información a comentar</mat-card-content>
+            <mat-card-content style="color: white;">{{ post.description }}</mat-card-content>
             <mat-card-actions align="end">
                 <mat-icon style="color: white;">favorite</mat-icon>
                 <mat-icon style="color: white;">bookmark</mat-icon>
