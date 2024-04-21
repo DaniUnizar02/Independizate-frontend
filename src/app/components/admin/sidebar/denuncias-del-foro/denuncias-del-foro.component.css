@@ -1,0 +1,45 @@
+.post-contact {
+    display: inline-flex;
+    width: 827px;
+    height: 273px;
+    margin-left: 30px;
+    background: rgba(67, 73, 130, 0.8);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+}
+
+.post {
+    width: 1124px;
+    height: 180px !important;
+    background: rgba(67, 73, 130, 0.8);
+    border-radius: 10px;
+    margin-left: 5px;
+    padding-top: 10% !important;
+}
+
+::ng-deep mat-grid-tile.post {
+    padding-top: 20% !important;
+    /*margin-top: 1% !important;*/
+}
+
+.filler-div {
+    height: 20px;
+}
+
+.post-text {
+    font-size: 20px;
+    color: #FFFFFF;
+    max-width: 300px;
+}
+
+.post-title {
+    font-size: 30px;
+    color: #FFFFFF;
+}
+
+.icon {
+    width: 70px;
+    height: auto;
+    margin-right:20px
+}
+
