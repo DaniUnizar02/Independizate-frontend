@@ -1,3 +1,9 @@
+<!--
+    Título: Sidebar
+    Descripción: 
+    En esta sección se muestra el menú lateral de la aplicación, permitiendo a la 
+    administración navegar por las diferentes secciones de la aplicación.
+-->
 <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav1 mode="side" class="example-sidenav2" fixedInViewport="true" fixedTopGap="0"
         fixedBottomGap="0">
@@ -47,8 +53,8 @@
                 <p class="opcion-text">Gestión de usuarios</p>
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="1" routerLink="/sidebar/mapa"><mat-icon color="accent">flag</mat-icon></mat-grid-tile>
-            <mat-grid-tile colspan="6" mat-align="left" routerLink="/sidebar/mapa">
+            <mat-grid-tile colspan="1" routerLink="/admin/sidebar/estadisticas"><mat-icon color="accent">flag</mat-icon></mat-grid-tile>
+            <mat-grid-tile colspan="6" mat-align="left" routerLink="/admin/sidebar/estadisticas">
                 <p class="opcion-text">Estadísticas</p>
             </mat-grid-tile>
 

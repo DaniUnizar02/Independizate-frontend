@@ -1,14 +1,24 @@
+<!--
+  Título: Contact Us de Usuario
+  Descripción: 
+  En esta sección se muestran las quejas, sugerencias y otros mensajes que los usuarios 
+  envían a la administración, permitiendo a la administración responder o rechazar dichos mensajes.
+  Cuenta con un dropdown para seleccionar el tipo de mensaje que se desea visualizar.
+-->
+<mat-grid-list cols="5" rowHeight="2:1">
+  <mat-grid-tile colspan="3">
+    <mat-form-field style="width: 100%;">
+        <mat-label>Selección</mat-label>
+        <mat-select>
+            <mat-option value="queja">Queja</mat-option>
+            <mat-option value="sugerencia">Sugerencia</mat-option>
+            <mat-option value="otros">Otros</mat-option>
+        </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>  
+<router-outlet></router-outlet>
 
-<div ngbDropdown class="d-inline-block">
-  <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-    Toggle dropdown
-  </button>
-  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-    <button ngbDropdownItem>Action - 1</button>
-    <button ngbDropdownItem>Another Action</button>
-    <button ngbDropdownItem>Something else is here</button>
-  </div>
-</div>
 <mat-grid-list cols="2" rowHeight="2:1" style="margin-top: 5px;">
     <ng-container *ngFor="let contact of contacts" style="margin-top: 20%;">
       <div class="container"> <!-- Wrap each set of elements -->
