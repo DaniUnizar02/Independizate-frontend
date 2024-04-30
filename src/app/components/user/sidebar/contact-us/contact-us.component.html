@@ -15,10 +15,9 @@
         <mat-grid-tile colspan="3">
             <mat-form-field style="width: 100%;">
                 <mat-label>Selección</mat-label>
-                <mat-select>
-                    <mat-option value="queja">Queja</mat-option>
-                    <mat-option value="sugerencia">Sugerencia</mat-option>
-                    <mat-option value="otros">Otros</mat-option>
+                <mat-select [(value)]="tipo">
+                    <mat-option value="Queja">Queja</mat-option>
+                    <mat-option value="Sugerencia">Sugerencia</mat-option>
                 </mat-select>
             </mat-form-field>
         </mat-grid-tile>
@@ -29,14 +28,14 @@
         <mat-grid-tile colspan="3">
             <form class="example-form">
                 <mat-form-field class="example-full-width">
-                    <textarea matInput placeholder="Descripcion"></textarea>
+                    <textarea matInput placeholder="Descripcion" [(ngModel)]="descripcion" name="descripcion"></textarea>
                 </mat-form-field>
             </form>
         </mat-grid-tile>
 
         <mat-grid-tile colspan="3"></mat-grid-tile>
         <mat-grid-tile colspan="1">
-            <button mat-flat-button>Enviar</button>
+            <button mat-flat-button (click)="enviarFormulario()">Enviar</button>
         </mat-grid-tile>
 
         <mat-grid-tile colspan="1">
