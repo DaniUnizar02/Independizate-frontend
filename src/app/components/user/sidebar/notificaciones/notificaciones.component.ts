@@ -18,7 +18,7 @@ export class NotificacionesComponent {
   constructor(private location: Location, private backendService: BackendService) { }
 
   ngOnInit(): void {
-    this.backendService.getNotificacionesGeneral().subscribe(
+    this.backendService.getNotifications().subscribe(
       response => {
         // this.respuesta = response
         console.log('Notificaciones: ', response);

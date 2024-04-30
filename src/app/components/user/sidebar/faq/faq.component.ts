@@ -16,7 +16,7 @@ export class FaqComponent {
   constructor(private location: Location, private backendService: BackendService) {}
 
   ngOnInit(): void {
-    this.backendService.getFaqsGeneral().subscribe(
+    this.backendService.getFaqs().subscribe(
       response => {
         this.preguntasFrecuentes = response.faqs
         console.log('FAQs: ', response.faqs);
