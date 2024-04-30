@@ -10,6 +10,7 @@ import { SharedModule } from './components/shared/shared.module';
 
 // Componentes
 import { SidebarComponent } from './components/user/sidebar/sidebar.component';
+import { BackendModule } from './components/backend/backend.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SidebarComponent } from './components/user/sidebar/sidebar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule // Angular materials
+    SharedModule, // Angular materials
+    BackendModule // Backend
   ],
   providers: [
     provideAnimationsAsync()
