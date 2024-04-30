@@ -11,15 +11,16 @@ body {
 }
 
 /* Estilo base para los iconos */
-.mat-icon {
+/* .mat-icon {
     font-size: 1.5vw;
-    /* Tamaño del icono en viewport width (vw) */
-}
+    Tamaño del icono en viewport width (vw)
+} */
 
-/* Media query para ajustar el tamaño del icono en pantallas pequeñas */
+/*
+Media query para ajustar el tamaño del icono en pantallas pequeñas
 @media screen and (max-width: 600px) {
     .mat-icon {
         font-size: 1.5vw;
-        /* Tamaño del icono en pantallas pequeñas */
+        Tamaño del icono en pantallas pequeñas
     }
-}
+} */

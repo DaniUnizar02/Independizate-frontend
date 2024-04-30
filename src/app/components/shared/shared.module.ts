@@ -10,6 +10,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -17,7 +18,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [],
@@ -29,6 +30,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatSidenavModule,
     MatToolbarModule,
     MatInputModule,
+    MatFormFieldModule,
     FormsModule,
     MatCardModule,
     MatDialogModule,
@@ -45,6 +47,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatSidenavModule,
     MatToolbarModule,
     MatInputModule,
+    MatFormFieldModule,
     FormsModule,
     MatCardModule,
     MatDialogModule,

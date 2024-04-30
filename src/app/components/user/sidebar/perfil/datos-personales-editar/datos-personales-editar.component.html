@@ -1,0 +1,90 @@
+<mat-grid-list cols="7" rowHeight="3:1" class="post">
+    <mat-grid-tile colspan="1" rowspan="5"><img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil"
+            style="width: 90%;"></mat-grid-tile>
+
+    <mat-grid-tile>
+        Usuario:
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+        <mat-form-field class="example-form-field">
+            <input matInput type="text" [(ngModel)]="infoUsuario.usuario">
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        Correo:
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+        <mat-form-field class="example-form-field">
+            <input matInput type="text" [(ngModel)]="infoUsuario.correo">
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        Nombre:
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+        <mat-form-field class="example-form-field">
+            <input matInput type="text" [(ngModel)]="infoUsuario.nombre">
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        Sexo:
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+        <mat-form-field class="example-form-field">
+            <input matInput type="text" [(ngModel)]="infoUsuario.sexo">
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        Apellidos:
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+        <mat-form-field class="example-form-field">
+            <input matInput type="text" [(ngModel)]="infoUsuario.apellidos">
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        Piso:
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+        <mat-form-field class="example-form-field">
+            <input matInput type="text" [(ngModel)]="infoUsuario.piso">
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        Edad:
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+        <mat-form-field class="example-form-field">
+            <input matInput type="text" [(ngModel)]="infoUsuario.edad">
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        Ciudad:
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+        <mat-form-field class="example-form-field">
+            <input matInput type="text" [(ngModel)]="infoUsuario.ciudad">
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        Reputación:
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+        <mat-form-field class="example-form-field">
+            <input matInput type="text" [(ngModel)]="infoUsuario.reputacion">
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        Situación:
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+        <mat-form-field class="example-form-field">
+            <input matInput type="text" [(ngModel)]="infoUsuario.situacion">
+        </mat-form-field>
+    </mat-grid-tile>
+</mat-grid-list>
