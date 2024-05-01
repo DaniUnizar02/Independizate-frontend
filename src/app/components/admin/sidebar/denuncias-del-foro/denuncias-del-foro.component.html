@@ -17,24 +17,24 @@
 </div>
 
 <div class="desplazable">
-  <mat-grid-list cols="2" rowHeight="2:1" style="margin-top: 5px;">
-    <ng-container *ngFor="let denuncia of denuncias" style="margin-top: 20%;">
-      <div class="container"> <!-- Wrap each set of elements -->
-        <mat-grid-tile class="post" style="width: 1124px; height: 237px; margin-top: 10%;">
-          <div>
-            <img mat-card-image src="/assets/img/badge1.png" class="icon">
-          </div>
-          <div style="display: inline-grid">
-            <mat-card-content class="post-title">{{ denuncia.usuario }}</mat-card-content>
-            <mat-card-content class="post-text" style="margin-top: 10px;">{{ denuncia.tipo }}</mat-card-content>
-            <mat-card-content class="post-text" style="margin-top: 10px;">{{ denuncia.info }}</mat-card-content>
-          </div>
-          <div>
-            <button mat-raised-button style="margin-top: 180px; margin-left: 50px;" color="primary">Aprobar</button>
-            <button mat-raised-button style="margin-top: 180px;" color="warn">Rechazar</button>
-          </div>
-        </mat-grid-tile>
-      </div>
-    </ng-container>
+  <mat-grid-list cols="2" rowHeight="2.5:1">
+    <mat-grid-tile *ngFor="let denuncia of denuncias">
+      <mat-card class="post">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title style="color: white;">
+              <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 10%;">
+              {{ denuncia.usuario }}
+            </mat-card-title>
+            <mat-card-subtitle style="color: white;">{{ denuncia.tipo }}</mat-card-subtitle>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content style="color: white;" class="post-content">{{ denuncia.info }}</mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-flat-button color="primary">Aprobar</button>
+          <button mat-flat-button color="warn">Rechazar</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
   </mat-grid-list>
 </div>

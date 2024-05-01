@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { BackendService } from '../../../../services/backend/backend.service';
 
 @Component({
   selector: 'app-gestion-de-usuarios',
@@ -8,15 +9,46 @@ import { Location } from '@angular/common';
 })
 export class GestionDeUsuariosComponent {
   value: string = '';
-  users= [
-    {usuario: 'Juan', correo: 'correo@c.es', reputacion: '5', edad: '25', denuncias: '0', post: '3', estado: 'Activo'},
-    {usuario: 'Pepe', correo: 'correo2@c.es', reputacion: '4', edad: '30', denuncias: '0', post: '4', estado: 'Activo'},
-    {usuario: 'Maria', correo: 'correo3@c.es', reputacion: '3', edad: '35', denuncias: '0', post: '2', estado: 'Activo'},
-    {usuario: 'Ana', correo: 'correo4@c.es', reputacion: '2', edad: '40', denuncias: '1', post: '5', estado: 'Activo'},
-    {usuario: 'Pedro', correo: 'correo5@c.es', reputacion: '1', edad: '45', denuncias: '0', post: '3', estado: 'Activo'},
-  ]; 
+  users: any[] = [];
+  private todos: any[] = [];
+  private respuesta: any[] = [];
 
-  constructor(private location: Location) {}
+  constructor(private location: Location, private backendService: BackendService) {}
+
+  ngOnInit(): void {
+    this.backendService.getUsers().subscribe(
+      response => {
+        this.respuesta = response.users
+        console.log('Usuarios: ', this.respuesta); // LOG:
+        this.formatear();
+        this.users = this.todos;
+      },
+      error => {
+        console.error('Error: ', error); // LOG:
+      }
+    );
+  }
+
+  private formatear(): void {
+    this.todos = []
+    for (const item of this.respuesta) {
+      var data = {
+        usuario: item.nombre,
+        correo: item.correo,
+        reputacion: item.reputacion,
+        edad: item.edad,
+        denuncias: item.denuncias,
+        post: item.publicaciones,
+        estado: item.activo
+      }
+
+      data.estado = data.estado ? 'Activo' : 'Bloqueado';
+
+      // console.log(data); // LOG:
+      this.todos.push(data);
+    }
+    this.todos = this.todos.reverse()
+  }
 
   goBack(): void {
     this.location.back();

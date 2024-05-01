@@ -20,20 +20,6 @@
     margin: 20px 0;
 }
 
-.post-denuncia {
-    display: inline-flex;
-    width: 827px;
-    height: 273px;
-    margin-left: 30px;
-    background: rgba(67, 73, 130, 0.8);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-}
-.seccion {
-    text-align: center;
-    font-size: 100%;
-}
-
 .example-form-field {
     width: 100%;
 }
@@ -43,8 +29,8 @@
     background: rgba(67, 73, 130, 0.8);
     font-size: 20px;
     color: #FFFFFF;
-    border: 10px;
-    border-radius: 30px;
+    border: 30px;
+    border-radius: 20px;
     margin-top: 10px;
 }
 

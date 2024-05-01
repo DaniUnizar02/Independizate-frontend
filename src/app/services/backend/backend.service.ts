@@ -236,7 +236,7 @@ export class BackendService {
   // NOTE: Users
   // IN PROGRESS: Sin probar
   getUsers(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}users/`);
+    return this.http.get<any>(`${this.apiUrl}users/`, {headers: this.headers});
   }
 
   // IN PROGRESS: Sin probar
