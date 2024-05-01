@@ -29,6 +29,17 @@ export class GestionDeUsuariosComponent {
     );
   }
 
+  buscar(): void {
+    if(!this.value.trim()){
+      this.users = this.todos
+    } else {
+      this.value = this.value.toLowerCase();
+      this.users = this.todos.filter(item =>
+        item.usuario.toLowerCase().includes(this.value)
+      );
+    }
+  }
+
   private formatear(): void {
     this.todos = []
     for (const item of this.respuesta) {

@@ -1,5 +1,5 @@
 <mat-grid-list cols="2" rowHeight="3:1">
-  <mat-grid-tile *ngFor="let tarjeta of tarjetas">
+  <mat-grid-tile *ngFor="let tarjeta of tarjetas | slice: lowValue : highValue">
     <mat-card class="post">
       <mat-card-header>
         <mat-card-title-group>
@@ -18,3 +18,5 @@
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
+
+<mat-paginator [length]="tarjetas.length" [pageSize]="pageSize" (page)="getPaginatorData($event)"></mat-paginator>
