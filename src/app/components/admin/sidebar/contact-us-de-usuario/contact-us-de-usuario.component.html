@@ -22,7 +22,8 @@
     <mat-grid-tile colspan="3">
       <mat-form-field style="width: 100%;">
         <mat-label>Selección</mat-label>
-        <mat-select>
+        <mat-select [(value)]="tipo" (selectionChange)="filtrar()">
+          <mat-option value="todos"></mat-option>
           <mat-option value="queja">Queja</mat-option>
           <mat-option value="sugerencia">Sugerencia</mat-option>
           <mat-option value="otros">Otros</mat-option>

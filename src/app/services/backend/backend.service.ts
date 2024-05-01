@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class BackendService {
   private apiUrl = 'http://localhost:3000/api/';
-  public user: any; // DELETE O NO
+  public user: any; // DELETE: O NO
 
   // Define la cabecera con el token de autorización
   private headers = new HttpHeaders();
@@ -15,12 +15,12 @@ export class BackendService {
 
   // DELETE: Usuario por defecto
   usuario = {
-    usuario: 'string',
-    contrasegna: 'string',
-    rememberMe: true
+    usuario: 'admin',
+    contrasegna: '123',
+    rememberMe: false
   };  
 
-  // REVIEW
+  // REVIEW:
   constructor(private http: HttpClient) {
     this.postAuthLogin(this.usuario).subscribe(valor => {
       this.user = valor.id;
@@ -28,7 +28,7 @@ export class BackendService {
         'Content-Type': 'application/json',
         'authorization': `Bearer ${valor.token}`
       }); 
-      console.log(`Token: ${valor.token}`); // LOG
+      console.log(`Token: ${valor.token}`); // LOG:
     },
     error => {
       console.error('Error al obtener token: ', error);
@@ -80,7 +80,7 @@ export class BackendService {
   
   // IN PROGRESS: Sin probar
   getContactUs(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}contactUs/`);
+    return this.http.get<any>(`${this.apiUrl}contactUs/`, {headers: this.headers});
   }
 
   // NOTE: FAQ
@@ -153,10 +153,10 @@ export class BackendService {
   // NOTE: Posts
   // IN PROGRESS: Sin probar
   postPosts(body: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}posts/`, body);
+    return this.http.post<any>(`${this.apiUrl}posts/`, body, {headers: this.headers});
   }
 
-  // IN PROGRESS: Sin probar
+  // TEST: Usada en posts.component.ts, hay que probarla bien
   getPosts(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}posts/`);
   }

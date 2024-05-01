@@ -42,7 +42,7 @@ export class NotificacionesComponent {
       data.subtitulo = item.titulo
       data.cuerpo = item.cuerpoNotificacion
 
-      console.log(data); // LOG
+      console.log(data); // LOG:
 
       this.notificaciones.push(data);
     }

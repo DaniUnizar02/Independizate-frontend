@@ -31,7 +31,7 @@ export class ContactUsComponent {
       descripcion: this.descripcion
     }
 
-    console.log(this.body); // DELETE
+    console.log(this.body); // DELETE:
 
     this.backendService.postContactUs(this.body).subscribe(
       response => {
