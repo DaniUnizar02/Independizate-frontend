@@ -4,24 +4,37 @@
   En esta sección se muestran las denuncias que los usuarios hacen sobre los posts del foro,
   permitiendo a la administración aprobar o rechazar dichas denuncias.
 -->
-<mat-grid-list cols="2" rowHeight="2:1" style="margin-top: 5px;">
+<div class="fijo">
+  <mat-grid-list cols="11" rowHeight="2:1">
+    <mat-grid-tile colspan="1"><mat-icon style="margin-top: 15%;"
+        (click)="goBack()">arrow_back_ios</mat-icon></mat-grid-tile>
+    <mat-grid-tile colspan="9">
+      <h1 class="title" style="margin-top: 3%;">DENUNCIAS DEL FORO</h1>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <hr class="linea-title">
+</div>
+
+<div class="desplazable">
+  <mat-grid-list cols="2" rowHeight="2:1" style="margin-top: 5px;">
     <ng-container *ngFor="let denuncia of denuncias" style="margin-top: 20%;">
       <div class="container"> <!-- Wrap each set of elements -->
         <mat-grid-tile class="post" style="width: 1124px; height: 237px; margin-top: 10%;">
-            <div>
-              <img mat-card-image src="/assets/img/badge1.png" class="icon">
-            </div>
-            <div style="display: inline-grid">
-                <mat-card-content class="post-title">{{ denuncia.usuario }}</mat-card-content>
-                <mat-card-content class="post-text" style="margin-top: 10px;">{{ denuncia.tipo }}</mat-card-content>
-                <mat-card-content class="post-text" style="margin-top: 10px;">{{ denuncia.info }}</mat-card-content>
-            </div>
-            <div>
-              <button mat-raised-button style="margin-top: 180px; margin-left: 50px;" color="primary">Aprobar</button>
-              <button mat-raised-button style="margin-top: 180px;" color="warn">Rechazar</button>
-            </div>
+          <div>
+            <img mat-card-image src="/assets/img/badge1.png" class="icon">
+          </div>
+          <div style="display: inline-grid">
+            <mat-card-content class="post-title">{{ denuncia.usuario }}</mat-card-content>
+            <mat-card-content class="post-text" style="margin-top: 10px;">{{ denuncia.tipo }}</mat-card-content>
+            <mat-card-content class="post-text" style="margin-top: 10px;">{{ denuncia.info }}</mat-card-content>
+          </div>
+          <div>
+            <button mat-raised-button style="margin-top: 180px; margin-left: 50px;" color="primary">Aprobar</button>
+            <button mat-raised-button style="margin-top: 180px;" color="warn">Rechazar</button>
+          </div>
         </mat-grid-tile>
       </div>
     </ng-container>
-</mat-grid-list>
-  
+  </mat-grid-list>
+</div>

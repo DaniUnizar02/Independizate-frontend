@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-gestion-de-usuarios',
@@ -14,4 +15,10 @@ export class GestionDeUsuariosComponent {
     {usuario: 'Ana', correo: 'correo4@c.es', reputacion: '2', edad: '40', denuncias: '1', post: '5', estado: 'Activo'},
     {usuario: 'Pedro', correo: 'correo5@c.es', reputacion: '1', edad: '45', denuncias: '0', post: '3', estado: 'Activo'},
   ]; 
+
+  constructor(private location: Location) {}
+
+  goBack(): void {
+    this.location.back();
+  }
 }

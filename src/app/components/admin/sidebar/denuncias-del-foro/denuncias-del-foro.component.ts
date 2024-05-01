@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-denuncias-del-foro',
@@ -12,4 +13,10 @@ export class DenunciasDelForoComponent {
     {usuario: 'Juan', tipo:'Error en el mensaje', info: 'El mensaje contiene información incorrecta'},
     {usuario: 'Laura', tipo:'Mensaje de foro erroneo', info: 'El mensaje debería estar en el foro "Recetas" no en "Compañero de piso"'},
   ]
+
+  constructor(private location: Location) {}
+
+  goBack(): void {
+    this.location.back();
+  }
 }

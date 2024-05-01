@@ -7,70 +7,81 @@
     Además, se cuenta con un buscador para encontrar usuarios por nombre y la posibilidad de
     modificar el estado del usuario.
 -->
-<mat-grid-list cols="6" rowHeight="2:1">
-    <mat-grid-tile colspan="1">
-        <mat-icon>search</mat-icon>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="4">
-        <mat-form-field class="example-form-field">
-            <mat-label>Buscar por nombre</mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-        </mat-form-field>
-    </mat-grid-tile>
-</mat-grid-list>
+<div class="fijo">
+    <mat-grid-list cols="11" rowHeight="2:1">
+        <mat-grid-tile colspan="1"><mat-icon style="margin-top: 15%;"
+                (click)="goBack()">arrow_back_ios</mat-icon></mat-grid-tile>
+        <mat-grid-tile colspan="9">
+            <h1 class="title" style="margin-top: 3%;">GESTIÓN DE USUARIOS</h1>
+        </mat-grid-tile>
+    </mat-grid-list>
 
-<mat-grid-list cols="7" rowHeight="2:1">
-    <div class="header-table">
-        <mat-grid-tile colspan="1" class="header-table"> 
-            <p>Usuario</p>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1" class="header-table" style="margin-right: -2px;"> 
-            <p>Correo</p>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1" class="header-table" style="margin-right: -2px;"> 
-            <p>Reputación</p>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1" class="header-table" style="margin-right: -2px;"> 
-            <p>Edad</p>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1" class="header-table" style="margin-right: -2px;"> 
-            <p>Nº denuncias</p>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1" class="header-table" style="margin-right: -2px;"> 
-            <p>Nº de posts</p>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1" class="header-table" style="margin-right: -2px;"> 
-            <p>Estado</p>
-        </mat-grid-tile>
-    </div>
-</mat-grid-list>
+    <hr class="linea-title">
+</div>
 
-<mat-grid-list cols="7" rowHeight="2:1" style="margin-top: 10px;">   
-    <ng-container *ngFor="let user of users">
-        <mat-grid-tile class="post-table"> 
-            <mat-card-content style="color: white;">{{ user.usuario }}</mat-card-content>
+<div class="desplazable">
+    <mat-grid-list cols="6" rowHeight="2:1">
+        <mat-grid-tile colspan="1">
+            <mat-icon>search</mat-icon>
         </mat-grid-tile>
-        <mat-grid-tile class="post-table"> 
-            <mat-card-content style="color: white;">{{ user.correo }}</mat-card-content>
+        <mat-grid-tile colspan="4">
+            <mat-form-field class="example-form-field">
+                <mat-label>Buscar por nombre</mat-label>
+                <input matInput type="text" [(ngModel)]="value">
+            </mat-form-field>
         </mat-grid-tile>
-        <mat-grid-tile class="post-table"> 
-            <mat-card-content style="color: white;">{{ user.reputacion }}</mat-card-content>
-        </mat-grid-tile>
-        <mat-grid-tile class="post-table"> 
-            <mat-card-content style="color: white;">{{ user.edad }}</mat-card-content>
-        </mat-grid-tile>
-        <mat-grid-tile class="post-table"> 
-            <mat-card-content style="color: white;">{{ user.denuncias }}</mat-card-content>
-        </mat-grid-tile>
-        <mat-grid-tile class="post-table"> 
-            <mat-card-content style="color: white;">{{ user.post }}</mat-card-content>
-        </mat-grid-tile>
-        <mat-grid-tile class="post-table"> 
-            <mat-card-content style="color: white;">{{ user.estado }}</mat-card-content>
-            <img mat-card-image class="icon" src="/assets/img/pencil.png">
-        </mat-grid-tile>
-    </ng-container>    
-</mat-grid-list>
+    </mat-grid-list>
 
+    <mat-grid-list cols="7" rowHeight="2:1">
+        <div class="header-table">
+            <mat-grid-tile colspan="1" class="header-table">
+                <p>Usuario</p>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" class="header-table" style="margin-right: -2px;">
+                <p>Correo</p>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" class="header-table" style="margin-right: -2px;">
+                <p>Reputación</p>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" class="header-table" style="margin-right: -2px;">
+                <p>Edad</p>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" class="header-table" style="margin-right: -2px;">
+                <p>Nº denuncias</p>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" class="header-table" style="margin-right: -2px;">
+                <p>Nº de posts</p>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" class="header-table" style="margin-right: -2px;">
+                <p>Estado</p>
+            </mat-grid-tile>
+        </div>
+    </mat-grid-list>
 
-
+    <mat-grid-list cols="7" rowHeight="2:1" style="margin-top: 10px;">
+        <ng-container *ngFor="let user of users">
+            <mat-grid-tile class="post-table">
+                <mat-card-content style="color: white;">{{ user.usuario }}</mat-card-content>
+            </mat-grid-tile>
+            <mat-grid-tile class="post-table">
+                <mat-card-content style="color: white;">{{ user.correo }}</mat-card-content>
+            </mat-grid-tile>
+            <mat-grid-tile class="post-table">
+                <mat-card-content style="color: white;">{{ user.reputacion }}</mat-card-content>
+            </mat-grid-tile>
+            <mat-grid-tile class="post-table">
+                <mat-card-content style="color: white;">{{ user.edad }}</mat-card-content>
+            </mat-grid-tile>
+            <mat-grid-tile class="post-table">
+                <mat-card-content style="color: white;">{{ user.denuncias }}</mat-card-content>
+            </mat-grid-tile>
+            <mat-grid-tile class="post-table">
+                <mat-card-content style="color: white;">{{ user.post }}</mat-card-content>
+            </mat-grid-tile>
+            <mat-grid-tile class="post-table">
+                <mat-card-content style="color: white;">{{ user.estado }}</mat-card-content>
+                <img mat-card-image class="icon" src="/assets/img/pencil.png">
+            </mat-grid-tile>
+        </ng-container>
+    </mat-grid-list>
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-estadisticas',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './estadisticas.component.css'
 })
 export class EstadisticasComponent {
+  constructor(private location: Location) {}
 
+  goBack(): void {
+    this.location.back();
+  }
 }

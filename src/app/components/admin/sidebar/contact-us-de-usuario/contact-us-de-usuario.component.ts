@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-contact-us-de-usuario',
@@ -12,4 +13,10 @@ export class ContactUsDeUsuarioComponent {
     {usuario: 'Juan', tipo:'Otros', info: 'He tenido un problema con un usuario ¿Como lo puedo denunciar?'},
     {usuario: 'Laura', tipo:'Queja', info: 'La web me confunde'},
   ];
+
+  constructor(private location: Location) {}
+
+  goBack(): void {
+    this.location.back();
+  }
 }

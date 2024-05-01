@@ -33,3 +33,11 @@
     position: absolute;
     left: 7%;
 }
+
+.usuario {
+    font-size: 140%;
+    text-decoration: none !important;
+    color: white;
+    position: absolute;
+    top: 10%;
+}
