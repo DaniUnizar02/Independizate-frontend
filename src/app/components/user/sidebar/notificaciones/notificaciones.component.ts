@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { BackendService } from '../../../../services/backend/backend.service';
+import { ErrorService } from '../../../../services/error/error.service';
 
 @Component({
   selector: 'app-notificaciones',
@@ -15,16 +16,23 @@ export class NotificacionesComponent {
   notificaciones: any[] = [];
   private respuesta: any[] = [];
 
-  constructor(private location: Location, private backendService: BackendService) { }
+  constructor(private location: Location, private backendService: BackendService, private errorService: ErrorService) { }
 
   ngOnInit(): void {
     this.backendService.getNotifications().subscribe(
       response => {
         // this.respuesta = response
-        console.log('Notificaciones: ', response);
+        console.log('Notificaciones: ', response); // LOG:
       },
       error => {
-        console.error('Error: ', error);
+        console.error('Error: ', error); // LOG:
+        if (error.status === 401) {
+          this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+        } else if (error.status === 403) {
+          this.errorService.openDialogError("Acción no permitida.");
+        } else if (error.status === 500) {
+          this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+        }
       }
     );
   }

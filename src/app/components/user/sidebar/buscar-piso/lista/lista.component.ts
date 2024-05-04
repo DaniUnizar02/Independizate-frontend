@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BackendService } from '../../../../../services/backend/backend.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BuscarPisoComponent } from '../buscar-piso.component';
 
 @Component({
   selector: 'app-lista',
@@ -9,38 +10,12 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 })
 export class ListaComponent {
   tarjetas: any[] = [];
-  private todos: any[] = [];
-  private respuesta: any[] = [];
+  
+  constructor(private buscarPisoComponent: BuscarPisoComponent) { }
 
-  constructor(private backendService: BackendService, private breakpointObserver: BreakpointObserver) { }
-
-  ngOnInit(): void {
-    this.backendService.getAparments().subscribe(
-      response => {
-        this.respuesta = response.apartments
-        // console.log('Pisos: ', response.apartments); // LOG:
-        this.formatear();
-        this.tarjetas = this.todos;
-      },
-      error => {
-        console.error('Error: ', error); // LOG:
-      }
-    );
-  }
-
-  formatear(): void {
-    for (const item of this.respuesta) {
-      var data = {
-        piso: item.suggestedTexts.title,
-        direccion: item.address,
-        descripcion: item.description,
-        precio: item.price
-      }
-
-
-      this.todos.push(data);
-    }
-    this.todos = this.todos.reverse()
+  ngDoCheck() {
+    this.tarjetas = this.buscarPisoComponent.tarjetas;
+    // console.log('Posts (CP): ',this.posts); // LOG:
   }
 
   // NOTE: Paginator
@@ -48,7 +23,7 @@ export class ListaComponent {
   pageIndex: number = 0;
   pageSize: number = 10;
   lowValue: number = 0;
-  highValue: number = 10;
+  highValue: number = this.pageSize;
 
   getPaginatorData(event: { pageIndex: number; }) {
     console.log(event);

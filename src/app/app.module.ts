@@ -11,11 +11,13 @@ import { SharedModule } from './components/shared/shared.module';
 // Componentes
 import { SidebarComponent } from './components/user/sidebar/sidebar.component';
 import { BackendModule } from './components/backend/backend.module';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,

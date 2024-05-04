@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { BackendService } from '../../../../services/backend/backend.service';
+import { ErrorService } from '../../../../services/error/error.service';
 
 @Component({
   selector: 'app-contact-us-de-usuario',
@@ -13,7 +14,7 @@ export class ContactUsDeUsuarioComponent {
   private todos: any[] = [];
   private respuesta: any[] = [];
 
-  constructor(private location: Location, private backendService: BackendService) { }
+  constructor(private location: Location, private backendService: BackendService, private errorService: ErrorService) { }
 
   ngOnInit() {
     this.backendService.getContactUs().subscribe(
@@ -25,7 +26,16 @@ export class ContactUsDeUsuarioComponent {
         this.filtrar();
       },
       error => {
-        console.error('Error al crear la sugerencia: ', error); // LOG:
+        console.error('Error: ', error); // LOG:
+        if (error.status === 400) {
+          this.errorService.openDialogError("No se encontraron usuarios.");
+        } else if (error.status === 401) {
+          this.errorService.openDialogError("Error 401: Acceso no autorizado.");
+        } else if (error.status === 403) {
+          this.errorService.openDialogError("Error 403: El token no es válido.");
+        } else if (error.status === 500) {
+          this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+        }
       }
     );
   }

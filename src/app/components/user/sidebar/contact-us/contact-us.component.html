@@ -28,6 +28,18 @@
         <mat-grid-tile colspan="3">
             <form class="example-form">
                 <mat-form-field class="example-full-width">
+                    <mat-label>Título</mat-label>
+                    <input matInput type="text" [(ngModel)]="titulo">
+                </mat-form-field>
+            </form>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="1">
+            <p style="width: 100%;" class="text">Descripción: </p>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="3">
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
                     <textarea matInput placeholder="Descripcion" [(ngModel)]="descripcion" name="descripcion"></textarea>
                 </mat-form-field>
             </form>
@@ -35,16 +47,16 @@
 
         <mat-grid-tile colspan="3"></mat-grid-tile>
         <mat-grid-tile colspan="1">
-            <button mat-flat-button (click)="enviarFormulario()">Enviar</button>
+            <button mat-flat-button color="primary" (click)="enviarFormulario()" >Enviar</button>
         </mat-grid-tile>
 
         <mat-grid-tile colspan="1">
             <p style="width: 100%;" class="text">Redes sociales: </p>
         </mat-grid-tile>
         <mat-grid-tile colspan="1">
-            <img mat-sm-image class="img" src="./assets/img/badge1.png" alt="Logo Twitter">
-            <img mat-sm-image class="img" src="./assets/img/badge1.png" alt="Logo Facebook">
-            <img mat-sm-image class="img" src="./assets/img/badge1.png" alt="Logo Youtube">
+            <a [href]="'https://twitter.com/'"><img mat-sm-image class="img" src="./assets/img/logo-twitter.png" alt="Logo Twitter"></a>
+            <a [href]="'https://facebook.com/'"><img mat-sm-image class="img" src="./assets/img/logo-facebook.png" alt="Logo Facebook"></a>
+            <a [href]="'https://youtube.com/'"><img mat-sm-image class="img" src="./assets/img/logo-youtube.png" alt="Logo Youtube"></a>
         </mat-grid-tile>
     </mat-grid-list>
 </div>

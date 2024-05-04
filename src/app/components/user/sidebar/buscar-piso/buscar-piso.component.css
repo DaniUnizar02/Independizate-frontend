@@ -1,4 +1,4 @@
-/* .fijo {}
+/* .fijo {} 
 
 .desplazable {} */
 
@@ -15,4 +15,8 @@
     background: linear-gradient(251.18deg, #730068 28.25%, #434982 37.09%, #434982 56.69%, #01D28E 65.98%);
     width: 100%;
     margin: 20px 0;
+}
+
+.example-form-field {
+    width: 100%;
 }

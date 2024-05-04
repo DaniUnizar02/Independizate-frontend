@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AnadirPostComponent } from '../anadir-post/anadir-post.component';
 import { BackendService } from '../../../../../services/backend/backend.service';
+import { ErrorService } from '../../../../../services/error/error.service';
 
 @Component({
   selector: 'app-posts',
@@ -28,7 +29,7 @@ export class PostsComponent {
     { path: 'guardados', label: "Guardados" }
   ];
 
-  constructor(public dialog: MatDialog, private backendService: BackendService) { }
+  constructor(public dialog: MatDialog, private backendService: BackendService, private errorService: ErrorService) { }
 
   ngOnInit(): void {
     this.backendService.getPosts().subscribe(
@@ -40,6 +41,13 @@ export class PostsComponent {
       },
       error => {
         console.error('Error: ', error); // LOG:
+        if (error.status === 401) {
+          this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+        } else if (error.status === 404) {
+          this.errorService.openDialogError("No se encontraron posts.");
+        } else if (error.status === 500) {
+          this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+        }
       }
     );
   }

@@ -15,8 +15,8 @@ export class BackendService {
 
   // DELETE: Usuario por defecto
   usuario = {
-    usuario: 'admin',
-    contrasegna: '123',
+    usuario: 'dani',
+    contrasegna: 'dani',
     rememberMe: false
   };  
 

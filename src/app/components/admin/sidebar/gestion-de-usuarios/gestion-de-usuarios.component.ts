@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { BackendService } from '../../../../services/backend/backend.service';
+import { ErrorService } from '../../../../services/error/error.service';
 
 @Component({
   selector: 'app-gestion-de-usuarios',
@@ -13,7 +14,7 @@ export class GestionDeUsuariosComponent {
   private todos: any[] = [];
   private respuesta: any[] = [];
 
-  constructor(private location: Location, private backendService: BackendService) {}
+  constructor(private location: Location, private backendService: BackendService, private errorService: ErrorService) {}
 
   ngOnInit(): void {
     this.backendService.getUsers().subscribe(
@@ -25,6 +26,15 @@ export class GestionDeUsuariosComponent {
       },
       error => {
         console.error('Error: ', error); // LOG:
+        if (error.status === 400) {
+          this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+        } else if (error.status === 401) {
+          this.errorService.openDialogError("");
+        } else if (error.status === 403) {
+          this.errorService.openDialogError("No se encontraron posts.");
+        } else if (error.status === 500) {
+          this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+        }
       }
     );
   }
