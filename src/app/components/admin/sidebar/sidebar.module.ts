@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SidebarRoutingModule } from './sidebar-routing.module';
-import { SidebarComponent } from './sidebar.component';
+import { SidebarComponentAdmin } from './sidebar.component';
 import { SharedModule } from '../../shared/shared.module';
 import { GestionDeUsuariosComponent } from './gestion-de-usuarios/gestion-de-usuarios.component';
 import { DenunciasDelForoComponent } from './denuncias-del-foro/denuncias-del-foro.component';
@@ -12,7 +12,7 @@ import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 
 @NgModule({
   declarations: [
-    SidebarComponent,
+    SidebarComponentAdmin,
     GestionDeUsuariosComponent,
     DenunciasDelForoComponent,
     ContactUsDeUsuarioComponent,

@@ -12,12 +12,14 @@ import { SharedModule } from './components/shared/shared.module';
 import { SidebarComponent } from './components/user/sidebar/sidebar.component';
 import { BackendModule } from './components/backend/backend.module';
 import { ErrorComponent } from './components/error/error.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
     ErrorComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
