@@ -19,7 +19,7 @@ import { HomeComponent } from './components/home/home.component';
     AppComponent,
     SidebarComponent,
     ErrorComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

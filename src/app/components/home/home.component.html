@@ -1,5 +1,6 @@
 <div class="inicio">
-    <form>
+  <div>
+    <form class="formStyle">
         <label for="email">Email:</label><br>
         <input type="text" id="email" name="email" style="width: 100%"><br>
         
@@ -13,7 +14,6 @@
         </div>
         
         <div style="text-align: center; margin-top: 20px;">
-          <!--<input type="submit" class="rounded-button" value="Login"> -->
           <a routerLink="/sidebar" class="rounded-button">Login</a>
     
           <div style="margin-top: 20px;">
@@ -21,9 +21,14 @@
             <a routerLink="/home/register">Register</a>
           </div>
           
-        </div>
+        </div>    
     </form>
-    
+
+      <button type="button" class="login-with-google-btn" #loginRef>
+        Sign in with Google
+      </button>
+  </div>
+
     <div class="app-name">Independízate</div>
     <div style="position: absolute;
             width: 50%;
