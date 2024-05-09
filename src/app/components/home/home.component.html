@@ -1,31 +1,36 @@
 <div class="inicio">
-  <form>
-    <label for="email">Email:</label><br>
-    <input type="text" id="email" name="email" style="width: 100%"><br>
+  <div>
+    <form class="formStyle">
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email" style="width: 100%"><br>
+        
+        <label for="password">Contraseña:</label><br>
+        <input type="password" id="password" name="password" style="width: 100%;"><br><br>
+    
+        <div class="additional-options" style="display:flex">
+          <input type="checkbox" id="remember-me" name="remember-me">
+          <label for="remember-me" margin-left="30px">Remember me</label>
+          <a href="#" class="forgot-password">Forgot password?</a>
+        </div>
+        
+        <div style="text-align: center; margin-top: 20px;">
+          <a routerLink="/sidebar" class="rounded-button">Login</a>
+    
+          <div style="margin-top: 20px;">
+            <label>Don't have an account?</label>
+            <a routerLink="/home/register">Register</a>
+          </div>
+          
+        </div>    
+    </form>
 
-    <label for="password">Contraseña:</label><br>
-    <input type="password" id="password" name="password" style="width: 100%;"><br><br>
+      <button type="button" class="login-with-google-btn" #loginRef>
+        Sign in with Google
+      </button>
+  </div>
 
-    <div class="additional-options" style="display:flex">
-      <input type="checkbox" id="remember-me" name="remember-me">
-      <label for="remember-me" margin-left="30px">Remember me</label>
-      <a href="#" class="forgot-password">Forgot password?</a>
-    </div>
-
-    <div style="text-align: center; margin-top: 20px;">
-      <!--<input type="submit" class="rounded-button" value="Login"> -->
-      <a routerLink="/sidebar" class="rounded-button">Login</a>
-
-      <div style="margin-top: 20px;">
-        <label>Don't have an account?</label>
-        <a routerLink="/home/register">Register</a>
-      </div>
-
-    </div>
-  </form>
-
-  <div class="app-name">Independízate</div>
-  <div style="position: absolute;
+    <div class="app-name">Independízate</div>
+    <div style="position: absolute;
             width: 50%;
             height: 100%;
             left: 0;
