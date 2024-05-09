@@ -42,7 +42,7 @@ export class BuscarPisoComponent {
         piso: item.suggestedTexts.title,
         direccion: item.address,
         descripcion: item.description,
-        precio: item.price,
+        precio: item.price + "€",
         img: item.thumbnail
       }
 

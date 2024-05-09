@@ -6,7 +6,7 @@
         <mat-grid-tile colspan="4">
             <mat-form-field class="example-form-field">
                 <mat-label>Buscar</mat-label>
-                <input matInput type="text" [(ngModel)]="value">
+                <input matInput type="text" [(ngModel)]="value" (ngModelChange)="buscar()">
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile colspan="1">

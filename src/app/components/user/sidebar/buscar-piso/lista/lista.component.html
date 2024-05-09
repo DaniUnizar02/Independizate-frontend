@@ -1,16 +1,16 @@
 <mat-grid-list cols="2" rowHeight="3:1">
   <mat-grid-tile *ngFor="let tarjeta of tarjetas | slice: lowValue : highValue">
-    <mat-card class="post">
+    <mat-card class="post" (click)="navigateToInfoPiso(tarjeta.idIdealista)">
       <mat-card-header>
         <mat-card-title-group>
           <mat-card-title style="color: white;">{{ tarjeta.piso }}</mat-card-title>
-          <mat-card-subtitle style="color: white;" (click)="navigateToInfoPiso(tarjeta.idIdealista)">{{ tarjeta.direccion }}</mat-card-subtitle>
+          <mat-card-subtitle style="color: white;">{{ tarjeta.direccion }}</mat-card-subtitle>
         </mat-card-title-group>
         <!-- <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil"
           style="width: 15%; margin-top: 2%; margin-left: 2%"> -->
         <img mat-card-image [src]=tarjeta.img alt="Foto de perfil" style="width: 15%; margin-top: 2%; margin-left: 2%">
       </mat-card-header>
-      <mat-card-content class="post-content" style="color: white;"  (click)="navigateToInfoPiso(tarjeta.idIdealista)">
+      <mat-card-content class="post-content" style="color: white;">
         {{tarjeta.descripcion }}
       </mat-card-content>
       <mat-card-actions align="end">

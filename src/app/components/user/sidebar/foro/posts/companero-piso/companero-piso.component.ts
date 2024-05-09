@@ -53,7 +53,7 @@ export class CompaneroPisoComponent {
     );
   }
 
-  getPosts() {
+  private getPosts() {
     this.todos = [];
     this.backendService.getForumCategoriaPostsFavs("compagneroDePiso").subscribe(
       response => {

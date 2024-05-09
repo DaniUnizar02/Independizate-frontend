@@ -32,11 +32,12 @@ export class AnadirPostComponent {
       this.body = {
         titulo: this.titulo,
         descripcion: this.mensaje,
-        autor: "663663cced76dd6a68d9736b", // TODO: Este usuario es por defecto, realmente hay que sacarlo de algún lado
+        autor: this.backendService.user, // TODO: Este usuario es por defecto, realmente hay que sacarlo de algún lado
         categoria: this.categoria
       }
       this.backendService.postPosts(this.body).subscribe(
         response => {
+          this.dialogRef.close();
         },
         error => {
           console.error('Error: ', error);
@@ -51,7 +52,6 @@ export class AnadirPostComponent {
           }
         }
       );
-      this.dialogRef.close();
     }
   }
 }

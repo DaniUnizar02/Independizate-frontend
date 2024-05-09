@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
-
+import { BackendService } from '../../../services/backend/backend.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,6 +9,11 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class SidebarComponent {
   open: boolean = true;
   margen: Number = 15;
+  nombreUsuario: string;
+
+  constructor (private backendService: BackendService) {
+    this.nombreUsuario = backendService.nombreUsuario;
+  }
 
   toggle() {
     this.open = !this.open;

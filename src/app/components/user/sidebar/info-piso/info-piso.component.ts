@@ -17,6 +17,7 @@ export class InfoPisoComponent {
     direccion: '',
     habitaciones: '',
     tamano: '',
+    descripcion: '',
     precio: '',
     img: '',
     url: ''
@@ -62,6 +63,7 @@ export class InfoPisoComponent {
           direccion: response.address,
           habitaciones: response.room + " habitaciones",
           tamano: response.size + " m2",
+          descripcion: response.description,
           precio: response.price + "€",
           img: response.thumbnail,
           url: response.url

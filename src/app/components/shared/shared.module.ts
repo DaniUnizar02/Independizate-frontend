@@ -20,6 +20,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDividerModule } from '@angular/material/divider';
+
 
 @NgModule({
   declarations: [],
@@ -40,7 +42,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatExpansionModule,
     MatTabsModule,
     MatButtonModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDividerModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -58,7 +61,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatExpansionModule,
     MatTabsModule,
     MatButtonModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDividerModule
   ]
 })
 export class SharedModule { }
