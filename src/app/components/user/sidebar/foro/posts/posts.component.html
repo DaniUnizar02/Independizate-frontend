@@ -1,25 +1,10 @@
 <nav mat-tab-nav-bar [tabPanel]="tabPanel">
     <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
-        [active]="rla.isActive" (click)="value=''" (click)="setCategoria(link.label)" (click)="buscar()">
+        [active]="rla.isActive"> 
         {{link.label}}
     </a>
 </nav>
 
 <mat-tab-nav-panel #tabPanel>
-    <mat-grid-list cols="6" rowHeight="2:1">
-        <mat-grid-tile colspan="1" (click)="buscar()">
-            <mat-icon>search</mat-icon>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="4">
-            <mat-form-field class="example-form-field">
-                <mat-label>Clearable input</mat-label>
-                <input matInput type="text" [(ngModel)]="value">
-            </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1">
-            <mat-icon (click)="openDialogAdd('0ms', '0ms', categoria)">add</mat-icon>
-        </mat-grid-tile>
-    </mat-grid-list>
-
     <router-outlet></router-outlet>
 </mat-tab-nav-panel>

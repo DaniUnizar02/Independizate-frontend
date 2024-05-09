@@ -14,7 +14,7 @@ import { FiltrosComponent } from './filtros/filtros.component';
     BuscarPisoComponent,
     ListaComponent,
     MapaComponent,
-    FiltrosComponent
+    FiltrosComponent,
   ],
   imports: [
     CommonModule,

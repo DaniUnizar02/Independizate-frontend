@@ -14,15 +14,27 @@ export class BackendService {
 
 
   // DELETE: Usuario por defecto
-  usuario = {
+  admin = {
     usuario: 'dani',
     contrasegna: 'dani',
     rememberMe: false
   };  
 
+  usuario = {
+    usuario: 'usuario',
+    contrasegna: 'usuario',
+    rememberMe: false
+  }; 
+
+  usuario1 = {
+    usuario: 'string',
+    contrasegna: 'string',
+    rememberMe: false
+  }; 
+
   // REVIEW:
   constructor(private http: HttpClient) {
-    this.postAuthLogin(this.usuario).subscribe(valor => {
+    this.postAuthLogin(this.usuario1).subscribe(valor => {
       this.user = valor.id;
       this.headers = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -34,6 +46,80 @@ export class BackendService {
       console.error('Error al obtener token: ', error);
     });
   }
+
+  // NOTE: Ahora
+  // NOTE: Auth
+  postAuthLogin(body: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}auth/login/`, body);
+  }
+
+  // NOTE: Apartments
+  getAparments(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}apartments/`);
+  }
+
+  getApartmentsId(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}apartments/${id}/`);
+  }
+
+  // NOTE: ContactUs
+  postContactUs(body: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}contactUs/`, body, {headers: this.headers});
+  } 
+
+  getContactUs(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}contactUs/`, {headers: this.headers});
+  }
+
+  // NOTE: Forum
+  getForumCategoriaPostsFavs(categoria: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}forum/${categoria}/posts/favs/`, {headers: this.headers});
+  }
+
+  // NOTE: Users
+  getUsers(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}users/`, {headers: this.headers});
+  }
+
+  // NOTE: FAQ
+  getFaqs(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}faqs/`);
+  }
+
+  // NOTE: Posts
+  postPosts(body: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}posts/`, body, {headers: this.headers});
+  }
+
+  putPostsFavoritesPostId(post_id: string): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}posts/favorites/${post_id}/`, {}, {headers: this.headers});
+  }
+
+  putPostsLikePostId(post_id: string): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}posts/like/${post_id}/`, {}, {headers: this.headers});
+  }
+
+  getPostsIdMessages(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}posts/${id}/messages/`, {headers: this.headers});
+  }
+
+  // NOTE: Profiles
+  getProfilesId(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}profiles/${id}/`, {headers: this.headers});
+  }
+
+  // NOTE: Reports
+  postReports(body: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}reports/`, body, {headers: this.headers});
+  }
+
+
+
+
+
+
+
+  /* DELETE: Antes
 
   // NOTE: Admin
 
@@ -267,5 +353,5 @@ export class BackendService {
   // IN PROGRESS: Sin probar
   putUsersIdDisable(id: String): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}users/${id}/disable/`, {});
-  }
+  }*/
 }

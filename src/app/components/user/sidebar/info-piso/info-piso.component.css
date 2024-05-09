@@ -1,0 +1,56 @@
+/* .fijo {} */
+
+.desplazable {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.title {
+    text-align: center;
+    margin-top: 1%;
+    color: #434982;
+    font-size: 210%;
+}
+
+.linea-title {
+    border: none;
+    height: 10px;
+    background: linear-gradient(251.18deg, #730068 28.25%, #434982 37.09%, #434982 56.69%, #01D28E 65.98%);
+    width: 100%;
+    margin: 20px 0;
+}
+
+.img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img {
+    max-height: 500px;
+    max-width: 100%;
+    height: 100%;
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.info-container {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    margin-top: 5%;
+    width: 75%;
+    border-radius: 10px;
+    line-height: 2;
+}
+
+.card-content {
+    font-size: 150%;
+}
+
+.precio {
+    font-size: 200%;
+    font-weight: bold;
+}
