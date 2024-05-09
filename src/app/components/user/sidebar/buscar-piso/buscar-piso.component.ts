@@ -38,6 +38,7 @@ export class BuscarPisoComponent {
   formatear(): void {
     for (const item of this.respuesta) {
       var data = {
+        idIdealista: item.propertyCode,
         piso: item.suggestedTexts.title,
         direccion: item.address,
         descripcion: item.description,

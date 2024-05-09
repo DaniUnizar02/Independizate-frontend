@@ -7,6 +7,10 @@
     width: 100%;
 }
 
+.barra {
+    margin-top: 1%;
+}
+
 .post {
     width: 70%;
     background: rgba(67, 73, 130, 0.8);

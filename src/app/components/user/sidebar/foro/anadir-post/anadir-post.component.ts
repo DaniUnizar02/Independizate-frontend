@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { BackendService } from '../../../../../services/backend/backend.service';
-import { PostsComponent } from '../posts/posts.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ErrorService } from '../../../../../services/error/error.service';
 
 @Component({
   selector: 'app-anadir-post',
@@ -19,30 +19,36 @@ export class AnadirPostComponent {
   }
   private categoria: string;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<AnadirPostComponent>, private backendService: BackendService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<AnadirPostComponent>, private backendService: BackendService, private errorService: ErrorService) {
     this.categoria = data.categoria;
     // console.log(this.categoria) // LOG:
   }
 
   anadir() {
-    if (!this.titulo.trim() && !this.mensaje.trim()) {
+    if (!this.titulo.trim() || !this.mensaje.trim()) {
       console.log('No hay datos para añdir el post'); // LOG:
+      this.errorService.openDialogError("Todos los campos deben estar rellenos.");
     } else {
       this.body = {
         titulo: this.titulo,
         descripcion: this.mensaje,
-        autor: "66112f4407b01332ba5983bc", // TODO: Este usuario es por defecto, realmente hay que sacarlo de algún lado
+        autor: "663663cced76dd6a68d9736b", // TODO: Este usuario es por defecto, realmente hay que sacarlo de algún lado
         categoria: this.categoria
       }
       this.backendService.postPosts(this.body).subscribe(
         response => {
-          // this.respuesta = response.respuesta.posts
-          // // console.log('Posts (Foro): ', this.respuesta); // LOG:
-          // this.formatear();
-          // this.postsGeneral = this.todosPosts
         },
         error => {
           console.error('Error: ', error);
+          if (error.status === 401) {
+            this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+          } else if (error.status === 403) {
+            this.errorService.openDialogError("Forbidden.");
+          } else if (error.status === 404) {
+            this.errorService.openDialogError("No se encontraron posts.");
+          } else if (error.status === 500) {
+            this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+          }
         }
       );
       this.dialogRef.close();

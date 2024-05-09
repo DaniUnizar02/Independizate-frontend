@@ -30,7 +30,7 @@ import { ResponderMensajeComponent } from './conversacion/responder-mensaje/resp
     PonerDenunciaComponent,
     AnadirPostComponent,
     AnadirConversacionComponent,
-    ResponderMensajeComponent
+    ResponderMensajeComponent,
   ],
   imports: [
     CommonModule,

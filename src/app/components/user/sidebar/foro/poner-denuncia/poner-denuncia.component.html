@@ -7,20 +7,21 @@
         <mat-grid-tile colspan="2">
             <mat-form-field style="width: 100%;">
                 <mat-label>Selección</mat-label>
-                <mat-select>
-                    <mat-option value="foro-erroneo">Mensaje en foro erróneo</mat-option>
-                    <mat-option value="eliminar-mensaje">Mensaje a eliminar</mat-option>
+                <mat-select [(value)]="tipo">
+                    <mat-option value="Post eliminar">Post a eliminar</mat-option>
+                    <mat-option value="Post foro erroneo">Post en foro erróneo</mat-option>
+                    <mat-option value="Mensaje eliminar">Mensaje a eliminar</mat-option>
                 </mat-select>
             </mat-form-field>
         </mat-grid-tile>
     </mat-grid-list>
     <form class="example-form">
         <mat-form-field class="example-full-width">
-            <textarea matInput placeholder="Respuesta"></textarea>
+            <textarea matInput placeholder="Respuesta" [(ngModel)]="respuesta" name="respuesta"></textarea>
         </mat-form-field>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="center">
     <button mat-flat-button color="warn" style="margin-right: 3%;" [mat-dialog-close]="true">Cancelar</button>
-    <button mat-flat-button (click)="denunciar()">Aceptar</button>
+    <button mat-flat-button color="primary" (click)="denunciar()">Aceptar</button>
 </mat-dialog-actions>

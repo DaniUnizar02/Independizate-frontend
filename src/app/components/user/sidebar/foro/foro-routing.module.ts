@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: '', component: ForoComponent, children: [
     { path: '', redirectTo: 'posts', pathMatch: 'full' },
     { path: 'posts', loadChildren: () => import('./posts/posts.module').then( x => x.PostsModule) },
-    { path: 'conversacion', component: ConversacionComponent }
+    { path: 'conversacion/:id', component: ConversacionComponent }
   ] }
 ];
 

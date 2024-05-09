@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { BackendService } from '../../../../../services/backend/backend.service';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { BuscarPisoComponent } from '../buscar-piso.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista',
@@ -11,11 +10,17 @@ import { BuscarPisoComponent } from '../buscar-piso.component';
 export class ListaComponent {
   tarjetas: any[] = [];
   
-  constructor(private buscarPisoComponent: BuscarPisoComponent) { }
+  constructor(private router: Router, private buscarPisoComponent: BuscarPisoComponent) { }
 
   ngDoCheck() {
     this.tarjetas = this.buscarPisoComponent.tarjetas;
     // console.log('Posts (CP): ',this.posts); // LOG:
+  }
+
+  // NOTE: Info piso
+
+  navigateToInfoPiso(id: string) {
+    this.router.navigate(['sidebar','info-piso', id]);
   }
 
   // NOTE: Paginator
