@@ -1,3 +1,7 @@
 {
-    "todo-tree.tree.showCountsInTree": true
+    "todo-tree.tree.showCountsInTree": true,
+    "docwriter.language": "Spanish",
+    "docwriter.progress.trackClasses": true,
+    "docwriter.progress.trackTypes": true,
+    "docwriter.hotkey.windows": "Alt + ."
 }

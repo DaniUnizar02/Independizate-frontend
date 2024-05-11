@@ -21,6 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatTabsModule,
     MatButtonModule,
     MatPaginatorModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSlideToggleModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -62,7 +64,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatTabsModule,
     MatButtonModule,
     MatPaginatorModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSlideToggleModule
   ]
 })
 export class SharedModule { }

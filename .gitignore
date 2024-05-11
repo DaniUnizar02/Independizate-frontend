@@ -40,4 +40,7 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Mis ficheros
 Preguntas a backend.md
+/cypress

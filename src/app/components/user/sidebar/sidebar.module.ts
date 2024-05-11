@@ -9,6 +9,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { MapaComponent } from './mapa/mapa.component';
 import { InfoPisoComponent } from './info-piso/info-piso.component';
+import { VerNotificacionComponent } from './notificaciones/ver-notificacion/ver-notificacion.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { InfoPisoComponent } from './info-piso/info-piso.component';
     NotificacionesComponent,
     MapaComponent,
     InfoPisoComponent,
+    VerNotificacionComponent,
   ],
   imports: [
     CommonModule,

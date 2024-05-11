@@ -11,7 +11,7 @@
     <mat-card class="post">
         <mat-card-header>
             <mat-card-title-group>
-                <mat-card-title style="color: white;">
+                <mat-card-title style="color: white;" (click)="openDialogUsuario('0ms', '0ms', post.autor)">
                     <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 3%;">
                     {{ post.userName }}
                 </mat-card-title>
@@ -26,7 +26,7 @@
     <mat-card *ngFor="let mensaje of mensajes" class="comentario" [ngClass]="{'comentario-tabulado': mensaje.tabulado}">
         <mat-card-header>
             <mat-card-title-group>
-                <mat-card-title style="color: white;">
+                <mat-card-title style="color: white;"  (click)="openDialogUsuario('0ms', '0ms', mensaje.autor)">
                     <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 3%;">
                     {{ mensaje.userName }}
                 </mat-card-title>

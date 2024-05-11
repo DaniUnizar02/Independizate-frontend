@@ -1,80 +1,84 @@
-<mat-grid-list cols="7" rowHeight="3:1" class="post">
-    <mat-grid-tile colspan="1">
-        <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="height: 90%;">
-    </mat-grid-tile>
+<button mat-flat-button color="primary" (click)="editar=true" *ngIf="editar==false">Editar</button>
+<button mat-flat-button color="primary" (click)="editar=false" *ngIf="editar==true" style="margin-right: 1%;" (click)="guardar()">Guardar</button>
+<button mat-flat-button color="warn" (click)="editar=false" *ngIf="editar==true" (click)="noGuardar()">Dejar de editar</button>
 
+<mat-grid-list cols="5" class="post" *ngIf="editar==false">
     <mat-grid-tile>
-        Usuario:
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
-        <p>{{ infoUsuario.usuario }}</p>
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-        Correo:
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
-        <p>{{ infoUsuario.correo }}</p>
-    </mat-grid-tile>
-
-    <mat-grid-tile colspan="1" rowspan="4">
         <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 90%;">
     </mat-grid-tile>
-
-    <mat-grid-tile>
-        Nombre:
-    </mat-grid-tile>
     <mat-grid-tile colspan="2">
-        <p>{{ infoUsuario.nombre }}</p>
+        <p class="info">
+            Usuario: {{ infoUsuario.usuario }}<br>
+            Nombre: {{ infoUsuario.nombre }}<br>
+            Apellidos: {{ infoUsuario.apellidos }}<br>
+            Edad: {{ infoUsuario.edad }}<br>
+            Reputación: {{ infoUsuario.reputacion }}
+        </p>
     </mat-grid-tile>
-    <mat-grid-tile>
-        Sexo:
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
-        <p>{{ infoUsuario.sexo }}</p>
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-        Apellidos:
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
-        <p>{{ infoUsuario.apellidos }}</p>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        Piso:
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
-        <p>{{ infoUsuario.piso }}</p>
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-        Edad:
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
-        <p>{{ infoUsuario.edad }}</p>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        Ciudad:
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
-        <p>{{ infoUsuario.ciudad }}</p>
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-        Reputación:
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
-        <p>{{ infoUsuario.reputacion }}</p>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        Situación:
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
-        <p>{{ infoUsuario.situacion }}</p>
+    <mat-grid-tile colspan="2" class="info">
+        <p class="info">
+            Correo: {{ infoUsuario.correo }}<br>
+            Sexo: {{ infoUsuario.sexo }}<br>
+            Piso: {{ infoUsuario.piso }}<br>
+            Ciudad: {{ infoUsuario.ciudad }}<br>
+            Situación: {{ infoUsuario.situacion }}
+        </p>
     </mat-grid-tile>
 </mat-grid-list>
 
-<div class="estampas">
+<mat-grid-list cols="5" rowHeight="1:1.4" class="post" *ngIf="editar==true">
+    <mat-grid-tile>
+        <img mat-card-image [src]="infoUsuario.img" alt="Foto de perfil" style="width: 90%;">
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+        <p class="info">
+            Usuario:
+            <mat-form-field style="width: 81%;">
+                <input matInput placeholder="infoUsuario.usuario" [(ngModel)]="infoUsuario.usuario" name="usuario">
+            </mat-form-field>
+            Nombre:
+            <mat-form-field style="width: 80%;">
+                <input matInput placeholder="infoUsuario.nombre" [(ngModel)]="infoUsuario.nombre" name="nombre">
+            </mat-form-field>
+            Apellidos:
+            <mat-form-field style="width: 78%;">
+                <input matInput placeholder="infoUsuario.apellidos" [(ngModel)]="infoUsuario.apellidos" name="apellidos">
+            </mat-form-field>
+            Edad:
+            <mat-form-field style="width: 85%;">
+                <input matInput placeholder="infoUsuario.edad" [(ngModel)]="infoUsuario.edad" name="edad">
+            </mat-form-field>
+            Reputación: {{ infoUsuario.reputacion}}
+        </p>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" class="info">
+        <p class="info">
+            Correo:
+            <mat-form-field style="width: 84%;">
+                <input matInput placeholder="infoUsuario.correo" [(ngModel)]="infoUsuario.correo" name="correo">
+            </mat-form-field>
+            Sexo:
+            <mat-select [(value)]="sexo" style="width: 87%; background-color: white;">
+                <mat-option value="Hombre">Hombre</mat-option>
+                <mat-option value="Mujer">Mujer</mat-option>
+                <mat-option value="Otros">Otros</mat-option>
+            </mat-select>
+            <mat-slide-toggle color="primary" labelPosition="before" [(ngModel)]="piso"><p class="info" style="color: white;">Piso:</p></mat-slide-toggle> <br>
+            Ciudad:
+            <mat-form-field style="width: 83%;">
+                <input matInput placeholder="infoUsuario.ciudad" [(ngModel)]="infoUsuario.ciudad" name="ciudad">
+            </mat-form-field>
+            Situación:
+            <mat-select [(value)]="situacion" style="width: 79%; background-color: white;">
+                <mat-option value="Estudiante">Estudiante</mat-option>
+                <mat-option value="Trabajador">Trabajador</mat-option>
+                <mat-option value="Parado">Parado</mat-option>
+            </mat-select>
+        </p>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<div class="estampas"> 
     <h1>• Seleccione las estampas que desea que se muestren en su perfil</h1>
 
     <mat-grid-list cols="2" rowHeight="4:1">
@@ -83,13 +87,13 @@
                 <mat-card-header>
                     <mat-card-title-group>
                         <mat-card-title style="color: white;">
-                            <img mat-card-image src="{{ estampa.foto }}" alt="Foto de perfil" style="width: 10%;">
+                            <img mat-card-image [src]="estampa.foto" alt="Foto de perfil" style="width: 10%;">
                             {{ estampa.titulo }}
                         </mat-card-title>
                         <mat-card-subtitle style="color: white;">{{ estampa.descripcion }}</mat-card-subtitle>
                     </mat-card-title-group>
                 </mat-card-header>
-                <mat-card-content style="color: white;">{{ estampa.nota }}</mat-card-content>
+                <mat-card-content style="color: white;">{{ estampa.publicable }}</mat-card-content>
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>

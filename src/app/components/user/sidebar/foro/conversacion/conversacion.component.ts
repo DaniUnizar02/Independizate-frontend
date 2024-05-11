@@ -103,11 +103,12 @@ export class ConversacionComponent {
 
   // NOTE: Ver usuario
 
-  openDialogUsuario(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openDialogUsuario(enterAnimationDuration: string, exitAnimationDuration: string, autor: string): void {
     this.dialog.open(VerUsuarioComponent, {
       width: '30%',
       enterAnimationDuration,
       exitAnimationDuration,
+      data: { autor: autor }
     });
   }
 
@@ -118,7 +119,7 @@ export class ConversacionComponent {
       width: '50%',
       enterAnimationDuration,
       exitAnimationDuration,
-      data: { post_id: post_id}
+      data: { post_id: post_id }
     });
 
     dialog.afterClosed().subscribe(() => {
