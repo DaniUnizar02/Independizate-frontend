@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { BackendService } from '../../../../../services/backend/backend.service';
+import { ErrorService } from '../../../../../services/error/error.service';
 
 @Component({
   selector: 'app-datos-personales',
@@ -6,26 +8,190 @@ import { Component } from '@angular/core';
   styleUrl: './datos-personales.component.css'
 })
 export class DatosPersonalesComponent {
+  editar: boolean = false;
+  piso: boolean = false;
+  sexo: string = '';
+  situacion = '';
+
+  private misStamps: any[] = [];
+  private misFavs: any[] = [];
+
   infoUsuario = {
-    usuario: "nombreUsuario",
-    nombre: "Nombre",
-    apellidos: "apellido1 apellido2",
-    edad: "20",
-    reputacion: "256",
-    correo: "ejemplo@ejemplo.es",
-    sexo: "prefiero no decirlo",
-    piso: true,
-    ciudad: "Zaragoza",
-    situacion: "estudiante",
-    estampas: [
-      {titulo: "estampa 1", descripcion: "Esta estampa se ha ....", foto: "/assets/img/badge1.png", nota: "Estampa no equipable", favorita: false, color: ''},
-      {titulo: "estampa 2", descripcion: "Esta estampa se ha ....", foto: "/assets/img/badge1.png", nota: "", favorita: true, color: ''},
-      {titulo: "estampa 3", descripcion: "Esta estampa se ha ....", foto: "/assets/img/badge1.png", nota: "Estampa no equipable", favorita: false, color: ''},
-      {titulo: "estampa 4", descripcion: "Esta estampa se ha ....", foto: "/assets/img/badge1.png", nota: "", favorita: true, color: ''},
-      {titulo: "estampa 5", descripcion: "Esta estampa se ha ....", foto: "/assets/img/badge1.png", nota: "", favorita: true, color: ''},
-      {titulo: "estampa 6", descripcion: "Esta estampa se ha ....", foto: "/assets/img/badge1.png", nota: "Estampa no equipable", favorita: false, color: ''},
-      {titulo: "estampa 4", descripcion: "Esta estampa se ha ....", foto: "/assets/img/badge1.png", nota: "", favorita: false, color: '#727294'},
-      {titulo: "estampa 5", descripcion: "Esta estampa se ha ....", foto: "/assets/img/badge1.png", nota: "", favorita: false, color: '#727294'}
-    ] 
+    img: '',
+    usuario: '',
+    nombre: '',
+    apellidos: '',
+    edad: '',
+    reputacion: '',
+    correo: '',
+    sexo: '',
+    piso: '',
+    ciudad: '',
+    situacion: '',
+    estampas: [{
+      id: '',
+      titulo: '',
+      descripcion: '',
+      foto: '',
+      publicable: '',
+      favorita: false,
+      color: ''
+    }]
   };
+
+  constructor(private backendService: BackendService, private errorService: ErrorService) { }
+
+  ngOnInit() {
+    this.getInfo();
+    this.getMisStamps();
+    this.getAllStamps();
+  }
+
+  private getInfo() {
+    this.backendService.getProfilesId(this.backendService.user).subscribe(
+      response => {
+        console.log(response);
+        this.infoUsuario = {
+          img: response.fotoPerfil,
+          usuario: response.usuario,
+          nombre: response.nombre,
+          apellidos: response.apellidos,
+          edad: response.edad,
+          reputacion: response.reputacion,
+          correo: response.correo,
+          sexo: response.sexo,
+          piso: response.piso ? 'Sí' : 'No',
+          ciudad: response.ciudad,
+          situacion: response.situacion,
+          estampas: []
+        }
+        this.piso = response.piso;
+        this.sexo = response.sexo;
+        this.situacion = response.situacion;
+      },
+      error => {
+        console.error('Error: ', error); // LOG:
+        if (error.status === 401) {
+          this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+        } else if (error.status === 403) {
+          this.errorService.openDialogError("Forbidden.");
+        } else if (error.status === 404) {
+          this.errorService.openDialogError("No se encontraron posts.");
+        } else if (error.status === 500) {
+          this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+        }
+      }
+    );
+  }
+
+  private getMisStamps() {
+    this.misStamps = [];
+    this.backendService.getProfilesIdStamps(this.backendService.user).subscribe(
+      response => {
+        console.log(response); //LOG:
+        for (const item of response.listaEstampas) {
+          this.misStamps.push(item);
+        }
+        for (const item of response.estampasFavoritas) {
+          this.misFavs.push(item);
+        }
+        console.log(this.misStamps);//LOG:
+        console.log(this.misFavs);//LOG:
+      },
+      error => {
+        console.error('Error: ', error); // LOG:
+        if (error.status === 401) {
+          this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+        } else if (error.status === 403) {
+          this.errorService.openDialogError("Forbidden.");
+        } else if (error.status === 404) {
+          this.errorService.openDialogError("No se encontraron posts.");
+        } else if (error.status === 500) {
+          this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+        }
+      }
+    );
+  }
+
+  private getAllStamps() {
+    this.infoUsuario.estampas = [];
+    this.backendService.getStamps().subscribe(
+      response => {
+        console.log(response);
+        this.formatearAllStamps(response.stamps);
+        console.log(this.infoUsuario.estampas); // LOG:
+      },
+      error => {
+        console.error('Error: ', error); // LOG:
+        if (error.status === 401) {
+          this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+        } else if (error.status === 403) {
+          this.errorService.openDialogError("Forbidden.");
+        } else if (error.status === 404) {
+          this.errorService.openDialogError("No se encontraron posts.");
+        } else if (error.status === 500) {
+          this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+        }
+      }
+    );
+  }
+
+  private formatearAllStamps(stamps: any) {
+    for (const item of stamps) {
+      var data = {
+        id: item._id,
+        titulo: item.titulo,
+        descripcion: item.descripcion,
+        foto: item.foto,
+        publicable: item.publicable ? "✅ Estampa equipable" : "❌ Estampa no equipable",
+        favorita: false,
+        color: '#3F3F4F'
+      };
+
+      if (this.misStamps.includes(item._id)) { data.color = ''; }
+      if (this.misFavs.includes(item._id)) { data.favorita = true; }
+
+      this.infoUsuario.estampas.push(data);
+    }
+  }
+
+  guardar() {
+    var data = {
+      usuario: this.infoUsuario.usuario,
+      contrasegna: 'usuario',
+      nombre: this.infoUsuario.nombre,
+      apellidos: this.infoUsuario.apellidos,
+      correo: this.infoUsuario.correo,
+      edad: parseInt(this.infoUsuario.edad),
+      sexo: this.infoUsuario.sexo,
+      piso: this.piso,
+      ciudad: this.infoUsuario.ciudad,
+      situacion: this.infoUsuario.situacion,
+      fotoPerfil: this.infoUsuario.img
+    }
+
+    this.backendService.putProfilesId(this.backendService.user, data).subscribe(
+      response => { },
+      error => {
+        console.error('Error: ', error); // LOG:
+        if (error.status === 401) {
+          this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+        } else if (error.status === 403) {
+          this.errorService.openDialogError("Forbidden.");
+        } else if (error.status === 404) {
+          this.errorService.openDialogError("No se encontraron posts.");
+        } else if (error.status === 500) {
+          this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+        }
+      }
+    );
+
+    this.getInfo();
+  }
+
+  noGuardar() {
+    this.piso = this.infoUsuario.piso === "Sí" ? true : false;
+    this.sexo = this.infoUsuario.sexo;
+    this.situacion = this.infoUsuario.situacion;
+  }
 }

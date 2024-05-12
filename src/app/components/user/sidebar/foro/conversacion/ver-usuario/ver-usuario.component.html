@@ -3,11 +3,11 @@
 </mat-dialog-actions>
 <mat-dialog-content>
     <div class="info">
-        <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 30%;">
-        <p class="title">Nombre de usuario</p>
-        <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 10%;">
-        <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 10%;">
-        <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 10%;">
-        <p>Reputación: 256</p>
+        <img mat-card-image [src]="usuario.fotoPerfil" alt="Foto de perfil" style="width: 30%;">
+        <p class="title">{{ usuario.usuario }}</p>
+        <img mat-card-image [src]="usuario.estampasFavoritas[0]" alt="Foto de perfil" style="width: 10%;">
+        <img mat-card-image [src]="usuario.estampasFavoritas[1]" alt="Foto de perfil" style="width: 10%;">
+        <img mat-card-image [src]="usuario.estampasFavoritas[2]" alt="Foto de perfil" style="width: 10%;">
+        <p>Reputación: {{ usuario.reputacion }}</p>
     </div>
 </mat-dialog-content>

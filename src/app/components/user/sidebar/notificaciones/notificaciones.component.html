@@ -13,7 +13,7 @@
 <div class="desplazable">
     <mat-grid-list cols="2" rowHeight="3:1">
         <mat-grid-tile *ngFor="let notificacion of notificaciones">
-            <mat-card class="post" [style.background-color]="notificacion.color">
+            <mat-card class="post" [style.background-color]="notificacion.color" (click)="notificacionLeida(notificacion.id, notificacion.color); openDialogVer('0ms', '0ms', notificacion.id)">
                 <mat-card-header>
                     <mat-card-title-group>
                         <mat-card-title style="color: white;">

@@ -35,7 +35,16 @@ export class BackendService {
 
   // REVIEW:
   constructor(private http: HttpClient) {
-    var u = this.admin;
+    /* #region NOTE: Websocket */ // LOG: Cambiar a cuando el usuario se loguea
+    const socket = new WebSocket('ws://localhost:4000?clienteId=' + this.user);
+    socket.addEventListener('open', () => { console.log('Conexión establecida con el servidor WebSocket'); });
+    socket.addEventListener('message', (event) => {
+      console.log('Mensaje recibido del servidor:', event.data);
+      alert('Notificación recibida');
+    });
+    /* #endregion */
+
+    var u = this.usuario;
     this.postAuthLogin(u).subscribe(valor => {
       this.user = valor.id;
       this.nombreUsuario = u.usuario;
@@ -99,8 +108,12 @@ export class BackendService {
   /* #endregion */
 
   /* #region NOTE: Notifications */
-  getNotifications(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}notifications/`, { headers: this.headers });
+  getNotificationsAutorAutor(autor: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}notifications/autor/${autor}/`, { headers: this.headers });
+  }
+
+  putNotificationsIdRead(id: string): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}notifications/${id}/read/`, {}, { headers: this.headers });
   }
   /* #endregion */
 
@@ -126,11 +139,29 @@ export class BackendService {
   getProfilesId(id: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}profiles/${id}/`, { headers: this.headers });
   }
+
+  putProfilesId(id: string, body: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}profiles/${id}/`, body, { headers: this.headers });
+  }
+
+  getProfilesIdStamps(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}profiles/${id}/stamps/`, { headers: this.headers });
+  }
+  /* #endregion */
+
+  /* #region NOTE: Stamps */
+  getStamps(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}stamps/`, { headers: this.headers });
+  }
   /* #endregion */
 
   /* #region NOTE: Users */
   getUsers(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}users/`, { headers: this.headers });
+  }
+
+  getUsersIdBasic(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}users/${id}/basic/`);
   }
   /* #endregion */
 

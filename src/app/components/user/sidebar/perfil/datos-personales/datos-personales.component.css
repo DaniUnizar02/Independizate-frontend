@@ -1,9 +1,17 @@
 .post {
-    width: 98%;
+    width: 100%;
     height: auto;
-    margin: 1%;
     background: rgba(67, 73, 130, 0.8);
     border-radius: 10px;
+}
+
+.info {
+    font-size: 150%;
+    line-height: 2;
+}
+
+button {
+    margin-bottom: 1%;
 }
 
 .mat-grid-tile {
@@ -11,11 +19,10 @@
     font-size: 100%;
 }
 
-.example-form-field {
-    width: 95%;
-    margin-top: 5%;
+.example-form {
+    width: 100%;
+    margin: none;
 }
-
 .estampas {
-    margin: 2%;
+    margin-top: 2%;
 }

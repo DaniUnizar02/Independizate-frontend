@@ -6,15 +6,12 @@ import { PerfilComponent } from './perfil.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { DatosPersonalesComponent } from './datos-personales/datos-personales.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
-import { DatosPersonalesEditarComponent } from './datos-personales-editar/datos-personales-editar.component';
-
 
 @NgModule({
   declarations: [
     PerfilComponent,
     DatosPersonalesComponent,
-    EstadisticasComponent,
-    DatosPersonalesEditarComponent
+    EstadisticasComponent
   ],
   imports: [
     CommonModule,
