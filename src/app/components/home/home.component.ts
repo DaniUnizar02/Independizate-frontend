@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { BackendService } from '../../services/backend/backend.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -10,12 +12,20 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   auth2: any;
   @ViewChild('loginRef', { static: true }) loginElement!: ElementRef;
+  gBody = {
+    id: '',
+    password: ''
+  }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private http:HttpClient) { }
 
   ngOnInit() {
 
     this.googleAuthSDK();
+  }
+
+  validateGoogleToken(idToken: string) {
+    return this.http.get<any>(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`);
   }
 
   callLogin() {
@@ -30,17 +40,35 @@ export class HomeComponent implements OnInit {
         console.log('ID: ' + profile.getId());
         console.log('Name: ' + profile.getName());
         console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
+        console.log('Email: ' + profile.getEmail());       
 
-        //Petition for login/registration in the backend
-
-        this.router.navigate(['/sidebar']);
+        //Validate token
+        const idToken = googleAuthUser.getAuthResponse().id_token;
         
+        this.validateGoogleToken(idToken).subscribe(
+          (response) => {
+            // Handle response of the token validation
+            if (response.sub) {
+              // Valid token
+              //TODO: Verify if the user is already registered
+              //TODO: Use modals for errors
 
-      }, (error: any) => {
+              this.router.navigate(['/sidebar']);
+            } else {
+              // Invalid token
+              alert('Token validation failed');
+            }
+          },
+          (error) => {
+            // Handle error
+            alert('Error validating token: ' + error.message);
+          }
+        );
+      },
+      (error: any) => {
         alert(JSON.stringify(error, undefined, 2));
-      });
-
+      }
+    );
   }
 
   googleAuthSDK() {
