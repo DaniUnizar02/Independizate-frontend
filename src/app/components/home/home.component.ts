@@ -4,6 +4,7 @@ import { BackendService } from '../../services/backend/backend.service';
 import { HttpClient } from '@angular/common/http';
 
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -53,7 +54,7 @@ export class HomeComponent implements OnInit {
               //TODO: Verify if the user is already registered
               //TODO: Use modals for errors
 
-              this.router.navigate(['/sidebar']);
+              this.router.navigate(['/sidebar'], { queryParams: { google: true } });
             } else {
               // Invalid token
               alert('Token validation failed');

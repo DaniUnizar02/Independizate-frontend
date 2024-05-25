@@ -25,7 +25,7 @@
 
 form {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 75%;
     transform: translate(-50%, -50%);
     
@@ -38,20 +38,52 @@ label, input[type="email"], input[type="password"], input[type="submit"] {
     font-family: 'Inria Sans', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 96px;
+    font-size: 8vh;
     line-height: 115px;
     position: absolute;
-    top: 25%;
+    top: 6%;
     left: 75%;
     transform: translate(-50%, -50%);
-    text-align: center; /* Text alignment within the container */
+    text-align: center;
     background: linear-gradient(100.4deg, #01D28E 11.14%, #434982 50.34%, #730068 89.55%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
 }
 
+.description {
+    color: white;
+    font-size:  calc(0.5vh + 1vw);
+    margin: 0 60px 100px 60px;
+    text-align: justify;
+    font-family: 'Inria Sans', sans-serif;
+}
+
+
+@media (max-width: 1000px) {  /* Removes the app name at a certain minimum size*/
+    .app-name {
+        display: none;
+    }
+}
+
+@media (max-height: 450px) {  /* Removes the app name at a certain minimum size*/
+    .app-name {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {  /* Removes the app name at a certain minimum size*/
+    .description {
+        display: none;
+    }
+}
+
+
+@media (max-height: 350px) {  /* Removes the app name at a certain minimum size*/
+    .description {
+        display: none;
+    }
+}
 .rectangleBar {
     position: absolute;
     width: 449px;
@@ -91,4 +123,37 @@ label, input[type="email"], input[type="password"], input[type="submit"] {
     margin-top: 25px;
     color: #434982;
     font-size: 30px; /* Set font size to 40 */
+}
+
+mat-sidenav-container {
+    height: 100%;
+}
+  
+  mat-grid-list {
+    height: 100%;
+}
+  
+  mat-grid-tile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.responsive-content {
+    overflow-y: auto; /* Allow vertical scrolling if content overflows */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.formStyle{
+    position: fixed;
+    margin-top: 4%;
+    padding-right: 10px;
+    overflow-y: auto;  /* Ensures vertical overflow only */
+    overflow-x: auto;  /* Allows horizontal overflow if needed but prioritizes vertical scrolling */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    height: 75vh;
+
 }

@@ -38,10 +38,10 @@ label, input[type="email"], input[type="password"], input[type="submit"] {
     font-family: 'Inria Sans', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 6vw; /* Using viewport width (vw) for font size */
+    font-size: 12vh; /* Using viewport width (vw) for font size */
     line-height: 1.15; /* Using unitless line-height for better scaling */
     position: absolute;
-    top: 15%; /* Positioning from the center vertically */
+    top: 12%; /* Positioning from the center vertically */
     left: 75%; /* Positioning from the center horizontally */
     transform: translate(-50%, -50%);
     text-align: center; /* Text alignment within the container */
@@ -49,7 +49,6 @@ label, input[type="email"], input[type="password"], input[type="submit"] {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
 }
 
 .formStyle {
@@ -105,8 +104,6 @@ label, input[type="email"], input[type="password"], input[type="submit"] {
 .login-with-google-btn {
     transition: background-color .3s, box-shadow .3s;
     padding: 12px 16px 12px 42px;
-    left: 75%;
-    top: 30%;
     border: none;
     border-radius: 3px;
     box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
@@ -118,4 +115,44 @@ label, input[type="email"], input[type="password"], input[type="submit"] {
     background-color: white;
     background-repeat: no-repeat;
     background-position: 12px 11px;
-  }
+}
+
+.googleDiv {
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.description {
+    color: white;
+    font-size:  calc(0.5vh + 1vw);
+    margin: 0 60px 100px 60px;
+    text-align: justify;
+    font-family: 'Inria Sans', sans-serif;
+}
+
+@media (max-width: 1000px) {  /* Removes the app name at a certain minimum size*/
+    .app-name {
+        display: none;
+    }
+}
+
+@media (max-height: 450px) {  /* Removes the app name at a certain minimum size*/
+    .app-name {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {  /* Removes the app name at a certain minimum size*/
+    .description {
+        display: none;
+    }
+}
+
+
+@media (max-height: 350px) and (max-width: 1200) {  /* Removes the app name at a certain minimum size*/
+    .description {
+        display: none;
+    }
+}

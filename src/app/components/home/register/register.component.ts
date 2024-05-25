@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,13 +11,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class RegisterComponent {
   password: string = '';
   password2: string = '';
+  google: boolean = false;
 
-  constructor(private router: Router, private _snackBar: MatSnackBar) { }
+  constructor(private router: Router, private _snackBar: MatSnackBar, private route: ActivatedRoute) { }
 
   onSubmit(event?: Event) {
     if (event) {
       event.preventDefault();
     }
+    console.log('Google: ', this.google);
 
     console.log('Form submitted')
     if (this.password === this.password2) {

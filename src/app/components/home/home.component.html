@@ -7,7 +7,7 @@
         <label for="password">Contraseña:</label><br>
         <input type="password" id="password" name="password" style="width: 100%;"><br><br>
     
-        <div class="additional-options" style="display:flex">
+        <div class="additional-options" style="display:flex; margin-top: 50px;">
           <input type="checkbox" id="remember-me" name="remember-me">
           <label for="remember-me" margin-left="30px">Remember me</label>
           <a href="#" class="forgot-password">Forgot password?</a>
@@ -23,10 +23,11 @@
           
         </div>    
     </form>
-
-      <button type="button" class="login-with-google-btn" #loginRef>
-        Sign in with Google
-      </button>
+      <div class="googleDiv">
+        <button type="button" class="login-with-google-btn" #loginRef>
+          Sign in with Google
+        </button>
+      </div>
   </div>
 
     <div class="app-name">Independízate</div>
@@ -40,7 +41,7 @@
             justify-content: flex-end;
             align-items: center;
             background: linear-gradient(213.58deg, #01D28E 3.95%, #434982 24.82%, #434982 71.13%, #730068 93.06%);">
-    <p style="color: white; font-size: 24px; margin: 0 60px 100px 60px; text-align: justify; font-family: 'Inria Sans', sans-serif;">
+    <p class="description">
       ¿Estás considerando dar tus primeros pasos hacia la independencia? Has llegado al lugar indicado:
       Un portal diseñado para ayudarte a encontrar tu nuevo hogar ideal, compañeros de piso y mucho más.
       Aquí encontrarás valiosos consejos de personas con experiencia, recetas sencillas, tips de limpieza, orientación

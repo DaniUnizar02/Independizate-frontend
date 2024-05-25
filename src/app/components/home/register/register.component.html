@@ -1,38 +1,74 @@
-<div class="inicio">
-    <form (ngSubmit)="onSubmit($event)">
-        <label for="email">Email:</label><br>
-        <input type="text" id="email" name="email" style="width: 100%"><br>
-        
-        <label for="password">Contraseña:</label><br>
-        <input type="password" id="password" name="password" [(ngModel)]="password" style="width: 100%;" required><br><br>
-    
-        <label for="password">Repetir contraseña:</label><br>
-        <input type="password" id="password2" name="password2" [(ngModel)]="password2" style="width: 100%;" required><br><br>
-    
-        
-        <div style="text-align: center; margin-top: 20px;">
-            <button type="button" class="rounded-button" (click)="onSubmit()">Register</button>         
-        </div>
-    </form>
-    
-    <div class="app-name">Independízate</div>
-    <div style="position: absolute;
+<mat-sidenav-container style="height: 100vh;">
+    <mat-grid-list cols="8" rowHeight="1:1" style="height: 100vh; display: contents;">
+        <mat-grid-tile colspan="4">
+            <div style="
             width: 50%;
-            height: 100%;
+            height: 100vh;
             left: 0;
             top: 0;
+            position: fixed;    
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             align-items: center;
             background: linear-gradient(213.58deg, #01D28E 3.95%, #434982 24.82%, #434982 71.13%, #730068 93.06%);">
-    <p style="color: white; font-size: 24px; margin: 0 60px 100px 60px; text-align: justify; font-family: 'Inria Sans', sans-serif;">¿Estás considerando dar tus primeros pasos hacia la independencia? Has llegado al lugar indicado: 
+            <p class="description">¿Estás considerando dar tus primeros pasos hacia la independencia? Has llegado al lugar indicado: 
 
-        Un portal diseñado para ayudarte a encontrar tu nuevo hogar ideal, compañeros de piso y mucho más.
-        Aquí encontrarás valiosos consejos de personas con experiencia, recetas sencillas, tips de limpieza, orientación sobre qué buscar en una vivienda y qué áreas son más adecuadas.
-        Únete y contribuye al crecimiento y mejora de nuestra comunidad, mientras aprendes de otros usuarios. Es un espacio para conectar, aprender y evolucionar. ¡Únete ahora mismo!</p>
-    </div>
+                Un portal diseñado para ayudarte a encontrar tu nuevo hogar ideal, compañeros de piso y mucho más.
+                Aquí encontrarás valiosos consejos de personas con experiencia, recetas sencillas, tips de limpieza, orientación sobre qué buscar en una vivienda y qué áreas son más adecuadas.
+                Únete y contribuye al crecimiento y mejora de nuestra comunidad, mientras aprendes de otros usuarios. Es un espacio para conectar, aprender y evolucionar. ¡Únete ahora mismo!</p>
+            </div>
 
-</div>
+        </mat-grid-tile>
 
+        <mat-grid-tile colspan="4" style="right: 50vh; position: initial;">
 
+            <div class="responsive-content">
+                
+                <div class="app-name">Registrarse</div>
+
+                <form (ngSubmit)="onSubmit($event)" class="formStyle">
+                    <label for="id">Usuario:</label><br>
+                    <input type="text" id="usuario" name="usuario" style="width: 100%;" required><br>
+     
+                    <label for="password">Contraseña:</label><br>
+                    <input type="password" id="password" name="password" [(ngModel)]="password" style="width: 100%;" required><br><br>
+                
+                    <label for="password">Repetir contraseña:</label><br>
+                    <input type="password" id="password2" name="password2" [(ngModel)]="password2" style="width: 100%;" required><br><br>
+
+                    <label for="nombre">Nombre:</label><br>
+                    <input type="text" id="nombre" name="nombre" style="width: 100%" required><br>
+
+                    <label for="apellidos">Apellidos:</label><br>
+                    <input type="text" id="apellidos" name="apellidos" style="width: 100%" required><br>
+
+                    <label for="email">Email:</label><br>
+                    <input type="text" id="email" name="email" style="width: 100%" required><br>
+
+                    <label for="edad">Edad:</label><br>
+                    <input type="text" id="edad" name="edad" style="width: 100%" required><br>
+
+                    <label for="sexo">Sexo:</label><br>
+                    <input type="text" id="sexo" name="sexo" style="width: 100%" required><br>
+
+                    <label for="piso">Piso:</label><br>
+                    <input type="text" id="piso" name="piso" style="width: 100%" required><br>
+
+                    <label for="ciudad">Ciudad:</label><br>
+                    <input type="text" id="ciudad" name="ciudad" style="width: 100%" required><br>
+               
+                
+                    
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button type="button" class="rounded-button" (click)="onSubmit()">Register</button>         
+                    </div>
+                </form>
+            
+            </div>
+
+        </mat-grid-tile>
+            
+    </mat-grid-list>
+
+</mat-sidenav-container>
