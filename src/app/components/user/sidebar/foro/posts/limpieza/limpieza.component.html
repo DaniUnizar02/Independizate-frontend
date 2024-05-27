@@ -1,37 +1,40 @@
-<div class="barra">
-    <mat-grid-list cols="6" rowHeight="2:1">
-        <mat-grid-tile colspan="1" (click)="buscar()">
-            <mat-icon>search</mat-icon>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="4">
-            <mat-form-field class="example-form-field">
-                <mat-label>Buscar</mat-label>
-                <input matInput type="text" [(ngModel)]="value" (ngModelChange)="buscar()">
-            </mat-form-field>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1">
-            <mat-icon (click)="openDialogAdd('0ms', '0ms', 'limpieza')">add</mat-icon>
-        </mat-grid-tile>
-    </mat-grid-list>
-</div>
+<mat-grid-list cols="6" [rowHeight]="rowHeightBusc" class="barra">
+    <mat-grid-tile colspan="1" (click)="buscar()">
+        <mat-icon>search</mat-icon>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="4">
+        <mat-form-field class="example-form-field">
+            <mat-label>Buscar</mat-label>
+            <input matInput type="text" [(ngModel)]="value" (ngModelChange)="buscar()">
+        </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1">
+        <mat-icon (click)="openDialogAdd('0ms', '0ms', 'limpieza')" *ngIf="!invitado">add</mat-icon>
+    </mat-grid-tile>
+</mat-grid-list>
 
-<mat-grid-list cols="2" rowHeight="2.5:1">
+<mat-paginator [length]="posts.length" [pageSize]="pageSize" (page)="getPaginatorData($event)"></mat-paginator>
+
+<mat-grid-list [cols]="numCols" [rowHeight]="rowHeight" (window:resize)='onResize($event)'>
     <mat-grid-tile *ngFor="let post of posts | slice: lowValue : highValue">
         <mat-card class="post">
             <mat-card-header>
                 <mat-card-title-group>
                     <mat-card-title style="color: white;">
-                        <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 10%;">
+                        <img mat-card-image [src]="post.foto" alt="Foto de perfil" style="width: 10%; border-radius: 50%;">
                         {{ post.userName }}
                     </mat-card-title>
-                    <mat-card-subtitle style="color: white;" (click)="navigateToConversacion(post.id)">{{ post.title }}</mat-card-subtitle>
+                    <mat-card-subtitle style="color: white;" (click)="navigateToConversacion(post.id)">{{ post.title
+                        }}</mat-card-subtitle>
                 </mat-card-title-group>
             </mat-card-header>
-            <mat-card-content style="color: white;" (click)="navigateToConversacion(post.id)" class="post-content">{{ post.description }}</mat-card-content>
+            <mat-card-content style="color: white;" (click)="navigateToConversacion(post.id)" class="post-content">{{
+                post.description }}</mat-card-content>
             <mat-card-actions align="end">
                 <mat-icon [style.color]="post.like" (click)="darLike(post.id)">favorite</mat-icon>
                 <mat-icon [style.color]="post.fav" (click)="hacerFav(post.id)">bookmark</mat-icon>
-                <mat-icon style="color: white;" (click)="openDialogDenuncia('0ms', '0ms', post.id)">report_problem</mat-icon>
+                <mat-icon style="color: white;"
+                    (click)="openDialogDenuncia('0ms', '0ms', post.id)">report_problem</mat-icon>
             </mat-card-actions>
         </mat-card>
     </mat-grid-tile>

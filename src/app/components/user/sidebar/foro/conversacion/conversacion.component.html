@@ -3,7 +3,7 @@
         <p class="title">{{ post.title }}</p>
     </mat-grid-tile>
     <mat-grid-tile colspan="1">
-        <mat-icon (click)="openDialogAdd('0ms', '0ms', post.id)">add</mat-icon>
+        <mat-icon (click)="openDialogAdd('0ms', '0ms', post.id)" *ngIf="!invitado">add</mat-icon>
     </mat-grid-tile>
 </mat-grid-list>
 
@@ -12,14 +12,14 @@
         <mat-card-header>
             <mat-card-title-group>
                 <mat-card-title style="color: white;" (click)="openDialogUsuario('0ms', '0ms', post.autor)">
-                    <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 3%;">
+                    <img mat-card-image [src]="post.foto" alt="Foto de perfil" style="width: 10%; border-radius: 50%;">
                     {{ post.userName }}
                 </mat-card-title>
             </mat-card-title-group>
         </mat-card-header>
         <mat-card-content style="color: white;" class="content">{{ post.description }}</mat-card-content>
         <mat-card-actions align="end">
-            <mat-icon style="color: white;" (click)="openDialogDenuncia('0ms', '0ms', post.id)">report_problem</mat-icon>
+            <mat-icon style="color: white;" (click)="openDialogDenuncia('0ms', '0ms', post.id)" *ngIf="!invitado">report_problem</mat-icon>
         </mat-card-actions>
     </mat-card>
 
@@ -27,7 +27,7 @@
         <mat-card-header>
             <mat-card-title-group>
                 <mat-card-title style="color: white;"  (click)="openDialogUsuario('0ms', '0ms', mensaje.autor)">
-                    <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 3%;">
+                    <img mat-card-image [src]="mensaje.foto" alt="Foto de perfil" style="width: 10%; border-radius: 50%;">
                     {{ mensaje.userName }}
                 </mat-card-title>
             </mat-card-title-group>
@@ -35,8 +35,8 @@
         <mat-card-content style="color: white;" class="content">{{ mensaje.description }}</mat-card-content>
         <mat-card-actions align="end">
             <mat-icon style="color: white;"
-                (click)="openDialogResponder('0ms', '0ms', post.id, mensaje.id)">keyboard_return</mat-icon>
-            <mat-icon style="color: white;" (click)="openDialogDenuncia('0ms', '0ms', mensaje.id)">report_problem</mat-icon>
+                (click)="openDialogResponder('0ms', '0ms', post.id, mensaje.id)" *ngIf="!invitado">keyboard_return</mat-icon>
+            <mat-icon style="color: white;" (click)="openDialogDenuncia('0ms', '0ms', mensaje.id)" *ngIf="!invitado">report_problem</mat-icon>
         </mat-card-actions>
     </mat-card>
 </div>

@@ -5,9 +5,9 @@
     <div class="info">
         <img mat-card-image [src]="usuario.fotoPerfil" alt="Foto de perfil" style="width: 30%;">
         <p class="title">{{ usuario.usuario }}</p>
-        <img mat-card-image [src]="usuario.estampasFavoritas[0]" alt="Foto de perfil" style="width: 10%;">
-        <img mat-card-image [src]="usuario.estampasFavoritas[1]" alt="Foto de perfil" style="width: 10%;">
-        <img mat-card-image [src]="usuario.estampasFavoritas[2]" alt="Foto de perfil" style="width: 10%;">
+        <img mat-card-image [src]="usuario.estampaFavorita1" alt="Foto de estampa 1" style="width: 10%;" *ngIf="usuario.estampaFavorita1!=''">
+        <img mat-card-image [src]="usuario.estampaFavorita2" alt="Foto de estampa 2" style="width: 10%;" *ngIf="usuario.estampaFavorita2!=''">
+        <img mat-card-image [src]="usuario.estampaFavorita3" alt="Foto de estampa 3" style="width: 10%;" *ngIf="usuario.estampaFavorita3!=''">
         <p>Reputación: {{ usuario.reputacion }}</p>
     </div>
 </mat-dialog-content>

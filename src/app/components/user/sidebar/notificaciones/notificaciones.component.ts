@@ -4,8 +4,6 @@ import { BackendService } from '../../../../services/backend/backend.service';
 import { ErrorService } from '../../../../services/error/error.service';
 import { VerNotificacionComponent } from './ver-notificacion/ver-notificacion.component';
 import { MatDialog } from '@angular/material/dialog';
-import { empty } from 'rxjs';
-import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-notificaciones',
@@ -21,13 +19,17 @@ export class NotificacionesComponent {
   constructor(public dialog: MatDialog, private location: Location, private backendService: BackendService, private errorService: ErrorService) { }
 
   ngOnInit(): void {
+    // NOTE: Responsive
+    this.numCols = (window.innerWidth <= 1200) ? 1 : 2;
+    this.rowHeight = (window.innerWidth <= 1200) ? '2.5:1' : '3.5:1';
+    
     this.getNotificaciones();
   }
 
   private getNotificaciones() {
     this.notiLeidas = [];
     this.notiNoLeidas = [];
-    this.backendService.getNotificationsAutorAutor(this.backendService.user).subscribe(
+    this.backendService.getNotificationsAutorAutor(this.backendService.cookie.usuario).subscribe(
       response => {
         this.respuesta = response.respuesta.notificaciones
         console.log('Notificaciones: ', this.respuesta); // LOG:
@@ -71,7 +73,7 @@ export class NotificacionesComponent {
       else if (item.asunto.nombreForo === "limpieza") { data.titulo = "Limpieza" }
       else if (item.asunto.nombreForo === "otros") { data.titulo = "Otros" }
 
-      console.log(data); // LOG:
+      // console.log(data); // LOG:
 
       if (item.leida) { this.notiLeidas.push(data); }
       else { this.notiNoLeidas.push(data); }
@@ -79,10 +81,12 @@ export class NotificacionesComponent {
   }
 
   notificacionLeida(notificacion_id: string, notificacion_color: string): void {   
-    console.log(notificacion_color)
+    // console.log(notificacion_color)
     if (notificacion_color == '') {
       this.backendService.putNotificationsIdRead(notificacion_id).subscribe(
-        response => { },
+        response => {
+          this.openDialogVer('0ms', '0ms', notificacion_id);
+        },
         error => {
           console.error('Error: ', error); // LOG:
           if (error.status === 401) {
@@ -96,6 +100,8 @@ export class NotificacionesComponent {
           }
         }
       );
+    } else {
+      this.openDialogVer('0ms', '0ms', notificacion_id);
     }
   }
 
@@ -111,11 +117,41 @@ export class NotificacionesComponent {
     });
 
     dialog.afterClosed().subscribe(() => {
-      this.getNotificaciones();
+      this.getNotificaciones(); 
     });
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  // NOTE: Paginator
+
+  pageIndex: number = 0;
+  pageSize: number = 10;
+  lowValue: number = 0;
+  highValue: number = this.pageSize;
+
+  getPaginatorData(event: { pageIndex: number; }) {
+    console.log(event);
+    if (event.pageIndex === this.pageIndex + 1) {
+      this.lowValue = this.lowValue + this.pageSize;
+      this.highValue = this.highValue + this.pageSize;
+    }
+    else if (event.pageIndex === this.pageIndex - 1) {
+      this.lowValue = this.lowValue - this.pageSize;
+      this.highValue = this.highValue - this.pageSize;
+    }
+    this.pageIndex = event.pageIndex;
+  }
+
+  // NOTE: RESPONSIVE
+
+  numCols: number = 2;
+  rowHeight: string = '2.5:1'
+
+  onResize(event: any) {
+    this.numCols = (event.target.innerWidth <= 1200) ? 1 : 2;
+    this.rowHeight = (event.target.innerWidth <= 1200) ? '2.5:1' : '3.5:1';
   }
 }

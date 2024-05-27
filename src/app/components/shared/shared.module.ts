@@ -22,6 +22,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatButtonModule,
     MatPaginatorModule,
     MatDividerModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    OAuthModule.forRoot(),
+    HttpClientModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -65,7 +69,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatButtonModule,
     MatPaginatorModule,
     MatDividerModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
   ]
 })
 export class SharedModule { }

@@ -1,4 +1,4 @@
-<mat-sidenav-container style="height: 100vh;">
+<!-- <mat-sidenav-container style="height: 100vh;">
     <mat-grid-list cols="8" rowHeight="1:1" style="height: 100vh; display: contents;">
         <mat-grid-tile colspan="4">
             <div style="
@@ -71,4 +71,94 @@
             
     </mat-grid-list>
 
-</mat-sidenav-container>
+</mat-sidenav-container> -->
+
+<div class="pantalla">
+    <div class="izquierda">
+        <div class="izq-arriba">
+            <img mat-sm-image src="assets/img/badge1.png" alt="Logo independizate" style="height: 45vh;">
+        </div>
+        <div class="izq-abajo">
+            <h1>¿Estás considerando dar tus primeros pasos hacia la independencia? Has llegado al lugar indicado:</h1>
+            <h1>Un portal diseñado para ayudarte a encontrar tu nuevo hogar ideal, compañeros de piso y mucho más.
+                Aquí encontrarás valiosos consejos de personas con experiencia, recetas sencillas, tips de limpieza,
+                orientación
+                sobre qué buscar en una vivienda y qué áreas son más adecuadas.</h1>
+            <h1>Únete y contribuye al crecimiento y mejora de nuestra comunidad, mientras aprendes de otros usuarios. Es
+                un
+                espacio para conectar, aprender y evolucionar. ¡Únete ahora mismo!</h1>
+        </div>
+    </div>
+    <div class="derecha">
+        <div class="der-arriba">
+            <h1 class="titulo">INDEPENDÍZATE</h1>
+            <h2>Registro</h2>
+        </div>
+        <div class="der-medio">
+            <form class="formulario">
+                <mat-form-field>
+                    <mat-label>Nombre usuario</mat-label>
+                    <input matInput type="text" [(ngModel)]="usuario" name="usuario">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput type="password" [(ngModel)]="contrasena" name="contrasena">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Repite la contraseña</mat-label>
+                    <input matInput type="password" [(ngModel)]="repeatContrasena" name="repeatContrasena">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Nombre</mat-label>
+                    <input matInput type="text" [(ngModel)]="nombre" name="nombre">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Apellidos</mat-label>
+                    <input matInput type="text" [(ngModel)]="apellidos" name="apellidos">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Correo electrónico</mat-label>
+                    <input matInput type="text" [(ngModel)]="email" name="email">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Edad</mat-label>
+                    <input matInput type="number" [(ngModel)]="edad" name="edad">
+                </mat-form-field>
+
+                <mat-label>Sexo</mat-label>
+                <mat-select [(value)]="sexo" class="desplegable">
+                    <mat-option value="Hombre">Hombre</mat-option>
+                    <mat-option value="Mujer">Mujer</mat-option>
+                    <mat-option value="Otros">Otro</mat-option>
+                </mat-select>
+
+                <mat-label>Piso</mat-label>
+                <mat-select [(value)]="piso" class="desplegable">
+                    <mat-option value="true">Sí</mat-option>
+                    <mat-option value="false">No</mat-option>
+                </mat-select>
+
+                <mat-form-field>
+                    <mat-label>Ciudad</mat-label>
+                    <input matInput type="text" [(ngModel)]="ciudad" name="ciudad">
+                </mat-form-field>
+
+                <mat-label>Situación</mat-label>
+                <mat-select [(value)]="situacion" class="desplegable">
+                    <mat-option value="Estudiante">Estudiante</mat-option>
+                    <mat-option value="Trabajador">Trabajador</mat-option>
+                    <mat-option value="Parado">Parado</mat-option>
+                </mat-select>
+
+                <button mat-flat-button color="primary" (click)="register()">Login</button>
+            </form>
+        </div>
+        <div class="der-abajo"></div>
+    </div>
+</div>

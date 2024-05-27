@@ -1,4 +1,6 @@
-<mat-grid-list cols="2" rowHeight="3:1">
+<mat-paginator [length]="tarjetas.length" [pageSize]="pageSize" (page)="getPaginatorData($event)"></mat-paginator>
+
+<mat-grid-list [cols]="numCols" [rowHeight]="rowHeight" (window:resize)='onResize($event)'>
   <mat-grid-tile *ngFor="let tarjeta of tarjetas | slice: lowValue : highValue">
     <mat-card class="post" (click)="navigateToInfoPiso(tarjeta.idIdealista)">
       <mat-card-header>

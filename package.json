@@ -26,7 +26,8 @@
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "@types/gapi.auth2": "^0.0.60",
     "@types/leaflet": "^1.9.12",
-    "angularx-social-login": "^4.1.0",
+    "angular-oauth2-oidc": "^17.0.2",
+    "bcryptjs": "^2.4.3",
     "gapi-script": "^1.2.0",
     "leaflet": "^1.9.4",
     "npm": "^10.7.0",
@@ -39,14 +40,15 @@
     "@angular/cli": "^17.3.0",
     "@angular/compiler-cli": "^17.3.0",
     "@cypress/schematic": "^2.5.1",
+    "@types/bcryptjs": "^2.4.6",
     "@types/jasmine": "~5.1.0",
+    "cypress": "latest",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.4.2",
-    "cypress": "latest"
+    "typescript": "~5.4.2"
   }
 }

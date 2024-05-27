@@ -17,6 +17,9 @@ export class BuscarPisoComponent {
   constructor(private location: Location, private backendService: BackendService, private errorService: ErrorService) { }
 
   ngOnInit(): void {
+    // NOTE: Responsive
+    this.rowHeightBusc = (window.innerWidth <= 1200) ? '1:2' : '2:1';
+
     this.backendService.getAparments().subscribe(
       response => {
         this.respuesta = response.apartments
@@ -65,5 +68,13 @@ export class BuscarPisoComponent {
 
   goBack(): void {
     this.location.back();
+  }
+
+  // NOTE: RESPONSIVE
+
+  rowHeightBusc: string = '2:1'
+
+  onResize(event: any) {
+    this.rowHeightBusc = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
   }
 }

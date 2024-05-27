@@ -6,6 +6,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { RegisterComponent } from './register/register.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -18,7 +19,8 @@ import { RegisterComponent } from './register/register.component';
     HomeRoutingModule,
     FormsModule,
     MatGridListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    SharedModule
   ]
 })
 export class HomeModule { }

@@ -8,11 +8,11 @@
 </div>
 
 <div class="desplazable">
-    <mat-grid-list cols="4" rowHeight="2:1">
+    <mat-grid-list [cols]="numCols" [rowHeight]="rowHeight" (window:resize)='onResize($event)'>
         <mat-grid-tile colspan="1">
             <p style="width: 100%;" class="text">Motivo: </p>
         </mat-grid-tile>
-        <mat-grid-tile colspan="3">
+        <mat-grid-tile [colspan]="colspan">
             <mat-form-field style="width: 100%;">
                 <mat-label>Selección</mat-label>
                 <mat-select [(value)]="tipo">
@@ -25,7 +25,7 @@
         <mat-grid-tile colspan="1">
             <p style="width: 100%;" class="text">Descripción: </p>
         </mat-grid-tile>
-        <mat-grid-tile colspan="3">
+        <mat-grid-tile [colspan]="colspan">
             <form class="example-form">
                 <mat-form-field class="example-full-width">
                     <mat-label>Título</mat-label>
@@ -37,7 +37,7 @@
         <mat-grid-tile colspan="1">
             <p style="width: 100%;" class="text">Descripción: </p>
         </mat-grid-tile>
-        <mat-grid-tile colspan="3">
+        <mat-grid-tile [colspan]="colspan" rowspan="2">
             <form class="example-form">
                 <mat-form-field class="example-full-width">
                     <textarea matInput placeholder="Descripcion" [(ngModel)]="descripcion" name="descripcion"></textarea>
@@ -45,7 +45,7 @@
             </form>
         </mat-grid-tile>
 
-        <mat-grid-tile colspan="3"></mat-grid-tile>
+        <mat-grid-tile [colspan]="colspan"></mat-grid-tile>
         <mat-grid-tile colspan="1">
             <button mat-flat-button color="primary" (click)="enviarFormulario()" >Enviar</button>
         </mat-grid-tile>

@@ -28,7 +28,7 @@ export class AnadirConversacionComponent {
       this.errorService.openDialogError("Todos los campos deben estar rellenos.");
     } else {
       this.body = {
-        autor: this.backendService.user, // NOTE: Cambiar por el usuario correcto, este es por defecto
+        autor: this.backendService.cookie.usuario, // NOTE: Cambiar por el usuario correcto, este es por defecto
         informacion: this.mensaje, 
         fechaPublicacion: '2024-05-09T16:00:50.260Z' // NOTE: La fecha de publicación la auto calcula el backend, no?
       }

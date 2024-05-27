@@ -1,9 +1,9 @@
 <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav1 mode="side" class="example-sidenav2" fixedInViewport="true" fixedTopGap="0"
-        fixedBottomGap="0">
+        fixedBottomGap="0" (window:resize)='onResize($event)'>
         <mat-grid-list cols="1" rowHeight="7%">
             <mat-grid-tile colspan="1"><mat-icon color="accent" class="icon" (click)="sidenav.open()"
-                    (click)="sidenav1.close()" (click)="toggle()">menu</mat-icon></mat-grid-tile>
+                    (click)="sidenav1.close()">menu</mat-icon></mat-grid-tile>
             <mat-grid-tile colspan="1"></mat-grid-tile>
             <mat-grid-tile colspan="1"></mat-grid-tile>
             <mat-grid-tile colspan="1"></mat-grid-tile>
@@ -21,23 +21,33 @@
         fixedBottomGap="0">
 
         <mat-grid-list cols="7" rowHeight="7%">
-            <mat-grid-tile colspan="2"><mat-icon color="accent" (click)="sidenav.close()" (click)="sidenav1.open()"
-                    (click)="toggle()">menu</mat-icon></mat-grid-tile>
+            <mat-grid-tile colspan="2">
+                <mat-icon color="accent" (click)="sidenav.close()" (click)="sidenav1.open()"
+                    class="menu">menu</mat-icon>
+            </mat-grid-tile>
             <mat-grid-tile colspan="3"></mat-grid-tile>
-            <mat-grid-tile colspan="2"><mat-icon color="accent"
-                    routerLink="/sidebar/notificaciones">notifications</mat-icon></mat-grid-tile>
+            <mat-grid-tile colspan="2" *ngIf="!invitado">
+                <mat-icon color="accent" routerLink="/sidebar/notificaciones">notifications</mat-icon>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="2" *ngIf="invitado"></mat-grid-tile>
 
-            <mat-grid-tile colspan="7" rowspan="2" routerLink="/sidebar/perfil">
-                <img mat-sm-image src="./assets/img/badge1.png" alt="Foto de perfil" style="height: 90%;">
+            <mat-grid-tile colspan="7" rowspan="2" routerLink="/sidebar/perfil" *ngIf="!invitado">
+                <img mat-sm-image [src]="usuario.foto" alt="Foto de perfil" style="height: 90%; border-radius: 50%;">
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="7" rowspan="2">
-                <p class="usuario">{{ nombreUsuario }}</p>
-                <img mat-sm-image class="insignia" src="./assets/img/badge1.png" alt="Foto de perfil">
-                <img mat-sm-image class="insignia" src="./assets/img/badge1.png" alt="Foto de perfil">
-                <img mat-sm-image class="insignia" src="./assets/img/badge1.png" alt="Foto de perfil">
-                <p class="reputacion">Reputación: 256</p>
+            <mat-grid-tile colspan="7" rowspan="2" *ngIf="invitado">
+                <img mat-sm-image src="assets/img/badge1.png" alt="Foto de perfil" style="height: 90%; border-radius: 50%;">
             </mat-grid-tile>
+
+            <mat-grid-tile colspan="7" rowspan="2" *ngIf="!invitado">
+                <p class="usuario">{{ usuario.nombre }}</p>
+                <img mat-sm-image class="insignia" [src]="usuario.estampa1" alt="Foto de estampa1" *ngIf="mostarStamp1">
+                <img mat-sm-image class="insignia" [src]="usuario.estampa2" alt="Foto de estampa2" *ngIf="mostarStamp2">
+                <img mat-sm-image class="insignia" [src]="usuario.estampa3" alt="Foto de estampa3" *ngIf="mostarStamp3">
+                <p class="reputacion">Reputación: {{ usuario.reputacion }}</p>
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="7" rowspan="2" *ngIf="invitado"></mat-grid-tile>
 
             <mat-grid-tile colspan="1" routerLink="/sidebar/piso"><mat-icon
                     color="accent">place</mat-icon></mat-grid-tile>
@@ -77,22 +87,25 @@
                 <p class="opcion-text">FAQ</p>
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="1" routerLink="/sidebar/contact-us"><mat-icon
+            <mat-grid-tile colspan="1" routerLink="/sidebar/contact-us" *ngIf="!invitado"><mat-icon
                     color="accent">phone_iphone</mat-icon></mat-grid-tile>
-            <mat-grid-tile colspan="6" routerLink="/sidebar/contact-us">
+            <mat-grid-tile colspan="6" routerLink="/sidebar/contact-us" *ngIf="!invitado">
                 <p class="opcion-text">Contact us</p>
             </mat-grid-tile>
+
+            <mat-grid-tile colspan="1" routerLink="/sidebar/contact-us" *ngIf="invitado"></mat-grid-tile>
+            <mat-grid-tile colspan="6" routerLink="/sidebar/contact-us" *ngIf="invitado"></mat-grid-tile>
 
             <mat-grid-tile colspan="7"></mat-grid-tile>
 
             <mat-grid-tile colspan="1"><mat-icon color="accent">logout</mat-icon></mat-grid-tile>
-            <mat-grid-tile colspan="6">
+            <mat-grid-tile colspan="6" routerLink="/home">
                 <p class="opcion-text">Cerrar sesión</p>
             </mat-grid-tile>
         </mat-grid-list>
     </mat-sidenav>
 
-    <mat-sidenav-content class="example-sidenav-content" [style.margin-left.%]="margen">
+    <mat-sidenav-content class="example-sidenav-content">
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

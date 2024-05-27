@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BackendService } from '../../../../../services/backend/backend.service';
 
 @Component({
   selector: 'app-posts',
@@ -6,14 +7,26 @@ import { Component } from '@angular/core';
   styleUrl: './posts.component.css'
 })
 export class PostsComponent {
-  navLinks = [
-    { path: "piso", label: "Compañero de piso" },
-    { path: 'recetas', label: "Recetas" },
-    { path: 'economia', label: "Economía doméstica" },
-    { path: 'limpieza', label: "Limpieza" },
-    { path: 'otros', label: "Otros" },
-    { path: 'guardados', label: "Guardados" }
-  ];
+  navLinks = [{path: '', label: ''}];
 
-  constructor() { }
+  constructor(private backendService: BackendService) {
+    if (backendService.cookie.esInvitado) {
+      this.navLinks = [
+        { path: "piso", label: "Compañero de piso" },
+        { path: 'recetas', label: "Recetas" },
+        { path: 'economia', label: "Economía doméstica" },
+        { path: 'limpieza', label: "Limpieza" },
+        { path: 'otros', label: "Otros" }
+      ];
+    } else {
+      this.navLinks = [
+        { path: "piso", label: "Compañero de piso" },
+        { path: 'recetas', label: "Recetas" },
+        { path: 'economia', label: "Economía doméstica" },
+        { path: 'limpieza', label: "Limpieza" },
+        { path: 'otros', label: "Otros" },
+        { path: 'guardados', label: "Guardados" }
+      ];
+    }
+  }
 }

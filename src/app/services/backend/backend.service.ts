@@ -1,63 +1,67 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackendService {
   private apiUrl = 'http://localhost:3000/api/';
-  public user: string = ''; // DELETE: O NO
-  public nombreUsuario: string = 'User'; // DELETE: O NO
+
+  public cookie = {
+    usuario: '',
+    nombreUsuario: '',
+    token: '',
+    esInvitado: true
+  }
 
   // Define la cabecera con el token de autorización
   private headers = new HttpHeaders();
 
+  public setHeaders() {
+    this.headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'authorization': `Bearer ${this.cookie.token}`
+    });
+  }
 
-  // DELETE: Usuarios por defecto
-  admin = {
-    usuario: 'dani',
-    contrasegna: 'dani',
-    rememberMe: false
-  };
+  public hashPassword(contrasena: string) {
+    const fixedSalt = '$2a$10$abcdefghijklmnopqrstuv'; // TODO: Cambiar al pasar a producción
+    return bcrypt.hashSync(contrasena, fixedSalt);
+  }
 
-  usuario = {
-    usuario: 'usuario',
-    contrasegna: 'usuario',
-    rememberMe: false
-  };
 
-  usuario1 = {
-    usuario: 'string',
-    contrasegna: 'string',
-    rememberMe: false
-  };
+  // public user: string = ''; // DELETE: O NO
+  // public nombreUsuario: string = 'User'; // DELETE: O NO
+
+  // // DELETE: Usuarios por defecto
+  // admin = {
+  //   usuario: 'dani',
+  //   contrasegna: 'dani',
+  //   rememberMe: false
+  // };
+
+  // david = {
+  //   usuario: 'David',
+  //   contrasegna: '123',
+  //   rememberMe: false
+  // }
+
+  // usuario = {
+  //   usuario: 'usuario',
+  //   contrasegna: 'usuario',
+  //   rememberMe: false
+  // };
+
+  // usuario1 = {
+  //   usuario: 'string',
+  //   contrasegna: 'usuario',
+  //   rememberMe: false
+  // };
 
   // REVIEW:
-  constructor(private http: HttpClient) {
-    /* #region NOTE: Websocket */ // LOG: Cambiar a cuando el usuario se loguea
-    const socket = new WebSocket('ws://localhost:4000?clienteId=' + this.user);
-    socket.addEventListener('open', () => { console.log('Conexión establecida con el servidor WebSocket'); });
-    socket.addEventListener('message', (event) => {
-      console.log('Mensaje recibido del servidor:', event.data);
-      alert('Notificación recibida');
-    });
-    /* #endregion */
-
-    var u = this.usuario;
-    this.postAuthLogin(u).subscribe(valor => {
-      this.user = valor.id;
-      this.nombreUsuario = u.usuario;
-      this.headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'authorization': `Bearer ${valor.token}`
-      });
-      console.log(`Token: ${valor.token}`); // LOG:
-    },
-      error => {
-        console.error('Error al obtener token: ', error);
-      });
-  }
+  constructor(private http: HttpClient) {}
 
   /* #region NOTE: Apartments */
   getAparments(): Observable<any> {
@@ -72,6 +76,10 @@ export class BackendService {
   /* #region NOTE: Auth */
   postAuthLogin(body: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}auth/login/`, body);
+  }
+
+  postAuthSignup(body: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}auth/signup/`, body);
   }
   /* #endregion */
 
@@ -92,6 +100,10 @@ export class BackendService {
   /* #endregion */
 
   /* #region NOTE: Forums */
+  getForumCategoriaPosts(categoria: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}forum/${categoria}/posts/`);
+  }
+
   getForumCategoriaPostsFavs(categoria: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}forum/${categoria}/posts/favs/`, { headers: this.headers });
   }

@@ -22,15 +22,16 @@ export class VerNotificacionComponent {
 
   constructor(private router: Router, @Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<VerNotificacionComponent>, private backendService: BackendService, private errorService: ErrorService) {
     this.notificacion = data.notificacion[0];
-    console.log(data.notificacion); // LOG:
-    console.log(this.notificacion) // LOG:
+    // console.log(data.notificacion); // LOG:
+    // console.log(this.notificacion) // LOG:
   }
 
   notificacionNoLeida(notificacion_id: string, notificacion_color: string): void {   
-    console.log(notificacion_color);
+    // console.log(notificacion_color);
     if (notificacion_color != '') {
       this.backendService.putNotificationsIdRead(notificacion_id).subscribe(
         response => {
+          this.dialogRef.close();
         },
         error => {
           console.error('Error: ', error); // LOG:
@@ -49,6 +50,7 @@ export class VerNotificacionComponent {
   }
 
   navigateToReferencia() {
+    this.dialogRef.close();
     this.router.navigate(['sidebar','foro','conversacion', this.notificacion.idPost])
   }
 }

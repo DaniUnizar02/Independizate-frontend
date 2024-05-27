@@ -7,7 +7,8 @@
 
 .info {
     font-size: 150%;
-    line-height: 2;
+    line-height: 1.5;
+    display: column;
 }
 
 button {
@@ -16,7 +17,6 @@ button {
 
 .mat-grid-tile {
     color: white;
-    font-size: 100%;
 }
 
 .example-form {

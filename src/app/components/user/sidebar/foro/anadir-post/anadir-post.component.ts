@@ -32,7 +32,7 @@ export class AnadirPostComponent {
       this.body = {
         titulo: this.titulo,
         descripcion: this.mensaje,
-        autor: this.backendService.user, // TODO: Este usuario es por defecto, realmente hay que sacarlo de algún lado
+        autor: this.backendService.cookie.usuario, // TODO: Este usuario es por defecto, realmente hay que sacarlo de algún lado
         categoria: this.categoria
       }
       this.backendService.postPosts(this.body).subscribe(

@@ -1,104 +1,68 @@
-.inicio {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: flex-end; /* Aligning content to the left */
-    align-items: center;
+.pantalla {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     height: 100vh;
-    background-color: #f0f0f0; /* Setting a background color for visualization */
 }
 
-.rounded-button {
-    background-color: #434982;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px; /* Adjust the value to change the roundness */
-    cursor: pointer;
-    font-size: 18px;
-    text-decoration: none; 
+.izquierda {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    background: linear-gradient(213.58deg, #01D28E 3.95%, #434982 24.82%, #434982 71.13%, #730068 93.06%);
 }
 
-.rounded-button:hover {
-    background-color: #2e2e62; /* Darker shade on hover */
+.izq-arriba {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-form {
-    position: absolute;
-    top: 50%;
-    left: 75%;
-    transform: translate(-50%, -50%);
+.izq-abajo {
+    color: white;
+    margin: 5%;
+}
+
+.derecha {
+    display: grid;
+    grid-template-rows: 0.5fr 0.5fr 0.5fr;
     
 }
-label, input[type="email"], input[type="password"], input[type="submit"] {
-        font-size: 18px;
+
+.der-arriba {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.app-name {
+.der-medio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.der-abajo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo {
     font-family: 'Inria Sans', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 12vh; /* Using viewport width (vw) for font size */
-    line-height: 1.15; /* Using unitless line-height for better scaling */
-    position: absolute;
-    top: 12%; /* Positioning from the center vertically */
-    left: 75%; /* Positioning from the center horizontally */
-    transform: translate(-50%, -50%);
-    text-align: center; /* Text alignment within the container */
+    font-size: 12vh;
+    line-height: 1.15;
+    margin-top: 10%;
     background: linear-gradient(100.4deg, #01D28E 11.14%, #434982 50.34%, #730068 89.55%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
-.formStyle {
-    position: absolute;
-    top: 50%; /* Positioning from the center vertically */
-    left: 75%; /* Positioning from the center horizontally */
-    transform: translate(-50%, -50%);
-}
-
-
-
-.rectangleBar {
-    position: absolute;
-    width: 449px;
-    height: 1124px;
-    left: 0px;
-    top: 0px;
-    background: linear-gradient(213.58deg, #01D28E 3.95%, #434982 24.82%, #434982 71.13%, #730068 93.06%);
-    color: white;
-}
-
-.upperRectangle {
-  position: absolute;
-  width: 1279px;
-  height: 12px;
-  left: 449px;
-  top: 86px;
-  background: linear-gradient(251.18deg, #730068 28.25%, #434982 37.09%, #434982 56.69%, #01D28E 65.98%);
-}
-
-.bar-paragraph {
-    position: relative;
-}
-
-.bar-paragraph::after {
-    content: "";
-    position: absolute;
-    height: 150%;
-    width: 3px;
-    background-color: black; /* Change color for special dividing bar */
-    top: 0;
-    right: -5px; /* Adjust this value as needed */
-}
-
-.title-paragraph {
-    text-align: center;
-    margin-left: 449px;
-    margin-top: 25px;
-    color: #434982;
-    font-size: 30px; /* Set font size to 40 */
+.formulario {
+    display: flex;
+    flex-direction: column;
 }
 
 .login-with-google-btn {
@@ -117,42 +81,13 @@ label, input[type="email"], input[type="password"], input[type="submit"] {
     background-position: 12px 11px;
 }
 
-.googleDiv {
-    width: 50vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Movil */
+@media only screen and (max-width: 600px) {
+    .pantalla { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+    .izquierda { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
 }
-
-.description {
-    color: white;
-    font-size:  calc(0.5vh + 1vw);
-    margin: 0 60px 100px 60px;
-    text-align: justify;
-    font-family: 'Inria Sans', sans-serif;
-}
-
-@media (max-width: 1000px) {  /* Removes the app name at a certain minimum size*/
-    .app-name {
-        display: none;
-    }
-}
-
-@media (max-height: 450px) {  /* Removes the app name at a certain minimum size*/
-    .app-name {
-        display: none;
-    }
-}
-
-@media (max-width: 700px) {  /* Removes the app name at a certain minimum size*/
-    .description {
-        display: none;
-    }
-}
-
-
-@media (max-height: 350px) and (max-width: 1200) {  /* Removes the app name at a certain minimum size*/
-    .description {
-        display: none;
-    }
+/* Tablet vertical */
+@media only screen and (max-width: 1200px) and (min-width: 601px) {
+    .pantalla { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+    .izquierda { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
 }

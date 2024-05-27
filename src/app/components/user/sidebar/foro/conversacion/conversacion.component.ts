@@ -14,6 +14,8 @@ import { PonerDenunciaComponent } from '../poner-denuncia/poner-denuncia.compone
   styleUrl: './conversacion.component.css'
 })
 export class ConversacionComponent {
+  invitado: boolean;
+
   mensajes: any[] = [];
   private todos: any[] = [];
 
@@ -23,12 +25,15 @@ export class ConversacionComponent {
     id: '',
     userName: '',
     autor: '',
+    foto: '',
     title: '',
     description: '',
     categoria: ''
   }
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog, private backendService: BackendService, private errorService: ErrorService) {
+    this.invitado = this.backendService.cookie.esInvitado;
+
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
       this.id = idParam;
@@ -50,12 +55,14 @@ export class ConversacionComponent {
         console.log(respuesta); // LOG:
         this.post = {
           id: respuesta.post._id,
-          userName: respuesta.post.usuario, // REVIEW: No me lo pasa el backend
+          userName: respuesta.post.usuario,
           autor: respuesta.post.autor,
+          foto: respuesta.post.fotoPerfil,
           title: respuesta.post.titulo.toUpperCase(),
           description: respuesta.post.descripcion,
           categoria: respuesta.post.categoria,
         }
+
         this.formatear(respuesta.mensajes);
         this.mensajes = this.todos;
       },
@@ -76,12 +83,14 @@ export class ConversacionComponent {
 
   private construir_mensajes(mensajes: any[], tabulado: boolean) {
     for (const item of mensajes) {
+      console.log("ITEM: ", item); //LOG:
       var data = {
         id: item._id,
         userName: item.usuario,
         autor: item.autor,
+        foto: item.fotoPerfil,
         description: item.informacion,
-        tabulado: tabulado // TODO: tiene que depender de un parámetro, aun no se como hacerlo NOTE: Hablarlo con backend
+        tabulado: tabulado // DONE: tiene que depender de un parámetro, aun no se como hacerlo NOTE: Hablarlo con backend
       };
 
       console.log(data); // LOG:
@@ -93,7 +102,6 @@ export class ConversacionComponent {
     }
   }
   
-  // TODO: No se muestran bien el orden de mensajes, y donde va cada respuesta 😀
   private formatear(mensajes: any): void {
     if (mensajes.length!== 0) {
       this.construir_mensajes(mensajes, false);

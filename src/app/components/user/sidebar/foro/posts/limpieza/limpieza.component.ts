@@ -13,6 +13,8 @@ import { PonerDenunciaComponent } from '../../poner-denuncia/poner-denuncia.comp
   styleUrl: './limpieza.component.css'
 })
 export class LimpiezaComponent {
+  invitado: boolean;
+
   posts: any[] = [];
   private todos: any[] = [];
 
@@ -21,20 +23,29 @@ export class LimpiezaComponent {
 
   value: string = '';
   
-  constructor(public dialog: MatDialog, private router: Router, private backendService: BackendService, private errorService: ErrorService) {}
+  constructor(public dialog: MatDialog, private router: Router, private backendService: BackendService, private errorService: ErrorService) {
+    this.invitado = this.backendService.cookie.esInvitado;
+  }
 
   ngOnInit() {
-    this.getMyPosts();
+    // NOTE: Responsive
+    this.numCols = (window.innerWidth <= 1200) ? 1 : 2;
+    this.rowHeight = (window.innerWidth <= 1200) ? '2:1' : '2.5:1';
+    this.rowHeightBusc = (window.innerWidth <= 1200) ? '1:2' : '2:1';
+
+    if (!this.invitado){
+      this.getMyPosts();
+    }
     this.getPosts();
   }
 
   private getMyPosts () {
     // Se ha insertado un usuario por defecto pero tiene que ser variable
-    console.log("USUARIO: ", this.backendService.user); // LOG:
-    this.backendService.getProfilesId(this.backendService.user).subscribe(
+    // console.log("USUARIO: ", this.backendService.user); // LOG:
+    this.backendService.getProfilesId(this.backendService.cookie.usuario).subscribe(
       response => {
-        this.postsFavs = response.forosFavoritos;
-        this.postsLike = response.forosLike;
+        this.postsFavs = (response.user.forosFavoritos===undefined) ? [] : response.user.forosFavoritos;
+        this.postsLike = (response.user.forosLike===undefined) ? [] : response.user.forosLike;
         console.log("FAVS: ", this.postsFavs); // LOG:
         console.log("LIKE: ", this.postsLike); // LOG:
       },
@@ -52,10 +63,41 @@ export class LimpiezaComponent {
       }
     );
   }
-  
-  getPosts() {
+
+  private getPosts() {
+    if (this.invitado){
+      this.getPostsGuest();
+    } else {
+      this.getPostsUser();
+    }
+  }
+
+  getPostsUser() {
     this.todos = [];
     this.backendService.getForumCategoriaPostsFavs("limpieza").subscribe(
+      response => {
+        console.log('Limpieza (Foro): ', response.posts); // LOG:
+        this.formatear(response.posts);
+        this.posts = this.todos;
+      },
+      error => {
+        console.error('Error: ', error); // LOG:
+        if (error.status === 401) {
+          this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+        } else if (error.status === 403) {
+          this.errorService.openDialogError("Forbidden.");
+        } else if (error.status === 404) {
+          this.errorService.openDialogError("No se encontraron posts.");
+        } else if (error.status === 500) {
+          this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+        }
+      }
+    );
+  }
+  
+  getPostsGuest() {
+    this.todos = [];
+    this.backendService.getForumCategoriaPosts("limpieza").subscribe(
       response => {
         console.log('Limpieza (Foro): ', response.posts); // LOG:
         this.formatear(response.posts);
@@ -82,6 +124,7 @@ export class LimpiezaComponent {
         id: item._id,
         userName: item.usuario,
         autor: item.autor,
+        foto: item.fotoPerfil,
         title: item.titulo,
         description: item.descripcion,
         categoria: item.categoria,
@@ -152,11 +195,12 @@ export class LimpiezaComponent {
     this.backendService.putPostsLikePostId(post_id).subscribe(
       response => {
         this.getMyPosts();
+        this.getPosts();
       },
       error => {
         console.error('Error: ', error); // LOG:
         if (error.status === 401) {
-          this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+          this.errorService.openDialogError("Registrate para dar like.");
         } else if (error.status === 403) {
           this.errorService.openDialogError("El post ya tiene tu like.");
         } else if (error.status === 404) {
@@ -175,11 +219,12 @@ export class LimpiezaComponent {
     this.backendService.putPostsFavoritesPostId(post_id).subscribe(
       response => {
         this.getMyPosts();
+        this.getPosts();
       },
       error => {
         console.error('Error: ', error); // LOG:
         if (error.status === 401) {
-          this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+          this.errorService.openDialogError("Registrate para guardar favoritos.");
         } else if (error.status === 403) {
           this.errorService.openDialogError("El post ya tiene tu like.");
         } else if (error.status === 404) {
@@ -220,5 +265,17 @@ export class LimpiezaComponent {
       this.highValue = this.highValue - this.pageSize;
     }
     this.pageIndex = event.pageIndex;
+  }
+
+  // NOTE: RESPONSIVE
+
+  numCols: number = 2;
+  rowHeight: string = '2.5:1'
+  rowHeightBusc: string = '2:1'
+
+  onResize(event: any) {
+    this.numCols = (event.target.innerWidth <= 1200) ? 1 : 2;
+    this.rowHeight = (event.target.innerWidth <= 1200) ? '2:1' : '2.5:1';
+    this.rowHeightBusc = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
   }
 }

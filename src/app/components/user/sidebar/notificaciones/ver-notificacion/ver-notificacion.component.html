@@ -19,6 +19,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="center">
     <button mat-flat-button color="warn" style="margin-right: 1%;" [mat-dialog-close]="true">Cerrar</button>
-    <button mat-flat-button color="accent" style="margin-right: 1%;" [mat-dialog-close]="true" (click)="notificacionNoLeida(notificacion.id, notificacion.color)">Marcar como no leido</button>
-    <button mat-flat-button color="primary" [mat-dialog-close]="true" (click)="navigateToReferencia()">Ver en contexto</button>
+    <button mat-flat-button color="accent" style="margin-right: 1%;" (click)="notificacionNoLeida(notificacion.id, notificacion.color)">Marcar como no leido</button>
+    <button mat-flat-button color="primary" (click)="navigateToReferencia()">Ver en contexto</button>
 </mat-dialog-actions>

@@ -22,7 +22,7 @@ export class ResponderMensajeComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ResponderMensajeComponent>, private backendService: BackendService, private errorService: ErrorService) {
     this.post_id = data.post_id;
     this.message_id = data.message_id;
-    console.log(this.post_id, "\n", this.message_id, "\n", this.backendService.user); // LOG:
+    console.log(this.post_id, "\n", this.message_id, "\n", this.backendService.cookie.usuario); // LOG:
   }
 
   responder() {
@@ -31,7 +31,7 @@ export class ResponderMensajeComponent {
       this.errorService.openDialogError("Todos los campos deben estar rellenos.");
     } else {
       this.body = {
-        autor: this.backendService.user, // NOTE: Cambiar por el usuario correcto, este es por defecto
+        autor: this.backendService.cookie.usuario, // NOTE: Cambiar por el usuario correcto, este es por defecto
         informacion: this.mensaje, 
         fechaPublicacion: '2024-05-09T16:00:50.260Z' // NOTE: La fecha de publicación la auto calcula el backend, no?
       }

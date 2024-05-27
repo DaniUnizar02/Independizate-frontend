@@ -1,54 +1,41 @@
-<div class="inicio">
-  <div>
-    <form class="formStyle">
-        <label for="email">Email:</label><br>
-        <input type="text" id="email" name="email" style="width: 100%"><br>
-        
-        <label for="password">Contraseña:</label><br>
-        <input type="password" id="password" name="password" style="width: 100%;"><br><br>
-    
-        <div class="additional-options" style="display:flex; margin-top: 50px;">
-          <input type="checkbox" id="remember-me" name="remember-me">
-          <label for="remember-me" margin-left="30px">Remember me</label>
-          <a href="#" class="forgot-password">Forgot password?</a>
-        </div>
-        
-        <div style="text-align: center; margin-top: 20px;">
-          <a routerLink="/sidebar" class="rounded-button">Login</a>
-    
-          <div style="margin-top: 20px;">
-            <label>Don't have an account?</label>
-            <a routerLink="/home/register">Register</a>
-          </div>
-          
-        </div>    
-    </form>
-      <div class="googleDiv">
-        <button type="button" class="login-with-google-btn" #loginRef>
-          Sign in with Google
-        </button>
-      </div>
+<div class="pantalla">
+  <div class="izquierda">
+    <div class="izq-arriba">
+      <img mat-sm-image src="assets/img/badge1.png" alt="Logo independizate" style="height: 45vh;">
+    </div>
+    <div class="izq-abajo">
+      <h1>¿Estás considerando dar tus primeros pasos hacia la independencia? Has llegado al lugar indicado:</h1>
+      <h1>Un portal diseñado para ayudarte a encontrar tu nuevo hogar ideal, compañeros de piso y mucho más.
+        Aquí encontrarás valiosos consejos de personas con experiencia, recetas sencillas, tips de limpieza, orientación
+        sobre qué buscar en una vivienda y qué áreas son más adecuadas.</h1>
+      <h1>Únete y contribuye al crecimiento y mejora de nuestra comunidad, mientras aprendes de otros usuarios. Es un
+        espacio para conectar, aprender y evolucionar. ¡Únete ahora mismo!</h1>
+    </div>
   </div>
+  <div class="derecha">
+    <div class="der-arriba">
+      <h1 class="titulo">INDEPENDÍZATE</h1>
+      <h2>Inicio de sesión</h2>
+    </div>
+    <div class="der-medio">
+      <form class="formulario">
+        <mat-form-field>
+          <mat-label>Nombre usuario</mat-label>
+          <input matInput type="text" [(ngModel)]="usuario" name="usuario">
+        </mat-form-field>
 
-    <div class="app-name">Independízate</div>
-    <div style="position: absolute;
-            width: 50%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
-            background: linear-gradient(213.58deg, #01D28E 3.95%, #434982 24.82%, #434982 71.13%, #730068 93.06%);">
-    <p class="description">
-      ¿Estás considerando dar tus primeros pasos hacia la independencia? Has llegado al lugar indicado:
-      Un portal diseñado para ayudarte a encontrar tu nuevo hogar ideal, compañeros de piso y mucho más.
-      Aquí encontrarás valiosos consejos de personas con experiencia, recetas sencillas, tips de limpieza, orientación
-      sobre qué buscar en una vivienda y qué áreas son más adecuadas.
-      Únete y contribuye al crecimiento y mejora de nuestra comunidad, mientras aprendes de otros usuarios. Es un
-      espacio para conectar, aprender y evolucionar. ¡Únete ahora mismo!
-    </p>
+        <mat-form-field>
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" [(ngModel)]="contrasena" name="contrasena">
+        </mat-form-field>
+
+        <button mat-flat-button color="primary" (click)="login()">Login</button>
+      </form>
+    </div>
+    <div class="der-abajo">
+      <p>¿No tienes cuenta? <a href="/home/register">Regístrate</a></p>
+      <button mat-flat-button color="primary" style="margin-bottom: 2%;" (click)="loginGuest()">Entrar como invitado</button>
+      <button class="login-with-google-btn" style="margin-bottom: 2%;" #loginRef>Sign up with Google</button>
+    </div>
   </div>
-
 </div>

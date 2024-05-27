@@ -1,9 +1,8 @@
+
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackendService } from '../../services/backend/backend.service';
 import { HttpClient } from '@angular/common/http';
-
-
 
 @Component({
   selector: 'app-home',
@@ -11,6 +10,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  usuario: string = '';
+  contrasena: string = '';
+
   auth2: any;
   @ViewChild('loginRef', { static: true }) loginElement!: ElementRef;
   gBody = {
@@ -18,7 +20,7 @@ export class HomeComponent implements OnInit {
     password: ''
   }
 
-  constructor(private router: Router, private http:HttpClient) { }
+  constructor(private router: Router, private http:HttpClient, private backendService: BackendService) { }
 
   ngOnInit() {
 
@@ -94,5 +96,36 @@ export class HomeComponent implements OnInit {
       js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
       fjs?.parentNode?.insertBefore(js, fjs);
     }(document, 'script', 'google-jssdk'));
+  }
+
+  login() {
+    const socket = new WebSocket('ws://localhost:4000?clienteId=' + this.usuario);
+    socket.addEventListener('open', () => { console.log('Conexión establecida con el servidor WebSocket'); });
+    socket.addEventListener('message', (event) => {
+      console.log('Mensaje recibido del servidor:', event.data);
+      alert('Notificación recibida');
+    });
+
+    var body = {
+      usuario: this.usuario,
+      contrasegna: this.backendService.hashPassword(this.contrasena),
+      rememberMe: false
+    }
+    console.log(body.contrasegna) //LOG:
+    this.backendService.postAuthLogin(body).subscribe(valor => {
+      this.backendService.cookie.usuario = valor.id;
+      this.backendService.cookie.nombreUsuario = body.usuario;
+      this.backendService.cookie.token = valor.token;
+      this.backendService.cookie.esInvitado = false;
+      this.backendService.setHeaders();
+      this.router.navigate(['sidebar']);
+    }, error => {
+      console.error('Error al obtener token: ', error);
+    });
+  }
+
+  loginGuest() {
+    this.backendService.cookie.esInvitado = true;
+    this.router.navigate(['sidebar']);
   }
 }
