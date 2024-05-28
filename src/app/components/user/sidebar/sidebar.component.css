@@ -71,4 +71,5 @@
 @media only screen and (max-width: 1200px) and (min-width: 601px) {
     .example-sidenav1 { width: 35%; }
     .example-sidenav-content { margin-left: 35%; }
+    .menu { display: none; }
 }

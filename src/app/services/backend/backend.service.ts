@@ -61,7 +61,21 @@ export class BackendService {
   // };
 
   // REVIEW:
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
+
+  /* #region NOTE: Admin */
+  getAdminReports(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}admin/reports/`, { headers: this.headers });
+  }
+
+  putApiAdminReportRejectId(id: string): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}admin/reports/reject/${id}/`, {}, { headers: this.headers });
+  }
+
+  putAdminSuggestionsRejectId(id: string): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}admin/suggestions/reject/${id}/`, {}, { headers: this.headers });
+  }
+  /* #endregion */
 
   /* #region NOTE: Apartments */
   getAparments(): Observable<any> {

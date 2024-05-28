@@ -39,15 +39,19 @@
           <mat-card-title-group>
             <mat-card-title style="color: white;">
               <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 10%;">
-              {{ contact.usuario }}
+              {{ contact.username }}
             </mat-card-title>
             <mat-card-subtitle style="color: white;">{{ contact.tipo }}</mat-card-subtitle>
           </mat-card-title-group>
         </mat-card-header>
-        <mat-card-content style="color: white;" class="post-content">{{ contact.info }}</mat-card-content>
+        <mat-card-content style="color: white;" class="post-content">
+          {{ contact.titulo }}
+          <br>
+          {{ contact.info }}
+        </mat-card-content>
         <mat-card-actions align="end">
+          <button mat-flat-button color="warn" (click)="rechazar(contact.id)">Rechazar</button>
           <button mat-flat-button color="primary">Responder</button>
-          <button mat-flat-button color="warn">Rechazar</button>
         </mat-card-actions>
       </mat-card>
     </mat-grid-tile>

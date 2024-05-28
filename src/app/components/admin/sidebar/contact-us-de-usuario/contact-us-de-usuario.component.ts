@@ -58,18 +58,43 @@ export class ContactUsDeUsuarioComponent {
   private formatear(): void {
     this.todos = []
     for (const item of this.respuesta) {
-      var data = {
-        usuario: item.autor,
-        tipo: item.tipo,
-        info: item.descripcion,
-      }
+      if (!item.completada) {
+        var data = {
+          id: item._id,
+          foto: '', // TODO: Pedirle a backedn que me lo devuelva
+          username: '',  //TODO: Pedirle a backend que me lo devuelva
+          usuario: item.autor,
+          tipo: item.tipo,
+          info: item.descripcion,
+          titulo: item.titulo
+        }
 
-      this.todos.push(data);
+        this.todos.push(data);
+      }
     }
     this.todos = this.todos.reverse()
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  rechazar(id: string) {
+    this.backendService.putAdminSuggestionsRejectId(id).subscribe(
+      response => {
+      },
+      error => {
+        console.error('Error: ', error); // LOG:
+        if (error.status === 400) {
+          this.errorService.openDialogError("No se encontraron usuarios.");
+        } else if (error.status === 401) {
+          this.errorService.openDialogError("Error 401: Acceso no autorizado.");
+        } else if (error.status === 403) {
+          this.errorService.openDialogError("Error 403: El token no es válido.");
+        } else if (error.status === 500) {
+          this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+        }
+      }
+    );
   }
 }

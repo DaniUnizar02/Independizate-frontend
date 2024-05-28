@@ -118,7 +118,7 @@ export class HomeComponent implements OnInit {
       this.backendService.cookie.token = valor.token;
       this.backendService.cookie.esInvitado = false;
       this.backendService.setHeaders();
-      this.router.navigate(['sidebar']);
+      this.router.navigate(['admin/sidebar']);
     }, error => {
       console.error('Error al obtener token: ', error);
     });

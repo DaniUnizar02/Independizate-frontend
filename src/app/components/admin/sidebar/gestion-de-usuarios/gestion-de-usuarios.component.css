@@ -24,8 +24,7 @@
     width: 100%;
 }
 
-.post-table {
-    /*Important width*/
+/* .post-table {
     background: rgba(67, 73, 130, 0.8);
     font-size: 20px;
     color: #FFFFFF;
@@ -39,19 +38,95 @@
     background: rgba(67, 73, 130, 0.8);
     font-size: 20px;
     color: #FFFFFF;
-}
+} */
 
 
-.post {
+/* .post {
     width: 70%;
     background: rgba(67, 73, 130, 0.8);
     border-radius: 10px;
-}
+} */
 
-.icon {
+/* .icon {
     width: 20px;
     height: auto;
     margin-left: 2px;
+} */
+
+.tabla {
+    color: white;
+    font-size: 150%;
 }
 
+.cabecera {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: rgba(67, 73, 130, 0.8);
+}
 
+.cuerpo {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: rgba(67, 73, 130, 0.8);
+    border-radius: white;
+    border-width: 10px;
+}
+
+.cabecera-content {
+    /* display: flex; */
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.cuerpo-content {
+    /* display: flex; */
+    justify-content: center;
+    margin-top: 5%;
+    border-bottom: 1px solid white;
+    border-right: 1px solid white; 
+}
+
+.usuario {
+    display: flex;
+}
+
+.correo {
+    display: flex;
+}
+
+.reputacion {
+    display: flex;
+}
+
+.edad {
+    display: flex;
+}
+
+.numDenuncias {
+    display: flex;
+}
+
+.numPosts {
+    display: flex;
+}
+
+.estado {
+    display: flex;
+}
+
+/* Movil */
+@media only screen and (max-width: 600px) {
+    .correo { display: none; }
+    .edad { display: none; }
+    .numPosts { display: none; }
+    .cabecera { grid-template-columns: repeat(4, 1fr); }
+    .cuerpo { grid-template-columns: repeat(4, 1fr); }
+    .tabla { font-size: 80%; }
+}
+/* Tablet vertical */
+@media only screen and (max-width: 1200px) and (min-width: 601px) {
+    .correo { display: none; }
+    .cabecera { grid-template-columns: repeat(6, 1fr); }
+    .cuerpo { grid-template-columns: repeat(6, 1fr); }
+    .tabla { font-size: 100%; }
+}

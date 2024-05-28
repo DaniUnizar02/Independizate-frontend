@@ -41,3 +41,20 @@
     position: absolute;
     top: 10%;
 }
+
+.menu {
+    display: none;
+}
+
+/* Movil */
+@media only screen and (max-width: 600px) {
+    .example-sidenav1 { width: 100%; }
+    .example-sidenav2 { width: 10%; }
+    .example-sidenav-content { margin-left: 10%; }
+    .menu { display: flex; }
+}
+/* Tablet vertical */
+@media only screen and (max-width: 1200px) and (min-width: 601px) {
+    .example-sidenav1 { width: 35%; }
+    .example-sidenav-content { margin-left: 35%; }
+}

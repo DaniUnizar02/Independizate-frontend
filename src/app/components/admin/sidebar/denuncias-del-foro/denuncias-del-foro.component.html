@@ -17,7 +17,7 @@
 </div>
 
 <div class="desplazable">
-  <mat-grid-list cols="2" rowHeight="2.5:1">
+  <mat-grid-list [cols]="numCols" [rowHeight]="rowHeight" (window:resize)='onResize($event)'>
     <mat-grid-tile *ngFor="let denuncia of denuncias">
       <mat-card class="post">
         <mat-card-header>
@@ -29,10 +29,10 @@
             <mat-card-subtitle style="color: white;">{{ denuncia.tipo }}</mat-card-subtitle>
           </mat-card-title-group>
         </mat-card-header>
-        <mat-card-content style="color: white;" class="post-content">{{ denuncia.info }}</mat-card-content>
+        <mat-card-content style="color: white;" class="post-content">{{ denuncia.descripcion }}</mat-card-content>
         <mat-card-actions align="end">
-          <button mat-flat-button color="primary">Aprobar</button>
-          <button mat-flat-button color="warn">Rechazar</button>
+          <button mat-flat-button color="warn" (click)="rechazar(denuncia.id)">Rechazar</button>
+          <button mat-flat-button color="primary">Más detalles</button>
         </mat-card-actions>
       </mat-card>
     </mat-grid-tile>

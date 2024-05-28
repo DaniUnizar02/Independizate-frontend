@@ -27,59 +27,60 @@
         <mat-grid-tile colspan="4">
             <mat-form-field class="example-form-field">
                 <mat-label>Buscar por nombre</mat-label>
-                <input matInput type="text" [(ngModel)]="value">
+                <input matInput type="text" [(ngModel)]="value" (ngModelChange)="buscar()">
             </mat-form-field>
         </mat-grid-tile>
     </mat-grid-list>
 
-    <mat-grid-list cols="14" rowHeight="2:1" style="margin-top: 10px;">
-        <mat-grid-tile colspan="3" rowspan="2" class="header-table">
-            <p>Usuario</p>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="3" rowspan="2" class="header-table" style="margin-right: -2px;">
-            <p>Correo</p>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="2" rowspan="2" class="header-table" style="margin-right: -2px;">
-            <p>Reputación</p>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1" rowspan="2" class="header-table" style="margin-right: -2px;">
-            <p>Edad</p>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="2" rowspan="2" class="header-table" style="margin-right: -2px;">
-            <p>Nº denuncias</p>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1" rowspan="2" class="header-table" style="margin-right: -2px;">
-            <p>Nº de posts</p>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="2" rowspan="2" class="header-table" style="margin-right: -2px;">
-            <p>Estado</p>
-        </mat-grid-tile>
-
-        <ng-container *ngFor="let user of users">
-            <mat-grid-tile colspan="3" class="post-table">
-                <mat-card-content style="color: white;">{{ user.usuario }}</mat-card-content>
-            </mat-grid-tile>
-            <mat-grid-tile colspan="3" class="post-table">
-                <mat-card-content
-                    style="color: white; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">{{ user.correo
-                    }}</mat-card-content>
-            </mat-grid-tile>
-            <mat-grid-tile colspan="2" class="post-table">
-                <mat-card-content style="color: white;">{{ user.reputacion }}</mat-card-content>
-            </mat-grid-tile>
-            <mat-grid-tile colspan="1" class="post-table">
-                <mat-card-content style="color: white;">{{ user.edad }}</mat-card-content>
-            </mat-grid-tile>
-            <mat-grid-tile colspan="2" class="post-table">
-                <mat-card-content style="color: white;">{{ user.denuncias }}</mat-card-content>
-            </mat-grid-tile>
-            <mat-grid-tile colspan="1" class="post-table">
-                <mat-card-content style="color: white;">{{ user.post }}</mat-card-content>
-            </mat-grid-tile>
-            <mat-grid-tile colspan="2" class="post-table">
-                <mat-card-content style="color: white;">{{ user.estado }}</mat-card-content>
-                <img mat-card-image class="icon" src="/assets/img/pencil.png">
-            </mat-grid-tile>
-        </ng-container>
-    </mat-grid-list>
+    <div class="tabla">
+        <div class="cabecera">
+            <div class="cabecera-content usuario">
+                <p>Usuario</p>
+            </div>
+            <div class="cabecera-content correo">
+                <p>Correo</p>
+            </div>
+            <div class="cabecera-content reputacion">
+                <p>Reputación</p>
+            </div>
+            <div class="cabecera-content edad">
+                <p>Edad</p>
+            </div>
+            <div class="cabecera-content numDenuncias">
+                <p>Nº denuncias</p>
+            </div>
+            <div class="cabecera-content numPosts">
+                <p>Nº posts</p>
+            </div>
+            <div class="cabecera-content estado">
+                <p>Estado</p>
+            </div>
+        </div>
+        <br>
+        <div class="cuerpo">
+            <ng-container *ngFor="let user of users">
+                    <div class="cuerpo-content usuario">
+                        <p>{{ user.usuario }}</p>
+                    </div>
+                    <div class="cuerpo-content correo">
+                        <p>{{ user.correo }}</p>
+                    </div>
+                    <div class="cuerpo-content reputacion">
+                        <p>{{ user.reputacion }}</p>
+                    </div>
+                    <div class="cuerpo-content edad">
+                        <p>{{ user.edad }}</p>
+                    </div>
+                    <div class="cuerpo-content numDenuncias">
+                        <p>{{ user.denuncias }}</p>
+                    </div>
+                    <div class="cuerpo-content numPosts">
+                        <p>{{ user.post }}</p>
+                    </div>
+                    <div class="cuerpo-content estado">
+                        <p>{{ user.estado }}</p>
+                    </div>
+            </ng-container>
+        </div>
+    </div>
 </div>
