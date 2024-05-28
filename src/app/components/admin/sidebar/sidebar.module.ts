@@ -8,6 +8,8 @@ import { GestionDeUsuariosComponent } from './gestion-de-usuarios/gestion-de-usu
 import { DenunciasDelForoComponent } from './denuncias-del-foro/denuncias-del-foro.component';
 import { ContactUsDeUsuarioComponent } from './contact-us-de-usuario/contact-us-de-usuario.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { EstadoUsuarioComponent } from './gestion-de-usuarios/estado-usuario/estado-usuario.component';
+import { ResponderSugerenciaComponent } from './contact-us-de-usuario/responder-sugerencia/responder-sugerencia.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { EstadisticasComponent } from './estadisticas/estadisticas.component';
     GestionDeUsuariosComponent,
     DenunciasDelForoComponent,
     ContactUsDeUsuarioComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    EstadoUsuarioComponent,
+    ResponderSugerenciaComponent
   ],
   imports: [
     CommonModule,

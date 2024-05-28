@@ -1,0 +1,15 @@
+.title {
+    text-align: center;
+    margin-top: 1%;
+    color: #434982;
+    font-size: 210%;
+}
+
+.info {
+    text-align: center;
+    margin: none;
+}
+
+.example-full-width {
+    width: 100%;
+}

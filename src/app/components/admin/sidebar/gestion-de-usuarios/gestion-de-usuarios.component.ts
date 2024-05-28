@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { BackendService } from '../../../../services/backend/backend.service';
 import { ErrorService } from '../../../../services/error/error.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EstadoUsuarioComponent } from './estado-usuario/estado-usuario.component';
 
 @Component({
   selector: 'app-gestion-de-usuarios',
@@ -14,9 +16,13 @@ export class GestionDeUsuariosComponent {
   private todos: any[] = [];
   private respuesta: any[] = [];
 
-  constructor(private location: Location, private backendService: BackendService, private errorService: ErrorService) {}
+  constructor(private location: Location, public dialog: MatDialog, private backendService: BackendService, private errorService: ErrorService) {}
 
   ngOnInit(): void {
+    this.getUsuarios();
+  }
+
+  getUsuarios() {
     this.backendService.getUsers().subscribe(
       response => {
         this.respuesta = response.users
@@ -54,6 +60,7 @@ export class GestionDeUsuariosComponent {
     this.todos = []
     for (const item of this.respuesta) {
       var data = {
+        id: item._id,
         usuario: item.nombre,
         correo: item.correo,
         reputacion: item.reputacion,
@@ -63,12 +70,28 @@ export class GestionDeUsuariosComponent {
         estado: item.activo
       }
 
-      data.estado = data.estado ? 'Activo' : 'Bloqueado';
+      data.estado = item.bloqueado ? 'Activo' : 'Bloqueado';
 
       // console.log(data); // LOG:
       this.todos.push(data);
     }
     this.todos = this.todos.reverse()
+  }
+
+  openDialogEstadoUsuario(enterAnimationDuration: string, exitAnimationDuration: string, id: string, estado: string): void {
+    const dialog = this.dialog.open(EstadoUsuarioComponent, {
+      width: '50%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: { 
+        id: id,
+        estado: estado
+      }
+    });
+
+    dialog.afterClosed().subscribe(() => {
+      this.getUsuarios();
+    });
   }
 
   goBack(): void {

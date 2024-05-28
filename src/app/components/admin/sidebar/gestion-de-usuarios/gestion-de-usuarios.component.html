@@ -59,27 +59,32 @@
         <br>
         <div class="cuerpo">
             <ng-container *ngFor="let user of users">
-                    <div class="cuerpo-content usuario">
-                        <p>{{ user.usuario }}</p>
-                    </div>
-                    <div class="cuerpo-content correo">
-                        <p>{{ user.correo }}</p>
-                    </div>
-                    <div class="cuerpo-content reputacion">
-                        <p>{{ user.reputacion }}</p>
-                    </div>
-                    <div class="cuerpo-content edad">
-                        <p>{{ user.edad }}</p>
-                    </div>
-                    <div class="cuerpo-content numDenuncias">
-                        <p>{{ user.denuncias }}</p>
-                    </div>
-                    <div class="cuerpo-content numPosts">
-                        <p>{{ user.post }}</p>
-                    </div>
-                    <div class="cuerpo-content estado">
+                <div class="cuerpo-content usuario">
+                    <p>{{ user.usuario }}</p>
+                </div>
+                <div class="cuerpo-content correo">
+                    <p>{{ user.correo }}</p>
+                </div>
+                <div class="cuerpo-content reputacion">
+                    <p>{{ user.reputacion }}</p>
+                </div>
+                <div class="cuerpo-content edad">
+                    <p>{{ user.edad }}</p>
+                </div>
+                <div class="cuerpo-content numDenuncias">
+                    <p>{{ user.denuncias }}</p>
+                </div>
+                <div class="cuerpo-content numPosts">
+                    <p>{{ user.post }}</p>
+                </div>
+                <div class="cuerpo-content estado-cuerpo">
+                    <div class="partes">
                         <p>{{ user.estado }}</p>
                     </div>
+                    <div class="partes">
+                        <mat-icon class="icon" (click)="openDialogEstadoUsuario('0ms', '0ms', user.id, user.estado)">edit</mat-icon>
+                    </div>
+                </div>
             </ng-container>
         </div>
     </div>

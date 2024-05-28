@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { BackendService } from '../../../../services/backend/backend.service';
 import { ErrorService } from '../../../../services/error/error.service';
+import { ResponderSugerenciaComponent } from './responder-sugerencia/responder-sugerencia.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-contact-us-de-usuario',
@@ -14,9 +16,13 @@ export class ContactUsDeUsuarioComponent {
   private todos: any[] = [];
   private respuesta: any[] = [];
 
-  constructor(private location: Location, private backendService: BackendService, private errorService: ErrorService) { }
+  constructor(private location: Location, public dialog: MatDialog, private backendService: BackendService, private errorService: ErrorService) { }
 
   ngOnInit() {
+    this.getContact();
+  }
+
+  getContact() {
     this.backendService.getContactUs().subscribe(
       response => {
         this.respuesta = response.sugerencias
@@ -82,6 +88,7 @@ export class ContactUsDeUsuarioComponent {
   rechazar(id: string) {
     this.backendService.putAdminSuggestionsRejectId(id).subscribe(
       response => {
+        this.getContact();
       },
       error => {
         console.error('Error: ', error); // LOG:
@@ -96,5 +103,22 @@ export class ContactUsDeUsuarioComponent {
         }
       }
     );
+  }
+
+  openDialogResponderSugerencia(enterAnimationDuration: string, exitAnimationDuration: string, id: string, tipo: string, info: string): void {
+    const dialog = this.dialog.open(ResponderSugerenciaComponent, {
+      width: '50%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: { 
+        id: id,
+        tipo: tipo,
+        info: info
+      }
+    });
+
+    dialog.afterClosed().subscribe(() => {
+      this.getContact();
+    });
   }
 }

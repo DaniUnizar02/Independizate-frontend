@@ -75,6 +75,14 @@ export class BackendService {
   putAdminSuggestionsRejectId(id: string): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}admin/suggestions/reject/${id}/`, {}, { headers: this.headers });
   }
+
+  putAdminSuggestionsAnswerId(id: string, body: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}admin/suggestions/answer/${id}/`, body, { headers: this.headers });
+  }
+
+  putAdminUsersId(id: string): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}admin/users/${id}/`, {}, { headers: this.headers });
+  }
   /* #endregion */
 
   /* #region NOTE: Apartments */

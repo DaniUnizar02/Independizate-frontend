@@ -1,0 +1,11 @@
+<mat-dialog-content>
+    <h1 class="title">Bloquear / Activar usuario</h1>
+    <div class="info">
+        <img mat-card-image [src]="usuario.fotoPerfil" alt="Foto de perfil" style="width: 30%;">
+        <p class="title">{{ usuario.usuario }}</p>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-flat-button color="warn" style="margin-right: 3%;" (click)="bloquear()">Bloquear</button>
+    <button mat-flat-button color="primary" (click)="activar()">Activar</button>
+</mat-dialog-actions>

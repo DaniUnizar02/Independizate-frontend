@@ -114,6 +114,16 @@
     display: flex;
 }
 
+.estado-cuerpo {
+    display: grid;
+    grid-template-columns: 2fr 0.5fr;
+}
+
+.partes {
+    display: flex;
+    justify-content: center;
+}
+
 /* Movil */
 @media only screen and (max-width: 600px) {
     .correo { display: none; }
