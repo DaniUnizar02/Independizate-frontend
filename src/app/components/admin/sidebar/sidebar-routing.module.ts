@@ -1,3 +1,13 @@
+/**
+ * Proyecto: Independizate
+ * Descripción:
+ * 
+ * Archivo: sidebar-routing.module.ts 
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SidebarComponentAdmin } from './sidebar.component';

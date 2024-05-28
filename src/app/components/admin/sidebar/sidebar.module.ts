@@ -1,3 +1,13 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Módulo del componente sidebar.
+ * 
+ * Archivo: sidebar.module.ts 
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

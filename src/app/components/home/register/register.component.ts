@@ -1,3 +1,14 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero responsable del registro de usuarios por credenciales
+ * o mendiante Google.
+ * 
+ * Archivo: register.component.ts
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
