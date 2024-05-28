@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 /**
  * Proyecto: Independizate
  * Descripción: Fichero responsable del inicio de sesión de los usuarios tanto
@@ -12,7 +10,6 @@
  *  - Daniel Carrizo
  *  - Juan Pellicer
  */
->>>>>>> Stashed changes
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackendService } from '../../services/backend/backend.service';
