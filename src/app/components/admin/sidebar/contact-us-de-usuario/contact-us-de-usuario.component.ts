@@ -19,6 +19,12 @@ export class ContactUsDeUsuarioComponent {
   constructor(private location: Location, public dialog: MatDialog, private backendService: BackendService, private errorService: ErrorService) { }
 
   ngOnInit() {
+    // NOTE: Responsive
+    this.numCols = (window.innerWidth <= 1200) ? 1 : 2;
+    this.rowHeight = (window.innerWidth <= 1200) ? '2:1' : '2.5:1';
+    this.rowHeightBusc = (window.innerWidth <= 1200) ? '1:2' : '2:1';
+    this.rowHeightTit = (window.innerWidth <= 1200) ? '1:2' : '2:1';
+
     this.getContact();
   }
 
@@ -120,5 +126,39 @@ export class ContactUsDeUsuarioComponent {
     dialog.afterClosed().subscribe(() => {
       this.getContact();
     });
+  }
+
+  // NOTE: Paginator
+
+  pageIndex: number = 0;
+  pageSize: number = 10;
+  lowValue: number = 0;
+  highValue: number = this.pageSize;
+
+  getPaginatorData(event: { pageIndex: number; }) {
+    console.log(event);
+    if (event.pageIndex === this.pageIndex + 1) {
+      this.lowValue = this.lowValue + this.pageSize;
+      this.highValue = this.highValue + this.pageSize;
+    }
+    else if (event.pageIndex === this.pageIndex - 1) {
+      this.lowValue = this.lowValue - this.pageSize;
+      this.highValue = this.highValue - this.pageSize;
+    }
+    this.pageIndex = event.pageIndex;
+  }
+
+  // NOTE: RESPONSIVE
+
+  numCols: number = 2;
+  rowHeight: string = '2.5:1'
+  rowHeightBusc: string = '2:1'
+  rowHeightTit: string = '2:1'
+
+  onResize(event: any) {
+    this.numCols = (event.target.innerWidth <= 1200) ? 1 : 2;
+    this.rowHeight = (event.target.innerWidth <= 1200) ? '2:1' : '2.5:1';
+    this.rowHeightBusc = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
+    this.rowHeightTit = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
   }
 }

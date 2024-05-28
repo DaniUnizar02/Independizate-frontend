@@ -5,7 +5,7 @@
   permitiendo a la administración aprobar o rechazar dichas denuncias.
 -->
 <div class="fijo">
-  <mat-grid-list cols="11" rowHeight="2:1">
+  <mat-grid-list cols="11" [rowHeight]="rowHeightTit">
     <mat-grid-tile colspan="1"><mat-icon style="margin-top: 15%;"
         (click)="goBack()">arrow_back_ios</mat-icon></mat-grid-tile>
     <mat-grid-tile colspan="9">
@@ -15,6 +15,8 @@
 
   <hr class="linea-title">
 </div>
+
+<mat-paginator [length]="denuncias.length" [pageSize]="pageSize" (page)="getPaginatorData($event)"></mat-paginator>
 
 <div class="desplazable">
   <mat-grid-list [cols]="numCols" [rowHeight]="rowHeight" (window:resize)='onResize($event)'>
@@ -38,3 +40,5 @@
     </mat-grid-tile>
   </mat-grid-list>
 </div>
+
+<mat-paginator [length]="denuncias.length" [pageSize]="pageSize" (page)="getPaginatorData($event)"></mat-paginator>

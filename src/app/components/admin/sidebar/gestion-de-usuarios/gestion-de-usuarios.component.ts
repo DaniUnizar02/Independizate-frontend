@@ -16,9 +16,12 @@ export class GestionDeUsuariosComponent {
   private todos: any[] = [];
   private respuesta: any[] = [];
 
-  constructor(private location: Location, public dialog: MatDialog, private backendService: BackendService, private errorService: ErrorService) {}
+  constructor(private location: Location, public dialog: MatDialog, private backendService: BackendService, private errorService: ErrorService) { }
 
   ngOnInit(): void {
+    // NOTE: Responsive
+    this.rowHeightTit = (window.innerWidth <= 1200) ? '1:2' : '2:1';
+
     this.getUsuarios();
   }
 
@@ -46,7 +49,7 @@ export class GestionDeUsuariosComponent {
   }
 
   buscar(): void {
-    if(!this.value.trim()){
+    if (!this.value.trim()) {
       this.users = this.todos
     } else {
       this.value = this.value.toLowerCase();
@@ -83,7 +86,7 @@ export class GestionDeUsuariosComponent {
       width: '50%',
       enterAnimationDuration,
       exitAnimationDuration,
-      data: { 
+      data: {
         id: id,
         estado: estado
       }
@@ -96,5 +99,33 @@ export class GestionDeUsuariosComponent {
 
   goBack(): void {
     this.location.back();
+  }
+
+  // NOTE: Paginator
+
+  pageIndex: number = 0;
+  pageSize: number = 10;
+  lowValue: number = 0;
+  highValue: number = this.pageSize;
+
+  getPaginatorData(event: { pageIndex: number; }) {
+    console.log(event);
+    if (event.pageIndex === this.pageIndex + 1) {
+      this.lowValue = this.lowValue + this.pageSize;
+      this.highValue = this.highValue + this.pageSize;
+    }
+    else if (event.pageIndex === this.pageIndex - 1) {
+      this.lowValue = this.lowValue - this.pageSize;
+      this.highValue = this.highValue - this.pageSize;
+    }
+    this.pageIndex = event.pageIndex;
+  }
+
+  // NOTE: RESPONSIVE
+
+  rowHeightTit: string = '2:1'
+
+  onResize(event: any) {
+    this.rowHeightTit = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
   }
 }
