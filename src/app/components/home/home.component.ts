@@ -124,11 +124,12 @@ export class HomeComponent implements OnInit {
       contrasegna: this.backendService.hashPassword(this.contrasena),
       rememberMe: false
     }
-    console.log(body.contrasegna) //LOG:
+    
     this.backendService.postAuthLogin(body).subscribe(valor => {
       this.backendService.cookie.usuario = valor.id;
       this.backendService.cookie.nombreUsuario = body.usuario;
       this.backendService.cookie.token = valor.token;
+      console.log(this.backendService.cookie.token) //LOG:
       this.backendService.cookie.esInvitado = false;
       this.backendService.setHeaders();
       this.tipoUsuario();
