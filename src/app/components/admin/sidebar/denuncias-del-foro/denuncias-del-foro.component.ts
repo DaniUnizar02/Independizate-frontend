@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { BackendService } from '../../../../services/backend/backend.service';
 import { ErrorService } from '../../../../services/error/error.service';
+import { MasDetallesComponent } from './mas-detalles/mas-detalles.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-denuncias-del-foro',
@@ -13,7 +15,7 @@ export class DenunciasDelForoComponent {
   private respuesta: any[] = [];
   private todos: any[] = [];
 
-  constructor(private location: Location, private backendService: BackendService, private errorService: ErrorService) {
+  constructor(private location: Location, public dialog: MatDialog, private backendService: BackendService, private errorService: ErrorService) {
     console.log(this.backendService.cookie.token); //LOG:
   }
 
@@ -81,6 +83,24 @@ export class DenunciasDelForoComponent {
 
   goBack(): void {
     this.location.back();
+  }
+
+  openDialogMasDestalles(enterAnimationDuration: string, exitAnimationDuration: string, id: string, tipo: string, info: string, referencia: string): void {
+    const dialog = this.dialog.open(MasDetallesComponent, {
+      width: '50%',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: { 
+        id: id,
+        tipo: tipo,
+        info: info,
+        referencia: referencia
+      }
+    });
+
+    dialog.afterClosed().subscribe(() => {
+      this.getDenuncias();
+    });
   }
 
   // NOTE: RESPONSIVE

@@ -98,6 +98,19 @@ export class HomeComponent implements OnInit {
     }(document, 'script', 'google-jssdk'));
   }
 
+  tipoUsuario() {
+    this.backendService.getUsersUsuarioType(this.usuario).subscribe(valor => {
+      console.log(valor); //LOG:
+      if (valor[0].tipo=="admin") {
+        this.router.navigate(['admin/sidebar']);
+      } else {
+        this.router.navigate(['sidebar']);
+      }
+    }, error => {
+      console.error('Error al obtener token: ', error);
+    });
+  }
+
   login() {
     const socket = new WebSocket('ws://localhost:4000?clienteId=' + this.usuario);
     socket.addEventListener('open', () => { console.log('Conexión establecida con el servidor WebSocket'); });
@@ -118,7 +131,7 @@ export class HomeComponent implements OnInit {
       this.backendService.cookie.token = valor.token;
       this.backendService.cookie.esInvitado = false;
       this.backendService.setHeaders();
-      this.router.navigate(['admin/sidebar']);
+      this.tipoUsuario();
     }, error => {
       console.error('Error al obtener token: ', error);
     });

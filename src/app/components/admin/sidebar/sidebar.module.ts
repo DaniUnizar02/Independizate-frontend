@@ -10,6 +10,7 @@ import { ContactUsDeUsuarioComponent } from './contact-us-de-usuario/contact-us-
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { EstadoUsuarioComponent } from './gestion-de-usuarios/estado-usuario/estado-usuario.component';
 import { ResponderSugerenciaComponent } from './contact-us-de-usuario/responder-sugerencia/responder-sugerencia.component';
+import { MasDetallesComponent } from './denuncias-del-foro/mas-detalles/mas-detalles.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ResponderSugerenciaComponent } from './contact-us-de-usuario/responder-
     ContactUsDeUsuarioComponent,
     EstadisticasComponent,
     EstadoUsuarioComponent,
-    ResponderSugerenciaComponent
+    ResponderSugerenciaComponent,
+    MasDetallesComponent
   ],
   imports: [
     CommonModule,

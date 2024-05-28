@@ -72,6 +72,10 @@ export class BackendService {
     return this.http.put<any>(`${this.apiUrl}admin/reports/reject/${id}/`, {}, { headers: this.headers });
   }
 
+  putAdminAcceptReportIdCategoria(id: string, categoria: string, body: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}admin/accept/report/${id}/${categoria}/`, body, { headers: this.headers });
+  }
+
   putAdminSuggestionsRejectId(id: string): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}admin/suggestions/reject/${id}/`, {}, { headers: this.headers });
   }
@@ -156,6 +160,10 @@ export class BackendService {
     return this.http.post<any>(`${this.apiUrl}posts/`, body, { headers: this.headers });
   }
 
+  getPostsId(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}posts/${id}/`);
+  }
+
   putPostsFavoritesPostId(post_id: string): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}posts/favorites/${post_id}/`, {}, { headers: this.headers });
   }
@@ -196,6 +204,10 @@ export class BackendService {
 
   getUsersIdBasic(id: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}users/${id}/basic/`);
+  }
+
+  getUsersUsuarioType(usuario: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}users/${usuario}/type/`);
   }
   /* #endregion */
 

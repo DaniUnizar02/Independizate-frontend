@@ -1,0 +1,19 @@
+.title {
+    text-align: center;
+    margin-top: 1%;
+    color: #434982;
+    font-size: 210%;
+}
+
+.post {
+    width: 70%;
+    background: rgba(67, 73, 130, 0.8);
+    border-radius: 10px;
+}
+
+.post-content {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}

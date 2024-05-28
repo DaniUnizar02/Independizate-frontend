@@ -1,0 +1,46 @@
+<mat-dialog-content>
+    <div *ngIf="!cambiarForo">
+        <h1 class="title">Detalles denuncia</h1>
+    </div>
+    <div *ngIf="cambiarForo">
+        <h1 class="title">Selecciona el foro correcto</h1>
+    </div>
+    <h2>{{ tipo }}</h2>
+    <p>{{ info }}</p>
+
+    <mat-card class="post">
+        <mat-card-header>
+            <mat-card-title-group>
+                <mat-card-subtitle style="color: white;">{{ post.title }}</mat-card-subtitle>
+            </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content style="color: white;" class="post-content">{{ post.description }}</mat-card-content>
+    </mat-card>
+
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="center">
+    <button mat-flat-button color="warn" style="margin-right: 3%;" [mat-dialog-close]="true">Cancelar</button>
+
+    <!-- Eliminar -->
+    <div *ngIf="esEliminar">
+        <button mat-flat-button color="primary" (click)="accion(' ')">Eliminar</button>
+    </div>
+
+    <!-- Erroneo -->
+    <div *ngIf="!esEliminar">
+        <div *ngIf="!cambiarForo">
+            <button mat-flat-button color="primary" (click)="cambiarForo=true">Cambiar foro</button>
+        </div>
+
+        <div *ngIf="cambiarForo">
+            <button mat-flat-button color="warn" (click)="cambiarForo=false">Atrás</button>
+            <button mat-flat-button color="primary" (click)="accion('compagneroDePiso')">Compañero</button>
+            <button mat-flat-button color="primary" (click)="accion('recetas')">Recetas</button>
+            <button mat-flat-button color="primary" (click)="accion('limpieza')">Limpieza</button>
+            <button mat-flat-button color="primary" (click)="accion('economiaDomestica')">Economía</button>
+            <button mat-flat-button color="primary" (click)="accion('otros')">Otros</button>
+        </div>
+    </div>
+</mat-dialog-actions>

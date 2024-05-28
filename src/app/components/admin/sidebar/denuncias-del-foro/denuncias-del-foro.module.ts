@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MasDetallesComponent } from './mas-detalles/mas-detalles.component';
 
 
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule
   ]
