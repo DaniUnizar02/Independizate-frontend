@@ -96,40 +96,53 @@
         </div>
         <div class="der-medio">
             <form class="formulario">
-                <mat-form-field>
-                    <mat-label>Nombre usuario</mat-label>
-                    <input matInput type="text" [(ngModel)]="usuario" name="usuario">
-                </mat-form-field>
+                <div class="fila-formulario">
+                    <mat-form-field style="margin-right: 2%;">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput type="text" [(ngModel)]="nombre" name="nombre">
+                    </mat-form-field>
 
-                <mat-form-field>
-                    <mat-label>Contraseña</mat-label>
-                    <input matInput type="password" [(ngModel)]="contrasena" name="contrasena">
-                </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Apellidos</mat-label>
+                        <input matInput type="text" [(ngModel)]="apellidos" name="apellidos">
+                    </mat-form-field>
+                </div>
 
-                <mat-form-field>
-                    <mat-label>Repite la contraseña</mat-label>
-                    <input matInput type="password" [(ngModel)]="repeatContrasena" name="repeatContrasena">
-                </mat-form-field>
+                <div class="fila-formulario">
+                    <mat-form-field style="margin-right: 2%;">
+                        <mat-label>Nombre usuario</mat-label>
+                        <input matInput type="text" [(ngModel)]="usuario" name="usuario">
+                    </mat-form-field>
 
-                <mat-form-field>
-                    <mat-label>Nombre</mat-label>
-                    <input matInput type="text" [(ngModel)]="nombre" name="nombre">
-                </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Correo electrónico</mat-label>
+                        <input matInput type="text" [(ngModel)]="email" name="email">
+                    </mat-form-field>
+                </div>
 
-                <mat-form-field>
-                    <mat-label>Apellidos</mat-label>
-                    <input matInput type="text" [(ngModel)]="apellidos" name="apellidos">
-                </mat-form-field>
+                <div class="fila-formulario">
+                    <mat-form-field style="margin-right: 2%;">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput type="password" [(ngModel)]="contrasena" name="contrasena">
+                    </mat-form-field>
 
-                <mat-form-field>
-                    <mat-label>Correo electrónico</mat-label>
-                    <input matInput type="text" [(ngModel)]="email" name="email">
-                </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Repite la contraseña</mat-label>
+                        <input matInput type="password" [(ngModel)]="repeatContrasena" name="repeatContrasena">
+                    </mat-form-field>
+                </div>
 
-                <mat-form-field>
-                    <mat-label>Edad</mat-label>
-                    <input matInput type="number" [(ngModel)]="edad" name="edad">
-                </mat-form-field>
+                <div class="fila-formulario">
+                    <mat-form-field style="margin-right: 2%;">
+                        <mat-label>Edad</mat-label>
+                        <input matInput type="number" [(ngModel)]="edad" name="edad">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Ciudad</mat-label>
+                        <input matInput type="text" [(ngModel)]="ciudad" name="ciudad">
+                    </mat-form-field>
+                </div>
 
                 <mat-label>Sexo</mat-label>
                 <mat-select [(value)]="sexo" class="desplegable">
@@ -144,11 +157,6 @@
                     <mat-option value="false">No</mat-option>
                 </mat-select>
 
-                <mat-form-field>
-                    <mat-label>Ciudad</mat-label>
-                    <input matInput type="text" [(ngModel)]="ciudad" name="ciudad">
-                </mat-form-field>
-
                 <mat-label>Situación</mat-label>
                 <mat-select [(value)]="situacion" class="desplegable">
                     <mat-option value="Estudiante">Estudiante</mat-option>
@@ -156,9 +164,9 @@
                     <mat-option value="Parado">Parado</mat-option>
                 </mat-select>
 
-                <button mat-flat-button color="primary" (click)="register()">Login</button>
+                <button mat-flat-button color="primary" (click)="register()">Register</button>
+                <p style="margin-top: 5%;">Tengo cuenta: <a href="/home">Iniciar sesión</a></p>
             </form>
         </div>
-        <div class="der-abajo"></div>
     </div>
 </div>
