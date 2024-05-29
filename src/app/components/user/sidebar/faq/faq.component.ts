@@ -24,6 +24,9 @@ export class FaqComponent {
   constructor(private location: Location, private backendService: BackendService, private errorService: ErrorService) {}
 
   ngOnInit(): void {
+    // NOTE: Responsive
+    this.rowHeightTit = (window.innerWidth <= 1200) ? '1:2' : '2:1';
+
     this.backendService.getFaqs().subscribe(
       response => {
         this.preguntasFrecuentes = response.faqs
@@ -62,5 +65,13 @@ export class FaqComponent {
       this.highValue = this.highValue - this.pageSize;
     }
     this.pageIndex = event.pageIndex;
+  }
+
+  // NOTE: RESPONSIVE
+
+  rowHeightTit: string = '2:1'
+
+  onResize(event: any) {
+    this.rowHeightTit = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
   }
 }

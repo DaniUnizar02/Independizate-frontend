@@ -66,8 +66,8 @@ export class DenunciasDelForoComponent {
         var data = {
           id: item._id,
           tipo: item.tipo,
-          foto: item.profilePhoto, // TODO: Pedirle a backedn que me lo devuelva
-          username: item.username,  //TODO: Pedirle a backend que me lo devuelva
+          foto: item.fotoPerfil, // TODO: Pedirle a backedn que me lo devuelva
+          username: item.usuario,  //TODO: Pedirle a backend que me lo devuelva
           descripcion: item.descripcion,
           referencia: item.referencia,
           autor: item.autor,

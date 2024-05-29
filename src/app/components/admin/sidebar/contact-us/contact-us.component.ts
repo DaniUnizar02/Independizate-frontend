@@ -83,8 +83,8 @@ export class ContactUsDeUsuarioComponent {
       if (!item.completada) {
         var data = {
           id: item._id,
-          foto: item.profilePhoto, // TODO: Pedirle a backedn que me lo devuelva
-          username: item.username,  //TODO: Pedirle a backend que me lo devuelva
+          foto: item.fotoPerfil, // TODO: Pedirle a backedn que me lo devuelva
+          username: item.usuario,  //TODO: Pedirle a backend que me lo devuelva
           usuario: item.autor,
           tipo: item.tipo,
           info: item.descripcion,

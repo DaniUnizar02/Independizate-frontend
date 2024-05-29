@@ -21,7 +21,19 @@ import { Location } from '@angular/common';
 export class MapaComponent {
   constructor(private location: Location) { }
 
+  ngOnInit() {
+    // NOTE: Responsive
+    this.rowHeightTit = (window.innerWidth <= 1200) ? '1:2' : '2:1';
+  }
+
   goBack(): void {
     this.location.back();
+  }
+
+  // NOTE: RESPONSIVE
+  rowHeightTit: string = '2:1'
+
+  onResize(event: any) {
+    this.rowHeightTit = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
   }
 }

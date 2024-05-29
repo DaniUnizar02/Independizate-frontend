@@ -29,6 +29,7 @@ export class BuscarPisoComponent {
   ngOnInit(): void {
     // NOTE: Responsive
     this.rowHeightBusc = (window.innerWidth <= 1200) ? '1:2' : '2:1';
+    this.rowHeightTit = (window.innerWidth <= 1200) ? '1:2' : '2:1';
 
     this.backendService.getAparments().subscribe(
       response => {
@@ -83,8 +84,10 @@ export class BuscarPisoComponent {
   // NOTE: RESPONSIVE
 
   rowHeightBusc: string = '2:1'
+  rowHeightTit: string = '2:1'
 
   onResize(event: any) {
     this.rowHeightBusc = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
+    this.rowHeightTit = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
   }
 }

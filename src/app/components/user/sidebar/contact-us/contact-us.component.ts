@@ -37,6 +37,7 @@ export class ContactUsComponent {
     this.numCols = (window.innerWidth <= 1200) ? 1 : 4;
     this.colspan = (window.innerWidth <= 1200) ? 1 : 3;
     this.rowHeight = (window.innerWidth <= 1200) ? "8:1" : "2:1";
+    this.rowHeightTit = (window.innerWidth <= 1200) ? '1:2' : '2:1';
   }
 
   goBack(): void {
@@ -80,10 +81,12 @@ export class ContactUsComponent {
   numCols: number = 2;
   colspan: number = 3;
   rowHeight: string = "2:1"
+  rowHeightTit: string = '2:1'
 
   onResize(event: any) {
     this.numCols = (event.target.innerWidth <= 1200) ? 1 : 4;
     this.colspan = (event.target.innerWidth <= 1200) ? 1 : 3;
     this.rowHeight = (event.target.innerWidth <= 1200) ? "8:1" : "2:1";
+    this.rowHeightTit = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
   }
 }
