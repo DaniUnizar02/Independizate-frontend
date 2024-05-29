@@ -24,6 +24,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HttpClientModule } from '@angular/common/http';
 
+// Charts
+import { NgApexchartsModule } from 'ng-apexcharts';
+
 
 @NgModule({
   declarations: [],
@@ -47,7 +50,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatPaginatorModule,
     MatDividerModule,
     MatSlideToggleModule,
-    HttpClientModule
+    HttpClientModule,
+    NgApexchartsModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -68,6 +72,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatPaginatorModule,
     MatDividerModule,
     MatSlideToggleModule,
+    NgApexchartsModule
   ]
 })
 export class SharedModule { }

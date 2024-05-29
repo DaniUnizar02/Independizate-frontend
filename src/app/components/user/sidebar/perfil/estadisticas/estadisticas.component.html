@@ -1,1 +1,14 @@
-<p>estadisticas works!</p>
+<div class="desplazable">
+    <div id="chart">
+        <div class="grid">
+            <div class="ranking">
+                <apx-chart [series]="publicaciones.series" [chart]="publicaciones.chart" [title]="publicaciones.title" [labels]="publicaciones.labels"></apx-chart>
+            </div>
+            <div class="ranking">
+                <apx-chart [series]="usuarios.series" [chart]="usuarios.chart" [xaxis]="usuarios.xaxis"
+                    [title]="usuarios.title"></apx-chart>
+            </div>
+        </div>
+        <apx-chart [series]="accesos.series" [chart]="accesos.chart" [xaxis]="accesos.xaxis" [title]="accesos.title"></apx-chart>
+    </div>
+</div>

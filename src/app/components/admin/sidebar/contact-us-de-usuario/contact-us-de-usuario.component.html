@@ -40,7 +40,7 @@
         <mat-card-header>
           <mat-card-title-group>
             <mat-card-title style="color: white;">
-              <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 10%;">
+              <img mat-card-image [src]="contact.foto" alt="Foto de perfil" style="width: 10%;">
               {{ contact.username }}
             </mat-card-title>
             <mat-card-subtitle style="color: white;">{{ contact.tipo }}</mat-card-subtitle>

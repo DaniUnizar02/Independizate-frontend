@@ -19,3 +19,12 @@
     width: 100%;
     margin: 20px 0;
 }
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.ranking {
+    max-width: 100%;
+}

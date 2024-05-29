@@ -1,0 +1,14 @@
+
+.desplazable {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.ranking {
+    max-width: 100%;
+}

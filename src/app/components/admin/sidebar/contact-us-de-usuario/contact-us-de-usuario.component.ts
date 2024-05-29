@@ -29,9 +29,9 @@ export class ContactUsDeUsuarioComponent {
   }
 
   getContact() {
-    this.backendService.getContactUs().subscribe(
+    this.backendService.getAdminSuggestions().subscribe(
       response => {
-        this.respuesta = response.sugerencias
+        this.respuesta = response
         console.log('Sugerencias o Quejas de usuario: ', response.sugerencias); // LOG:
         this.formatear();
         this.contacts = this.todos;
@@ -72,14 +72,14 @@ export class ContactUsDeUsuarioComponent {
       if (!item.completada) {
         var data = {
           id: item._id,
-          foto: '', // TODO: Pedirle a backedn que me lo devuelva
-          username: '',  //TODO: Pedirle a backend que me lo devuelva
+          foto: item.profilePhoto, // TODO: Pedirle a backedn que me lo devuelva
+          username: item.username,  //TODO: Pedirle a backend que me lo devuelva
           usuario: item.autor,
           tipo: item.tipo,
           info: item.descripcion,
           titulo: item.titulo
         }
-
+        console.log(data) //LOG:
         this.todos.push(data);
       }
     }

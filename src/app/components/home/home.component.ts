@@ -14,6 +14,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackendService } from '../../services/backend/backend.service';
 import { HttpClient } from '@angular/common/http';
+import { ErrorService } from '../../services/error/error.service';
 
 @Component({
   selector: 'app-home',
@@ -31,7 +32,7 @@ export class HomeComponent implements OnInit {
     password: ''
   }
 
-  constructor(private router: Router, private http:HttpClient, private backendService: BackendService) { }
+  constructor(private router: Router, private http:HttpClient, private backendService: BackendService, private errorService: ErrorService) { }
 
   /**
    * Método que se ejecuta al iniciar el componente para cargar la autenticación de Google.
@@ -146,30 +147,43 @@ export class HomeComponent implements OnInit {
    * Método que inicia sesión con las credenciales del usuario.
    */
   login() {
-    const socket = new WebSocket('ws://localhost:4000?clienteId=' + this.usuario);
-    socket.addEventListener('open', () => { console.log('Conexión establecida con el servidor WebSocket'); });
-    socket.addEventListener('message', (event) => {
-      console.log('Mensaje recibido del servidor:', event.data);
-      alert('Notificación recibida');
-    });
+    if (!this.usuario.trim() || !this.contrasena.trim()) {
+      this.errorService.openDialogError("Todos los campos tienen que estar rellenos.");
+    } else {
 
-    var body = {
-      usuario: this.usuario,
-      contrasegna: this.backendService.hashPassword(this.contrasena),
-      rememberMe: false
+      const socket = new WebSocket('ws://localhost:4000?clienteId=' + this.usuario);
+      socket.addEventListener('open', () => { console.log('Conexión establecida con el servidor WebSocket'); });
+      socket.addEventListener('message', (event) => {
+        console.log('Mensaje recibido del servidor:', event.data);
+        alert('Notificación recibida');
+      });
+
+      var body = {
+        usuario: this.usuario,
+        contrasegna: this.backendService.hashPassword(this.contrasena),
+        rememberMe: false
+      }
+      
+      this.backendService.postAuthLogin(body).subscribe(valor => {
+        this.backendService.cookie.usuario = valor.id;
+        this.backendService.cookie.nombreUsuario = body.usuario;
+        this.backendService.cookie.token = valor.token;
+        console.log(this.backendService.cookie.token) //LOG:
+        this.backendService.cookie.esInvitado = false;
+        this.backendService.setHeaders();
+        this.tipoUsuario();
+      }, error => {
+        if (error.status === 400) {
+          this.errorService.openDialogError("Parámetros inválidos");
+        } else if (error.status === 401) {
+          this.errorService.redirect("home");
+        } else if (error.status === 404) {
+          this.errorService.openDialogError("Usuario no encontrado. Revisa el usuario y/o contraseña introducidos.");
+        } else if (error.status === 500) {
+          this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+        }
+      });
     }
-    
-    this.backendService.postAuthLogin(body).subscribe(valor => {
-      this.backendService.cookie.usuario = valor.id;
-      this.backendService.cookie.nombreUsuario = body.usuario;
-      this.backendService.cookie.token = valor.token;
-      console.log(this.backendService.cookie.token) //LOG:
-      this.backendService.cookie.esInvitado = false;
-      this.backendService.setHeaders();
-      this.tipoUsuario();
-    }, error => {
-      console.error('Error al obtener token: ', error);
-    });
   }
 
   /**

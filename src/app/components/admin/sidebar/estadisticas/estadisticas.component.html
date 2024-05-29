@@ -11,5 +11,38 @@
 </div>
 
 <div class="desplazable">
-    <p>This page is a work in progress</p>
+    <div id="chart">
+        <div class="grid">
+            <div class="ranking">
+                <apx-chart [series]="horapunta.series" [chart]="horapunta.chart" [xaxis]="horapunta.xaxis"
+                    [title]="horapunta.title"></apx-chart>
+            </div>
+            <div class="ranking">
+                <apx-chart [series]="busquedas.series" [chart]="busquedas.chart" [xaxis]="busquedas.xaxis"
+                    [title]="busquedas.title"></apx-chart>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="ranking">
+                <apx-chart [series]="ciudades.series" [chart]="ciudades.chart" [xaxis]="ciudades.xaxis"
+                    [title]="ciudades.title"></apx-chart>
+            </div>
+            <div class="ranking">
+                <apx-chart [series]="usuarios.series" [chart]="usuarios.chart" [xaxis]="usuarios.xaxis"
+                    [title]="usuarios.title"></apx-chart>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="ranking">
+                <apx-chart [series]="inicios.series" [chart]="inicios.chart" [xaxis]="inicios.xaxis"
+                    [title]="inicios.title"></apx-chart>
+            </div>
+            <div class="ranking">
+                <apx-chart [series]="registros.series" [chart]="registros.chart" [xaxis]="registros.xaxis"
+                    [title]="registros.title"></apx-chart>
+            </div>
+        </div>
+    </div>
 </div>

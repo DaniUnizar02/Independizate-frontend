@@ -7,7 +7,7 @@ import * as bcrypt from 'bcryptjs';
   providedIn: 'root'
 })
 export class BackendService {
-  private apiUrl = 'http://localhost:3000/api/';
+  private apiUrl = "http://localhost:3000/api/";
 
   public cookie = {
     usuario: '',
@@ -31,35 +31,6 @@ export class BackendService {
     return bcrypt.hashSync(contrasena, fixedSalt);
   }
 
-
-  // public user: string = ''; // DELETE: O NO
-  // public nombreUsuario: string = 'User'; // DELETE: O NO
-
-  // // DELETE: Usuarios por defecto
-  // admin = {
-  //   usuario: 'dani',
-  //   contrasegna: 'dani',
-  //   rememberMe: false
-  // };
-
-  // david = {
-  //   usuario: 'David',
-  //   contrasegna: '123',
-  //   rememberMe: false
-  // }
-
-  // usuario = {
-  //   usuario: 'usuario',
-  //   contrasegna: 'usuario',
-  //   rememberMe: false
-  // };
-
-  // usuario1 = {
-  //   usuario: 'string',
-  //   contrasegna: 'usuario',
-  //   rememberMe: false
-  // };
-
   // REVIEW:
   constructor(private http: HttpClient) { }
 
@@ -74,6 +45,10 @@ export class BackendService {
 
   putAdminAcceptReportIdCategoria(id: string, categoria: string, body: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}admin/accept/report/${id}/${categoria}/`, body, { headers: this.headers });
+  }
+
+  getAdminSuggestions(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}admin/suggestions/`, { headers: this.headers });
   }
 
   putAdminSuggestionsRejectId(id: string): Observable<any> {
@@ -114,9 +89,9 @@ export class BackendService {
     return this.http.post<any>(`${this.apiUrl}contactUs/`, body, { headers: this.headers });
   }
 
-  getContactUs(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}contactUs/`, { headers: this.headers });
-  }
+  // getContactUs(): Observable<any> {
+  //   return this.http.get<any>(`${this.apiUrl}contactUs/`, { headers: this.headers });
+  // }
   /* #endregion */
 
   /* #region NOTE: FAQ */
@@ -194,6 +169,16 @@ export class BackendService {
   /* #region NOTE: Stamps */
   getStamps(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}stamps/`, { headers: this.headers });
+  }
+  /* #endregion */
+
+  /* #region NOTE: Statistics */
+  getStatisticsAdmin(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}statistics/admin/`, { headers: this.headers });
+  }
+
+  getStatisticsUser(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}statistics/user/`, { headers: this.headers });
   }
   /* #endregion */
 
