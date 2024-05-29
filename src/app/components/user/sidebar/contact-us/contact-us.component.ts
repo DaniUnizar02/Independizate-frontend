@@ -56,8 +56,9 @@ export class ContactUsComponent {
           if (error.status === 400) {
             this.errorService.openDialogError("Todos los campos tienen que estar rellenos.");
           } else if (error.status === 401) {
-            // this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
-            this.errorService.openDialogError("No se ha podido crear tu " + this.tipo.toLowerCase() + ", intentalo de nuevo más tarde");
+            this.errorService.redirect("home");
+          } else if (error.status === 500) {
+            this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
           }
         }
       );

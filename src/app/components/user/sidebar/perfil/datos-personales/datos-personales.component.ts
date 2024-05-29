@@ -73,13 +73,14 @@ export class DatosPersonalesComponent {
         this.situacion = response.situacion;
       },
       error => {
-        console.error('Error: ', error); // LOG:
-        if (error.status === 401) {
-          this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+        if (error.status === 400) {
+          this.errorService.openDialogError("Parámetros inválidos");
+        } else if (error.status === 401) {
+          this.errorService.redirect("home");
         } else if (error.status === 403) {
-          this.errorService.openDialogError("Forbidden.");
+          this.errorService.openDialogErrorRedirect("No tienes permisos para realizar esta acción.", "home");
         } else if (error.status === 404) {
-          this.errorService.openDialogError("No se encontraron posts.");
+          this.errorService.openDialogError("Usuario no encontrado.");
         } else if (error.status === 500) {
           this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
         }
@@ -102,13 +103,14 @@ export class DatosPersonalesComponent {
         // console.log(this.misFavs);//LOG:        
       },
       error => {
-        console.error('Error: ', error); // LOG:
-        if (error.status === 401) {
-          this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+        if (error.status === 400) {
+          this.errorService.openDialogError("Parámetros inválidos");
+        } else if (error.status === 401) {
+          this.errorService.redirect("home");
         } else if (error.status === 403) {
-          this.errorService.openDialogError("Forbidden.");
+          this.errorService.openDialogErrorRedirect("No tienes permisos para realizar esta acción.", "home");
         } else if (error.status === 404) {
-          this.errorService.openDialogError("No se encontraron posts.");
+          this.errorService.openDialogError("No se encontraron estampas.");
         } else if (error.status === 500) {
           this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
         }
@@ -125,13 +127,12 @@ export class DatosPersonalesComponent {
         console.log(this.infoUsuario.estampas); // LOG:
       },
       error => {
-        console.error('Error: ', error); // LOG:
         if (error.status === 401) {
-          this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+          this.errorService.redirect("home");
         } else if (error.status === 403) {
-          this.errorService.openDialogError("Forbidden.");
+          this.errorService.openDialogErrorRedirect("No tienes permisos para realizar esta acción.", "home");
         } else if (error.status === 404) {
-          this.errorService.openDialogError("No se encontraron posts.");
+          this.errorService.openDialogError("Estampa no encontrada.");
         } else if (error.status === 500) {
           this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
         }
@@ -176,13 +177,14 @@ export class DatosPersonalesComponent {
     this.backendService.putProfilesId(this.backendService.cookie.usuario, data).subscribe(
       response => { },
       error => {
-        console.error('Error: ', error); // LOG:
-        if (error.status === 401) {
-          this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+        if (error.status === 400) {
+          this.errorService.openDialogError("Parámetros inválidos");
+        } else if (error.status === 401) {
+          this.errorService.redirect("home");
         } else if (error.status === 403) {
-          this.errorService.openDialogError("Forbidden.");
+          this.errorService.openDialogErrorRedirect("No tienes permisos para realizar esta acción.", "home");
         } else if (error.status === 404) {
-          this.errorService.openDialogError("No se encontraron posts.");
+          this.errorService.openDialogError("Usuario no encontrado.");
         } else if (error.status === 500) {
           this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
         }

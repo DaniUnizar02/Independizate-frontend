@@ -38,15 +38,10 @@ export class PonerDenunciaComponent {
           this.dialogRef.close();
         },
         error => {
-          console.error('Error: ', error);
           if (error.status === 400) {
-            this.errorService.openDialogError("Esto no es un mensaje.");
+            this.errorService.openDialogError("Parámetros inválidos");
           } else if (error.status === 401) {
-            this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
-          } else if (error.status === 403) {
-            this.errorService.openDialogError("Forbidden.");
-          } else if (error.status === 404) {
-            this.errorService.openDialogError("No se encontraron posts.");
+            this.errorService.redirect("home");
           } else if (error.status === 500) {
             this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
           }

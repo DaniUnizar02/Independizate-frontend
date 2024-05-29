@@ -30,7 +30,7 @@ export class BuscarPisoComponent {
       error => {
         console.error('Error: ', error); // LOG:
         if (error.status === 404) {
-          this.errorService.openDialogError("No se encontraron apartamentos.");
+          this.errorService.openDialogError("No se han encontrado pisos.");
         } else if (error.status === 500) {
           this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
         }

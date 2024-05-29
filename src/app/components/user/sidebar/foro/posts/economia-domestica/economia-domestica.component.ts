@@ -51,13 +51,14 @@ export class EconomiaDomesticaComponent {
         console.log("LIKE: ", this.postsLike); // LOG:
       },
       error => {
-        console.error('Error: ', error); // LOG:
-        if (error.status === 401) {
-          this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+        if (error.status === 400) {
+          this.errorService.openDialogError("Parámetros inválidos");
+        } else if (error.status === 401) {
+          this.errorService.redirect("home");
         } else if (error.status === 403) {
-          this.errorService.openDialogError("Forbidden.");
+          this.errorService.openDialogErrorRedirect("No tienes permisos para realizar esta acción.", "home");
         } else if (error.status === 404) {
-          this.errorService.openDialogError("No se encontraron posts.");
+          this.errorService.openDialogError("Usuario no encontrado.");
         } else if (error.status === 500) {
           this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
         }
@@ -82,13 +83,14 @@ export class EconomiaDomesticaComponent {
         this.posts = this.todos;
       },
       error => {
-        console.error('Error: ', error); // LOG:
-        if (error.status === 401) {
-          this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+        if (error.status === 400) {
+          this.errorService.openDialogError("Parámetros inválidos");
+        } else if (error.status === 401) {
+          this.errorService.redirect("home");
         } else if (error.status === 403) {
-          this.errorService.openDialogError("Forbidden.");
+          this.errorService.openDialogErrorRedirect("No tienes permisos para realizar esta acción.", "home");
         } else if (error.status === 404) {
-          this.errorService.openDialogError("No se encontraron posts.");
+          this.errorService.openDialogError("Foro no encontrado.");
         } else if (error.status === 500) {
           this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
         }
@@ -105,13 +107,14 @@ export class EconomiaDomesticaComponent {
         this.posts = this.todos;
       },
       error => {
-        console.error('Error: ', error); // LOG:
-        if (error.status === 401) {
-          this.errorService.openDialogError("Error 401: Acceso no autorizado. El token proporcionado no es válido.");
+        if (error.status === 400) {
+          this.errorService.openDialogError("Parámetros inválidos");
+        } else if (error.status === 401) {
+          this.errorService.redirect("home");
         } else if (error.status === 403) {
-          this.errorService.openDialogError("Forbidden.");
+          this.errorService.openDialogErrorRedirect("No tienes permisos para realizar esta acción.", "home");
         } else if (error.status === 404) {
-          this.errorService.openDialogError("No se encontraron posts.");
+          this.errorService.openDialogError("Foro no encontrado.");
         } else if (error.status === 500) {
           this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
         }
@@ -199,13 +202,14 @@ export class EconomiaDomesticaComponent {
         this.getPosts();
       },
       error => {
-        console.error('Error: ', error); // LOG:
-        if (error.status === 401) {
-          this.errorService.openDialogError("Registrate para dar like.");
+        if (error.status === 400) {
+          this.errorService.openDialogError("Parámetros inválidos");
+        } else if (error.status === 401) {
+          this.errorService.redirect("home");
         } else if (error.status === 403) {
-          this.errorService.openDialogError("El post ya tiene tu like.");
+          this.errorService.openDialogErrorRedirect("No tienes permisos para realizar esta acción.", "home");
         } else if (error.status === 404) {
-          this.errorService.openDialogError("No se encontraron posts.");
+          this.errorService.openDialogError("Post no encontrado.");
         } else if (error.status === 500) {
           this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
         }
@@ -223,13 +227,14 @@ export class EconomiaDomesticaComponent {
         this.getPosts();
       },
       error => {
-        console.error('Error: ', error); // LOG:
-        if (error.status === 401) {
-          this.errorService.openDialogError("Registrate para guardar favoritos.");
+        if (error.status === 400) {
+          this.errorService.openDialogError("Parámetros inválidos");
+        } else if (error.status === 401) {
+          this.errorService.redirect("home");
         } else if (error.status === 403) {
-          this.errorService.openDialogError("El post ya tiene tu like.");
+          this.errorService.openDialogErrorRedirect("No tienes permisos para realizar esta acción.", "home");
         } else if (error.status === 404) {
-          this.errorService.openDialogError("No se encontraron posts.");
+          this.errorService.openDialogError("Post no encontrado.");
         } else if (error.status === 500) {
           this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
         }
