@@ -1,3 +1,13 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Módulo del componente home.
+ * 
+ * Archivo: home.module.ts 
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

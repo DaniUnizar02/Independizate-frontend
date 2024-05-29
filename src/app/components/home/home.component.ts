@@ -1,3 +1,15 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero responsable del inicio de sesión de los usuarios tanto
+ *              con credenciales como con Google o como invitado.
+ * 
+ * 
+ * Archivo: home.component.ts 
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackendService } from '../../services/backend/backend.service';
@@ -21,15 +33,27 @@ export class HomeComponent implements OnInit {
 
   constructor(private router: Router, private http:HttpClient, private backendService: BackendService) { }
 
+  /**
+   * Método que se ejecuta al iniciar el componente para cargar la autenticación de Google.
+   */
   ngOnInit() {
 
     this.googleAuthSDK();
   }
 
+  /**
+   * Método que valida el token de Google.
+   * @param idToken Token de Google.
+   * @returns Respuesta de la validación del token.
+   */
   validateGoogleToken(idToken: string) {
     return this.http.get<any>(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`);
   }
 
+  /**
+   * Método que se encarga de iniciar sesión con Google, este tendra en cuenta si es la primera vez
+   * iniciando sesión con google, desplazando a la página de registro o la pagina de usuario según esto.
+   */
   callLogin() {
 
     this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
@@ -73,6 +97,10 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  /**
+   * Método que carga la autenticación de Google,
+   * cuenta con la id de cliente de la API de Google.
+   */
   googleAuthSDK() {
 
     (<any>window)['googleSDKLoaded'] = () => {
@@ -97,6 +125,10 @@ export class HomeComponent implements OnInit {
     }(document, 'script', 'google-jssdk'));
   }
 
+  /**
+   * Método que indica el tipo de usuario que ha iniciado sesión,
+   * redirigiendo a la página correspondiente.
+   */
   tipoUsuario() {
     this.backendService.getUsersUsuarioType(this.usuario).subscribe(valor => {
       console.log(valor); //LOG:
@@ -110,6 +142,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /**
+   * Método que inicia sesión con las credenciales del usuario.
+   */
   login() {
     const socket = new WebSocket('ws://localhost:4000?clienteId=' + this.usuario);
     socket.addEventListener('open', () => { console.log('Conexión establecida con el servidor WebSocket'); });
@@ -137,6 +172,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /**
+   * Método que permite iniciar sesión como invitado.
+   */
   loginGuest() {
     this.backendService.cookie.esInvitado = true;
     this.router.navigate(['sidebar']);
