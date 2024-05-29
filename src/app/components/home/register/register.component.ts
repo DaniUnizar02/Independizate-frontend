@@ -114,7 +114,7 @@ export class RegisterComponent {
           if (error.status === 400) {
             this.errorService.openDialogError("Parámetros inválidos");
           } else if (error.status === 404) {
-            this.errorService.openDialogError("Usuario no encontrado.");
+            this.errorService.openDialogError("Usuario ya existe.");
           } else if (error.status === 409) {
             this.errorService.openDialogError("Este usuario ya existe.");
           } else if (error.status === 500) {
@@ -167,7 +167,7 @@ export class RegisterComponent {
             if (error.status === 400) {
               this.errorService.openDialogError("Parámetros inválidos");
             } else if (error.status === 404) {
-              this.errorService.openDialogError("Usuario no encontrado.");
+              this.errorService.openDialogError("Usuario ya existe.");
             } else if (error.status === 500) {
               this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
             }

@@ -1,28 +1,71 @@
-.post {
-    width: 100%;
-    height: auto;
+.pantalla {
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+}
+
+.datos {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
     background: rgba(67, 73, 130, 0.8);
     border-radius: 10px;
+    padding: 2%;
+    margin-top: 2%;
+    width: 100%;
 }
+
+.datos-editar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: rgba(67, 73, 130, 0.8);
+    border-radius: 10px;
+    padding: 2%;
+    margin-top: 2%;
+    width: 100%;
+}
+
+.foto {
+    display: flex;
+    align-items: center;
+} 
 
 .info {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.data {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.data-info {
+    display: flex;
+    align-items: center;
+    
     font-size: 150%;
-    line-height: 1.5;
-    display: column;
-}
-
-button {
-    margin-bottom: 1%;
-}
-
-.mat-grid-tile {
     color: white;
 }
 
-.example-form {
-    width: 100%;
-    margin: none;
+.data-edit {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    text-decoration: white;
 }
+
 .estampas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     margin-top: 2%;
+}
+
+.estampas-display {
+    display: block;
+}
+
+.post {
+    width: 95%;
+    height: auto;
+    background: rgba(67, 73, 130, 0.8);
+    border-radius: 10px;
 }

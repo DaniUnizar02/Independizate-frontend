@@ -1,147 +1,136 @@
-<button mat-flat-button color="primary" (click)="editar=true" *ngIf="editar==false">Editar</button>
+ <button mat-flat-button color="primary" (click)="editar=true" *ngIf="editar==false">Editar</button>
 <button mat-flat-button color="primary" (click)="editar=false" *ngIf="editar==true" style="margin-right: 1%;"
     (click)="guardar()">Guardar</button>
 <button mat-flat-button color="warn" (click)="editar=false" *ngIf="editar==true" (click)="noGuardar()">Dejar de
     editar</button>
 
-<mat-grid-list cols="5" rowHeight="1:1" (window:resize)='onResize($event)' class="post"
-    *ngIf="editar==false && numCols!=1">
-    <mat-grid-tile>
-        <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 90%;">
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
-        <p class="info">
-            Usuario: {{ infoUsuario.usuario }}<br>
-            Nombre: {{ infoUsuario.nombre }}<br>
-            Apellidos: {{ infoUsuario.apellidos }}<br>
-            Edad: {{ infoUsuario.edad }}<br>
-            Reputación: {{ infoUsuario.reputacion }}
-        </p>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
-        <p class="info">
-            Correo: {{ infoUsuario.correo }}<br>
-            Sexo: {{ infoUsuario.sexo }}<br>
-            Piso: {{ infoUsuario.piso }}<br>
-            Ciudad: {{ infoUsuario.ciudad }}<br>
-            Situación: {{ infoUsuario.situacion }}
-        </p>
-    </mat-grid-tile>
-</mat-grid-list>
-
-<mat-grid-list cols="1" [rowHeight]="rowHeight" (window:resize)='onResize($event)' class="post"
-    *ngIf="editar==false && numCols==1">
-    <mat-grid-tile>
-        <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 20%;">
-    </mat-grid-tile>
-    <mat-grid-tile [rowspan]="rowspan">
-        <p class="info">
-            Usuario: {{ infoUsuario.usuario }}<br>
-            Nombre: {{ infoUsuario.nombre }}<br>
-            Apellidos: {{ infoUsuario.apellidos }}<br>
-            Edad: {{ infoUsuario.edad }}<br>
-            Reputación: {{ infoUsuario.reputacion }}<br>
-            Correo: {{ infoUsuario.correo }}<br>
-            Sexo: {{ infoUsuario.sexo }}<br>
-            Piso: {{ infoUsuario.piso }}<br>
-            Ciudad: {{ infoUsuario.ciudad }}<br>
-            Situación: {{ infoUsuario.situacion }}
-        </p>
-    </mat-grid-tile>
-</mat-grid-list>
-
-<mat-grid-list cols="5" rowHeight="1:2" class="post" *ngIf="editar==true">
-    <mat-grid-tile>
-        <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 90%;">
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
+<div class="pantalla">
+    <div class="datos" *ngIf="editar==false">
+        <div class="foto">
+            <img mat-card-image [src]="foto" alt="Foto de perfil" style="width: 90%; border-radius: 50%;">
+        </div>
         <div class="info">
-            <div style="display: flex; flex-direction: row;">
-                <div>
-                    Usuario:
-                </div>
-                <div>
+            <div class="data">
+                <div class="data-info"> <p>Usuario:</p> </div>
+                <div class="data-info"> <p>{{ infoUsuario.usuario }}</p> </div>
+            </div>
+            <div class="data">
+                <div class="data-info"> <p>Nombre:</p> </div>
+                <div class="data-info"> <p>{{ infoUsuario.nombre }}</p> </div>
+            </div>
+            <div class="data">
+                <div class="data-info"> <p>Apellidos:</p> </div>
+                <div class="data-info"> <p>{{ infoUsuario.apellidos }}</p> </div>
+            </div>
+            <div class="data">
+                <div class="data-info"> <p>Edad:</p> </div>
+                <div class="data-info"> <p>{{ infoUsuario.edad }}</p> </div>
+            </div>
+            <div class="data">
+                <div class="data-info"> <p>Reputación:</p> </div>
+                <div class="data-info"> <p>{{ infoUsuario.reputacion }}</p> </div>
+            </div>
+        </div>
+        <div class="info">
+            <div class="data">
+                <div class="data-info"> <p>Correo:</p> </div>
+                <div class="data-info"> <p>{{ infoUsuario.correo }}</p> </div>
+            </div>
+            <div class="data">
+                <div class="data-info"> <p>Sexo:</p> </div>
+                <div class="data-info"> <p>{{ infoUsuario.sexo }}</p> </div>
+            </div>
+            <div class="data">
+                <div class="data-info"> <p>Piso:</p> </div>
+                <div class="data-info"> <p>{{ infoUsuario.piso }}</p> </div>
+            </div>
+            <div class="data">
+                <div class="data-info"> <p>Ciudad:</p> </div>
+                <div class="data-info"> <p>{{ infoUsuario.ciudad }}</p> </div>
+            </div>
+            <div class="data">
+                <div class="data-info"> <p>Situación:</p> </div>
+                <div class="data-info"> <p>{{ infoUsuario.situacion }}</p> </div>
+            </div>
+        </div>
+    </div>
+    <div class="datos-editar" *ngIf="editar==true">
+        <div class="info">
+            <input type="file" (change)="subirFoto($event)" accept="image/*" />
+            <div class="data">
+                <div class="data-info"> <p>Usuario:</p> </div>
+                <div class="data-edit">
                     <mat-form-field>
-                        <input matInput placeholder="infoUsuario.usuario" [(ngModel)]="infoUsuario.usuario"
-                            name="usuario">
+                        <input matInput placeholder="infoUsuario.usuario" [(ngModel)]="infoUsuario.usuario" name="usuario">
                     </mat-form-field>
                 </div>
             </div>
-            <div style="display: flex; flex-direction: row;">
-                <div>
-                    Nombre:
-                </div>
-                <div>
+            <div class="data">
+                <div class="data-info"> <p>Nombre:</p> </div>
+                <div class="data-edit">
                     <mat-form-field>
                         <input matInput placeholder="infoUsuario.nombre" [(ngModel)]="infoUsuario.nombre" name="nombre">
                     </mat-form-field>
                 </div>
             </div>
-            <div style="display: flex; flex-direction: row;">
-                <div>
-                    Apellidos:</div>
-                <div>
+            <div class="data">
+                <div class="data-info"> <p>Apellidos:</p> </div>
+                <div class="data-edit">
                     <mat-form-field>
-                        <input matInput placeholder="infoUsuario.apellidos" [(ngModel)]="infoUsuario.apellidos"
-                            name="apellidos">
+                        <input matInput placeholder="infoUsuario.apellidos" [(ngModel)]="infoUsuario.apellidos" name="apellidos">
                     </mat-form-field>
                 </div>
             </div>
-            <div style="display: flex; flex-direction: row;">
-                <div>
-                    Edad:</div>
-                <div>
+            <div class="data">
+                <div class="data-info"> <p>Edad:</p> </div>
+                <div class="data-edit">
                     <mat-form-field>
                         <input matInput placeholder="infoUsuario.edad" [(ngModel)]="infoUsuario.edad" name="edad">
                     </mat-form-field>
                 </div>
             </div>
-            <div style="display: flex; flex-direction: row;">
-                Reputación: {{ infoUsuario.reputacion}}
+            <div class="data">
+                <div class="data-info"> <p>Reputación:</p> </div>
+                <div class="data-info"> <p>{{ infoUsuario.reputacion }}</p> </div>
             </div>
         </div>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2">
         <div class="info">
-            <div style="display: flex; flex-direction: row;">
-                <div>
-                    Correo:</div>
-                <div>
-                    <mat-form-field style="width: 84%;">
+            <div class="data">
+                <div class="data-info"> <p>Correo:</p> </div>
+                <div class="data-edit">
+                    <mat-form-field>
                         <input matInput placeholder="infoUsuario.correo" [(ngModel)]="infoUsuario.correo" name="correo">
                     </mat-form-field>
                 </div>
             </div>
-            <div style="display: flex; flex-direction: row;">
-                <div>
-                    Sexo:</div>
-                <div>
-                    <mat-select [(value)]="sexo" style="width: 87%; background-color: white;">
+            <div class="data">
+                <div class="data-info"> <p>Sexo:</p> </div>
+                <div class="data-edit">
+                    <mat-select [(value)]="sexo" style="background-color: white;">
                         <mat-option value="Hombre">Hombre</mat-option>
                         <mat-option value="Mujer">Mujer</mat-option>
                         <mat-option value="Otros">Otros</mat-option>
                     </mat-select>
                 </div>
             </div>
-            <div style="display: flex; flex-direction: row;">
-                <mat-slide-toggle color="primary" labelPosition="before" [(ngModel)]="piso">
-                    <p class="info" style="color: white;">Piso:</p>
-                </mat-slide-toggle>
+            <div class="data">
+                <div class="data-info"> <p>Piso:</p> </div>
+                <div class="data-edit">
+                    <mat-slide-toggle color="primary" labelPosition="before" [(ngModel)]="piso"></mat-slide-toggle>
+                </div>
             </div>
-            <div style="display: flex; flex-direction: row;">
-                <div>
-                    Ciudad:</div>
-                <div>
-                    <mat-form-field style="width: 83%;">
+            <div class="data">
+                <div class="data-info"> <p>Ciudad:</p> </div>
+                <div class="data-edit">
+                    <mat-form-field>
                         <input matInput placeholder="infoUsuario.ciudad" [(ngModel)]="infoUsuario.ciudad" name="ciudad">
                     </mat-form-field>
                 </div>
             </div>
-            <div style="display: flex; flex-direction: row;">
-                <div>
-                    Situación:</div>
-                <div>
-                    <mat-select [(value)]="situacion" style="width: 79%; background-color: white;">
+            <div class="data">
+                <div class="data-info"> <p>Situación:</p> </div>
+                <div class="data-edit">
+                    <mat-select [(value)]="situacion" style="background-color: white;">
                         <mat-option value="Estudiante">Estudiante</mat-option>
                         <mat-option value="Trabajador">Trabajador</mat-option>
                         <mat-option value="Parado">Parado</mat-option>
@@ -149,9 +138,43 @@
                 </div>
             </div>
         </div>
-    </mat-grid-tile>
-</mat-grid-list>
+    </div>
+    <div *ngIf="editar==false">
+        <h1>• Seleccione las estampas que desea que se muestren en su perfil</h1>
+        <div class="estampas">
+            <div class="estampas-display" *ngFor="let estampa of infoUsuario.estampas | slice: 0 : infoUsuario.estampas.length/2">
+                <mat-card class="post" (click)="openDialogCambiarEstampa('0ms', '0ms', estampa.id)">
+                    <mat-card-header>
+                        <mat-card-title-group>
+                            <mat-card-title style="color: white;">
+                                <img mat-card-image [src]="estampa.foto" alt="Foto de estampa" style="width: 10%;">
+                                {{ estampa.titulo }}
+                            </mat-card-title>
+                            <mat-card-subtitle style="color: white;">{{ estampa.descripcion }}</mat-card-subtitle>
+                        </mat-card-title-group>
+                    </mat-card-header>
+                    <mat-card-content style="color: white;">{{ estampa.publicable }}</mat-card-content>
+                </mat-card>
+            </div>
+            <div class="estampas-display" *ngFor="let estampa of infoUsuario.estampas | slice: infoUsuario.estampas.length/2 : infoUsuario.estampas.length">
+                <mat-card class="post">
+                    <mat-card-header>
+                        <mat-card-title-group>
+                            <mat-card-title style="color: white;">
+                                <img mat-card-image [src]="estampa.foto" alt="Foto de estampa" style="width: 10%;">
+                                {{ estampa.titulo }}
+                            </mat-card-title>
+                            <mat-card-subtitle style="color: white;">{{ estampa.descripcion }}</mat-card-subtitle>
+                        </mat-card-title-group>
+                    </mat-card-header>
+                    <mat-card-content style="color: white;">{{ estampa.publicable }}</mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!--
 <div class="estampas">
     <h1>• Seleccione las estampas que desea que se muestren en su perfil</h1>
 
@@ -171,4 +194,4 @@
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>
-</div>
+</div> -->

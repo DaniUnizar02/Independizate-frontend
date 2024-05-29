@@ -55,12 +55,12 @@ export class SidebarComponent {
           estampa2: '',
           estampa3: ''
         }
-        this.usuario.estampa1 = (response.users.Stamps[0].foto===undefined) ? '' : response.users.Stamps[0].foto;
-        this.mostarStamp1 = (response.users.Stamps[0].foto===undefined) ? false : true;
-        this.usuario.estampa2 = (response.users.Stamps[1].foto===undefined) ? '' : response.users.Stamps[1].foto;
-        this.mostarStamp2 = (response.users.Stamps[1].foto===undefined) ? false : true;
-        this.usuario.estampa3 = (response.users.Stamps[2].foto===undefined) ? '' : response.users.Stamps[2].foto;
-        this.mostarStamp3 = (response.users.Stamps[2].foto===undefined) ? false : true;
+        this.usuario.estampa1 = (response.users.Stamps[0].foto===undefined || response.users.Stamps[0].foto===null) ? '' : response.users.Stamps[0].foto;
+        this.mostarStamp1 = (response.users.Stamps[0].foto===undefined || response.users.Stamps[0].foto===null) ? false : true;
+        this.usuario.estampa2 = (response.users.Stamps[1].foto===undefined || response.users.Stamps[1].foto===null) ? '' : response.users.Stamps[1].foto;
+        this.mostarStamp2 = (response.users.Stamps[1].foto===undefined || response.users.Stamps[1].foto===null) ? false : true;
+        this.usuario.estampa3 = (response.users.Stamps[2].foto===undefined || response.users.Stamps[2].foto===null) ? '' : response.users.Stamps[2].foto;
+        this.mostarStamp3 = (response.users.Stamps[2].foto===undefined || response.users.Stamps[2].foto===null) ? false : true;
         console.log("USUARIO SIDEBAR",this.usuario); // LOG:
       },
       error => {

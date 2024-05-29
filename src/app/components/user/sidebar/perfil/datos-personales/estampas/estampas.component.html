@@ -1,0 +1,26 @@
+<mat-dialog-content>
+    <h1 class="title">Cambio de estampa</h1>
+    <mat-card class="post">
+        <mat-card-header>
+            <mat-card-title-group>
+                <mat-card-title style="color: white;">
+                    Seleccine la estampa que desea remplazar
+                    <hr style="border-color: white;">
+                </mat-card-title>
+                <mat-card-subtitle style="color: white;">
+                    <button (click)="seleccionada='1'"> <img mat-card-image [src]="estampa1" alt="Foto de estampa" style="width: 10%;"> </button>
+                    <button (click)="seleccionada='2'"> <img mat-card-image [src]="estampa2" alt="Foto de estampa" style="width: 10%;"> </button>
+                    <button (click)="seleccionada='3'"> <img mat-card-image [src]="estampa3" alt="Foto de estampa" style="width: 10%;"> </button>
+                </mat-card-subtitle>
+            </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content style="color: white;">
+            La nueva estampa seleccionada
+            <img mat-card-image [src]="estampaNueva" alt="Foto de estampa" style="width: 10%;">
+        </mat-card-content>
+    </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-flat-button color="warn" style="margin-right: 1%;" [mat-dialog-close]="true">Cancelar</button>
+    <button mat-flat-button color="accent" style="margin-right: 1%;" (click)="cambiarEstampa()">Aceptar</button>
+</mat-dialog-actions>
