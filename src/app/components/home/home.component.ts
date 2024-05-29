@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
     password: ''
   }
 
-  constructor(private router: Router, private http:HttpClient, private backendService: BackendService, private errorService: ErrorService) { }
+  constructor(private router: Router, private http: HttpClient, private backendService: BackendService, private errorService: ErrorService) { }
 
   /**
    * Método que se ejecuta al iniciar el componente para cargar la autenticación de Google.
@@ -67,11 +67,11 @@ export class HomeComponent implements OnInit {
         console.log('ID: ' + profile.getId());
         console.log('Name: ' + profile.getName());
         console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());       
+        console.log('Email: ' + profile.getEmail());
 
         //Validate token
         const idToken = googleAuthUser.getAuthResponse().id_token;
-        
+
         this.validateGoogleToken(idToken).subscribe(
           (response) => {
             // Handle response of the token validation
@@ -79,8 +79,40 @@ export class HomeComponent implements OnInit {
               // Valid token
               //TODO: Verify if the user is already registered
               //TODO: Use modals for errors
+              this.backendService.getUsersGoogleIdGoogleExists(profile.getId()).subscribe(valor => {
+                if (valor.exists==true) {
+                  var body = {
+                    idGoogle: profile.getId(),
+                    googleToken: googleAuthUser.getAuthResponse().id_token,
+                    rememberMe: false
+                  }
 
-              this.router.navigate(['/sidebar'], { queryParams: { google: true } });
+                  this.backendService.postAuthLogingoogle(body).subscribe(valor => {
+                    this.backendService.cookie.usuario = valor.id;
+                    this.backendService.cookie.nombreUsuario = profile.getId();
+                    this.backendService.cookie.token = valor.token;
+                    this.backendService.cookie.esInvitado = false;
+                    this.backendService.setHeaders();
+                    this.router.navigate(['sidebar']);
+                  }, error => {
+                    if (error.status === 400) {
+                      this.errorService.openDialogError("Parámetros inválidos");
+                    } else if (error.status === 401) {
+                      this.errorService.redirect("home");
+                    } else if (error.status === 500) {
+                      this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+                    }
+                  });
+                } else {
+                  this.router.navigate(['home/register'], { queryParams: { google: true, id: profile.getId(),  nombreApellidos: profile.getName(), contrasena: googleAuthUser.getAuthResponse().id_token, email: profile.getEmail(), fotoPerfil: profile.getImageUrl() } });
+                }
+              }, error => {
+                if (error.status === 400) {
+                  this.errorService.openDialogError("Parámetros inválidos");
+                } else if (error.status === 500) {
+                  this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+                }
+              });
             } else {
               // Invalid token
               alert('Token validation failed');
@@ -108,7 +140,7 @@ export class HomeComponent implements OnInit {
       (<any>window)['gapi'].load('auth2', () => {
         this.auth2 = (<any>window)['gapi'].auth2.init({
           client_id: '871724941026-uhmab7h6l438mh96f0ontoak5t2a8ne5.apps.googleusercontent.com',
-          plugin_name:'login',
+          plugin_name: 'login',
           cookiepolicy: 'single_host_origin',
           scope: 'profile email'
         });
@@ -133,7 +165,7 @@ export class HomeComponent implements OnInit {
   tipoUsuario() {
     this.backendService.getUsersUsuarioType(this.usuario).subscribe(valor => {
       console.log(valor); //LOG:
-      if (valor[0].tipo=="admin") {
+      if (valor[0].tipo == "admin") {
         this.router.navigate(['admin/sidebar']);
       } else {
         this.router.navigate(['sidebar']);
@@ -150,20 +182,12 @@ export class HomeComponent implements OnInit {
     if (!this.usuario.trim() || !this.contrasena.trim()) {
       this.errorService.openDialogError("Todos los campos tienen que estar rellenos.");
     } else {
-
-      const socket = new WebSocket('ws://localhost:4000?clienteId=' + this.usuario);
-      socket.addEventListener('open', () => { console.log('Conexión establecida con el servidor WebSocket'); });
-      socket.addEventListener('message', (event) => {
-        console.log('Mensaje recibido del servidor:', event.data);
-        alert('Notificación recibida');
-      });
-
       var body = {
         usuario: this.usuario,
         contrasegna: this.backendService.hashPassword(this.contrasena),
         rememberMe: false
       }
-      
+
       this.backendService.postAuthLogin(body).subscribe(valor => {
         this.backendService.cookie.usuario = valor.id;
         this.backendService.cookie.nombreUsuario = body.usuario;
@@ -171,6 +195,14 @@ export class HomeComponent implements OnInit {
         console.log(this.backendService.cookie.token) //LOG:
         this.backendService.cookie.esInvitado = false;
         this.backendService.setHeaders();
+
+        const socket = new WebSocket('ws://localhost:4000?clienteId=' + this.usuario);
+        socket.addEventListener('open', () => { console.log('Conexión establecida con el servidor WebSocket'); });
+        socket.addEventListener('message', (event) => {
+          console.log('Mensaje recibido del servidor:', event.data);
+          alert('Notificación recibida');
+        });
+
         this.tipoUsuario();
       }, error => {
         if (error.status === 400) {

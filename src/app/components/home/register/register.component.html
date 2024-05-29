@@ -21,7 +21,7 @@
         </div>
         <div class="der-medio">
             <form class="formulario">
-                <div class="fila-formulario">
+                <div class="fila-formulario" *ngIf="!google">
                     <mat-form-field style="margin-right: 2%;">
                         <mat-label>Nombre</mat-label>
                         <input matInput type="text" [(ngModel)]="nombre" name="nombre">
@@ -39,13 +39,13 @@
                         <input matInput type="text" [(ngModel)]="usuario" name="usuario">
                     </mat-form-field>
 
-                    <mat-form-field>
+                    <mat-form-field *ngIf="!google">
                         <mat-label>Correo electrónico</mat-label>
                         <input matInput type="text" [(ngModel)]="email" name="email">
                     </mat-form-field>
                 </div>
 
-                <div class="fila-formulario">
+                <div class="fila-formulario" *ngIf="!google">
                     <mat-form-field style="margin-right: 2%;">
                         <mat-label>Contraseña</mat-label>
                         <input matInput type="password" [(ngModel)]="contrasena" name="contrasena">

@@ -82,6 +82,14 @@ export class BackendService {
   postAuthSignup(body: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}auth/signup/`, body);
   }
+
+  postAuthLogingoogle(body: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}auth/loginGoogle/`, body);
+  }
+
+  postAuthSignupgoogle(body: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}auth/signupGoogle/`, body);
+  }
   /* #endregion */
 
   /* #region NOTE: ContactUs */
@@ -164,6 +172,10 @@ export class BackendService {
   getProfilesIdStamps(id: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}profiles/${id}/stamps/`, { headers: this.headers });
   }
+
+  putProfilesIdStampsFavs(id: string, body: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}profiles/${id}/stamps/favs/`, body, { headers: this.headers });
+  }
   /* #endregion */
 
   /* #region NOTE: Stamps */
@@ -193,6 +205,10 @@ export class BackendService {
 
   getUsersUsuarioType(usuario: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}users/${usuario}/type/`);
+  }
+
+  getUsersGoogleIdGoogleExists(idGoogle: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}users/google/${idGoogle}/exists/`);
   }
   /* #endregion */
 

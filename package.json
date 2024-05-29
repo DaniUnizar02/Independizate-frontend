@@ -42,7 +42,8 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.3.0",
-    "@angular/cli": "^17.3.0",
+    "@angular-devkit/core": "^18.0.2",
+    "@angular/cli": "^17.3.8",
     "@angular/compiler-cli": "^17.3.0",
     "@cypress/schematic": "^2.5.1",
     "@types/bcryptjs": "^2.4.6",
