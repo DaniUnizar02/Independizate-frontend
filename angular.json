@@ -24,8 +24,8 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/app-ejemplo",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
+            "index": "src/home/home.component.html",
+            "browser": "src/home/home.component.ts",
             "polyfills": [
               "zone.js"
             ],
