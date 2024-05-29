@@ -16,12 +16,14 @@ import { PerfilComponent } from './perfil.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { DatosPersonalesComponent } from './datos-personales/datos-personales.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { EstampasComponent } from './datos-personales/estampas/estampas.component';
 
 @NgModule({
   declarations: [
     PerfilComponent,
     DatosPersonalesComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    EstampasComponent
   ],
   imports: [
     CommonModule,

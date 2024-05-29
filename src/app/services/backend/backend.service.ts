@@ -7,7 +7,7 @@ import * as bcrypt from 'bcryptjs';
   providedIn: 'root'
 })
 export class BackendService {
-  private apiUrl = "http://localhost:3000/api/";
+  private apiUrl = "backend-independizate.eggtf5e6dvh8hngq.spaincentral.azurecontainer.io";
 
   public cookie = {
     usuario: '',
@@ -27,7 +27,7 @@ export class BackendService {
   }
 
   public hashPassword(contrasena: string) {
-    const fixedSalt = '$2a$10$abcdefghijklmnopqrstuv'; // TODO: Cambiar al pasar a producción
+    const fixedSalt = '$2a$10$abcdefghijklmnopqrstuv';
     return bcrypt.hashSync(contrasena, fixedSalt);
   }
 
@@ -181,6 +181,10 @@ export class BackendService {
   /* #region NOTE: Stamps */
   getStamps(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}stamps/`, { headers: this.headers });
+  }
+
+  getStampsUser(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}stamps/user/`, { headers: this.headers });
   }
   /* #endregion */
 

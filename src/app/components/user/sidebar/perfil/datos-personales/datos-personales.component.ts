@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { BackendService } from '../../../../../services/backend/backend.service';
 import { ErrorService } from '../../../../../services/error/error.service';
+import { EstampasComponent } from './estampas/estampas.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-datos-personales',
@@ -12,11 +14,14 @@ export class DatosPersonalesComponent {
   piso: boolean = false;
   sexo: string = '';
   situacion = '';
+  foto = '';
 
-  private misStamps: any[] = [];
   private misFavs: any[] = [];
+  private imageBase64: string = '';
+  private uploadImage = false;
 
   infoUsuario = {
+    id: '',
     img: '',
     usuario: '',
     nombre: '',
@@ -34,43 +39,43 @@ export class DatosPersonalesComponent {
       descripcion: '',
       foto: '',
       publicable: '',
-      favorita: false,
-      color: ''
     }]
   };
 
-  constructor(private backendService: BackendService, private errorService: ErrorService) { }
+  constructor(public dialog: MatDialog, private backendService: BackendService, private errorService: ErrorService) { }
 
   ngOnInit() {
     // NOTE: Responsive
     this.numCols = (window.innerWidth <= 1200) ? 1 : 5;
 
     this.getInfo();
-    this.getMisStamps();
-    this.getAllStamps();
+    this.getStamps();
+    console.log(this.infoUsuario.estampas); //LOG:
   }
 
   private getInfo() {
     this.backendService.getProfilesId(this.backendService.cookie.usuario).subscribe(
       response => {
-        console.log(response); //LOG:
+        console.log(response.user); //LOG:
         this.infoUsuario = {
-          img: response.fotoPerfil,
-          usuario: response.usuario,
-          nombre: response.nombre,
-          apellidos: response.apellidos,
-          edad: response.edad,
-          reputacion: response.reputacion,
-          correo: response.correo,
-          sexo: response.sexo,
-          piso: response.piso ? 'Sí' : 'No',
-          ciudad: response.ciudad,
-          situacion: response.situacion,
+          id: response.user._id,
+          img: response.user.fotoPerfil,
+          usuario: response.user.usuario,
+          nombre: response.user.nombre,
+          apellidos: response.user.apellidos,
+          edad: response.user.edad,
+          reputacion: response.user.reputacion,
+          correo: response.user.correo,
+          sexo: response.user.sexo,
+          piso: response.user.piso ? 'Sí' : 'No',
+          ciudad: response.user.ciudad,
+          situacion: response.user.situacion,
           estampas: []
         }
-        this.piso = response.piso;
-        this.sexo = response.sexo;
-        this.situacion = response.situacion;
+        this.piso = response.user.piso;
+        this.sexo = response.user.sexo;
+        this.situacion = response.user.situacion;
+        this.foto = this.infoUsuario.img;
       },
       error => {
         if (error.status === 400) {
@@ -88,19 +93,11 @@ export class DatosPersonalesComponent {
     );
   }
 
-  private getMisStamps() {
-    this.misStamps = [];
-    this.backendService.getProfilesIdStamps(this.backendService.cookie.usuario).subscribe(
+  private getStamps() {
+    this.backendService.getStampsUser().subscribe(
       response => {
-        // console.log(response); //LOG:
-        for (const item of response.listaEstampas) {
-          this.misStamps.push(item);
-        }
-        for (const item of response.estampasFavoritas) {
-          this.misFavs.push(item);
-        }
-        // console.log(this.misStamps);//LOG:
-        // console.log(this.misFavs);//LOG:        
+        this.formatearStamps(response.stamps);
+        console.log("Stamps: ", response.stamps); // LOG:
       },
       error => {
         if (error.status === 400) {
@@ -118,51 +115,39 @@ export class DatosPersonalesComponent {
     );
   }
 
-  private getAllStamps() {
-    this.infoUsuario.estampas = [];
-    this.backendService.getStamps().subscribe(
-      response => {
-        console.log(response);
-        this.formatearAllStamps(response.stamps);
-        console.log(this.infoUsuario.estampas); // LOG:
-      },
-      error => {
-        if (error.status === 401) {
-          this.errorService.redirect("home");
-        } else if (error.status === 403) {
-          this.errorService.openDialogErrorRedirect("No tienes permisos para realizar esta acción.", "home");
-        } else if (error.status === 404) {
-          this.errorService.openDialogError("Estampa no encontrada.");
-        } else if (error.status === 500) {
-          this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+  private formatearStamps(stamps: any) {
+    for (const item of stamps) {
+      if (item != null) {
+        var data = {
+          id: item._id,
+          titulo: item.titulo,
+          descripcion: item.descripcion,
+          foto: item.foto,
+          publicable: item.publicable ? "✅ Estampa equipable" : "❌ Estampa no equipable",
         }
+
+        this.infoUsuario.estampas.push(data);
       }
-    );
+    }
   }
 
-  private formatearAllStamps(stamps: any) {
-    for (const item of stamps) {
-      var data = {
-        id: item._id,
-        titulo: item.titulo,
-        descripcion: item.descripcion,
-        foto: item.foto,
-        publicable: item.publicable ? "✅ Estampa equipable" : "❌ Estampa no equipable",
-        favorita: false,
-        color: '#3F3F4F'
+  subirFoto(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (reader.result != null) {
+          this.imageBase64 = reader.result.toString();
+        }
       };
-
-      if (this.misStamps.includes(item._id)) { data.color = ''; }
-      if (this.misFavs.includes(item._id)) { data.favorita = true; }
-
-      this.infoUsuario.estampas.push(data);
+      reader.readAsDataURL(file);
+      this.uploadImage = true;
     }
   }
 
   guardar() {
     var data = {
       usuario: this.infoUsuario.usuario,
-      contrasegna: 'usuario',
       nombre: this.infoUsuario.nombre,
       apellidos: this.infoUsuario.apellidos,
       correo: this.infoUsuario.correo,
@@ -174,30 +159,65 @@ export class DatosPersonalesComponent {
       fotoPerfil: this.infoUsuario.img
     }
 
-    this.backendService.putProfilesId(this.backendService.cookie.usuario, data).subscribe(
-      response => { },
-      error => {
-        if (error.status === 400) {
-          this.errorService.openDialogError("Parámetros inválidos");
-        } else if (error.status === 401) {
-          this.errorService.redirect("home");
-        } else if (error.status === 403) {
-          this.errorService.openDialogErrorRedirect("No tienes permisos para realizar esta acción.", "home");
-        } else if (error.status === 404) {
-          this.errorService.openDialogError("Usuario no encontrado.");
-        } else if (error.status === 500) {
-          this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+    if (this.uploadImage) {
+      data.fotoPerfil = this.imageBase64;
+    }
+
+    if (!this.infoUsuario.usuario.trim() || !this.infoUsuario.nombre.trim() || !this.infoUsuario.apellidos.trim() || !this.infoUsuario.correo.trim() || !this.infoUsuario.edad.toString().trim() || !this.infoUsuario.sexo.trim() || !this.infoUsuario.piso.trim() || !this.infoUsuario.ciudad.trim() || !this.infoUsuario.situacion.trim() || !this.infoUsuario.img.trim()) {
+      this.errorService.openDialogError("Todos los campos tienen que estar rellenos.");
+    } else {
+      this.backendService.putProfilesId(this.backendService.cookie.usuario, data).subscribe(
+        response => {
+          this.getInfo();
+          this.getStamps();
+        },
+        error => {
+          if (error.status === 400) {
+            this.errorService.openDialogError("Parámetros inválidos");
+          } else if (error.status === 401) {
+            this.errorService.redirect("home");
+          } else if (error.status === 403) {
+            this.errorService.openDialogErrorRedirect("No tienes permisos para realizar esta acción.", "home");
+          } else if (error.status === 404) {
+            this.errorService.openDialogError("Usuario no encontrado.");
+          } else if (error.status === 500) {
+            this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+          }
         }
-      }
-    );
+      );
+    }
 
     this.getInfo();
+    this.getStamps();
   }
 
   noGuardar() {
     this.piso = this.infoUsuario.piso === "Sí" ? true : false;
     this.sexo = this.infoUsuario.sexo;
     this.situacion = this.infoUsuario.situacion;
+  }
+
+  openDialogCambiarEstampa(enterAnimationDuration: string, exitAnimationDuration: string, estampa: string): void {
+    // this.backendService.
+
+    const dialog = this.dialog.open(EstampasComponent, {
+      width: '80%',
+      height: 'fit-content',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: {
+        user: this.infoUsuario.id,
+        estampa1: this.misFavs[0],
+        estampa2: this.misFavs[1],
+        estampa3: this.misFavs[2],
+        estampaNueva: estampa
+      }
+    });
+
+    dialog.afterClosed().subscribe(() => {
+      // this.getInfo();
+      this.getStamps();
+    });
   }
 
   // NOTE: RESPONSIVE
@@ -209,6 +229,6 @@ export class DatosPersonalesComponent {
   onResize(event: any) {
     this.numCols = (event.target.innerWidth <= 1200) ? 1 : 5;
     this.rowspan = (event.target.innerWidth < 700) ? 5 : 2.5;
-    this.rowHeight = (event.target.innerWidth >= 900 && event.target.innerWidth < 1200 ) ? '5:1' : '4:1';
+    this.rowHeight = (event.target.innerWidth >= 900 && event.target.innerWidth < 1200) ? '5:1' : '4:1';
   }
 }

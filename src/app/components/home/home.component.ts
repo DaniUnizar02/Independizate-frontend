@@ -83,6 +83,7 @@ export class HomeComponent implements OnInit {
               this.router.navigate(['home/register'], { queryParams: { google: true, id: profile.getId(),  nombreApellidos: profile.getName(), contrasena: googleAuthUser.getAuthResponse().id_token, email: profile.getEmail(), fotoPerfil: profile.getImageUrl() } });
               this.backendService.getUsersGoogleIdGoogleExists(profile.getId()).subscribe(valor => {
                 if (valor.exists==true) {
+                  console.log("LoginGoogle login") //LOG:
                   var body = {
                     idGoogle: profile.getId(),
                     googleToken: googleAuthUser.getAuthResponse().id_token,
@@ -100,12 +101,13 @@ export class HomeComponent implements OnInit {
                     if (error.status === 400) {
                       this.errorService.openDialogError("Parámetros inválidos");
                     } else if (error.status === 401) {
-                      this.errorService.redirect("home");
+                      this.errorService.openDialogError("Parámetros inválidos");
                     } else if (error.status === 500) {
                       this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
                     }
                   });
                 } else {
+                  console.log("LoginGoogle registro") //LOG:
                   // this.router.navigate(['home/register'], { queryParams: { google: 'true', id: profile.getId(),  nombreApellidos: profile.getName(), contrasena: googleAuthUser.getAuthResponse().id_token, email: profile.getEmail(), fotoPerfil: profile.getImageUrl() } });
                   
                 }
