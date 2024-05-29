@@ -1,3 +1,14 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero encargado de obtener y mostrar los datos
+ * dentro de los mensajes del foro.
+ * 
+ * Archivo: posts.component.ts
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { Component } from '@angular/core';
 import { BackendService } from '../../../../../services/backend/backend.service';
 

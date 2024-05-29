@@ -1,3 +1,13 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero encargado de la adición de un post al foro.
+ * 
+ * Archivo: anadir-post.component.ts
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { Component, Inject } from '@angular/core';
 import { BackendService } from '../../../../../services/backend/backend.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';

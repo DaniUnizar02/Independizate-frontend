@@ -1,3 +1,14 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero encargado de mostrar los diferentes mensajes
+ * con la categoría de "compañero de piso".
+ * 
+ * Archivo: companero-piso.component.ts 
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { Component } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';

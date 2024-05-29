@@ -1,3 +1,15 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero encargado de mostrar los mensajes de
+ * diferentes conversaciones.
+ * 
+ * Archivo: conversacion.component.ts 
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
+
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { VerUsuarioComponent } from './ver-usuario/ver-usuario.component';

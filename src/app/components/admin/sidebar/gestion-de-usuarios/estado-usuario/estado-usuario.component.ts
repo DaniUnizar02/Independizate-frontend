@@ -1,3 +1,14 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero que proporciona la base para la visualización de los
+ * datos relacionados con el estado de un usuario.
+ * 
+ * Archivo: estado-usuario.component.ts
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { BackendService } from '../../../../../services/backend/backend.service';

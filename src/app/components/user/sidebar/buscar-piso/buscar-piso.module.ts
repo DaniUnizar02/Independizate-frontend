@@ -1,3 +1,13 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero con el módulo de buscar piso.
+ * 
+ * Archivo: buscar-piso.module.ts 
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

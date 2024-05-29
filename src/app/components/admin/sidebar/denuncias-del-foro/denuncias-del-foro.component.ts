@@ -1,3 +1,13 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero encargado de gestionar las denuncias del foro.
+ * 
+ * Archivo: denuncias-del-foro.module.ts
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { BackendService } from '../../../../services/backend/backend.service';

@@ -1,3 +1,13 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero para la gestión de usuarios por los administradores.
+ * 
+ * Archivo: gestion-de-usuarios.module.ts
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { BackendService } from '../../../../services/backend/backend.service';

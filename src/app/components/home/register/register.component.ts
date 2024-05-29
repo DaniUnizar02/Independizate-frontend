@@ -42,12 +42,17 @@ export class RegisterComponent {
   private g_fotoPerfil: string | null;
 
   constructor(private router: Router, private _snackBar: MatSnackBar, private route: ActivatedRoute, private backendService: BackendService, private errorService: ErrorService) {
-    this.google = this.route.snapshot.paramMap.get('google') === 'true';
-    this.g_id = this.route.snapshot.paramMap.get('id');
-    this.g_nombreApellidos = this.route.snapshot.paramMap.get('nombreApellidos');
-    this.g_contrasena = this.route.snapshot.paramMap.get('contrasena');
-    this.g_email = this.route.snapshot.paramMap.get('email');
-    this.g_fotoPerfil = this.route.snapshot.paramMap.get('fotoPerfil');
+    this.google = (this.route.snapshot.queryParamMap.get('google') === 'true') ? true : false;
+    console.log("GOOGLE:",this.route.snapshot.queryParamMap.get('google'));
+    this.g_id = this.route.snapshot.queryParamMap.get('id');
+    console.log("ID:",this.g_id);
+    this.g_nombreApellidos = this.route.snapshot.queryParamMap.get('nombreApellidos');
+    console.log("NOMBRE APELLIDOS:",this.g_nombreApellidos);
+    this.g_contrasena = this.route.snapshot.queryParamMap.get('contrasena');
+    console.log("CONTRASENA:",this.g_contrasena);
+    this.g_email = this.route.snapshot.queryParamMap.get('email');
+    console.log("EMAIL:",this.g_email);
+    this.g_fotoPerfil = this.route.snapshot.queryParamMap.get('fotoPerfil');
   }
 
   separar(data: any, parte: number) {

@@ -1,3 +1,14 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero con el modulo de diferentes elementos
+ * compartidos en el código. 
+ * 
+ * Archivo: shared.module.ts
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

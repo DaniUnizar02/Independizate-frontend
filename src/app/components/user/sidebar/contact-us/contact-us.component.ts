@@ -1,3 +1,13 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero encargado de mostrar la información de contacto. 
+ * 
+ * Archivo: contact-us.component.ts 
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { Component, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { BackendService } from '../../../../services/backend/backend.service';

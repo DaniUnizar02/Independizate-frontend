@@ -1,3 +1,13 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Descripción: Fichero encargado de la muestra de la barra lateral del administrador
+ * y la visualización de diferentes componentes.
+ * Archivo: sidebar.component.ts
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { Component, ViewChild } from '@angular/core';
 import { BackendService } from '../../../services/backend/backend.service';
 import { MatSidenav } from '@angular/material/sidenav';

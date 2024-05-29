@@ -1,3 +1,14 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero encargado de mostrar el mapa de openstreetmap con 
+ * sus diferentes marcadores.
+ * Archivo: mapa.component.ts 
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
+
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 

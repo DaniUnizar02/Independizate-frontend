@@ -1,3 +1,14 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero encargado de gestionar los filtros,
+ * actualmente no esta siendo empleado. 
+ * 
+ * Archivo: filtros.component.ts
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 

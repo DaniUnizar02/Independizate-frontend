@@ -1,3 +1,13 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero encargado de mostrar más detalles de una denuncia.
+ * 
+ * Archivo: mas-detalles.component.ts
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { Component, Inject } from '@angular/core';
 import { BackendService } from '../../../../../services/backend/backend.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';

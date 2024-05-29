@@ -79,6 +79,8 @@ export class HomeComponent implements OnInit {
               // Valid token
               //TODO: Verify if the user is already registered
               //TODO: Use modals for errors
+              // this.router.navigate(['home','registes',true,profile.getId(),profile.getName(),googleAuthUser.getAuthResponse().id_token,profile.getEmail(),profile.getImageUrl()]);
+              this.router.navigate(['home/register'], { queryParams: { google: true, id: profile.getId(),  nombreApellidos: profile.getName(), contrasena: googleAuthUser.getAuthResponse().id_token, email: profile.getEmail(), fotoPerfil: profile.getImageUrl() } });
               this.backendService.getUsersGoogleIdGoogleExists(profile.getId()).subscribe(valor => {
                 if (valor.exists==true) {
                   var body = {
@@ -104,7 +106,8 @@ export class HomeComponent implements OnInit {
                     }
                   });
                 } else {
-                  this.router.navigate(['home/register'], { queryParams: { google: true, id: profile.getId(),  nombreApellidos: profile.getName(), contrasena: googleAuthUser.getAuthResponse().id_token, email: profile.getEmail(), fotoPerfil: profile.getImageUrl() } });
+                  // this.router.navigate(['home/register'], { queryParams: { google: 'true', id: profile.getId(),  nombreApellidos: profile.getName(), contrasena: googleAuthUser.getAuthResponse().id_token, email: profile.getEmail(), fotoPerfil: profile.getImageUrl() } });
+                  
                 }
               }, error => {
                 if (error.status === 400) {

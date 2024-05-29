@@ -1,3 +1,13 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero encargado de mostrar la lista de pisos. 
+ * 
+ * Archivo: lista.component.ts 
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { Component } from '@angular/core';
 import { BuscarPisoComponent } from '../buscar-piso.component';
 import { Router } from '@angular/router';
