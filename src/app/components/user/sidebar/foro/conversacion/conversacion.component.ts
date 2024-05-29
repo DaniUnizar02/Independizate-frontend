@@ -13,7 +13,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { VerUsuarioComponent } from './ver-usuario/ver-usuario.component';
-import { AnadirConversacionComponent } from './anadir-conversacion/anadir-conversacion.component';
+import { AnadirConversacionComponent } from './anadir/anadir.component';
 import { BackendService } from '../../../../../services/backend/backend.service';
 import { ErrorService } from '../../../../../services/error/error.service';
 import { ActivatedRoute } from '@angular/router';

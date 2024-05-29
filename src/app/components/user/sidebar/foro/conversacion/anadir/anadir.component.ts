@@ -14,9 +14,9 @@ import { ErrorService } from '../../../../../../services/error/error.service';
 import { BackendService } from '../../../../../../services/backend/backend.service';
 
 @Component({
-  selector: 'app-anadir-conversacion',
-  templateUrl: './anadir-conversacion.component.html',
-  styleUrl: './anadir-conversacion.component.css'
+  selector: 'app-anadir',
+  templateUrl: './anadir.component.html',
+  styleUrl: './anadir.component.css'
 })
 export class AnadirConversacionComponent {
   mensaje: string = '';

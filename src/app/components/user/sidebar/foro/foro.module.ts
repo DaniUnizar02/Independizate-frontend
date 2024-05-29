@@ -23,7 +23,7 @@ import { ConversacionComponent } from './conversacion/conversacion.component';
 import { VerUsuarioComponent } from './conversacion/ver-usuario/ver-usuario.component';
 import { PonerDenunciaComponent } from './poner-denuncia/poner-denuncia.component';
 import { AnadirPostComponent } from './anadir-post/anadir-post.component';
-import { AnadirConversacionComponent } from './conversacion/anadir-conversacion/anadir-conversacion.component';
+import { AnadirConversacionComponent } from './conversacion/anadir/anadir.component';
 import { ResponderMensajeComponent } from './conversacion/responder-mensaje/responder-mensaje.component';
 
 
