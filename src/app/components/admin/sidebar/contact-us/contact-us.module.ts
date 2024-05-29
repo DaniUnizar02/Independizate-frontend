@@ -10,8 +10,8 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ContacUsDeUsuarioRoutingModule } from './contact-us-de-usuario-routing.module';
-import { ResponderSugerenciaComponent } from './responder-sugerencia/responder-sugerencia.component';
+import { ContacUsDeUsuarioRoutingModule } from './contact-us-routing.module';
+import { ResponderSugerenciaComponent } from './responder/responder.component';
 
 
 

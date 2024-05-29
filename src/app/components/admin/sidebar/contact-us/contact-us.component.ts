@@ -3,7 +3,7 @@
  * Descripción: Fichero encargado de gestionar los mensajes de contacto con
  * administración de los usuarios.
  * 
- * Archivo: contact-us-de-usuario.component.ts
+ * Archivo: contact-us.component.ts
  * 
  * Autores: 
  *  - Daniel Carrizo
@@ -13,13 +13,13 @@ import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { BackendService } from '../../../../services/backend/backend.service';
 import { ErrorService } from '../../../../services/error/error.service';
-import { ResponderSugerenciaComponent } from './responder-sugerencia/responder-sugerencia.component';
+import { ResponderSugerenciaComponent } from './responder/responder.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-contact-us-de-usuario',
-  templateUrl: './contact-us-de-usuario.component.html',
-  styleUrl: './contact-us-de-usuario.component.css'
+  selector: 'app-contact-us',
+  templateUrl: './contact-us.component.html',
+  styleUrl: './contact-us.component.css'
 })
 export class ContactUsDeUsuarioComponent {
   tipo = 'todos';

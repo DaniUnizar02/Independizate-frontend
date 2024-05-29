@@ -1,4 +1,4 @@
-import { ResponderSugerenciaComponent } from './responder-sugerencia.component'
+import { ResponderSugerenciaComponent } from './responder.component'
 
 describe('ResponderSugerenciaComponent', () => {
   it('should mount', () => {
