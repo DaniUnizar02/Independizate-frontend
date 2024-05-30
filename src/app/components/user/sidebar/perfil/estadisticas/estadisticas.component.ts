@@ -51,6 +51,11 @@ export class EstadisticasComponent {
     );
   }
 
+  /**
+   * Crea el gráfico de publicaciones
+   * @param data Datos de las publicaciones
+   * @returns void
+   */ 
   private Publicaciones(data: any) {
     var parsedObject = JSON.parse(JSON.stringify(data));
     var keys = Object.keys(parsedObject);
@@ -72,6 +77,7 @@ export class EstadisticasComponent {
 
   /**
    * Crea el gráfico de usuarios con mejor reputación
+   * @param data Datos de los usuarios con mejor reputación
    */
   private Usuarios(data: any) {
     var keys: any[] = [];
@@ -104,6 +110,10 @@ export class EstadisticasComponent {
     };
   }
 
+  /**
+   * Crea el gráfico de accesos
+   * @param data Datos de los accesos
+   */
   private Accesos(data: any) {
     var parsedObject = JSON.parse(JSON.stringify(data));
     var keys = Object.keys(parsedObject);
@@ -127,6 +137,10 @@ export class EstadisticasComponent {
     };
   }
 
+  /**
+   * La función `goBack` en TypeScript se utiliza para regresar a la ubicación anterior en el historial
+   * del navegador.
+   */
   goBack(): void {
     this.location.back();
   }

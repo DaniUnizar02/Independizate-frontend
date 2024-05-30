@@ -46,6 +46,10 @@ export class DatosPersonalesComponent {
 
   constructor(public dialog: MatDialog, private backendService: BackendService, private errorService: ErrorService) { }
 
+  /**
+   * La función ngOnInit se emplea para
+   * asegurar elementos responsive.
+   */
   ngOnInit() {
     // NOTE: Responsive
     this.numCols = (window.innerWidth <= 1200) ? 1 : 5;
@@ -55,6 +59,11 @@ export class DatosPersonalesComponent {
     console.log(this.infoUsuario.estampas); //LOG:
   }
 
+  /**
+   * La función getInfo se emplea para obtener
+   * la información del losp perfiles de los usuarios.
+selifrep sol ed nóicamro
+   */
   private getInfo() {
     var cockie = this.backendService.getCookie();
     var dataCockie = '';
@@ -268,6 +277,10 @@ export class DatosPersonalesComponent {
       // this.getInfo();
       this.getStamps();
     });
+  }
+
+  noImplementada() {
+    this.errorService.openDialogError("Funcionalidad no implementada. Próximamente se podráln cambiar las estampas favoritas.");
   }
 
   // NOTE: RESPONSIVE

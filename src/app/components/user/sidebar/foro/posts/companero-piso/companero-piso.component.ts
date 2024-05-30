@@ -45,11 +45,16 @@ export class CompaneroPisoComponent {
 
   ngOnInit() {
     // NOTE: Responsive
-    console.log("Cookie invitado: ", this.backendService.cookie.esInvitado); // LOG:
-    this.invitado = this.backendService.cookie.esInvitado;
     this.numCols = (window.innerWidth <= 1200) ? 1 : 2;
     this.rowHeight = (window.innerWidth <= 1200) ? '2:1' : '2.5:1';
     this.rowHeightBusc = (window.innerWidth <= 1200) ? '1:2' : '2:1';
+
+    var cockie = this.backendService.getCookie();
+    var dataCockie = false;
+    if (cockie) {
+      dataCockie = cockie.esInvitado;
+    }
+    this.invitado = dataCockie;
 
     if (!this.invitado) {
       this.getMyPosts();
