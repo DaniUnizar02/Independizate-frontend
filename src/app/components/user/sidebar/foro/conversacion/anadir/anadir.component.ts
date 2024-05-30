@@ -23,7 +23,6 @@ export class AnadirConversacionComponent {
   body = {
     autor: '',
     informacion: '',
-    fechaPublicacion: '' 
   }
 
   private post_id: string;
@@ -47,7 +46,6 @@ export class AnadirConversacionComponent {
       this.body = {
         autor: dataCockie, // NOTE: Cambiar por el usuario correcto, este es por defecto
         informacion: this.mensaje, 
-        fechaPublicacion: '2024-05-09T16:00:50.260Z' // NOTE: La fecha de publicación la auto calcula el backend, no?
       }
       this.backendService.postMessagesPostId(this.post_id, this.body).subscribe(
         response => {
