@@ -16,6 +16,7 @@ import { BackendService } from '../../services/backend/backend.service';
 import { HttpClient } from '@angular/common/http';
 import { ErrorService } from '../../services/error/error.service';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

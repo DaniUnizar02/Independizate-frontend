@@ -38,6 +38,23 @@ export class DenunciasDelForoComponent {
     this.getDenuncias();
   }
 
+  /**
+   * Función auxiliar para el testeo.
+   * 
+   */
+  public getTodos() {
+    return this.todos;
+  }
+
+  /**
+   * Funcion auxiliar para el testeo.
+   * 
+   */
+  public putRespuesta(respuesta: any[]) {
+    this.respuesta = respuesta;
+  }
+  
+
   getDenuncias() {
     this.todos = [];
     this.backendService.getAdminReports().subscribe(

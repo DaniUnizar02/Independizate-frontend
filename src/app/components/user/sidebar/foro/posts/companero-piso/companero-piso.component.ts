@@ -40,6 +40,8 @@ export class CompaneroPisoComponent {
 
   ngOnInit() {
     // NOTE: Responsive
+    console.log("Cookie invitado: ", this.backendService.cookie.esInvitado); // LOG:
+    this.invitado = this.backendService.cookie.esInvitado;
     this.numCols = (window.innerWidth <= 1200) ? 1 : 2;
     this.rowHeight = (window.innerWidth <= 1200) ? '2:1' : '2.5:1';
     this.rowHeightBusc = (window.innerWidth <= 1200) ? '1:2' : '2:1';
@@ -47,6 +49,7 @@ export class CompaneroPisoComponent {
     if (!this.invitado){
       this.getMyPosts();
     }
+    console.log("Soy invitado"); // LOG:
     this.getPosts();
   }
 
@@ -77,7 +80,10 @@ export class CompaneroPisoComponent {
   }
 
   private getPosts() {
+    console.log("Get posts"); // LOG:
+    console.log("Invitado: ", this.invitado); // LOG:
     if (this.invitado){
+      console.log("Invitado: ", this.invitado); // LOG:
       this.getPostsGuest();
     } else {
       this.getPostsUser();
@@ -109,6 +115,8 @@ export class CompaneroPisoComponent {
   }
   
   private getPostsGuest() {
+    console.log("Get posts invitado"); // LOG:
+    console.log("Invitado: ", this.invitado); // LOG:
     this.todos = [];
     this.backendService.getForumCategoriaPosts("compagneroDePiso").subscribe(
       response => {

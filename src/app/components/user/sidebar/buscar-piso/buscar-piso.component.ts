@@ -66,13 +66,19 @@ export class BuscarPisoComponent {
 
   buscar(): void {
     if (!this.value.trim()) {
-      this.tarjetas = this.todos
+      console.log('No search query provided. Displaying all items.');
+      this.tarjetas = this.todos;
     } else {
+      console.log('Current tarjetas:', this.todos);
+      console.log('Performing search with query:', this.value);
       this.value = this.value.toLowerCase();
       this.tarjetas = this.todos.filter(item =>
-        item.piso.toLowerCase().includes(this.value) || item.direccion.toLowerCase().includes(this.value) || 
-        item.descripcion.toLowerCase().includes(this.value) || item.precio.toString().toLowerCase().includes(this.value)
+        item.piso.toLowerCase().includes(this.value) ||
+        item.direccion.toLowerCase().includes(this.value) || 
+        item.descripcion.toLowerCase().includes(this.value) ||
+        item.precio.toString().toLowerCase().includes(this.value)
       );
+      console.log('Filtered items:', this.tarjetas);
     }
   }
 
@@ -86,5 +92,15 @@ export class BuscarPisoComponent {
 
   onResize(event: any) {
     this.rowHeightBusc = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
+  }
+
+  /**
+   *  Fucnión auxiliar para testing
+   *  Al no poder situar las tarjetas mockeadas en 'todos',
+   *  se ha creado esta función para situar los datos de 'tarjetas' en 'todos'
+   *  
+   */
+  devolverTodos() {
+    this.todos = this.tarjetas;
   }
 }
