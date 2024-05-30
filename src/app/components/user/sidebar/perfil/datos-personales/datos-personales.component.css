@@ -65,6 +65,7 @@
 
 .post {
     width: 95%;
+    margin-top: 1%;
     height: auto;
     background: rgba(67, 73, 130, 0.8);
     border-radius: 10px;

@@ -142,9 +142,9 @@
     <div *ngIf="editar==false">
         <h1>• Seleccione las estampas que desea que se muestren en su perfil</h1>
         <div class="estampas">
-            <div class="estampas-display" *ngFor="let estampa of infoUsuario.estampas | slice: 0 : infoUsuario.estampas.length/2">
-                <mat-card class="post" (click)="openDialogCambiarEstampa('0ms', '0ms', estampa.id)">
-                    <mat-card-header>
+            <div class="estampas-display" *ngFor="let estampa of infoUsuario.estampas | slice: 0 : infoUsuario.estampas.length/2; let i = index">
+                <mat-card class="post" (click)="openDialogCambiarEstampa('0ms', '0ms', estampa.id, estampa.foto)">
+                    <mat-card-header (click)="openDialogCambiarEstampa('0ms', '0ms', estampa.id, estampa.foto)">
                         <mat-card-title-group>
                             <mat-card-title style="color: white;">
                                 <img mat-card-image [src]="estampa.foto" alt="Foto de estampa" style="width: 10%;">
@@ -153,12 +153,12 @@
                             <mat-card-subtitle style="color: white;">{{ estampa.descripcion }}</mat-card-subtitle>
                         </mat-card-title-group>
                     </mat-card-header>
-                    <mat-card-content style="color: white;">{{ estampa.publicable }}</mat-card-content>
+                    <mat-card-content style="color: white;" (click)="openDialogCambiarEstampa('0ms', '0ms', estampa.id, estampa.foto)">{{ estampa.publicable }}</mat-card-content>
                 </mat-card>
             </div>
             <div class="estampas-display" *ngFor="let estampa of infoUsuario.estampas | slice: infoUsuario.estampas.length/2 : infoUsuario.estampas.length">
-                <mat-card class="post">
-                    <mat-card-header>
+                <mat-card class="post" (click)="openDialogCambiarEstampa('0ms', '0ms', estampa.id, estampa.foto)">
+                    <mat-card-header (click)="openDialogCambiarEstampa('0ms', '0ms', estampa.id, estampa.foto)">
                         <mat-card-title-group>
                             <mat-card-title style="color: white;">
                                 <img mat-card-image [src]="estampa.foto" alt="Foto de estampa" style="width: 10%;">
@@ -167,7 +167,7 @@
                             <mat-card-subtitle style="color: white;">{{ estampa.descripcion }}</mat-card-subtitle>
                         </mat-card-title-group>
                     </mat-card-header>
-                    <mat-card-content style="color: white;">{{ estampa.publicable }}</mat-card-content>
+                    <mat-card-content style="color: white;" (click)="openDialogCambiarEstampa('0ms', '0ms', estampa.id, estampa.foto)">{{ estampa.publicable }}</mat-card-content>
                 </mat-card>
             </div>
         </div>

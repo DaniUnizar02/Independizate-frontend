@@ -31,16 +31,12 @@ export class EstadisticasComponent {
     xaxis: ApexXAxis;
   };
 
-  private publis: any;
-  private users: any;
-  private access: any;
-
   constructor(private location: Location, private backendService: BackendService, private errorService: ErrorService) {
     this.backendService.getStatisticsUser().subscribe(
       response => {
-        this.publis = response.estadisticas.publicaciones;
-        this.users = response.estadisticas.bestReputacion;
-        this.access = response.estadisticas.accesos;
+        this.Publicaciones(response.estadisticas.publicaciones);
+        this.Usuarios(response.estadisticas.bestReputacion);
+        this.Accesos(response.estadisticas.accesos);
       },
       error => {
         console.error('Error: ', error); // LOG:
@@ -53,12 +49,6 @@ export class EstadisticasComponent {
         }
       }
     );
-  }
-
-  ngOnInit() {
-    this.Publicaciones(this.publis);
-    this.Usuarios(this.users);
-    this.Accesos(this.access);
   }
 
   private Publicaciones(data: any) {

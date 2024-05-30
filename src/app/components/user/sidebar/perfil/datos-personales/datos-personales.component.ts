@@ -16,7 +16,9 @@ export class DatosPersonalesComponent {
   situacion = '';
   foto = '';
 
-  private misFavs: any[] = [];
+  s: string[] = [];
+
+  private misFavs: any[] = [{id: '', foto: ''}];
   private imageBase64: string = '';
   private uploadImage = false;
 
@@ -81,7 +83,7 @@ export class DatosPersonalesComponent {
         this.piso = response.user.piso;
         this.sexo = response.user.sexo;
         this.situacion = response.user.situacion;
-        this.foto = this.infoUsuario.img;
+        this.foto = "data:image/png;base64," + this.infoUsuario.img;
       },
       error => {
         if (error.status === 400) {
@@ -122,16 +124,19 @@ export class DatosPersonalesComponent {
   }
 
   private formatearStamps(stamps: any) {
+    this.s = []
+    this.infoUsuario.estampas = []
     for (const item of stamps) {
       if (item != null) {
         var data = {
           id: item._id,
           titulo: item.titulo,
           descripcion: item.descripcion,
-          foto: item.foto,
+          foto: "data:image/png;base64," + item.foto,
           publicable: item.publicable ? "✅ Estampa equipable" : "❌ Estampa no equipable",
         }
 
+        this.s.push(item.foto);
         this.infoUsuario.estampas.push(data);
       }
     }
@@ -209,8 +214,30 @@ export class DatosPersonalesComponent {
     this.situacion = this.infoUsuario.situacion;
   }
 
-  openDialogCambiarEstampa(enterAnimationDuration: string, exitAnimationDuration: string, estampa: string): void {
-    // this.backendService.
+  openDialogCambiarEstampa(enterAnimationDuration: string, exitAnimationDuration: string, id: string, foto: string): void {
+    var cockie=this.backendService.getCookie();
+    var data = '';
+    if (cockie) {
+      data = cockie.usuario;
+    }
+
+    this.backendService.getUsersIdBasic(data).subscribe(
+      response => {
+        console.log(response.users.fotoPerfil); //LOG:
+        this.misFavs[0] = { id: response.users.Stamps[0]._id, foto: response.users.Stamps[0].foto };
+        this.misFavs[1] = { id: response.users.Stamps[1]._id, foto: response.users.Stamps[1].foto };
+        this.misFavs[2] = { id: response.users.Stamps[2]._id, foto: response.users.Stamps[2].foto };
+      },
+      error => {
+        if (error.status === 400) {
+          this.errorService.openDialogError("Parámetros inválidos");
+        } else if (error.status === 404) {
+          this.errorService.openDialogError("Usuario no encontrado.");
+        } else if (error.status === 500) {
+          this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
+        }
+      }
+    );
 
     const dialog = this.dialog.open(EstampasComponent, {
       width: '80%',
@@ -222,7 +249,7 @@ export class DatosPersonalesComponent {
         estampa1: this.misFavs[0],
         estampa2: this.misFavs[1],
         estampa3: this.misFavs[2],
-        estampaNueva: estampa
+        estampaNueva: { id: id, foto: foto }
       }
     });
 

@@ -8,15 +8,15 @@
                     <hr style="border-color: white;">
                 </mat-card-title>
                 <mat-card-subtitle style="color: white;">
-                    <button (click)="seleccionada='1'"> <img mat-card-image [src]="estampa1" alt="Foto de estampa" style="width: 10%;"> </button>
-                    <button (click)="seleccionada='2'"> <img mat-card-image [src]="estampa2" alt="Foto de estampa" style="width: 10%;"> </button>
-                    <button (click)="seleccionada='3'"> <img mat-card-image [src]="estampa3" alt="Foto de estampa" style="width: 10%;"> </button>
+                    <button (click)="seleccionada='1'"> <img mat-card-image [src]="foto[0]" alt="Foto de estampa" style="width: 10%;"> </button>
+                    <button (click)="seleccionada='2'"> <img mat-card-image [src]="foto[1]" alt="Foto de estampa" style="width: 10%;"> </button>
+                    <button (click)="seleccionada='3'"> <img mat-card-image [src]="foto[2]" alt="Foto de estampa" style="width: 10%;"> </button>
                 </mat-card-subtitle>
             </mat-card-title-group>
         </mat-card-header>
         <mat-card-content style="color: white;">
             La nueva estampa seleccionada
-            <img mat-card-image [src]="estampaNueva" alt="Foto de estampa" style="width: 10%;">
+            <img mat-card-image [src]="foto[3]" alt="Foto de estampa" style="width: 10%;">
         </mat-card-content>
     </mat-card>
 </mat-dialog-content>

@@ -11,10 +11,11 @@ import { VerNotificacionComponent } from '../../../notificaciones/ver-notificaci
 })
 export class EstampasComponent {
   private user: string;
-  estampa1: string;
-  estampa2: string;
-  estampa3: string;
-  estampaNueva: string;
+  foto: string[] = [];
+  estampa1: {id: string, foto: string};
+  estampa2: any;
+  estampa3: any;
+  estampaNueva: any;
   seleccionada: string = '';
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<VerNotificacionComponent>, private backendService: BackendService, private errorService: ErrorService) {
@@ -23,20 +24,23 @@ export class EstampasComponent {
     this.estampa2 = data.estampa2;
     this.estampa3 = data.estampa3;
     this.estampaNueva = data.estampaNueva;
-    // console.log(data.notificacion); // LOG:
-    // console.log(this.notificacion) // LOG:
+
+    if (this.estampa1.foto!=undefined) { this.foto.push("data:image/png;base64," + this.estampa1.foto); }
+    if (this.estampa2.foto!=undefined) { this.foto.push("data:image/png;base64," + this.estampa2.foto); }
+    if (this.estampa3.foto!=undefined) { this.foto.push("data:image/png;base64," + this.estampa3.foto); }
+    if (this.estampaNueva.foto!=undefined) { this.foto.push("data:image/png;base64," + this.estampaNueva.foto); }
   }
 
   cambiarEstampa() {
     if(this.seleccionada.trim()) {
-      this.estampa1 = (this.seleccionada=='1') ? this.estampaNueva : this.estampa1;
-      this.estampa2 = (this.seleccionada=='2') ? this.estampaNueva : this.estampa2;
-      this.estampa3 = (this.seleccionada=='3') ? this.estampaNueva : this.estampa3;
+      this.estampa1.id = (this.seleccionada=='1') ? this.estampaNueva.id : this.estampa1.id;
+      this.estampa2.id = (this.seleccionada=='2') ? this.estampaNueva.id : this.estampa2.id;
+      this.estampa3.id = (this.seleccionada=='3') ? this.estampaNueva.id : this.estampa3.id;
       var body = {
         estampasFavoritas: [
-          this.estampa1,
-          this.estampa2,
-          this.estampa3
+          this.estampa1.id,
+          this.estampa2.id,
+          this.estampa3.id
         ]
       }
 
