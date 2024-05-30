@@ -37,11 +37,19 @@ export class PerfilComponent {
     }
   }
 
+  /**
+  * La función ngOnInit ajusta el diseño según el tamaño de la ventana para mejorar la capacidad de
+  * respuesta.
+  */
   ngOnInit() {
     // NOTE: Responsive
     this.rowHeightTit = (window.innerWidth <= 1200) ? '1:2' : '2:1';
   }
 
+  /**
+   * La función `goBack` en TypeScript se utiliza para regresar a la ubicación anterior en el historial
+   * del navegador.
+   */
   goBack(): void {
     this.location.back();
   }
@@ -49,6 +57,14 @@ export class PerfilComponent {
   // NOTE: RESPONSIVE
   rowHeightTit: string = '2:1'
 
+    /**
+   * La función `onResize` ajusta el número de columnas y alturas de filas según el ancho de la
+   * ventana.
+   * @param {any} event - El parámetro `event` en la función `onResize` es un objeto que representa el
+   * evento desencadenado cuando se cambia el tamaño de la ventana. Contiene información sobre el
+   * evento, como el elemento de destino (en este caso, la ventana), que se puede usar para acceder a
+   * propiedades como `innerWidth` para determinar
+   */
   onResize(event: any) {
     this.rowHeightTit = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
   }

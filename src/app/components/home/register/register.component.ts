@@ -55,6 +55,13 @@ export class RegisterComponent {
     this.g_fotoPerfil = this.route.snapshot.queryParamMap.get('fotoPerfil');
   }
 
+  /**
+   * La función `separar` permite dividir la información en dos partes.
+   * Su uso concreto es para separar el campo nombreApellidos en nombre y apellidos
+   * @param {any} data - Contiene la información a dividir en 2 partes.
+   * @param {number} partes - Indica si lo que se quiere obtener es la parte primera de
+   * la información (nombre), o la segunda (apellidos)
+   */
   separar(data: any, parte: number) {
     const palabras = data.split(' ');
     var primera = palabras.shift() || '';
@@ -67,6 +74,10 @@ export class RegisterComponent {
     }
   }
 
+  /**
+   * La función `register` sirve para registrar en la aplicación a un usuario nuevo, ya
+   * sea, a través de google o normal.
+   */
   register() {
     if (this.google) {
       if (!this.usuario.trim() || !this.edad.toString().trim() || !this.sexo.trim() || !this.piso.trim() || !this.ciudad.trim() || !this.situacion.trim()) {

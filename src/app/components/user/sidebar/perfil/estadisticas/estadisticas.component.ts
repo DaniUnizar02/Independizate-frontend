@@ -70,6 +70,9 @@ export class EstadisticasComponent {
     }
   }
 
+  /**
+   * Crea el gráfico de usuarios con mejor reputación
+   */
   private Usuarios(data: any) {
     var keys: any[] = [];
     var values: number[] = [];
