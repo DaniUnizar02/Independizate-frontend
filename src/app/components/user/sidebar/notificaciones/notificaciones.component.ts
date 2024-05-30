@@ -57,12 +57,8 @@ export class NotificacionesComponent {
     this.backendService.getNotificationsAutorAutor(dataCockie).subscribe(
       response => {
         this.respuesta = response.respuesta.notificaciones
-        console.log('Notificaciones: ', this.respuesta); // LOG:
         this.formatear();
         this.notificaciones = this.notiNoLeidas.concat(this.notiLeidas);
-        console.log("Notis Leidas: ", this.notiLeidas); // LOG:
-        console.log("Notis NO Leidas: ", this.notiNoLeidas); // LOG:
-        console.log("Notis Todas: ", this.notificaciones); // LOG:
       },
       error => {
         console.error('Error: ', error); // LOG:
@@ -103,8 +99,6 @@ export class NotificacionesComponent {
       else if (item.asunto.nombreForo === "limpieza") { data.titulo = "Limpieza" }
       else if (item.asunto.nombreForo === "otros") { data.titulo = "Otros" }
 
-      // console.log(data); // LOG:
-
       if (item.leida) { this.notiLeidas.push(data); }
       else { this.notiNoLeidas.push(data); }
     }
@@ -116,7 +110,6 @@ export class NotificacionesComponent {
    * @param notificacion_color 
    */
   notificacionLeida(notificacion_id: string, notificacion_color: string): void {
-    // console.log(notificacion_color)
     if (notificacion_color == '') {
       this.backendService.putNotificationsIdRead(notificacion_id).subscribe(
         response => {
@@ -183,7 +176,6 @@ export class NotificacionesComponent {
    * @param event 
    */
   getPaginatorData(event: { pageIndex: number; }) {
-    console.log(event);
     if (event.pageIndex === this.pageIndex + 1) {
       this.lowValue = this.lowValue + this.pageSize;
       this.highValue = this.highValue + this.pageSize;

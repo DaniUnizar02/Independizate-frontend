@@ -31,7 +31,6 @@ export class AnadirPostComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<AnadirPostComponent>, private backendService: BackendService, private errorService: ErrorService) {
     this.categoria = data.categoria;
-    // console.log(this.categoria) // LOG:
   }
 
   /**
@@ -39,7 +38,6 @@ export class AnadirPostComponent {
    */
   anadir() {
     if (!this.titulo.trim() || !this.mensaje.trim()) {
-      console.log('No hay datos para añdir el post'); // LOG:
       this.errorService.openDialogError("Todos los campos deben estar rellenos.");
     } else {
       var cockie = this.backendService.getCookie();

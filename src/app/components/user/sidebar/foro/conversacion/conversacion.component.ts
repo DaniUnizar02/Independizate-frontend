@@ -77,7 +77,6 @@ export class ConversacionComponent {
     this.backendService.getPostsIdMessages(this.id).subscribe(
       response => {
         var respuesta = response.respuesta;
-        console.log(respuesta); // LOG:
         this.post = {
           id: respuesta.post._id,
           userName: respuesta.post.usuario,
@@ -115,7 +114,6 @@ export class ConversacionComponent {
    */
   private construir_mensajes(mensajes: any[], tabulado: boolean) {
     for (const item of mensajes) {
-      console.log("ITEM: ", item); //LOG:
       var data = {
         id: item._id,
         userName: item.usuario,
@@ -125,7 +123,6 @@ export class ConversacionComponent {
         tabulado: tabulado // DONE: tiene que depender de un parámetro, aun no se como hacerlo NOTE: Hablarlo con backend
       };
 
-      console.log(data); // LOG:
       this.todos.push(data);
 
       if ('respuesta' in item && item.respuesta && item.respuesta.length !== 0) {
@@ -141,7 +138,6 @@ export class ConversacionComponent {
   private formatear(mensajes: any): void {
     if (mensajes.length!== 0) {
       this.construir_mensajes(mensajes, false);
-      console.log("CP: ", this.todos); // LOG:
     }
   }
 

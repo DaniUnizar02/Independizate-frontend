@@ -63,7 +63,6 @@ export class RecetasComponent {
    */
   private getMyPosts() {
     // Se ha insertado un usuario por defecto pero tiene que ser variable
-    // console.log("USUARIO: ", this.backendService.user); // LOG:
     var cockie = this.backendService.getCookie();
     var dataCockie = '';
     if (cockie) {
@@ -74,8 +73,6 @@ export class RecetasComponent {
       response => {
         this.postsFavs = (response.user.forosFavoritos === undefined) ? [] : response.user.forosFavoritos;
         this.postsLike = (response.user.forosLike === undefined) ? [] : response.user.forosLike;
-        console.log("FAVS: ", this.postsFavs); // LOG:
-        console.log("LIKE: ", this.postsLike); // LOG:
       },
       error => {
         if (error.status === 400) {
@@ -113,7 +110,6 @@ export class RecetasComponent {
     this.todos = [];
     this.backendService.getForumCategoriaPostsFavs("recetas").subscribe(
       response => {
-        console.log('Recetas (Foro): ', response.posts); // LOG:
         this.formatear(response.posts);
         this.posts = this.todos;
       },
@@ -141,7 +137,6 @@ export class RecetasComponent {
     this.todos = [];
     this.backendService.getForumCategoriaPosts("recetas").subscribe(
       response => {
-        console.log('Recetas (Foro): ', response.posts); // LOG:
         this.formatear(response.posts);
         this.posts = this.todos;
       },
@@ -179,14 +174,11 @@ export class RecetasComponent {
         fav: 'white',
       };
 
-      console.log(data.id); // LOG:
       if (this.postsFavs.includes(data.id)) { data.fav = 'orange'; }
       if (this.postsLike.includes(data.id)) { data.like = 'red'; }
 
-      console.log(data); // LOG:
       this.todos.push(data);
     }
-    console.log("R: ", this.todos); // LOG:
     this.todos = this.todos.reverse();
   }
 
@@ -194,7 +186,6 @@ export class RecetasComponent {
    * La función `buscar` se encarga de buscar los posts de la categoría "recetas".
    */
   buscar() {
-    console.log(this.value);
     if (!this.value.trim()) {
       this.posts = this.todos;
     } else {
@@ -212,13 +203,11 @@ export class RecetasComponent {
    */
   cambiarRoute(event: MatTabChangeEvent) {
     var ruta = event.tab.textLabel.toLowerCase().replace(' ', '-');
-    console.log(ruta);
     if (ruta == "compañero-de piso") {
       ruta = "piso";
     } else if (ruta == "economía-doméstica") {
       ruta = "economia";
     }
-    console.log(ruta);
     this.router.navigate(['sidebar', 'foro', ruta])
   }
 
@@ -260,7 +249,6 @@ export class RecetasComponent {
    * @param post_id 
    */
   darLike(post_id: string) {
-    console.log(post_id); // LOG:
     this.backendService.putPostsLikePostId(post_id).subscribe(
       response => {
         this.getMyPosts();
@@ -289,7 +277,6 @@ export class RecetasComponent {
    * @param post_id 
    */
   hacerFav(post_id: string) {
-    console.log(post_id); // LOG:
     this.backendService.putPostsFavoritesPostId(post_id).subscribe(
       response => {
         this.getMyPosts();
@@ -340,7 +327,6 @@ export class RecetasComponent {
    * @param event 
    */
   getPaginatorData(event: { pageIndex: number; }) {
-    console.log(event);
     if (event.pageIndex === this.pageIndex + 1) {
       this.lowValue = this.lowValue + this.pageSize;
       this.highValue = this.highValue + this.pageSize;

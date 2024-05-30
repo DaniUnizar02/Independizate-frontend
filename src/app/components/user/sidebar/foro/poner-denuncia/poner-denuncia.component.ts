@@ -37,7 +37,6 @@ export class PonerDenunciaComponent {
    */
   denunciar() {
     if (!this.tipo.trim() || !this.respuesta.trim()) {
-      console.log('No hay datos para añdir el post'); // LOG:
       this.errorService.openDialogError("Todos los campos deben estar rellenos.");
     } else {
       this.body = {

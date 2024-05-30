@@ -32,8 +32,6 @@ export class VerNotificacionComponent {
 
   constructor(private router: Router, @Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<VerNotificacionComponent>, private backendService: BackendService, private errorService: ErrorService) {
     this.notificacion = data.notificacion[0];
-    // console.log(data.notificacion); // LOG:
-    // console.log(this.notificacion) // LOG:
   }
 
   /**
@@ -42,7 +40,6 @@ export class VerNotificacionComponent {
    * @param notificacion_color Color de la notificación.
    */
   notificacionNoLeida(notificacion_id: string, notificacion_color: string): void {   
-    // console.log(notificacion_color);
     if (notificacion_color != '') {
       this.backendService.putNotificationsIdRead(notificacion_id).subscribe(
         response => {

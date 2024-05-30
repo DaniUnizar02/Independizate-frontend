@@ -31,7 +31,6 @@ export class DenunciasDelForoComponent {
     if (cockie) {
       dataCockie = cockie.esInvitado;
     }
-    console.log(dataCockie); //LOG:
   }
 
   /**
@@ -71,7 +70,6 @@ export class DenunciasDelForoComponent {
     this.todos = [];
     this.backendService.getAdminReports().subscribe(
       response => {
-        console.log(response.reports); //LOG:
         this.respuesta = response.reports;
         this.formatear();
         this.denuncias = this.todos;
@@ -202,7 +200,6 @@ export class DenunciasDelForoComponent {
    * @param event - índice de página: número;
    */
   getPaginatorData(event: { pageIndex: number; }) {
-    console.log(event);
     if (event.pageIndex === this.pageIndex + 1) {
       this.lowValue = this.lowValue + this.pageSize;
       this.highValue = this.highValue + this.pageSize;

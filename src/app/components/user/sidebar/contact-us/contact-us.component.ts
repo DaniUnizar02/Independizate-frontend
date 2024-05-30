@@ -76,11 +76,9 @@ export class ContactUsComponent {
         descripcion: this.descripcion
       }
 
-      console.log(body); // DELETE:
 
       this.backendService.postContactUs(body).subscribe(
         response => {
-          console.log('Sugerencia creada correctamente: ', response); // LOG:
           this.tipo = this.titulo = this.descripcion = '';
         },
         error => {

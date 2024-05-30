@@ -60,7 +60,6 @@ export class SidebarComponent {
 
     this.backendService.getUsersIdBasic(data).subscribe(
       response => {
-        console.log(response.users.fotoPerfil); //LOG:
         this.usuario = {
           foto: "data:image/png;base64," + response.users.fotoPerfil,
           nombre: response.users.usuario,
@@ -75,7 +74,6 @@ export class SidebarComponent {
         this.mostarStamp2 = (response.users.Stamps[1].foto===undefined || response.users.Stamps[1].foto===null) ? false : true;
         this.usuario.estampa3 = (response.users.Stamps[2].foto===undefined || response.users.Stamps[2].foto===null) ? '' : "data:image/png;base64," + response.users.Stamps[2].foto;
         this.mostarStamp3 = (response.users.Stamps[2].foto===undefined || response.users.Stamps[2].foto===null) ? false : true;
-        console.log("USUARIO SIDEBAR",this.usuario); // LOG:
       },
       error => {
         if (error.status === 400) {

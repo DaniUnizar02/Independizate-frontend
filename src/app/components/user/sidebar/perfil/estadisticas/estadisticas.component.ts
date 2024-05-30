@@ -60,7 +60,6 @@ export class EstadisticasComponent {
     var parsedObject = JSON.parse(JSON.stringify(data));
     var keys = Object.keys(parsedObject);
     var values: number[] = Object.values(parsedObject);
-    console.log("Values:", values) // LOG:
 
     this.publicaciones = {
       series: values,

@@ -56,7 +56,6 @@ export class DatosPersonalesComponent {
 
     this.getInfo();
     this.getStamps();
-    console.log(this.infoUsuario.estampas); //LOG:
   }
 
   /**
@@ -72,7 +71,6 @@ export class DatosPersonalesComponent {
 
     this.backendService.getProfilesId(dataCockie).subscribe(
       response => {
-        console.log(response.user); //LOG:
         this.infoUsuario = {
           id: response.user._id,
           img: response.user.fotoPerfil,
@@ -117,7 +115,6 @@ export class DatosPersonalesComponent {
     this.backendService.getStampsUser().subscribe(
       response => {
         this.formatearStamps(response.stamps);
-        console.log("Stamps: ", response.stamps); // LOG:
       },
       error => {
         if (error.status === 400) {
@@ -197,7 +194,6 @@ export class DatosPersonalesComponent {
 
     if (this.uploadImage) {
       data.fotoPerfil = this.imageBase64;
-      console.log(data.fotoPerfil);
     }
 
     if (!this.infoUsuario.usuario.trim() || !this.infoUsuario.nombre.trim() || !this.infoUsuario.apellidos.trim() || !this.infoUsuario.correo.trim() || !this.infoUsuario.edad.toString().trim() || !this.infoUsuario.sexo.trim() || !this.infoUsuario.piso.trim() || !this.infoUsuario.ciudad.trim() || !this.infoUsuario.situacion.trim() || !this.infoUsuario.img.trim()) {
@@ -270,7 +266,6 @@ export class DatosPersonalesComponent {
 
     this.backendService.getUsersIdBasic(data).subscribe(
       response => {
-        console.log(response.users.fotoPerfil); //LOG:
         this.misFavs[0] = { id: response.users.Stamps[0]._id, foto: response.users.Stamps[0].foto };
         this.misFavs[1] = { id: response.users.Stamps[1]._id, foto: response.users.Stamps[1].foto };
         this.misFavs[2] = { id: response.users.Stamps[2]._id, foto: response.users.Stamps[2].foto };

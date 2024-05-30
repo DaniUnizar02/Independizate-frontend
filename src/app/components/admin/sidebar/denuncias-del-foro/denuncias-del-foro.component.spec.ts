@@ -105,7 +105,6 @@ describe('DenunciasDelForoComponent', () => {
     component.putRespuesta(response.reports);
     component.formatear();
     const todos = component.getTodos();
-    console.log("Test todos: ",todos);
     expect(todos.length).toEqual(2);
     expect(todos[0].id).toEqual('2');
     expect(todos[0].tipo).toEqual('tipo2');

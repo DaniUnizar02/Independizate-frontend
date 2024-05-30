@@ -28,7 +28,6 @@ export class SidebarComponentAdmin {
 
   constructor(private backendService: BackendService, private errorService: ErrorService) {
     this.getUsuario();
-    console.log("COOCKIE:", this.backendService.getCookie())
   }
 
   /**
@@ -42,13 +41,11 @@ export class SidebarComponentAdmin {
       }
     this.backendService.getUsersIdBasic(dataCockie).subscribe(
       response => {
-        // console.log(response.users.fotoPerfil); //LOG:
         this.usuario = {
           foto: "data:image/png;base64," + response.users.fotoPerfil,
           nombre: response.users.usuario,
           reputacion: response.users.reputacion,
         }
-        console.log("USUARIO SIDEBAR", this.usuario); // LOG:
       },
       error => {
         if (error.status === 400) {

@@ -38,11 +38,9 @@ export class MapaComponent {
   private markers: any[] = [];
 
   constructor(private location: Location, private router: Router, private backendService: BackendService, private errorService: ErrorService) {
-    console.log('Cargando'); // LOG:
     this.backendService.getAparments().subscribe(
       response => {
         this.respuesta = response.apartments
-        console.log('Pisos: ', response.apartments); // LOG:
         for (const item of this.respuesta) {
           var data = {
             idIdealista: item.propertyCode,
@@ -61,7 +59,6 @@ export class MapaComponent {
         this.tarjetas = this.todos;
 
         this.markers = [];
-        console.log(this.tarjetas)
         for (const item of this.tarjetas) {
           var data2 = {
             id: item.idIdealista,
@@ -72,7 +69,6 @@ export class MapaComponent {
           }
           this.markers.push(data2);
         }
-        console.log("MARKERS: ", this.markers)
 
         this.initMap();
         this.addMarkers();
@@ -108,8 +104,6 @@ export class MapaComponent {
   private addMarkers(): void {
     for (const markerData of this.markers) {
       const { lat, lng, text, imageUrl, id } = markerData;
-
-      console.log(markerData); // LOG:
 
       // Create a marker
       const marker = L.marker([lat, lng]).setIcon(customIcon);

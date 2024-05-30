@@ -32,7 +32,6 @@ export class BuscarPisoComponent {
     this.backendService.getAparments().subscribe(
       response => {
         this.respuesta = response.apartments
-        // console.log('Pisos: ', response.apartments); // LOG:
         this.formatear();
         this.tarjetas = this.todos;
       },
@@ -73,11 +72,8 @@ export class BuscarPisoComponent {
    */
   buscar(): void {
     if (!this.value.trim()) {
-      console.log('No search query provided. Displaying all items.');
       this.tarjetas = this.todos;
     } else {
-      console.log('Current tarjetas:', this.todos);
-      console.log('Performing search with query:', this.value);
       this.value = this.value.toLowerCase();
       this.tarjetas = this.todos.filter(item =>
         item.piso.toLowerCase().includes(this.value) ||
@@ -85,7 +81,6 @@ export class BuscarPisoComponent {
         item.descripcion.toLowerCase().includes(this.value) ||
         item.precio.toString().toLowerCase().includes(this.value)
       );
-      console.log('Filtered items:', this.tarjetas);
     }
   }
 

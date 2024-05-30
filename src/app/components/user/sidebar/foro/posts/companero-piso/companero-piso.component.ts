@@ -62,7 +62,6 @@ export class CompaneroPisoComponent {
     if (!this.invitado) {
       this.getMyPosts();
     }
-    console.log("Soy invitado"); // LOG:
     this.getPosts();
   }
 
@@ -71,7 +70,6 @@ export class CompaneroPisoComponent {
    */
   private getMyPosts() {
     // Se ha insertado un usuario por defecto pero tiene que ser variable
-    // console.log("USUARIO: ", this.backendService.user); // LOG:
     var cockie = this.backendService.getCookie();
     var dataCockie = '';
     if (cockie) {
@@ -81,8 +79,6 @@ export class CompaneroPisoComponent {
       response => {
         this.postsFavs = (response.user.forosFavoritos === undefined) ? [] : response.user.forosFavoritos;
         this.postsLike = (response.user.forosLike === undefined) ? [] : response.user.forosLike;
-        console.log("FAVS: ", this.postsFavs); // LOG:
-        console.log("LIKE: ", this.postsLike); // LOG:
       },
       error => {
         if (error.status === 400) {
@@ -119,7 +115,6 @@ export class CompaneroPisoComponent {
     this.todos = [];
     this.backendService.getForumCategoriaPostsFavs("compagneroDePiso").subscribe(
       response => {
-        console.log('Compañero de piso (Foro): ', response.posts); // LOG:
         this.formatear(response.posts);
         this.posts = this.todos;
       },
@@ -144,12 +139,9 @@ export class CompaneroPisoComponent {
    * en la categoría de "compañero de piso".
    */
   private getPostsGuest() {
-    console.log("Get posts invitado"); // LOG:
-    console.log("Invitado: ", this.invitado); // LOG:
     this.todos = [];
     this.backendService.getForumCategoriaPosts("compagneroDePiso").subscribe(
       response => {
-        console.log('Compañero de piso (Foro): ', response.posts); // LOG:
         this.formatear(response.posts);
         this.posts = this.todos;
       },
@@ -189,10 +181,8 @@ export class CompaneroPisoComponent {
       if (this.postsFavs.includes(data.id)) { data.fav = 'orange'; }
       if (this.postsLike.includes(data.id)) { data.like = 'red'; }
 
-      console.log(data); // LOG:
       this.todos.push(data);
     }
-    console.log("CP: ", this.todos); // LOG:
     this.todos = this.todos.reverse();
   }
 
@@ -200,7 +190,6 @@ export class CompaneroPisoComponent {
    * Función que busca los posts en función de la query introducida.
    */
   buscar() {
-    console.log(this.value);
     if (!this.value.trim()) {
       this.posts = this.todos;
     } else {
@@ -218,13 +207,11 @@ export class CompaneroPisoComponent {
    */
   cambiarRoute(event: MatTabChangeEvent) {
     var ruta = event.tab.textLabel.toLowerCase().replace(' ', '-');
-    console.log(ruta);
     if (ruta == "compañero-de piso") {
       ruta = "piso";
     } else if (ruta == "economía-doméstica") {
       ruta = "economia";
     }
-    console.log(ruta);
     this.router.navigate(['sidebar', 'foro', ruta])
   }
 
@@ -264,7 +251,6 @@ export class CompaneroPisoComponent {
    * @param post_id 
    */
   darLike(post_id: string) {
-    console.log(post_id); // LOG:
     this.backendService.putPostsLikePostId(post_id).subscribe(
       response => {
         this.getMyPosts();
@@ -293,7 +279,6 @@ export class CompaneroPisoComponent {
    * @param post_id 
    */
   hacerFav(post_id: string) {
-    console.log(post_id); // LOG:
     this.backendService.putPostsFavoritesPostId(post_id).subscribe(
       response => {
         this.getMyPosts();
@@ -344,7 +329,6 @@ export class CompaneroPisoComponent {
    * @param event 
    */
   getPaginatorData(event: { pageIndex: number; }) {
-    console.log(event);
     if (event.pageIndex === this.pageIndex + 1) {
       this.lowValue = this.lowValue + this.pageSize;
       this.highValue = this.highValue + this.pageSize;

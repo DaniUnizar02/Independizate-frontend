@@ -86,7 +86,6 @@ export class EstadisticasComponent {
 
     this.backendService.getStatisticsUser().subscribe(
       response => {
-        console.log(response.estadisticas.bestReputacion);
         this.Usuarios(response.estadisticas.bestReputacion);
       },
       error => {

@@ -18,7 +18,6 @@ export class BackendService {
 
   getCookie(): { usuario: string; nombreUsuario: string; token: string; esInvitado: boolean } | null {
     const cookieValue = this.cookieService.get(this.COOKIE_KEY);
-    console.log("COOKIE: ", JSON.parse(cookieValue));
     return cookieValue ? JSON.parse(cookieValue) : null;
   }
 

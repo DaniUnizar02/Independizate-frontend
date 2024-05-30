@@ -64,7 +64,6 @@ export class GuardadosComponent {
    */
   private getMyPosts () {
     // Se ha insertado un usuario por defecto pero tiene que ser variable
-    // console.log("USUARIO: ", this.backendService.user); // LOG:
     var cockie = this.backendService.getCookie();
       var dataCockie = '';
       if (cockie) {
@@ -72,11 +71,8 @@ export class GuardadosComponent {
       }
     this.backendService.getProfilesId(dataCockie).subscribe(
       response => {
-        console.log("response: ",response.user) // LOG:
         this.postsFavs = (response.user.forosFavoritos===undefined) ? [] : response.user.forosFavoritos;
         this.postsLike = (response.user.forosLike===undefined) ? [] : response.user.forosLike;
-        console.log("FAVS: ", this.postsFavs); // LOG:
-        console.log("LIKE: ", this.postsLike); // LOG:
       },
       error => {
         if (error.status === 400) {
@@ -101,7 +97,6 @@ export class GuardadosComponent {
     this.todos = [];
     this.backendService.getForumCategoriaPostsFavs("forosFavoritos").subscribe(
       response => {
-        console.log('Favoritos (Foro): ', response.posts); // LOG:
         this.formatear(response.posts);
         this.posts = this.todos;
       },
@@ -142,10 +137,8 @@ export class GuardadosComponent {
       if (this.postsFavs.includes(data.id)) { data.fav = 'orange'; }
       if (this.postsLike.includes(data.id)) { data.like = 'red'; }
 
-      console.log(data); // LOG:
       this.todos.push(data);
     }
-    console.log("G: ",this.todos); // LOG:
     this.todos = this.todos.reverse();
   }
 
@@ -153,7 +146,6 @@ export class GuardadosComponent {
    * La función buscar se encarga de buscar un post en concreto.
    */
   buscar() {
-    console.log(this.value);
     if(!this.value.trim()) {
       this.posts = this.todos;
     } else {
@@ -171,13 +163,11 @@ export class GuardadosComponent {
    */
   cambiarRoute(event: MatTabChangeEvent) {
     var ruta = event.tab.textLabel.toLowerCase().replace(' ', '-');
-    console.log(ruta);
     if (ruta=="compañero-de piso") {
       ruta = "piso";
     } else if (ruta=="economía-doméstica") {
       ruta = "economia";
     }
-    console.log(ruta);
     this.router.navigate(['sidebar','foro', ruta])
   }
 
@@ -198,7 +188,6 @@ export class GuardadosComponent {
    * @param post_id 
    */
   darLike(post_id: string) {
-    console.log(post_id); // LOG:
     this.backendService.putPostsLikePostId(post_id).subscribe(
       response => {
         this.getMyPosts();
@@ -226,7 +215,6 @@ export class GuardadosComponent {
  * @param post_id 
  */
   hacerFav(post_id: string) {
-    console.log(post_id); // LOG:
     this.backendService.putPostsFavoritesPostId(post_id).subscribe(
       response => {
         this.getMyPosts();
@@ -276,7 +264,6 @@ export class GuardadosComponent {
    * @param event 
    */
   getPaginatorData(event: { pageIndex: number; }) {
-    console.log(event);
     if (event.pageIndex === this.pageIndex + 1) {
       this.lowValue = this.lowValue + this.pageSize;
       this.highValue = this.highValue + this.pageSize;

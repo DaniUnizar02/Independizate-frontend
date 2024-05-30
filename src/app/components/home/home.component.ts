@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { BackendService } from '../../services/backend/backend.service';
 import { HttpClient } from '@angular/common/http';
 import { ErrorService } from '../../services/error/error.service';
+import { WsService } from '../../services/ws/ws.service';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class HomeComponent implements OnInit {
     password: ''
   }
 
-  constructor(private router: Router, private http: HttpClient, private backendService: BackendService, private errorService: ErrorService) { }
+  constructor(private router: Router, private http: HttpClient, private backendService: BackendService, private errorService: ErrorService, private ws: WsService) { }
 
   /**
    * Método que se ejecuta al iniciar el componente para cargar la autenticación de Google.
@@ -84,7 +85,6 @@ export class HomeComponent implements OnInit {
               this.router.navigate(['home/register'], { queryParams: { google: true, id: profile.getId(), nombreApellidos: profile.getName(), contrasena: googleAuthUser.getAuthResponse().id_token, email: profile.getEmail(), fotoPerfil: profile.getImageUrl() } });
               this.backendService.getUsersGoogleIdGoogleExists(profile.getId()).subscribe(valor => {
                 if (valor.exists == true) {
-                  console.log("LoginGoogle login") //LOG:
                   var body = {
                     idGoogle: profile.getId(),
                     googleToken: googleAuthUser.getAuthResponse().id_token,
@@ -110,7 +110,6 @@ export class HomeComponent implements OnInit {
                     }
                   });
                 } else {
-                  console.log("LoginGoogle registro") //LOG:
                   // this.router.navigate(['home/register'], { queryParams: { google: 'true', id: profile.getId(),  nombreApellidos: profile.getName(), contrasena: googleAuthUser.getAuthResponse().id_token, email: profile.getEmail(), fotoPerfil: profile.getImageUrl() } });
 
                 }
@@ -172,7 +171,6 @@ export class HomeComponent implements OnInit {
    */
   tipoUsuario() {
     this.backendService.getUsersUsuarioType(this.usuario).subscribe(valor => {
-      console.log(valor); //LOG:
       if (valor[0].tipo == "admin") {
         this.router.navigate(['admin/sidebar']);
       } else {
@@ -205,11 +203,10 @@ export class HomeComponent implements OnInit {
         });
         this.backendService.setHeaders();
 
-        const socket = new WebSocket('ws://localhost:4000?clienteId=' + this.usuario);
+        const socket = new WebSocket('ws://backend-independizate.eggtf5e6dvh8hngq.spaincentral.azurecontainer.io:4000?clienteId=' + valor.id);
         socket.addEventListener('open', () => { console.log('Conexión establecida con el servidor WebSocket'); });
         socket.addEventListener('message', (event) => {
-          console.log('Mensaje recibido del servidor:', event.data);
-          alert('Notificación recibida');
+          this.ws.openDialogError(event.data);
         });
 
         this.tipoUsuario();

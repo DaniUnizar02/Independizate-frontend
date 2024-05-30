@@ -50,7 +50,6 @@ export class MasDetallesComponent {
 
     this.backendService.getPostsId(this.referencia).subscribe(
       response => {
-        console.log("POST: ", response); //LOG:
         this.post = {
           title: response.titulo,
           description: response.descripcion
@@ -91,8 +90,6 @@ export class MasDetallesComponent {
         respuesta: 'Post cambiado al foro solicitado.'
       }
     }
-
-    console.log(this.id); //LOG:
         
     this.backendService.putAdminAcceptReportIdCategoria(this.id, accion, body).subscribe(
       response => {

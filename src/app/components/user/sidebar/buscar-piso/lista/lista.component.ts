@@ -34,7 +34,6 @@ export class ListaComponent {
 
   ngDoCheck() {
     this.tarjetas = this.buscarPisoComponent.tarjetas;
-    // console.log('Posts (CP): ',this.posts); // LOG:
   }
 
   // NOTE: Info piso
@@ -59,7 +58,6 @@ export class ListaComponent {
    * @param event 
    */
   getPaginatorData(event: { pageIndex: number; }) {
-    console.log(event);
     if (event.pageIndex === this.pageIndex + 1) {
       this.lowValue = this.lowValue + this.pageSize;
       this.highValue = this.highValue + this.pageSize;

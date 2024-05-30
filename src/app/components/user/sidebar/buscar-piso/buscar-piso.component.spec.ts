@@ -68,7 +68,6 @@ describe('BuscarPisoComponent', () => {
       { piso: 'Title2', direccion: 'Address2', descripcion: 'Description2', precio: '200€' }
     ];
     component.devolverTodos();
-    console.log("Test tarjetas: ",component.tarjetas);
     component.value = 'Title1';
     component.buscar();
     expect(component.tarjetas.length).toBe(1);

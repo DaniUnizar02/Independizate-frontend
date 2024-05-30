@@ -51,7 +51,6 @@ export class ContactUsDeUsuarioComponent {
     this.backendService.getAdminSuggestions().subscribe(
       response => {
         this.respuesta = response
-        console.log('Sugerencias o Quejas de usuario: ', response.sugerencias); // LOG:
         this.formatear();
         this.contacts = this.todos;
         this.filtrar();
@@ -105,7 +104,6 @@ export class ContactUsDeUsuarioComponent {
           info: item.descripcion,
           titulo: item.titulo
         }
-        console.log(data) //LOG:
         this.todos.push(data);
       }
     }
@@ -202,7 +200,6 @@ export class ContactUsDeUsuarioComponent {
    * @param event - índice de página: número;
    */
   getPaginatorData(event: { pageIndex: number; }) {
-    console.log(event);
     if (event.pageIndex === this.pageIndex + 1) {
       this.lowValue = this.lowValue + this.pageSize;
       this.highValue = this.highValue + this.pageSize;

@@ -24,6 +24,7 @@ import { BackendModule } from './components/backend/backend.module';
 import { ErrorComponent } from './components/error/error.component';
 import { HomeComponent } from './components/home/home.component';
 import { CookieService } from 'ngx-cookie-service';
+import { WsComponent } from './components/ws/ws/ws.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CookieService } from 'ngx-cookie-service';
     SidebarComponent,
     ErrorComponent,
     HomeComponent,
+    WsComponent,
   ],
   imports: [
     BrowserModule,

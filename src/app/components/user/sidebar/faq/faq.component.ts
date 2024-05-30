@@ -33,7 +33,6 @@ export class FaqComponent {
     this.backendService.getFaqs().subscribe(
       response => {
         this.preguntasFrecuentes = response.faqs
-        console.log('FAQs: ', response.faqs); // LOG:
       },
       error => {
         console.error('Error: ', error); // LOG:
@@ -66,7 +65,6 @@ export class FaqComponent {
    * @param event 
    */
   getPaginatorData(event: { pageIndex: number; }) {
-    console.log(event);
     if (event.pageIndex === this.pageIndex + 1) {
       this.lowValue = this.lowValue + this.pageSize;
       this.highValue = this.highValue + this.pageSize;

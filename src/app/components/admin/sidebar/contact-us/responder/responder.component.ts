@@ -38,7 +38,6 @@ export class ResponderSugerenciaComponent {
    */
   responder() {
     if (!this.mensaje.trim()) {
-      console.log('No hay datos para añdir el post'); // LOG:
       this.errorService.openDialogError("Todos los campos deben estar rellenos.");
     } else {
       var body = {

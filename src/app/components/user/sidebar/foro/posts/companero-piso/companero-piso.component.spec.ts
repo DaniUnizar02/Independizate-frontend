@@ -87,7 +87,6 @@ describe('CompaneroPisoComponent', () => {
       cockie.esInvitado = true;
       backendServiceMock.setCookie(cockie);
     }
-    console.log(cockie?.esInvitado)
     component.ngOnInit();
     expect(backendServiceMock.getForumCategoriaPosts).toHaveBeenCalledWith('compagneroDePiso');
   });

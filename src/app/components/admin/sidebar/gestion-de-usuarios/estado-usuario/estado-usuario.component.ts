@@ -39,12 +39,10 @@ export class EstadoUsuarioComponent {
   ngOnInit() {
     this.backendService.getUsersIdBasic(this.autor).subscribe(
       response => {
-        console.log("RESPONSE: ", response.users) // LOG:
         this.usuario = {
           fotoPerfil: "data:image/png;base64," + response.users.fotoPerfil,
           usuario: response.users.usuario,
         }
-        console.log(this.usuario) // LOG:
       },
       error => {
         if (error.status === 400) {
