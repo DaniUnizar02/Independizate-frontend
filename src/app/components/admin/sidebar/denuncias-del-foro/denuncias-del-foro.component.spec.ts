@@ -24,11 +24,17 @@ describe('DenunciasDelForoComponent', () => {
   let fixture: ComponentFixture<DenunciasDelForoComponent>;
 
   // Mock del BackendService
-  const backendServiceMock = {
-    cookie: { token: 'mockedToken' },
-    getAdminReports: () => of({ reports: [] }),
-    putApiAdminReportRejectId: () => of({})
-  };
+  const backendServiceMock = jasmine.createSpyObj('BackendService', [
+    'getAdminReports',
+    'putApiAdminReportRejectId',
+    'getCookie'
+  ]);
+
+  backendServiceMock.cookie = { token: 'mockedToken' };
+  backendServiceMock.getAdminReports.and.returnValue(of({ reports: [] }));
+  backendServiceMock.putApiAdminReportRejectId.and.returnValue(of({}));
+  backendServiceMock.getCookie.and.returnValue({ esInvitado: false, usuario: 'testUser' });
+
 
   // Mock del ErrorService
   const errorServiceMock = {

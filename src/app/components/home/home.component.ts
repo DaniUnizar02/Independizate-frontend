@@ -217,7 +217,7 @@ export class HomeComponent implements OnInit {
         if (error.status === 400) {
           this.errorService.openDialogError("Parámetros inválidos");
         } else if (error.status === 401) {
-          this.errorService.redirect("home");
+          this.errorService.openDialogError("Refresca la página he intentalo de nuevo.");
         } else if (error.status === 404) {
           this.errorService.openDialogError("Usuario no encontrado. Revisa el usuario y/o contraseña introducidos.");
         } else if (error.status === 500) {

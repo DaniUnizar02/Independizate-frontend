@@ -32,7 +32,9 @@ describe('CompaneroPisoComponent', () => {
       'getForumCategoriaPostsFavs',
       'getForumCategoriaPosts',
       'putPostsLikePostId',
-      'putPostsFavoritesPostId'
+      'putPostsFavoritesPostId',
+      'getCookie', 
+      'setCookie' 
     ]);
 
     backendService.cookie = { esInvitado: false, usuario: 'testUser' };
@@ -78,7 +80,14 @@ describe('CompaneroPisoComponent', () => {
   });
 
   it('debeberia manejar la recogida de post de invitados', () => {
-    backendServiceMock.cookie.esInvitado = true;
+    backendServiceMock.getCookie.and.returnValue({ usuario: '', nombreUsuario: '', token: '', esInvitado: false });
+    var cockie = backendServiceMock.getCookie();
+    if (cockie) {
+      backendServiceMock.getCookie.and.returnValue(cockie);
+      cockie.esInvitado = true;
+      backendServiceMock.setCookie(cockie);
+    }
+    console.log(cockie?.esInvitado)
     component.ngOnInit();
     expect(backendServiceMock.getForumCategoriaPosts).toHaveBeenCalledWith('compagneroDePiso');
   });

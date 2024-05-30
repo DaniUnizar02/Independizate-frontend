@@ -312,7 +312,7 @@ export class DatosPersonalesComponent {
    * funcionalidad no implementada.
    */
   noImplementada() {
-    this.errorService.openDialogError("Funcionalidad no implementada. Próximamente se podráln cambiar las estampas favoritas.");
+    this.errorService.openDialogError("Funcionalidad no implementada. Próximamente se podrán cambiar las estampas favoritas.");
   }
 
   // NOTE: RESPONSIVE

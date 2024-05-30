@@ -99,7 +99,7 @@ export class GestionDeUsuariosComponent {
         estado: item.activo
       }
 
-      data.estado = item.bloqueado ? 'Activo' : 'Bloqueado';
+      data.estado = item.bloqueado ? 'Bloqueado' : 'Activo';
 
       // console.log(data); // LOG:
       this.todos.push(data);
