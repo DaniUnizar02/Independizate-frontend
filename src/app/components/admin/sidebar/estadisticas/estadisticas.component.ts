@@ -1,3 +1,14 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero encargado de obtener y
+ * mostrar las estadísticas de la aplicación.
+ * 
+ * Archivo: estadisticas.component.ts
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { ApexAxisChartSeries, ApexChart, ApexOptions, ApexPlotOptions, ApexTitleSubtitle, ApexXAxis } from 'ng-apexcharts';

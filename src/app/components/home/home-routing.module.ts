@@ -14,6 +14,8 @@ import { HomeComponent } from './home.component';
 import { RegisterComponent } from './register/register.component';
 import { SidebarComponent } from '../user/sidebar/sidebar.component';
 import { SidebarComponentAdmin } from '../admin/sidebar/sidebar.component';
+import { SharedModule } from '../shared/shared.module';
+
 
 
 const routes: Routes = [
@@ -24,7 +26,7 @@ const routes: Routes = [
     ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
+    imports: [RouterModule.forChild(routes), SharedModule],
     exports: [RouterModule]
 })
 export class HomeRoutingModule {}

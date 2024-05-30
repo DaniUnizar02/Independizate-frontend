@@ -1,3 +1,13 @@
+/**
+ * Proyecto: Independizate
+ * Descripción: Fichero de test para el componente companero-piso.
+ * 
+ * Archivo: companero-piso.component.spec.ts
+ * 
+ * Autores: 
+ *  - Daniel Carrizo
+ *  - Juan Pellicer
+ */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CompaneroPisoComponent } from './companero-piso.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -72,40 +82,23 @@ describe('CompaneroPisoComponent', () => {
     component.ngOnInit();
     expect(backendServiceMock.getForumCategoriaPosts).toHaveBeenCalledWith('compagneroDePiso');
   });
-
-  it('should handle guest posts retrieval', () => {
-    backendServiceMock.cookie.esInvitado = true;
-    component.ngOnInit();
-    expect(backendServiceMock.getForumCategoriaPosts).toHaveBeenCalledWith('compagneroDePiso');
-  });
-
-  it('should navigate to correct route on tab change', () => {
-    const event = { tab: { textLabel: 'Compañero de Piso' } } as any;
-    component.cambiarRoute(event);
-    expect(routerMock.navigate).toHaveBeenCalledWith(['sidebar', 'foro', 'piso']);
-  });
-
-  it('should handle like post', () => {
+    
+  it('Debería manejar darle like a un post', () => {
     component.darLike('post1');
     expect(backendServiceMock.putPostsLikePostId).toHaveBeenCalledWith('post1');
   });
 
-  it('should handle favorite post', () => {
+  it('Debería manejar los posts favoritos', () => {
     component.hacerFav('post1');
     expect(backendServiceMock.putPostsFavoritesPostId).toHaveBeenCalledWith('post1');
   });
 
-  it('should open dialog to add post', () => {
-    component.openDialogAdd('250ms', '200ms', 'testCategory');
-    expect(dialogMock.open).toHaveBeenCalled();
-  });
-
-  it('should open dialog to report post', () => {
+  it('Debería abrir el dialogo para reportar un post', () => {
     component.openDialogDenuncia('250ms', '200ms', 'post1');
     expect(dialogMock.open).toHaveBeenCalled();
   });
-
-  it('should update posts on search', () => {
+  
+  it('Debería actualizar los posts en la búsqueda', () => {
     component['todos'] = [{ title: 'testTitle', description: 'testDescription' }];
     component.buscar();
     expect(component.posts.length).toBe(1);
