@@ -188,10 +188,10 @@ export class DatosPersonalesComponent {
       apellidos: this.infoUsuario.apellidos,
       correo: this.infoUsuario.correo,
       edad: parseInt(this.infoUsuario.edad),
-      sexo: this.infoUsuario.sexo,
+      sexo: this.sexo,
       piso: this.piso,
       ciudad: this.infoUsuario.ciudad,
-      situacion: this.infoUsuario.situacion,
+      situacion: this.situacion,
       fotoPerfil: this.infoUsuario.img
     }
 
