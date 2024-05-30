@@ -24,9 +24,7 @@ export class BuscarPisoComponent {
   private respuesta: any[] = [];
   value: string = '';
 
-  constructor(private location: Location, private backendService: BackendService, private errorService: ErrorService) { }
-
-  ngOnInit(): void {
+  constructor(private location: Location, private backendService: BackendService, private errorService: ErrorService) {
     // NOTE: Responsive
     this.rowHeightBusc = (window.innerWidth <= 1200) ? '1:2' : '2:1';
     this.rowHeightTit = (window.innerWidth <= 1200) ? '1:2' : '2:1';
@@ -57,7 +55,9 @@ export class BuscarPisoComponent {
         direccion: item.address,
         descripcion: item.description,
         precio: item.price + "€",
-        img: item.thumbnail
+        img: item.thumbnail,
+        latitud: item.latitude,
+        longitud: item.longitude,
       }
 
       this.todos.push(data);
