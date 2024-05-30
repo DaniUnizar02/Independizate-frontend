@@ -32,6 +32,10 @@ export class EstadoUsuarioComponent {
     this.estado = data.estado;
   }
 
+  /**
+  * La función ngOnInit llama a la función getUsersIdBasic para obtener la información
+  * básica del usuario.
+  */
   ngOnInit() {
     this.backendService.getUsersIdBasic(this.autor).subscribe(
       response => {
@@ -54,6 +58,9 @@ export class EstadoUsuarioComponent {
     );
   }
 
+  /**
+  * La función bloquear llama a la función putAdminUsersId para bloquear al usuario indicado.
+  */
   bloquear() {
     if (this.estado=='Activo') {
       this.backendService.putAdminUsersId(this.autor).subscribe(
@@ -77,6 +84,9 @@ export class EstadoUsuarioComponent {
     }
   }
 
+  /**
+  * La función activar llama a la función putAdminUsersId para activar al usuario indicado.
+  */
   activar() {
     if (this.estado=='Bloqueado') {
       this.backendService.putAdminUsersId(this.autor).subscribe(

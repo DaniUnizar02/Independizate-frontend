@@ -29,6 +29,10 @@ export class ContactUsDeUsuarioComponent {
 
   constructor(private location: Location, public dialog: MatDialog, private backendService: BackendService, private errorService: ErrorService) { }
 
+ /**
+  * La función ngOnInit ajusta el diseño según el ancho de la ventana para mejorar la capacidad de
+  * respuesta y luego llama a la función getContact.
+  */
   ngOnInit() {
     // NOTE: Responsive
     this.numCols = (window.innerWidth <= 1200) ? 1 : 2;
@@ -39,6 +43,10 @@ export class ContactUsDeUsuarioComponent {
     this.getContact();
   }
 
+  /**
+   * La función `getContact` realiza una solicitud al servicio backend para obtener sugerencias del
+   * administrador, maneja diferentes estados de error y procesa los datos de respuesta.
+   */
   getContact() {
     this.backendService.getAdminSuggestions().subscribe(
       response => {
@@ -62,6 +70,9 @@ export class ContactUsDeUsuarioComponent {
     );
   }
 
+  /**
+   * La función "filtrar" filtra una lista de contactos según un tipo específico.
+   */
   filtrar(): void {
     if (!this.tipo.trim()) {
       this.contacts = this.todos
@@ -77,6 +88,10 @@ export class ContactUsDeUsuarioComponent {
     }
   }
 
+  /**
+   * La función `formatear` procesa datos de una respuesta, filtra elementos incompletos, formatea los
+   * datos e invierte el orden antes de almacenarlos en una variable.
+   */
   private formatear(): void {
     this.todos = []
     for (const item of this.respuesta) {
@@ -97,10 +112,21 @@ export class ContactUsDeUsuarioComponent {
     this.todos = this.todos.reverse()
   }
 
+  /**
+   * La función `goBack` en TypeScript se utiliza para regresar a la ubicación anterior en el historial
+   * del navegador.
+   */
   goBack(): void {
     this.location.back();
   }
 
+  /**
+   * La función "rechazar" envía una solicitud PUT para rechazar una sugerencia por su ID y maneja
+   * diferentes respuestas de error en consecuencia.
+   * @param {string} id - El método `rechazar` que proporcionó parece manejar el rechazo de sugerencias
+   * del administrador según el parámetro `id` que se le pasó. Al llamar a este método, deberá
+   * proporcionar el "id" de la sugerencia/comentario que desea rechazar.
+   */
   rechazar(id: string) {
     this.backendService.putAdminSuggestionsRejectId(id).subscribe(
       response => {
@@ -122,6 +148,30 @@ export class ContactUsDeUsuarioComponent {
     );
   }
 
+  /**
+   * La función `openDialogResponderSugerencia` abre una ventana de diálogo con datos y duraciones de
+   * animación específicos, y actualiza los contactos después de cerrar el diálogo.
+   * @param {string} enterAnimationDuration - El parámetro `enterAnimationDuration` en la función
+   * `openDialogResponderSugerencia` se refiere a la duración de la animación cuando se
+   * abre el cuadro de diálogo. Es un parámetro de tipo cadena que especifica cuánto tiempo debe durar
+   * la animación cuando el cuadro de diálogo ingresa a la vista. Esta duración puede ser en
+   * milisegundos o
+   * @param {string} exitAnimationDuration - El parámetro `exitAnimationDuration` en la función
+   * `openDialogResponderSugerencia` se refiere a la duración de la animación de salida
+   * al cerrar el cuadro de diálogo. Este parámetro especifica cuánto tiempo debe durar la animación
+   * cuando el cuadro de diálogo se cierra o se elimina de la pantalla. Se utiliza para controlar la
+   * @param {string} id - El parámetro `id` en la función `openDialogResponderSugerencia` 
+   * representa el identificador único o clave asociada con la sugerencia o elemento al que se
+   * responde. Se utiliza para identificar la sugerencia específica a la que el usuario desea responder
+   * dentro del diálogo.
+   * @param {string} tipo - El parámetro `tipo` en la función `openDialogResponderSugerencia`
+   * representa el tipo de sugerencia o comentario al que se responde. Podría ser una
+   * categoría o clasificación que ayude a identificar la naturaleza de la sugerencia.
+   * @param {string} info - El parámetro `info` en la función `openDialogResponderSugerencia`
+   * representa información adicional relacionada con la sugerencia o el diálogo que se
+   * abre. Esta información podría ser detalles, descripciones o cualquier otro dato relevante que deba
+   * pasarse al componente de diálogo para su procesamiento o visualización.
+   */
   openDialogResponderSugerencia(enterAnimationDuration: string, exitAnimationDuration: string, id: string, tipo: string, info: string): void {
     const dialog = this.dialog.open(ResponderSugerenciaComponent, {
       width: '50%',
@@ -146,6 +196,11 @@ export class ContactUsDeUsuarioComponent {
   lowValue: number = 0;
   highValue: number = this.pageSize;
 
+  /**
+   * La función `getPaginatorData` actualiza los valores alto y bajo según el índice de página
+   * proporcionado en el objeto de evento.
+   * @param event - índice de página: número;
+   */
   getPaginatorData(event: { pageIndex: number; }) {
     console.log(event);
     if (event.pageIndex === this.pageIndex + 1) {
@@ -166,6 +221,14 @@ export class ContactUsDeUsuarioComponent {
   rowHeightBusc: string = '2:1'
   rowHeightTit: string = '2:1'
 
+  /**
+   * La función `onResize` ajusta el número de columnas y alturas de filas según el ancho de la
+   * ventana.
+   * @param {any} event - El parámetro `event` en la función `onResize` es un objeto que representa el
+   * evento desencadenado cuando se cambia el tamaño de la ventana. Contiene información sobre el
+   * evento, como el elemento de destino (en este caso, la ventana), que se puede usar para acceder a
+   * propiedades como `innerWidth` para determinar
+   */
   onResize(event: any) {
     this.numCols = (event.target.innerWidth <= 1200) ? 1 : 2;
     this.rowHeight = (event.target.innerWidth <= 1200) ? '2:1' : '2.5:1';

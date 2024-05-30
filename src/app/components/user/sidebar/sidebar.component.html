@@ -47,7 +47,9 @@
                 <p class="reputacion">Reputación: {{ usuario.reputacion }}</p>
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="7" rowspan="2" *ngIf="invitado"></mat-grid-tile>
+            <mat-grid-tile colspan="7" rowspan="2" *ngIf="invitado">
+                <p class="usuario">Invitado</p>
+            </mat-grid-tile>
 
             <mat-grid-tile colspan="1" routerLink="/sidebar/piso"><mat-icon
                     color="accent">place</mat-icon></mat-grid-tile>

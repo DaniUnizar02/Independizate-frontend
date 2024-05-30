@@ -102,6 +102,12 @@ export class EstadisticasComponent {
     );
   }
   
+  /**
+   * La función `HoraPunta` se encarga de rellenar los datos que necesita el gráfico para mostrar las horas puntas
+   * del usuario.
+   * @param {any} data - El parámetro `data` en la función `HoraPunta` contiene toda la información que el backend 
+   * devuelve, siendo parseada y mostrada posterirmente el el gráfico.
+   */
   private HoraPunta(data: any) {
     var parsedObject = JSON.parse(JSON.stringify(data));
     var keys = Object.keys(parsedObject);
@@ -127,6 +133,12 @@ export class EstadisticasComponent {
     };
   }
 
+  /**
+   * La función `Busquedas` se encarga de rellenar los datos que necesita el gráfico para mostrar las busquedas
+   * del usuario.
+   * @param {any} data - El parámetro `data` en la función `Busquedas` contiene toda la información que el backend 
+   * devuelve, siendo parseada y mostrada posterirmente el el gráfico.
+   */
   private Busquedas(data: any) {
     var parsedObject = JSON.parse(JSON.stringify(data));
     var keys = Object.keys(parsedObject);
@@ -152,6 +164,12 @@ export class EstadisticasComponent {
     };
   }
 
+  /**
+   * La función `Ciudades` se encarga de rellenar los datos que necesita el gráfico para mostrar las ciudades
+   * del usuario.
+   * @param {any} data - El parámetro `data` en la función `Ciudades` contiene toda la información que el backend 
+   * devuelve, siendo parseada y mostrada posterirmente el el gráfico.
+   */
   private Ciudades(data: any) {
     var parsedObject = JSON.parse(JSON.stringify(data));
     var keys = Object.keys(parsedObject);
@@ -177,6 +195,12 @@ export class EstadisticasComponent {
     };
   }
 
+  /**
+   * La función `Usuarios` se encarga de rellenar los datos que necesita el gráfico para mostrar los usuarios
+   * del usuario.
+   * @param {any} data - El parámetro `data` en la función `Usuarios` contiene toda la información que el backend 
+   * devuelve, siendo parseada y mostrada posterirmente el el gráfico.
+   */
   private Usuarios(data: any) {
     var keys: any[] = [];
     var values: number[] = [];
@@ -208,6 +232,12 @@ export class EstadisticasComponent {
     };
   }
 
+  /**
+   * La función `Inicios` se encarga de rellenar los datos que necesita el gráfico para mostrar los inicios de sesión
+   * del usuario.
+   * @param {any} data - El parámetro `data` en la función `Inicios` contiene toda la información que el backend 
+   * devuelve, siendo parseada y mostrada posterirmente el el gráfico.
+   */
   private Inicios(data: any) {
     var parsedObject = JSON.parse(JSON.stringify(data));
     var keys = Object.keys(parsedObject);
@@ -233,6 +263,12 @@ export class EstadisticasComponent {
     };
   }
 
+  /**
+   * La función `Registros` se encarga de rellenar los datos que necesita el gráfico para mostrar los registros
+   * del usuario.
+   * @param {any} data - El parámetro `data` en la función `Registros` contiene toda la información que el backend 
+   * devuelve, siendo parseada y mostrada posterirmente el el gráfico.
+   */
   private Registros(data: any) {
     var parsedObject = JSON.parse(JSON.stringify(data));
     var keys = Object.keys(parsedObject);
@@ -258,6 +294,10 @@ export class EstadisticasComponent {
     };
   }
 
+  /**
+   * La función `goBack` en TypeScript se utiliza para regresar a la ubicación anterior en el historial
+   * del navegador.
+   */
   goBack(): void {
     this.location.back();
   }

@@ -31,6 +31,11 @@ export class ResponderSugerenciaComponent {
     this.tipo = data.tipo;
   }
 
+  /**
+   * La función `respondedor` comprueba si hay un mensaje para agregar a una publicación y, de ser así,
+   * envía una solicitud PUT con el mensaje a un servicio backend, manejando diferentes estados de
+   * error en consecuencia.
+   */
   responder() {
     if (!this.mensaje.trim()) {
       console.log('No hay datos para añdir el post'); // LOG:

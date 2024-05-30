@@ -18,7 +18,7 @@ export class DatosPersonalesComponent {
 
   s: string[] = [];
 
-  private misFavs: any[] = [{id: '', foto: ''}];
+  private misFavs: any[] = [{ id: '', foto: '' }];
   private imageBase64: string = '';
   private uploadImage = false;
 
@@ -146,9 +146,10 @@ export class DatosPersonalesComponent {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = (e) => {
+      reader.onload = () => {
         if (reader.result != null) {
           this.imageBase64 = reader.result.toString();
+          this.imageBase64 = this.imageBase64.split(',')[1];
         }
       };
       reader.readAsDataURL(file);
@@ -172,6 +173,7 @@ export class DatosPersonalesComponent {
 
     if (this.uploadImage) {
       data.fotoPerfil = this.imageBase64;
+      console.log(data.fotoPerfil);
     }
 
     if (!this.infoUsuario.usuario.trim() || !this.infoUsuario.nombre.trim() || !this.infoUsuario.apellidos.trim() || !this.infoUsuario.correo.trim() || !this.infoUsuario.edad.toString().trim() || !this.infoUsuario.sexo.trim() || !this.infoUsuario.piso.trim() || !this.infoUsuario.ciudad.trim() || !this.infoUsuario.situacion.trim() || !this.infoUsuario.img.trim()) {
@@ -185,6 +187,15 @@ export class DatosPersonalesComponent {
 
       this.backendService.putProfilesId(dataCockie, data).subscribe(
         response => {
+          var cockie = this.backendService.getCookie();
+          if (cockie) {
+            this.backendService.setCookie({
+              usuario: cockie.usuario,
+              nombreUsuario: data.usuario,
+              token: response.token,
+              esInvitado: false
+            });
+          }
           this.getInfo();
           this.getStamps();
         },
@@ -215,7 +226,7 @@ export class DatosPersonalesComponent {
   }
 
   openDialogCambiarEstampa(enterAnimationDuration: string, exitAnimationDuration: string, id: string, foto: string): void {
-    var cockie=this.backendService.getCookie();
+    var cockie = this.backendService.getCookie();
     var data = '';
     if (cockie) {
       data = cockie.usuario;

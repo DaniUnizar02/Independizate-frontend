@@ -87,6 +87,10 @@ export class MapaComponent {
     );
   }
 
+  /**
+   * La función initMap() se encarga de inicializar el mapa de Leaflet en la latitud
+   * y longitud marcada por "markers[0]".
+   */
   private initMap(): void {
     this.map = L.map('map', {
       center: [this.markers[0].lat, this.markers[0].lng], // Latitude and Longitude
@@ -98,6 +102,9 @@ export class MapaComponent {
     }).addTo(this.map);
   }
 
+  /**
+   * La función addMarkers() se encarga de añadir los marcadores al mapa.
+   */
   private addMarkers(): void {
     for (const markerData of this.markers) {
       const { lat, lng, text, imageUrl, id } = markerData;
@@ -138,7 +145,10 @@ export class MapaComponent {
   }
 
   // NOTE: Info piso
-
+  /**
+   * La función navigateToInfoPiso() se encarga de navegar a la página de información del piso
+   * seleccionado en el mapa.
+   */
   navigateToInfoPiso(id: string) {
     this.router.navigate(['sidebar', 'info-piso', id]);
   }

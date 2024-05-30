@@ -48,6 +48,9 @@ export class SidebarComponent {
     }
   }
 
+  /**
+   * Función encargada de obtener los datos del usuario.
+   */
   getUsuario() {
     var cockie=this.backendService.getCookie();
     var data = '';
@@ -91,6 +94,9 @@ export class SidebarComponent {
   @ViewChild('sidenav') sidenav!: MatSidenav;
   @ViewChild('sidenav1') sidenav1!: MatSidenav;
 
+  /**
+   * La función onResize se encarga de abrir la barra lateral si la pantalla es mayor a 600px.
+   */
   onResize(event: any) {
     if (event.target.innerWidth > 600) {
       this.sidenav.open();

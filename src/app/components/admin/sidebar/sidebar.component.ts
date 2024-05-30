@@ -31,6 +31,9 @@ export class SidebarComponentAdmin {
     console.log("COOCKIE:", this.backendService.getCookie())
   }
 
+  /**
+   * La función `getUsuarios` sirve para obtener la información del usuario logueado.
+   */
   getUsuario() {
     var cockie = this.backendService.getCookie();
       var dataCockie = '';
@@ -64,6 +67,14 @@ export class SidebarComponentAdmin {
   @ViewChild('sidenav') sidenav!: MatSidenav;
   @ViewChild('sidenav1') sidenav1!: MatSidenav;
 
+  /**
+   * La función `onResize` ajusta el número de columnas y alturas de filas según el ancho de la
+   * ventana.
+   * @param {any} event - El parámetro `event` en la función `onResize` es un objeto que representa el
+   * evento desencadenado cuando se cambia el tamaño de la ventana. Contiene información sobre el
+   * evento, como el elemento de destino (en este caso, la ventana), que se puede usar para acceder a
+   * propiedades como `innerWidth` para determinar
+   */
   onResize(event: any) {
     if (event.target.innerWidth > 600) {
       this.sidenav.open();

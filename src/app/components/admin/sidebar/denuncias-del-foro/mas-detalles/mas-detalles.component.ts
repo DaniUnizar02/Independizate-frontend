@@ -40,6 +40,11 @@ export class MasDetallesComponent {
     this.esEliminar = (this.tipo=="Post foro erroneo") ? false : true;
   }
 
+  /**
+   * La función `ngOnInit` inicializa un componente estableciendo una variable booleana, realizando una
+   * llamada API para recuperar datos de publicación basados en una referencia y manejando diferentes
+   * escenarios de error.
+   */
   ngOnInit() {
     this.cambiarForo = false;
 
@@ -65,6 +70,13 @@ export class MasDetallesComponent {
     );
   }
 
+  /**
+   * La función `accion` toma una acción como parámetro, construye un cuerpo de respuesta basado en la
+   * acción, realiza una solicitud PUT a un servicio backend y maneja diferentes escenarios de error.
+   * @param {string} accion - El parámetro `accion` en la función `accion` es una cadena que determina
+   * la acción a realizar. La función verifica el valor de `accion` y en base a ese valor, crea un
+   * mensaje de respuesta en el objeto `body`. Si `acción` está vacía o es igual a un espacio
+   */
   accion(accion: string) {
     var body = {
       respuesta: ' '
