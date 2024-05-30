@@ -43,6 +43,10 @@ export class RecetasComponent {
     this.invitado = dataCockie;
   }
 
+  /**
+   * La función `ngOnInit` ajusta el diseño según el ancho de la ventana.
+   * 
+   */
   ngOnInit() {// NOTE: Responsive
     this.numCols = (window.innerWidth <= 1200) ? 1 : 2;
     this.rowHeight = (window.innerWidth <= 1200) ? '2:1' : '2.5:1';
@@ -54,6 +58,9 @@ export class RecetasComponent {
     this.getPosts();
   }
 
+  /**
+   * La función `ngDoCheck` se encarga de actualizar los posts.
+   */
   private getMyPosts() {
     // Se ha insertado un usuario por defecto pero tiene que ser variable
     // console.log("USUARIO: ", this.backendService.user); // LOG:
@@ -86,6 +93,10 @@ export class RecetasComponent {
     );
   }
 
+  /**
+   * La función `getPosts` se encarga de obtener los posts de la categoría "recetas"
+   * distintos según si el usuario es invitado o no.
+   */
   private getPosts() {
     if (this.invitado) {
       this.getPostsGuest();
@@ -94,6 +105,10 @@ export class RecetasComponent {
     }
   }
 
+  /**
+   * La función `getPostsUser` se encarga de obtener los posts de la categoría "recetas
+   * de un usuario registrado.
+   */
   private getPostsUser() {
     this.todos = [];
     this.backendService.getForumCategoriaPostsFavs("recetas").subscribe(
@@ -118,6 +133,10 @@ export class RecetasComponent {
     );
   }
 
+  /**
+   * La función `getPostsGuest` se encarga de obtener los posts de la categoría "recetas"
+   * de un usuario invitado.
+   */
   private getPostsGuest() {
     this.todos = [];
     this.backendService.getForumCategoriaPosts("recetas").subscribe(
@@ -142,6 +161,10 @@ export class RecetasComponent {
     );
   }
 
+  /**
+   * La función `formatear` se encarga de formatear los posts de la categoría "recetas".
+   * @param posts 
+   */
   private formatear(posts: any): void {
     for (const item of posts) {
       var data = {
@@ -167,6 +190,9 @@ export class RecetasComponent {
     this.todos = this.todos.reverse();
   }
 
+  /**
+   * La función `buscar` se encarga de buscar los posts de la categoría "recetas".
+   */
   buscar() {
     console.log(this.value);
     if (!this.value.trim()) {
@@ -180,6 +206,10 @@ export class RecetasComponent {
     }
   }
 
+  /**
+   * La función `cambiarRoute` se encarga de cambiar la ruta de la página.
+   * @param event 
+   */
   cambiarRoute(event: MatTabChangeEvent) {
     var ruta = event.tab.textLabel.toLowerCase().replace(' ', '-');
     console.log(ruta);
@@ -194,6 +224,12 @@ export class RecetasComponent {
 
   // NOTE: Añadir post
 
+  /**
+   * La función `openDialogAdd` se encarga de abrir un dialogo para añadir un post.
+   * @param enterAnimationDuration 
+   * @param exitAnimationDuration 
+   * @param categoria 
+   */
   openDialogAdd(enterAnimationDuration: string, exitAnimationDuration: string, categoria: string): void {
     const dialog = this.dialog.open(AnadirPostComponent, {
       width: '50%',
@@ -209,12 +245,20 @@ export class RecetasComponent {
 
   // NOTE: Conversación
 
+  /**
+   * La función `navigateToConversacion` se encarga de navegar a la conversación de un post.
+   * @param post_id 
+   */
   navigateToConversacion(post_id: string) {
     this.router.navigate(['sidebar', 'foro', 'conversacion', post_id])
   }
 
   // NOTE: Like
 
+  /**
+   * Función que da like a un post.
+   * @param post_id 
+   */
   darLike(post_id: string) {
     console.log(post_id); // LOG:
     this.backendService.putPostsLikePostId(post_id).subscribe(
@@ -240,6 +284,10 @@ export class RecetasComponent {
 
   // NOTE: Fav
 
+  /**
+   * Función que añade un post a favoritos.
+   * @param post_id 
+   */
   hacerFav(post_id: string) {
     console.log(post_id); // LOG:
     this.backendService.putPostsFavoritesPostId(post_id).subscribe(
@@ -265,6 +313,12 @@ export class RecetasComponent {
 
   // NOTE: Denuncia
 
+  /**
+   * La función `openDialogDenuncia` se encarga de abrir un dialogo para poner una denuncia.
+   * @param enterAnimationDuration 
+   * @param exitAnimationDuration 
+   * @param post_id 
+   */
   openDialogDenuncia(enterAnimationDuration: string, exitAnimationDuration: string, post_id: string): void {
     const dialog = this.dialog.open(PonerDenunciaComponent, {
       width: '50%',
@@ -281,6 +335,10 @@ export class RecetasComponent {
   lowValue: number = 0;
   highValue: number = this.pageSize;
 
+  /**
+   * Función que actualiza los datos del paginador.
+   * @param event 
+   */
   getPaginatorData(event: { pageIndex: number; }) {
     console.log(event);
     if (event.pageIndex === this.pageIndex + 1) {
@@ -300,6 +358,10 @@ export class RecetasComponent {
   rowHeight: string = '2.5:1'
   rowHeightBusc: string = '2:1'
 
+  /**
+   * Función que se ejecuta al redimensionar la ventana del navegador para ajustar el número de columnas y la altura de las filas.
+   * @param event 
+   */
   onResize(event: any) {
     this.numCols = (event.target.innerWidth <= 1200) ? 1 : 2;
     this.rowHeight = (event.target.innerWidth <= 1200) ? '2:1' : '2.5:1';

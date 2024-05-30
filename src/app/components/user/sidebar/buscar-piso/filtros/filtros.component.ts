@@ -26,5 +26,8 @@ export class FiltrosComponent {
 
   constructor(private _formBuilder: FormBuilder) {}
 
+  /**
+   * Función en desuso.
+   */
   filtrar() {}
 }

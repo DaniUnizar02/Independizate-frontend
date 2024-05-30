@@ -43,6 +43,9 @@ export class CompaneroPisoComponent {
     this.invitado = dataCockie;
   }
 
+  /**
+   * La función `ngOnInit` ajusta el diseño según el ancho de la ventana.
+   */
   ngOnInit() {
     // NOTE: Responsive
     this.numCols = (window.innerWidth <= 1200) ? 1 : 2;
@@ -63,6 +66,9 @@ export class CompaneroPisoComponent {
     this.getPosts();
   }
 
+  /**
+   * La función `ngDoCheck` se encarga de actualizar las tarjetas de los posts.
+   */
   private getMyPosts() {
     // Se ha insertado un usuario por defecto pero tiene que ser variable
     // console.log("USUARIO: ", this.backendService.user); // LOG:
@@ -94,6 +100,9 @@ export class CompaneroPisoComponent {
     );
   }
 
+  /**
+   * Función que obtiene los post de usuarios o invitados.
+   */
   private getPosts() {
     if (this.invitado) {
       this.getPostsGuest();
@@ -102,6 +111,10 @@ export class CompaneroPisoComponent {
     }
   }
 
+  /**
+   * Función que obtiene los post de los usuarios
+   * en la categoría de "compañero de piso".
+   */
   private getPostsUser() {
     this.todos = [];
     this.backendService.getForumCategoriaPostsFavs("compagneroDePiso").subscribe(
@@ -126,6 +139,10 @@ export class CompaneroPisoComponent {
     );
   }
 
+  /**
+   * Función que obtiene los post de los invitados
+   * en la categoría de "compañero de piso".
+   */
   private getPostsGuest() {
     console.log("Get posts invitado"); // LOG:
     console.log("Invitado: ", this.invitado); // LOG:
@@ -152,6 +169,9 @@ export class CompaneroPisoComponent {
     );
   }
 
+  /**
+   * La función `formatear` se encarga de dar formato a los posts
+   */
   private formatear(posts: any): void {
     for (const item of posts) {
       var data = {
@@ -176,6 +196,9 @@ export class CompaneroPisoComponent {
     this.todos = this.todos.reverse();
   }
 
+  /**
+   * Función que busca los posts en función de la query introducida.
+   */
   buscar() {
     console.log(this.value);
     if (!this.value.trim()) {
@@ -189,6 +212,10 @@ export class CompaneroPisoComponent {
     }
   }
 
+  /**
+   * Función que cambia la ruta en función de la pestaña seleccionada.
+   * @param event 
+   */
   cambiarRoute(event: MatTabChangeEvent) {
     var ruta = event.tab.textLabel.toLowerCase().replace(' ', '-');
     console.log(ruta);
@@ -203,6 +230,12 @@ export class CompaneroPisoComponent {
 
   // NOTE: Añadir post
 
+  /**
+   * Función que abre un dialogo para añadir un post en la categoría de "compañero de piso".
+   * @param enterAnimationDuration 
+   * @param exitAnimationDuration 
+   * @param categoria 
+   */
   openDialogAdd(enterAnimationDuration: string, exitAnimationDuration: string, categoria: string): void {
     const dialog = this.dialog.open(AnadirPostComponent, {
       width: '50%',
@@ -217,13 +250,19 @@ export class CompaneroPisoComponent {
   }
 
   // NOTE: Conversación
-
+  /**
+   * Función que navega a la conversación de un post.
+   * @param post_id 
+   */
   navigateToConversacion(post_id: string) {
     this.router.navigate(['sidebar', 'foro', 'conversacion', post_id])
   }
 
   // NOTE: Like
-
+  /**
+   * Función que da like al post de id `post_id`.
+   * @param post_id 
+   */
   darLike(post_id: string) {
     console.log(post_id); // LOG:
     this.backendService.putPostsLikePostId(post_id).subscribe(
@@ -249,6 +288,10 @@ export class CompaneroPisoComponent {
 
   // NOTE: Fav
 
+  /**
+   * Función que añade un post a favoritos.
+   * @param post_id 
+   */
   hacerFav(post_id: string) {
     console.log(post_id); // LOG:
     this.backendService.putPostsFavoritesPostId(post_id).subscribe(
@@ -274,6 +317,12 @@ export class CompaneroPisoComponent {
 
   // NOTE: Denuncia
 
+  /**
+   * Función que abre un dialogo para poner una denuncia a un post.
+   * @param enterAnimationDuration 
+   * @param exitAnimationDuration 
+   * @param post_id 
+   */
   openDialogDenuncia(enterAnimationDuration: string, exitAnimationDuration: string, post_id: string): void {
     const dialog = this.dialog.open(PonerDenunciaComponent, {
       width: '50%',
@@ -290,6 +339,10 @@ export class CompaneroPisoComponent {
   lowValue: number = 0;
   highValue: number = this.pageSize;
 
+  /**
+   * Función que actualiza los datos del paginador.
+   * @param event 
+   */
   getPaginatorData(event: { pageIndex: number; }) {
     console.log(event);
     if (event.pageIndex === this.pageIndex + 1) {
@@ -310,6 +363,11 @@ export class CompaneroPisoComponent {
   rowHeight: string = '2.5:1'
   rowHeightBusc: string = '2:1'
 
+  /**
+   * Función que se ejecuta al redimensionar la ventana del navegador
+   * para ajustar el número de columnas y la altura de las filas.
+   * @param event 
+   */
   onResize(event: any) {
     this.numCols = (event.target.innerWidth <= 1200) ? 1 : 2;
     this.rowHeight = (event.target.innerWidth <= 1200) ? '2:1' : '2.5:1';

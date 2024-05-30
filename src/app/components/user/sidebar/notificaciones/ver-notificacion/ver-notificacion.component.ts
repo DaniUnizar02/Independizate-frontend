@@ -36,6 +36,11 @@ export class VerNotificacionComponent {
     // console.log(this.notificacion) // LOG:
   }
 
+  /**
+   * Función que marca una notificación como leída.
+   * @param notificacion_id Identificador de la notificación.
+   * @param notificacion_color Color de la notificación.
+   */
   notificacionNoLeida(notificacion_id: string, notificacion_color: string): void {   
     // console.log(notificacion_color);
     if (notificacion_color != '') {
@@ -60,6 +65,9 @@ export class VerNotificacionComponent {
     }
   }
 
+  /**
+   * Función que navega a la referencia de la notificación.
+   */
   navigateToReferencia() {
     this.dialogRef.close();
     this.router.navigate(['sidebar','foro','conversacion', this.notificacion.idPost])

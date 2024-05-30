@@ -43,6 +43,10 @@ export class LimpiezaComponent {
     this.invitado = dataCockie;
   }
 
+  /**
+   * La función `ngOnInit` ajusta el diseño según el ancho de la ventana
+   * y llama a las funciones necesarias para obtener los posts.
+   */
   ngOnInit() {
     // NOTE: Responsive
     this.numCols = (window.innerWidth <= 1200) ? 1 : 2;
@@ -55,6 +59,10 @@ export class LimpiezaComponent {
     this.getPosts();
   }
 
+  /**
+   * La función getMyPosts se encarga de obtener los posts favoritos y los posts a los
+   * que les ha dado like del usuario.
+   */
   private getMyPosts() {
     // Se ha insertado un usuario por defecto pero tiene que ser variable
     // console.log("USUARIO: ", this.backendService.user); // LOG:
@@ -86,7 +94,10 @@ export class LimpiezaComponent {
       }
     );
   }
-
+  /**
+   * La función getPosts se encarga de obtener los posts según
+   * si eres imvitados.
+   */
   private getPosts() {
     if (this.invitado) {
       this.getPostsGuest();
@@ -95,6 +106,9 @@ export class LimpiezaComponent {
     }
   }
 
+  /**
+   * La función getPostsUser se encarga de obtener los posts de un usuario.
+   */
   getPostsUser() {
     this.todos = [];
     this.backendService.getForumCategoriaPostsFavs("limpieza").subscribe(
@@ -119,6 +133,9 @@ export class LimpiezaComponent {
     );
   }
 
+  /**
+   * La función getPostsGuest se encarga de obtener los posts de un invitado.
+   */
   getPostsGuest() {
     this.todos = [];
     this.backendService.getForumCategoriaPosts("limpieza").subscribe(
@@ -143,6 +160,10 @@ export class LimpiezaComponent {
     );
   }
 
+  /**
+   * La función formatear se encarga de dar formato a los posts.
+   * @param posts 
+   */
   private formatear(posts: any): void {
     for (const item of posts) {
       var data = {
@@ -167,6 +188,9 @@ export class LimpiezaComponent {
     this.todos = this.todos.reverse();
   }
 
+  /**
+   * La función buscar se encarga de buscar los posts en función de la query introducida.
+   */
   buscar() {
     console.log(this.value);
     if (!this.value.trim()) {
@@ -180,6 +204,10 @@ export class LimpiezaComponent {
     }
   }
 
+  /**
+   * La función cambiarRoute se encarga de cambiar la ruta de la página.
+   * @param event 
+   */
   cambiarRoute(event: MatTabChangeEvent) {
     var ruta = event.tab.textLabel.toLowerCase().replace(' ', '-');
     console.log(ruta);
@@ -194,6 +222,12 @@ export class LimpiezaComponent {
 
   // NOTE: Añadir post
 
+  /**
+   * Esta función abre un dialogo para añadir un post.
+   * @param enterAnimationDuration 
+   * @param exitAnimationDuration 
+   * @param categoria 
+   */
   openDialogAdd(enterAnimationDuration: string, exitAnimationDuration: string, categoria: string): void {
     const dialog = this.dialog.open(AnadirPostComponent, {
       width: '50%',
@@ -208,13 +242,20 @@ export class LimpiezaComponent {
   }
 
   // NOTE: Conversación
-
+  /**
+   * Esta función navega a la conversación de un post.
+   * @param post_id 
+   */
   navigateToConversacion(post_id: string) {
     this.router.navigate(['sidebar', 'foro', 'conversacion', post_id])
   }
 
   // NOTE: Like
 
+  /**
+   * Esta función da like a un post.
+   * @param post_id 
+   */
   darLike(post_id: string) {
     console.log(post_id); // LOG:
     this.backendService.putPostsLikePostId(post_id).subscribe(
@@ -239,7 +280,10 @@ export class LimpiezaComponent {
   }
 
   // NOTE: Fav
-
+  /**
+   * La función hacerFav se encarga de añadir un post a favoritos.
+   * @param post_id 
+   */
   hacerFav(post_id: string) {
     console.log(post_id); // LOG:
     this.backendService.putPostsFavoritesPostId(post_id).subscribe(
@@ -264,7 +308,12 @@ export class LimpiezaComponent {
   }
 
   // NOTE: Denuncia
-
+  /**
+   * La función openDialogDenuncia abre un dialogo para poner una denuncia.
+   * @param enterAnimationDuration 
+   * @param exitAnimationDuration 
+   * @param post_id 
+   */
   openDialogDenuncia(enterAnimationDuration: string, exitAnimationDuration: string, post_id: string): void {
     const dialog = this.dialog.open(PonerDenunciaComponent, {
       width: '50%',
@@ -281,6 +330,9 @@ export class LimpiezaComponent {
   lowValue: number = 0;
   highValue: number = this.pageSize;
 
+  /**
+   * Función que actualiza los datos del paginador.
+   */
   getPaginatorData(event: { pageIndex: number; }) {
     console.log(event);
     if (event.pageIndex === this.pageIndex + 1) {
@@ -300,6 +352,10 @@ export class LimpiezaComponent {
   rowHeight: string = '2.5:1'
   rowHeightBusc: string = '2:1'
 
+  /**
+   * Función que ajusta el diseño según el ancho de la ventana.
+   * @param event 
+   */
   onResize(event: any) {
     this.numCols = (event.target.innerWidth <= 1200) ? 1 : 2;
     this.rowHeight = (event.target.innerWidth <= 1200) ? '2:1' : '2.5:1';

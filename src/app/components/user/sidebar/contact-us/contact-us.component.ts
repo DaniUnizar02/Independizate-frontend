@@ -37,6 +37,10 @@ export class ContactUsComponent {
     }
   }
 
+  /**
+   * La función `ngOnInit` ajusta el diseño según el ancho de la ventana para mejorar la capacidad de
+   * respuesta.
+   */
   ngOnInit() {
     // NOTE: Responsive
     this.numCols = (window.innerWidth <= 1200) ? 1 : 4;
@@ -44,11 +48,18 @@ export class ContactUsComponent {
     this.rowHeight = (window.innerWidth <= 1200) ? "8:1" : "2:1";
     this.rowHeightTit = (window.innerWidth <= 1200) ? '1:2' : '2:1';
   }
-
+  /**
+   * La función `goBack` en TypeScript se utiliza para regresar a la ubicación anterior en el historial
+   * del navegador.
+   */
   goBack(): void {
     this.location.back();
   }
 
+  /**
+   * La función `enviarFormulario` se utiliza para enviar el formulario de contacto al
+   * backend, maneja diferentes estados de error y procesa los datos de respuesta.
+   */
   enviarFormulario(): void {
     if (!this.tipo.trim() || !this.titulo.trim() || !this.descripcion.trim()) {
       this.errorService.openDialogError("Todos los campos tienen que estar rellenos.");
@@ -93,6 +104,11 @@ export class ContactUsComponent {
   rowHeight: string = "2:1"
   rowHeightTit: string = '2:1'
 
+  /**
+   * La función `onResize` se ejecuta al redimensionar
+   * la ventana del navegador para ajustar el número de columnas y la altura de las filas.
+   * @param event 
+   */
   onResize(event: any) {
     this.numCols = (event.target.innerWidth <= 1200) ? 1 : 4;
     this.colspan = (event.target.innerWidth <= 1200) ? 1 : 3;

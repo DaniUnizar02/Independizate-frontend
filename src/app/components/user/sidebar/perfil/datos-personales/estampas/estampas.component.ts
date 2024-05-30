@@ -31,6 +31,10 @@ export class EstampasComponent {
     if (this.estampaNueva.foto!=undefined) { this.foto.push("data:image/png;base64," + this.estampaNueva.foto); }
   }
 
+  /**
+   * Función que cambia la estampa seleccionada.
+   * @param estampa Estampa seleccionada.
+   */
   cambiarEstampa() {
     if(this.seleccionada.trim()) {
       this.estampa1.id = (this.seleccionada=='1') ? this.estampaNueva.id : this.estampa1.id;

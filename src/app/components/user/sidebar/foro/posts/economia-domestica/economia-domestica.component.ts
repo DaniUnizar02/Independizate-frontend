@@ -44,6 +44,10 @@ export class EconomiaDomesticaComponent {
     this.invitado = dataCockie;
   }
 
+  /**
+   * La función `ngOnInit` se encarga de obtener de
+   * la base de datos los posts de la categoría "Economía doméstica".
+   */
   ngOnInit() {
     // NOTE: Responsive
     this.numCols = (window.innerWidth <= 1200) ? 1 : 2;
@@ -56,6 +60,10 @@ export class EconomiaDomesticaComponent {
     this.getPosts();
   }
 
+  /**
+   * La función `getMyPosts` se encarga de obtener los posts favoritos y los posts
+   * que ha dado like el usuario.
+   */
   private getMyPosts() {
     // Se ha insertado un usuario por defecto pero tiene que ser variable
     // console.log("USUARIO: ", this.backendService.user); // LOG:
@@ -87,6 +95,10 @@ export class EconomiaDomesticaComponent {
     );
   }
 
+  /**
+   * La función `getPosts` diferencia si el usuario es invitado o no para
+   * obtener los posts de la categoría "Economía doméstica".
+   */
   private getPosts() {
     if (this.invitado) {
       this.getPostsGuest();
@@ -95,6 +107,10 @@ export class EconomiaDomesticaComponent {
     }
   }
 
+  /**
+   * La función `getPostsUser` se encarga de obtener los posts de la categoría "Economía doméstica"
+   * para un usuario registrado.
+   */
   getPostsUser() {
     this.todos = [];
     this.backendService.getForumCategoriaPostsFavs("economiaDomestica").subscribe(
@@ -119,6 +135,10 @@ export class EconomiaDomesticaComponent {
     );
   }
 
+  /**
+   * La función `getPostsGuest` se encarga de obtener los posts de la categoría "Economía doméstica"
+   * para un usuario invitado.
+   */
   getPostsGuest() {
     this.todos = [];
     this.backendService.getForumCategoriaPosts("economiaDomestica").subscribe(
@@ -143,6 +163,9 @@ export class EconomiaDomesticaComponent {
     );
   }
 
+  /**
+   * Función que da formato a los posts obtenidos de la base de datos.
+   */
   private formatear(posts: any): void {
     for (const item of posts) {
       var data = {
@@ -167,6 +190,9 @@ export class EconomiaDomesticaComponent {
     this.todos = this.todos.reverse();
   }
 
+  /**
+   * Función que busca los posts en función de la query introducida.
+   */
   buscar() {
     console.log(this.value);
     if (!this.value.trim()) {

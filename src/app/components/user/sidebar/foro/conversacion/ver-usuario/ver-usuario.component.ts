@@ -35,6 +35,10 @@ export class VerUsuarioComponent {
     this.autor = data.autor;
   } 
 
+  /**
+   * Función que obtiene la información del usuario a traves de una
+   * petición al backend.
+   */
   ngOnInit() {
     this.backendService.getUsersIdBasic(this.autor).subscribe(
       response => {

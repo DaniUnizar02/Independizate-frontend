@@ -47,6 +47,9 @@ export class BuscarPisoComponent {
     );
   }
 
+  /**
+   * Función que formatea los datos de la respuesta de la API.
+   */
   formatear(): void {
     for (const item of this.respuesta) {
       var data = {
@@ -65,6 +68,9 @@ export class BuscarPisoComponent {
     this.todos = this.todos.reverse()
   }
 
+  /**
+   * Función que busca los pisos en función de la query introducida.
+   */
   buscar(): void {
     if (!this.value.trim()) {
       console.log('No search query provided. Displaying all items.');
@@ -83,6 +89,10 @@ export class BuscarPisoComponent {
     }
   }
 
+  /**
+   * La función `goBack` en TypeScript se utiliza para regresar a la ubicación anterior en el historial
+   * del navegador.
+   */
   goBack(): void {
     this.location.back();
   }
@@ -92,6 +102,11 @@ export class BuscarPisoComponent {
   rowHeightBusc: string = '2:1'
   rowHeightTit: string = '2:1'
 
+  /**
+   * La función `onResize` se ejecuta al redimensionar la ventana
+   * del navegador para ajustar la altura de las filas.
+   * @param event 
+   */
   onResize(event: any) {
     this.rowHeightBusc = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
     this.rowHeightTit = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';

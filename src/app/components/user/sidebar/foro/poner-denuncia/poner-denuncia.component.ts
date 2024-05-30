@@ -32,6 +32,9 @@ export class PonerDenunciaComponent {
     this.id = data.post_id;
   }
 
+  /**
+   * La función denunciar se encarga de añadir una denuncia al post.
+   */
   denunciar() {
     if (!this.tipo.trim() || !this.respuesta.trim()) {
       console.log('No hay datos para añdir el post'); // LOG:

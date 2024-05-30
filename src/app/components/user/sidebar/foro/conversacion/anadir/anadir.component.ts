@@ -32,6 +32,9 @@ export class AnadirConversacionComponent {
     this.post_id = data.post_id;
   }
 
+  /**
+   * Función que añade un post al foro de conversación.
+   */
   anadir() {
     if (!this.mensaje.trim()) {
       console.log('No hay datos para añdir el post'); // LOG:

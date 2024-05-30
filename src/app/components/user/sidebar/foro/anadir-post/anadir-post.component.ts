@@ -34,6 +34,9 @@ export class AnadirPostComponent {
     // console.log(this.categoria) // LOG:
   }
 
+  /**
+   * Función que añade un post al foro.
+   */
   anadir() {
     if (!this.titulo.trim() || !this.mensaje.trim()) {
       console.log('No hay datos para añdir el post'); // LOG:

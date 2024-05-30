@@ -28,6 +28,10 @@ export class NotificacionesComponent {
 
   constructor(public dialog: MatDialog, private location: Location, private backendService: BackendService, private errorService: ErrorService) { }
 
+  /**
+   * La función ngOnInit se ajusta el diseño según el ancho de la ventana
+   * y obtiene las notificaciones del usuario.
+   */
   ngOnInit(): void {
     // NOTE: Responsive
     this.numCols = (window.innerWidth <= 1200) ? 1 : 2;
@@ -37,6 +41,9 @@ export class NotificacionesComponent {
     this.getNotificaciones();
   }
 
+  /**
+   * La función `getNotificaciones` se utiliza para obtener las notificaciones del usuario.
+   */
   private getNotificaciones() {
     this.notiLeidas = [];
     this.notiNoLeidas = [];
@@ -74,6 +81,9 @@ export class NotificacionesComponent {
     );
   }
 
+  /**
+   * La función `formatear` se utiliza para formatear los datos de la respuesta de la API.
+   */
   private formatear(): void {
     for (const item of this.respuesta) {
       var data = {
@@ -100,6 +110,11 @@ export class NotificacionesComponent {
     }
   }
 
+  /**
+   * La función `notificacionLeida` se utiliza para marcar una notificación como leída.
+   * @param notificacion_id 
+   * @param notificacion_color 
+   */
   notificacionLeida(notificacion_id: string, notificacion_color: string): void {
     // console.log(notificacion_color)
     if (notificacion_color == '') {
@@ -126,6 +141,12 @@ export class NotificacionesComponent {
     }
   }
 
+  /**
+   * La función `openDialogVer` se utiliza para abrir el dialogo de ver notificación.
+   * @param enterAnimationDuration 
+   * @param exitAnimationDuration 
+   * @param referencia 
+   */
   openDialogVer(enterAnimationDuration: string, exitAnimationDuration: string, referencia: string): void {
     const dialog = this.dialog.open(VerNotificacionComponent, {
       width: '80%',
@@ -142,6 +163,10 @@ export class NotificacionesComponent {
     });
   }
 
+  /**
+   * La función `goBack` en TypeScript se utiliza para regresar a la ubicación anterior en el historial
+   * del navegador.
+   */
   goBack(): void {
     this.location.back();
   }
@@ -153,6 +178,10 @@ export class NotificacionesComponent {
   lowValue: number = 0;
   highValue: number = this.pageSize;
 
+  /**
+   * Función que actualiza los datos del paginador.
+   * @param event 
+   */
   getPaginatorData(event: { pageIndex: number; }) {
     console.log(event);
     if (event.pageIndex === this.pageIndex + 1) {
@@ -172,6 +201,11 @@ export class NotificacionesComponent {
   rowHeight: string = '2.5:1'
   rowHeightTit: string = '2:1'
 
+  /**
+   * La función `onResize` se ejecuta al redimensionar
+   * la ventana del navegador para ajustar el número de columnas y la altura de las filas.
+   * @param event 
+   */
   onResize(event: any) {
     this.numCols = (event.target.innerWidth <= 1200) ? 1 : 2;
     this.rowHeight = (event.target.innerWidth <= 1200) ? '2.5:1' : '3.5:1';

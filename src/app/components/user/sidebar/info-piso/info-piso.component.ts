@@ -43,6 +43,9 @@ export class InfoPisoComponent {
     }
   }
 
+  /**
+   * La función `ngOnInit` ajusta el diseño según el ancho de la ventana.
+   */
   ngOnInit() {
     // NOTE: Responsive
     this.rowHeightTit = (window.innerWidth <= 1200) ? '1:2' : '2:1';
@@ -76,10 +79,18 @@ export class InfoPisoComponent {
 
   // NOTE: Conversación
 
+  /**
+   * Función que redirige a la página de Idealista.s
+   * @param url 
+   */
   navigateToIdealista(url: string) {
     window.location.href = url;
   }
 
+  /**
+   * La función `goBack` en TypeScript se utiliza para regresar a la ubicación anterior en el historial
+   * del navegador.
+   */
   goBack(): void {
     this.location.back();
   }
@@ -87,6 +98,10 @@ export class InfoPisoComponent {
   // NOTE: RESPONSIVE
   rowHeightTit: string = '2:1'
 
+  /**
+   * La función `onResize` en TypeScript se utiliza para ajustar el diseño según el ancho de la ventana.
+   * @param event 
+   */
   onResize(event: any) {
     this.rowHeightTit = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
   }

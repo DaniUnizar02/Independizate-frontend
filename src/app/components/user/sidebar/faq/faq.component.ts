@@ -23,6 +23,9 @@ export class FaqComponent {
   
   constructor(private location: Location, private backendService: BackendService, private errorService: ErrorService) {}
 
+  /**
+   * La función `ngOnInit` ajusta el diseño según el ancho de la ventana.
+   */
   ngOnInit(): void {
     // NOTE: Responsive
     this.rowHeightTit = (window.innerWidth <= 1200) ? '1:2' : '2:1';
@@ -43,6 +46,10 @@ export class FaqComponent {
     );
   }
 
+  /**
+   * La función `goBack` en TypeScript se utiliza para regresar a la ubicación anterior en el historial
+   * del navegador.
+   */
   goBack(): void {
     this.location.back();
   }
@@ -54,6 +61,10 @@ export class FaqComponent {
   lowValue: number = 0;
   highValue: number = this.pageSize;
 
+  /**
+   * Función que actualiza los datos del paginador.
+   * @param event 
+   */
   getPaginatorData(event: { pageIndex: number; }) {
     console.log(event);
     if (event.pageIndex === this.pageIndex + 1) {
@@ -71,6 +82,10 @@ export class FaqComponent {
 
   rowHeightTit: string = '2:1'
 
+  /**
+   * Función que se ejecuta al redimensionar la ventana del navegador para ajustar el número de columnas y la altura de las filas.
+   * @param event 
+   */
   onResize(event: any) {
     this.rowHeightTit = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
   }

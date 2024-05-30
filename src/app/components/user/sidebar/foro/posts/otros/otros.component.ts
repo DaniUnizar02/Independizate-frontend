@@ -44,6 +44,10 @@ export class OtrosComponent {
     this.invitado = dataCockie;
   }
 
+  /**
+   * La función `ngOnInit` ajusta el diseño según el ancho de la ventana para mejorar la capacidad de
+   * respuesta y obtiene los posts de la categoría "Otros".
+   */
   ngOnInit() {
     // NOTE: Responsive
     this.numCols = (window.innerWidth <= 1200) ? 1 : 2;
@@ -56,6 +60,9 @@ export class OtrosComponent {
     this.getPosts();
   }
 
+  /**
+   * Obtiene los posts del usuario.
+   */
   private getMyPosts() {
     // Se ha insertado un usuario por defecto pero tiene que ser variable
     // console.log("USUARIO: ", this.backendService.user); // LOG:
@@ -88,6 +95,9 @@ export class OtrosComponent {
     );
   }
 
+  /**
+   * Obtiene los posts de la categoría "Otros".
+   */
   private getPosts() {
     if (this.invitado) {
       this.getPostsGuest();
@@ -96,6 +106,9 @@ export class OtrosComponent {
     }
   }
 
+  /**
+   * Obtiene los posts de la categoría "Otros" de un usuario.
+   */
   private getPostsUser() {
     this.todos = [];
     this.backendService.getForumCategoriaPostsFavs("otros").subscribe(
@@ -120,6 +133,9 @@ export class OtrosComponent {
     );
   }
 
+  /**
+   * Obtiene los posts de la categoría "Otros" de un usuario invitado.
+   */
   private getPostsGuest() {
     this.todos = [];
     this.backendService.getForumCategoriaPosts("otros").subscribe(
@@ -144,6 +160,10 @@ export class OtrosComponent {
     );
   }
 
+  /**
+   * Formatea los posts de la categoría "Otros".
+   * @param posts 
+   */
   private formatear(posts: any): void {
     for (const item of posts) {
       var data = {
@@ -168,6 +188,9 @@ export class OtrosComponent {
     this.todos = this.todos.reverse();
   }
 
+  /**
+   * Busca los posts de la categoría "Otros" en función de la query introducida.
+   */
   buscar() {
     console.log(this.value);
     if (!this.value.trim()) {
@@ -181,6 +204,10 @@ export class OtrosComponent {
     }
   }
 
+  /**
+   * Cambia la ruta de la página.
+   * @param event 
+   */
   cambiarRoute(event: MatTabChangeEvent) {
     var ruta = event.tab.textLabel.toLowerCase().replace(' ', '-');
     console.log(ruta);
@@ -194,7 +221,12 @@ export class OtrosComponent {
   }
 
   // NOTE: Añadir post
-
+  /**
+   * Esta función abre un dialogo para añadir una gatpp 
+   * @param enterAnimationDuration 
+   * @param exitAnimationDuration 
+   * @param categoria 
+   */
   openDialogAdd(enterAnimationDuration: string, exitAnimationDuration: string, categoria: string): void {
     const dialog = this.dialog.open(AnadirPostComponent, {
       width: '50%',
@@ -209,13 +241,21 @@ export class OtrosComponent {
   }
 
   // NOTE: Conversación
-
+  /**
+   * La función `navigateToConversacion` se utiliza para navegar
+   *  a la página de conversación de un post.
+   * @param post_id 
+   */
   navigateToConversacion(post_id: string) {
     this.router.navigate(['sidebar', 'foro', 'conversacion', post_id])
   }
 
   // NOTE: Like
 
+  /**
+   * Función que da like a un post de id post_id.
+   * @param post_id 
+   */
   darLike(post_id: string) {
     console.log(post_id); // LOG:
     this.backendService.putPostsLikePostId(post_id).subscribe(
@@ -240,7 +280,9 @@ export class OtrosComponent {
   }
 
   // NOTE: Fav
-
+  /**
+   * Función que añade un post a favoritos de id post_id.
+  */
   hacerFav(post_id: string) {
     console.log(post_id); // LOG:
     this.backendService.putPostsFavoritesPostId(post_id).subscribe(
@@ -265,7 +307,12 @@ export class OtrosComponent {
   }
 
   // NOTE: Denuncia
-
+  /**
+   * This function opens a dialog to report a post.
+   * @param enterAnimationDuration 
+   * @param exitAnimationDuration 
+   * @param post_id 
+   */
   openDialogDenuncia(enterAnimationDuration: string, exitAnimationDuration: string, post_id: string): void {
     const dialog = this.dialog.open(PonerDenunciaComponent, {
       width: '50%',
@@ -282,6 +329,10 @@ export class OtrosComponent {
   lowValue: number = 0;
   highValue: number = this.pageSize;
 
+  /**
+   * Esta función actualiza los datos del paginador.
+   * @param event 
+   */
   getPaginatorData(event: { pageIndex: number; }) {
     console.log(event);
     if (event.pageIndex === this.pageIndex + 1) {
@@ -301,6 +352,11 @@ export class OtrosComponent {
   rowHeight: string = '2.5:1'
   rowHeightBusc: string = '2:1'
 
+  /**
+   * Función que se ejecuta al redimensionar la ventana del navegador
+   * para ajustar el número de columnas y la altura de las filas.
+   * @param event 
+   */
   onResize(event: any) {
     this.numCols = (event.target.innerWidth <= 1200) ? 1 : 2;
     this.rowHeight = (event.target.innerWidth <= 1200) ? '2:1' : '2.5:1';

@@ -60,10 +60,18 @@ export class ConversacionComponent {
     }
   }
 
+
+  /*
+  * La función nogOnInit llama a la funcion getPosts al iniciar el componente.
+  */
   ngOnInit() {
     this.getPosts();
   }
 
+  /**
+   * Función que obtiene los mensajes de una conversación a traves de una
+   * petición al backend.
+   */
   private getPosts() {
     this.todos = [];
     this.backendService.getPostsIdMessages(this.id).subscribe(
@@ -99,6 +107,12 @@ export class ConversacionComponent {
     );
   }
 
+  /**
+   * Función que construye los mensajes de una conversación en el foro
+   * de conversación.
+   * @param mensajes 
+   * @param tabulado 
+   */
   private construir_mensajes(mensajes: any[], tabulado: boolean) {
     for (const item of mensajes) {
       console.log("ITEM: ", item); //LOG:
@@ -120,6 +134,10 @@ export class ConversacionComponent {
     }
   }
   
+  /**
+   * Función da formato a los mensajes de una conversación en el foro.
+   * @param mensajes 
+   */
   private formatear(mensajes: any): void {
     if (mensajes.length!== 0) {
       this.construir_mensajes(mensajes, false);
@@ -128,7 +146,12 @@ export class ConversacionComponent {
   }
 
   // NOTE: Ver usuario
-
+  /**
+   * Función que abre un dialogo con la información de un usuario.
+   * @param enterAnimationDuration 
+   * @param exitAnimationDuration 
+   * @param autor 
+   */
   openDialogUsuario(enterAnimationDuration: string, exitAnimationDuration: string, autor: string): void {
     this.dialog.open(VerUsuarioComponent, {
       width: '30%',
@@ -140,6 +163,12 @@ export class ConversacionComponent {
 
   // NOTE: Añadir mensaje
 
+  /**
+   * Función que abre un dialogo para añadir un mensaje a una conversación.
+   * @param enterAnimationDuration 
+   * @param exitAnimationDuration 
+   * @param post_id 
+   */
   openDialogAdd(enterAnimationDuration: string, exitAnimationDuration: string, post_id: string): void {
     const dialog = this.dialog.open(AnadirConversacionComponent, {
       width: '50%',
@@ -155,6 +184,13 @@ export class ConversacionComponent {
 
   // NOTE: Responder
 
+  /**
+   * Función que abre un dialogo para responder a un mensaje.
+   * @param enterAnimationDuration 
+   * @param exitAnimationDuration 
+   * @param post_id 
+   * @param message_id 
+   */
   openDialogResponder(enterAnimationDuration: string, exitAnimationDuration: string, post_id: string, message_id: string): void {
     const dialog = this.dialog.open(ResponderMensajeComponent, {
       width: '50%',
@@ -172,7 +208,12 @@ export class ConversacionComponent {
   }
 
   // NOTE: Denuncia
-
+  /**
+   * Función que abre un dialogo para poner una denuncia a un post.
+   * @param enterAnimationDuration 
+   * @param exitAnimationDuration 
+   * @param post_id 
+   */
   openDialogDenuncia(enterAnimationDuration: string, exitAnimationDuration: string, post_id: string): void {
     const dialog = this.dialog.open(PonerDenunciaComponent, {
       width: '50%',

@@ -34,6 +34,9 @@ export class ResponderMensajeComponent {
     this.message_id = data.message_id;
   }
 
+  /**
+   * Función que añade una respuesta a un mensaje en el foro de conversación.
+   */
   responder() {
     if (!this.mensaje.trim()) {
       console.log('No hay datos para añdir el post'); // LOG:

@@ -61,8 +61,7 @@ export class DatosPersonalesComponent {
 
   /**
    * La función getInfo se emplea para obtener
-   * la información del losp perfiles de los usuarios.
-selifrep sol ed nóicamro
+   * la información de los datos personales del usuario.
    */
   private getInfo() {
     var cockie = this.backendService.getCookie();
@@ -110,6 +109,10 @@ selifrep sol ed nóicamro
     );
   }
 
+  /**
+   * La función getStamps se emplea para obtener
+   * las estampas del usuario.
+   */
   private getStamps() {
     this.backendService.getStampsUser().subscribe(
       response => {
@@ -132,6 +135,11 @@ selifrep sol ed nóicamro
     );
   }
 
+  /**
+   * La función formatearStamps se emplea para dar formato a
+   * las estampas del usuario.
+   * @param stamps Estampas del usuario.
+   */
   private formatearStamps(stamps: any) {
     this.s = []
     this.infoUsuario.estampas = []
@@ -151,6 +159,10 @@ selifrep sol ed nóicamro
     }
   }
 
+  /** 
+   * La función subirFoto se emplea para subir una foto.
+   * 
+   */
   subirFoto(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -166,6 +178,9 @@ selifrep sol ed nóicamro
     }
   }
 
+  /**
+   * La función guardar se emplea para guardar los datos personales del usuario.
+   */
   guardar() {
     var data = {
       usuario: this.infoUsuario.usuario,
@@ -228,12 +243,24 @@ selifrep sol ed nóicamro
     this.getStamps();
   }
 
+  /**
+   * La función noGuardar se emplea para situar la información
+   * del usuario en su estado original.
+   */
   noGuardar() {
     this.piso = this.infoUsuario.piso === "Sí" ? true : false;
     this.sexo = this.infoUsuario.sexo;
     this.situacion = this.infoUsuario.situacion;
   }
 
+  /**
+   * La función openDialogCambiarEstampa se emplea para abrir un diálogo
+   * para cambiar la estampa del usuario.
+   * @param enterAnimationDuration Duración de la animación de entrada.
+   * @param exitAnimationDuration Duración de la animación de salida.
+   * @param id Identificador de la estampa.
+   * @param foto Foto de la estampa.
+   */
   openDialogCambiarEstampa(enterAnimationDuration: string, exitAnimationDuration: string, id: string, foto: string): void {
     var cockie = this.backendService.getCookie();
     var data = '';
@@ -279,6 +306,11 @@ selifrep sol ed nóicamro
     });
   }
 
+  /**
+   * Funcion encargada de enviar
+   * un mensaje de error sobre una
+   * funcionalidad no implementada.
+   */
   noImplementada() {
     this.errorService.openDialogError("Funcionalidad no implementada. Próximamente se podráln cambiar las estampas favoritas.");
   }
@@ -289,6 +321,11 @@ selifrep sol ed nóicamro
   rowspan: number = 1.5
   rowHeight: string = "4:1";
 
+  /**
+   * La función `onResize` se ejecuta al redimensionar
+   * la ventana del navegador para ajustar el número de columnas y la altura de las filas.
+   * @param event 
+   */
   onResize(event: any) {
     this.numCols = (event.target.innerWidth <= 1200) ? 1 : 5;
     this.rowspan = (event.target.innerWidth < 700) ? 5 : 2.5;

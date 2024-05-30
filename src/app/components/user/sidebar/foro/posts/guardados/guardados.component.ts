@@ -43,6 +43,10 @@ export class GuardadosComponent {
     this.invitado = dataCockie;
   }
 
+  /**
+   * La función `ngOnInit` ajusta el diseño según el ancho de la ventana
+   * y se encarga de obtener los posts guardados si el usuario no es invitado.
+   */
   ngOnInit() {
     // NOTE: Responsive
     this.numCols = (window.innerWidth <= 1200) ? 1 : 2;
@@ -55,6 +59,9 @@ export class GuardadosComponent {
     }
   }
 
+  /**
+   * La función getMyPosts se encarga de obtener los posts guardados o favoritos del el usuario.
+   */
   private getMyPosts () {
     // Se ha insertado un usuario por defecto pero tiene que ser variable
     // console.log("USUARIO: ", this.backendService.user); // LOG:
@@ -87,6 +94,9 @@ export class GuardadosComponent {
     );
   }
 
+  /**
+   * La función getPosts se encarga de obtener los posts favoritos del usuario.
+   */
   private getPosts() {
     this.todos = [];
     this.backendService.getForumCategoriaPostsFavs("forosFavoritos").subscribe(
@@ -111,6 +121,10 @@ export class GuardadosComponent {
     );
   }
 
+  /**
+   * La función formatear se encarga de dar formato a los posts.
+   * @param posts 
+   */
   private formatear(posts: any): void {
     for (const item of posts) {
       var data = {
@@ -135,6 +149,9 @@ export class GuardadosComponent {
     this.todos = this.todos.reverse();
   }
 
+  /**
+   * La función buscar se encarga de buscar un post en concreto.
+   */
   buscar() {
     console.log(this.value);
     if(!this.value.trim()) {
@@ -148,6 +165,10 @@ export class GuardadosComponent {
     }
   }
 
+  /**
+   * Función encargada de gestionar la ruta a la que se redirige el usuario
+   * @param event 
+   */
   cambiarRoute(event: MatTabChangeEvent) {
     var ruta = event.tab.textLabel.toLowerCase().replace(' ', '-');
     console.log(ruta);
@@ -162,12 +183,20 @@ export class GuardadosComponent {
 
   // NOTE: Conversación
 
+  /**
+   * Función que navega a la conversación de un post.
+   * @param post_id 
+   */
   navigateToConversacion(post_id: string) {
     this.router.navigate(['sidebar','foro','conversacion', post_id])
   }
 
   // NOTE: Like
 
+  /**
+   * Función que da like a un post.
+   * @param post_id 
+   */
   darLike(post_id: string) {
     console.log(post_id); // LOG:
     this.backendService.putPostsLikePostId(post_id).subscribe(
@@ -192,7 +221,10 @@ export class GuardadosComponent {
   }
 
   // NOTE: Fav
-
+/**
+ * La función hacerFav se encarga de añadir un post a favoritos.
+ * @param post_id 
+ */
   hacerFav(post_id: string) {
     console.log(post_id); // LOG:
     this.backendService.putPostsFavoritesPostId(post_id).subscribe(
@@ -217,7 +249,12 @@ export class GuardadosComponent {
   }
 
   // NOTE: Denuncia
-
+  /** Esta función abre un dialogo para poner una denuncia.
+   * 
+   * @param enterAnimationDuration 
+   * @param exitAnimationDuration 
+   * @param post_id 
+   */
   openDialogDenuncia(enterAnimationDuration: string, exitAnimationDuration: string, post_id: string): void {
     const dialog = this.dialog.open(PonerDenunciaComponent, {
       width: '50%',
@@ -234,6 +271,10 @@ export class GuardadosComponent {
   lowValue: number = 0;
   highValue: number = this.pageSize;
 
+  /**
+   * Función que actualiza los datos del paginador.
+   * @param event 
+   */
   getPaginatorData(event: { pageIndex: number; }) {
     console.log(event);
     if (event.pageIndex === this.pageIndex + 1) {
@@ -253,6 +294,11 @@ export class GuardadosComponent {
   rowHeight: string = '2.5:1'
   rowHeightBusc: string = '2:1'
 
+  /**
+   * La función `onResize` se ejecuta al redimensionar
+   * la ventana del navegador para ajustar el número de columnas y la altura de las filas.
+   * @param event 
+   */
   onResize(event: any) {
     this.numCols = (event.target.innerWidth <= 1200) ? 1 : 2;
     this.rowHeight = (event.target.innerWidth <= 1200) ? '2:1' : '2.5:1';
