@@ -46,20 +46,20 @@ export class SidebarComponent {
   getUsuario() {
     this.backendService.getUsersIdBasic(this.backendService.cookie.usuario).subscribe(
       response => {
-        // console.log(response.users.fotoPerfil); //LOG:
+        console.log(response.users.fotoPerfil); //LOG:
         this.usuario = {
-          foto: response.users.fotoPerfil,
+          foto: "data:image/png;base64," + response.users.fotoPerfil,
           nombre: response.users.usuario,
           reputacion: response.users.reputacion,
           estampa1: '',
           estampa2: '',
           estampa3: ''
         }
-        this.usuario.estampa1 = (response.users.Stamps[0].foto===undefined || response.users.Stamps[0].foto===null) ? '' : response.users.Stamps[0].foto;
+        this.usuario.estampa1 = (response.users.Stamps[0].foto===undefined || response.users.Stamps[0].foto===null) ? '' : "data:image/png;base64," + response.users.Stamps[0].foto;
         this.mostarStamp1 = (response.users.Stamps[0].foto===undefined || response.users.Stamps[0].foto===null) ? false : true;
-        this.usuario.estampa2 = (response.users.Stamps[1].foto===undefined || response.users.Stamps[1].foto===null) ? '' : response.users.Stamps[1].foto;
+        this.usuario.estampa2 = (response.users.Stamps[1].foto===undefined || response.users.Stamps[1].foto===null) ? '' : "data:image/png;base64," + response.users.Stamps[1].foto;
         this.mostarStamp2 = (response.users.Stamps[1].foto===undefined || response.users.Stamps[1].foto===null) ? false : true;
-        this.usuario.estampa3 = (response.users.Stamps[2].foto===undefined || response.users.Stamps[2].foto===null) ? '' : response.users.Stamps[2].foto;
+        this.usuario.estampa3 = (response.users.Stamps[2].foto===undefined || response.users.Stamps[2].foto===null) ? '' : "data:image/png;base64," + response.users.Stamps[2].foto;
         this.mostarStamp3 = (response.users.Stamps[2].foto===undefined || response.users.Stamps[2].foto===null) ? false : true;
         console.log("USUARIO SIDEBAR",this.usuario); // LOG:
       },

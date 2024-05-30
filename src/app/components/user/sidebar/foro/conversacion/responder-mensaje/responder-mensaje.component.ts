@@ -24,7 +24,6 @@ export class ResponderMensajeComponent {
   body = {
     autor: '',
     informacion: '',
-    fechaPublicacion: '' 
   }
 
   private post_id: string;
@@ -44,7 +43,6 @@ export class ResponderMensajeComponent {
       this.body = {
         autor: this.backendService.cookie.usuario, // NOTE: Cambiar por el usuario correcto, este es por defecto
         informacion: this.mensaje, 
-        fechaPublicacion: '2024-05-09T16:00:50.260Z' // NOTE: La fecha de publicación la auto calcula el backend, no?
       }
       this.backendService.postMessagesPostIdMessageIdReply(this.post_id, this.message_id, this.body).subscribe(
         response => {

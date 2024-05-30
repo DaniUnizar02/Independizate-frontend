@@ -80,9 +80,9 @@ export class HomeComponent implements OnInit {
               //TODO: Verify if the user is already registered
               //TODO: Use modals for errors
               // this.router.navigate(['home','registes',true,profile.getId(),profile.getName(),googleAuthUser.getAuthResponse().id_token,profile.getEmail(),profile.getImageUrl()]);
-              this.router.navigate(['home/register'], { queryParams: { google: true, id: profile.getId(),  nombreApellidos: profile.getName(), contrasena: googleAuthUser.getAuthResponse().id_token, email: profile.getEmail(), fotoPerfil: profile.getImageUrl() } });
+              this.router.navigate(['home/register'], { queryParams: { google: true, id: profile.getId(), nombreApellidos: profile.getName(), contrasena: googleAuthUser.getAuthResponse().id_token, email: profile.getEmail(), fotoPerfil: profile.getImageUrl() } });
               this.backendService.getUsersGoogleIdGoogleExists(profile.getId()).subscribe(valor => {
-                if (valor.exists==true) {
+                if (valor.exists == true) {
                   console.log("LoginGoogle login") //LOG:
                   var body = {
                     idGoogle: profile.getId(),
@@ -95,6 +95,12 @@ export class HomeComponent implements OnInit {
                     this.backendService.cookie.nombreUsuario = profile.getId();
                     this.backendService.cookie.token = valor.token;
                     this.backendService.cookie.esInvitado = false;
+                    this.backendService.setCookie({
+                      usuario: valor.id,
+                      nombreUsuario: profile.getId(),
+                      token: valor.token,
+                      esInvitado: true
+                    });
                     this.backendService.setHeaders();
                     this.router.navigate(['sidebar']);
                   }, error => {
@@ -109,7 +115,7 @@ export class HomeComponent implements OnInit {
                 } else {
                   console.log("LoginGoogle registro") //LOG:
                   // this.router.navigate(['home/register'], { queryParams: { google: 'true', id: profile.getId(),  nombreApellidos: profile.getName(), contrasena: googleAuthUser.getAuthResponse().id_token, email: profile.getEmail(), fotoPerfil: profile.getImageUrl() } });
-                  
+
                 }
               }, error => {
                 if (error.status === 400) {

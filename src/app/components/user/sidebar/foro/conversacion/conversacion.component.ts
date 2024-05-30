@@ -69,7 +69,7 @@ export class ConversacionComponent {
           id: respuesta.post._id,
           userName: respuesta.post.usuario,
           autor: respuesta.post.autor,
-          foto: respuesta.post.fotoPerfil,
+          foto: "data:image/png;base64," + respuesta.post.fotoPerfil,
           title: respuesta.post.titulo.toUpperCase(),
           description: respuesta.post.descripcion,
           categoria: respuesta.post.categoria,
@@ -101,7 +101,7 @@ export class ConversacionComponent {
         id: item._id,
         userName: item.usuario,
         autor: item.autor,
-        foto: item.fotoPerfil,
+        foto: "data:image/png;base64," + item.fotoPerfil,
         description: item.informacion,
         tabulado: tabulado // DONE: tiene que depender de un parámetro, aun no se como hacerlo NOTE: Hablarlo con backend
       };

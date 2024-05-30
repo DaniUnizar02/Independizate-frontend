@@ -138,7 +138,7 @@ export class CompaneroPisoComponent {
         id: item._id,
         userName: item.usuario,
         autor: item.autor,
-        foto: item.fotoPerfil,
+        foto: "data:image/png;base64," + item.fotoPerfil,
         title: item.titulo,
         description: item.descripcion,
         categoria: item.categoria,

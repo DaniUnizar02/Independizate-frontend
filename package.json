@@ -35,6 +35,7 @@
     "leaflet": "^1.9.4",
     "ng-apexcharts": "^1.10.0",
     "ng2-cordova-oauth": "^0.0.8",
+    "ngx-cookie-service": "^17.0.0",
     "npm": "^10.7.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

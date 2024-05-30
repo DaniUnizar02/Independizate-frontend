@@ -2,18 +2,34 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as bcrypt from 'bcryptjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackendService {
-  private apiUrl = "backend-independizate.eggtf5e6dvh8hngq.spaincentral.azurecontainer.io";
+  private apiUrl = "http://backend-independizate.eggtf5e6dvh8hngq.spaincentral.azurecontainer.io:3000/api/";
 
+  private readonly COOKIE_KEY = 'user_info';
   public cookie = {
     usuario: '',
     nombreUsuario: '',
     token: '',
     esInvitado: true
+  }
+
+  setCookie(cookie: { usuario: string; nombreUsuario: string; token: string; esInvitado: boolean }): void {
+    this.cookieService.set(this.COOKIE_KEY, JSON.stringify(cookie), 1, '/', '', false, 'Lax');
+  }
+
+  getCookie(): { usuario: string; nombreUsuario: string; token: string; esInvitado: boolean } | null {
+    const cookieValue = this.cookieService.get(this.COOKIE_KEY);
+    console.log()
+    return cookieValue ? JSON.parse(cookieValue) : null;
+  }
+
+  clearCookie(): void {
+    this.cookieService.delete(this.COOKIE_KEY, '/', '');
   }
 
   // Define la cabecera con el token de autorización
@@ -24,6 +40,7 @@ export class BackendService {
       'Content-Type': 'application/json',
       'authorization': `Bearer ${this.cookie.token}`
     });
+    
   }
 
   public hashPassword(contrasena: string) {
@@ -32,7 +49,7 @@ export class BackendService {
   }
 
   // REVIEW:
-  constructor(private http: HttpClient) { }
+  constructor(private cookieService: CookieService, private http: HttpClient) { }
 
   /* #region NOTE: Admin */
   getAdminReports(): Observable<any> {
