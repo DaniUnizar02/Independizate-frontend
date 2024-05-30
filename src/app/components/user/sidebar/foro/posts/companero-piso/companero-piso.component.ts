@@ -33,9 +33,14 @@ export class CompaneroPisoComponent {
   private postsLike: any[] = [];
 
   value: string = '';
-  
+
   constructor(public dialog: MatDialog, private router: Router, private backendService: BackendService, private errorService: ErrorService) {
-    this.invitado = this.backendService.cookie.esInvitado;
+    var cockie = this.backendService.getCookie();
+    var dataCockie = false;
+    if (cockie) {
+      dataCockie = cockie.esInvitado;
+    }
+    this.invitado = dataCockie;
   }
 
   ngOnInit() {
@@ -46,20 +51,25 @@ export class CompaneroPisoComponent {
     this.rowHeight = (window.innerWidth <= 1200) ? '2:1' : '2.5:1';
     this.rowHeightBusc = (window.innerWidth <= 1200) ? '1:2' : '2:1';
 
-    if (!this.invitado){
+    if (!this.invitado) {
       this.getMyPosts();
     }
     console.log("Soy invitado"); // LOG:
     this.getPosts();
   }
 
-  private getMyPosts () {
+  private getMyPosts() {
     // Se ha insertado un usuario por defecto pero tiene que ser variable
     // console.log("USUARIO: ", this.backendService.user); // LOG:
-    this.backendService.getProfilesId(this.backendService.cookie.usuario).subscribe(
+    var cockie = this.backendService.getCookie();
+    var dataCockie = '';
+    if (cockie) {
+      dataCockie = cockie.usuario;
+    }
+    this.backendService.getProfilesId(dataCockie).subscribe(
       response => {
-        this.postsFavs = (response.user.forosFavoritos===undefined) ? [] : response.user.forosFavoritos;
-        this.postsLike = (response.user.forosLike===undefined) ? [] : response.user.forosLike;
+        this.postsFavs = (response.user.forosFavoritos === undefined) ? [] : response.user.forosFavoritos;
+        this.postsLike = (response.user.forosLike === undefined) ? [] : response.user.forosLike;
         console.log("FAVS: ", this.postsFavs); // LOG:
         console.log("LIKE: ", this.postsLike); // LOG:
       },
@@ -80,10 +90,7 @@ export class CompaneroPisoComponent {
   }
 
   private getPosts() {
-    console.log("Get posts"); // LOG:
-    console.log("Invitado: ", this.invitado); // LOG:
-    if (this.invitado){
-      console.log("Invitado: ", this.invitado); // LOG:
+    if (this.invitado) {
       this.getPostsGuest();
     } else {
       this.getPostsUser();
@@ -113,7 +120,7 @@ export class CompaneroPisoComponent {
       }
     );
   }
-  
+
   private getPostsGuest() {
     console.log("Get posts invitado"); // LOG:
     console.log("Invitado: ", this.invitado); // LOG:
@@ -146,7 +153,7 @@ export class CompaneroPisoComponent {
         id: item._id,
         userName: item.usuario,
         autor: item.autor,
-        foto: item.fotoPerfil,
+        foto: "data:image/png;base64," + item.fotoPerfil,
         title: item.titulo,
         description: item.descripcion,
         categoria: item.categoria,
@@ -160,33 +167,33 @@ export class CompaneroPisoComponent {
       console.log(data); // LOG:
       this.todos.push(data);
     }
-    console.log("CP: ",this.todos); // LOG:
+    console.log("CP: ", this.todos); // LOG:
     this.todos = this.todos.reverse();
   }
 
   buscar() {
     console.log(this.value);
-    if(!this.value.trim()) {
+    if (!this.value.trim()) {
       this.posts = this.todos;
     } else {
       this.value = this.value.toLowerCase();
       this.posts = this.todos.filter((item: { title: string; description: string; }) =>
         item.title.toLowerCase().includes(this.value) || item.description.toLowerCase().includes(this.value)
       )
-      
+
     }
   }
 
   cambiarRoute(event: MatTabChangeEvent) {
     var ruta = event.tab.textLabel.toLowerCase().replace(' ', '-');
     console.log(ruta);
-    if (ruta=="compañero-de piso") {
+    if (ruta == "compañero-de piso") {
       ruta = "piso";
-    } else if (ruta=="economía-doméstica") {
+    } else if (ruta == "economía-doméstica") {
       ruta = "economia";
     }
     console.log(ruta);
-    this.router.navigate(['sidebar','foro', ruta])
+    this.router.navigate(['sidebar', 'foro', ruta])
   }
 
   // NOTE: Añadir post
@@ -207,7 +214,7 @@ export class CompaneroPisoComponent {
   // NOTE: Conversación
 
   navigateToConversacion(post_id: string) {
-    this.router.navigate(['sidebar','foro','conversacion', post_id])
+    this.router.navigate(['sidebar', 'foro', 'conversacion', post_id])
   }
 
   // NOTE: Like

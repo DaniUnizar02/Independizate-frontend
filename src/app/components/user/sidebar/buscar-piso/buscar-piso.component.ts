@@ -24,11 +24,10 @@ export class BuscarPisoComponent {
   private respuesta: any[] = [];
   value: string = '';
 
-  constructor(private location: Location, private backendService: BackendService, private errorService: ErrorService) { }
-
-  ngOnInit(): void {
+  constructor(private location: Location, private backendService: BackendService, private errorService: ErrorService) {
     // NOTE: Responsive
     this.rowHeightBusc = (window.innerWidth <= 1200) ? '1:2' : '2:1';
+    this.rowHeightTit = (window.innerWidth <= 1200) ? '1:2' : '2:1';
 
     this.backendService.getAparments().subscribe(
       response => {
@@ -56,7 +55,9 @@ export class BuscarPisoComponent {
         direccion: item.address,
         descripcion: item.description,
         precio: item.price + "€",
-        img: item.thumbnail
+        img: item.thumbnail,
+        latitud: item.latitude,
+        longitud: item.longitude,
       }
 
       this.todos.push(data);
@@ -89,9 +90,11 @@ export class BuscarPisoComponent {
   // NOTE: RESPONSIVE
 
   rowHeightBusc: string = '2:1'
+  rowHeightTit: string = '2:1'
 
   onResize(event: any) {
     this.rowHeightBusc = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
+    this.rowHeightTit = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
   }
 
   /**

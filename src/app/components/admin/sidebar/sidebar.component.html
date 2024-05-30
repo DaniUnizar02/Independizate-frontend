@@ -33,16 +33,16 @@
             <mat-grid-tile colspan="2"></mat-grid-tile>
 
             <mat-grid-tile colspan="7" rowspan="2">
-                <img mat-sm-image src="./assets/img/badge1.png" alt="Foto de perfil" style="height: 90%;">
+                <img mat-sm-image [src]="usuario.foto" alt="Foto de perfil" style="height: 90%; border-radius: 50%;">
             </mat-grid-tile>
 
             <mat-grid-tile colspan="7" rowspan="1">
                 <p class="usuario">Administrador</p>
             </mat-grid-tile>
 
-            <mat-grid-tile colspan="1" routerLink="/admin/sidebar/contact-us-de-usuario"><mat-icon
+            <mat-grid-tile colspan="1" routerLink="/admin/sidebar/contact-us"><mat-icon
                     color="accent">forum</mat-icon></mat-grid-tile>
-            <mat-grid-tile colspan="6" mat-align="start" routerLink="/admin/sidebar/contact-us-de-usuario">
+            <mat-grid-tile colspan="6" mat-align="start" routerLink="/admin/sidebar/contact-us">
                 <p class="opcion-text">Contact us de usuario</p>
             </mat-grid-tile>
 

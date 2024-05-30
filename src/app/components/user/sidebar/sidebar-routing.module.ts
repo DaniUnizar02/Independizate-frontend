@@ -15,6 +15,7 @@ import { FaqComponent } from './faq/faq.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 import { InfoPisoComponent } from './info-piso/info-piso.component';
+import { MapaComponent } from './mapa/mapa.component';
 
 const routes: Routes = [
   { path: '', component: SidebarComponent, children: [
@@ -24,7 +25,7 @@ const routes: Routes = [
     { path: 'piso', loadChildren: () => import('./buscar-piso/buscar-piso.module').then( x => x.BuscarPisoModule )},
     { path: 'info-piso/:id', component: InfoPisoComponent },
     { path: 'foro', loadChildren: () => import('./foro/foro.module').then( x => x.ForoModule )},
-    { path: 'mapa', loadChildren: () => import('./mapa/mapa.module').then( x => x.MapaModule)},
+    { path: 'mapa', component: MapaComponent},
     { path: 'faq', component: FaqComponent },
     { path: 'contact-us', component: ContactUsComponent }
   ] }

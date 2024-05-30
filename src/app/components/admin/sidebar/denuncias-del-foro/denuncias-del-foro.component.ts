@@ -26,7 +26,12 @@ export class DenunciasDelForoComponent {
   private todos: any[] = [];
 
   constructor(private location: Location, public dialog: MatDialog, private backendService: BackendService, private errorService: ErrorService) {
-    console.log(this.backendService.cookie.token); //LOG:
+    var cockie = this.backendService.getCookie();
+    var dataCockie = false;
+    if (cockie) {
+      dataCockie = cockie.esInvitado;
+    }
+    console.log(dataCockie); //LOG:
   }
 
   ngOnInit() {
@@ -83,8 +88,8 @@ export class DenunciasDelForoComponent {
         var data = {
           id: item._id,
           tipo: item.tipo,
-          foto: item.profilePhoto, // TODO: Pedirle a backedn que me lo devuelva
-          username: item.username,  //TODO: Pedirle a backend que me lo devuelva
+          foto: "data:image/png;base64," + item.fotoPerfil, // TODO: Pedirle a backedn que me lo devuelva
+          username: item.usuario,  //TODO: Pedirle a backend que me lo devuelva
           descripcion: item.descripcion,
           referencia: item.referencia,
           autor: item.autor,

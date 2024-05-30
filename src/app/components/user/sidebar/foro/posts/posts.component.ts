@@ -18,10 +18,16 @@ import { BackendService } from '../../../../../services/backend/backend.service'
   styleUrl: './posts.component.css'
 })
 export class PostsComponent {
-  navLinks = [{path: '', label: ''}];
+  navLinks = [{ path: '', label: '' }];
 
   constructor(private backendService: BackendService) {
-    if (backendService.cookie.esInvitado) {
+    var cockie = this.backendService.getCookie();
+    var dataCockie = false;
+    if (cockie) {
+      dataCockie = cockie.esInvitado;
+    }
+
+    if (dataCockie) {
       this.navLinks = [
         { path: "piso", label: "Compañero de piso" },
         { path: 'recetas', label: "Recetas" },

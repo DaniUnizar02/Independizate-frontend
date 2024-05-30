@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AnadirConversacionComponent } from './anadir-conversacion.component';
+import { AnadirConversacionComponent } from './anadir.component';
 
 describe('AnadirConversacionComponent', () => {
   let component: AnadirConversacionComponent;

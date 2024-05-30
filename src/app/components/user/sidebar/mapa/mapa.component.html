@@ -1,6 +1,6 @@
-<mat-grid-list cols="11" class="fijo">
-    <mat-grid-tile colspan="1"><mat-icon style="margin-top: 15%;"
-            (click)="goBack()">arrow_back_ios</mat-icon></mat-grid-tile>
+<mat-grid-list cols="11" [rowHeight]="rowHeightTit" class="fijo">
+    <mat-grid-tile colspan="1">
+        <mat-icon style="margin-top: 15%;" (click)="goBack()">arrow_back_ios</mat-icon></mat-grid-tile>
     <mat-grid-tile colspan="9">
         <h1 class="title">MAPA - BUSQUEDA</h1>
     </mat-grid-tile>
@@ -9,5 +9,5 @@
 <hr class="linea-title">
 
 <div class="desplazable">
-    <router-outlet></router-outlet>
+    <div id="map" style="height: 80vh;"></div>
 </div>

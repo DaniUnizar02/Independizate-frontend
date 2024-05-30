@@ -40,16 +40,16 @@ export class VerUsuarioComponent {
       response => {
         console.log("RESPONSE: ", response.users) // LOG:
         this.usuario = {
-          fotoPerfil: response.users.fotoPerfil,
+          fotoPerfil: "data:image/png;base64," + response.users.fotoPerfil,
           usuario: response.users.usuario,
           reputacion: response.users.reputacion,
           estampaFavorita1: '',
           estampaFavorita2: '',
           estampaFavorita3: '',
         }
-        this.usuario.estampaFavorita1 = (response.users.Stamps[0].foto===undefined) ? '' : response.users.Stamps[0].foto;
-        this.usuario.estampaFavorita2 = (response.users.Stamps[1].foto===undefined) ? '' : response.users.Stamps[1].foto;
-        this.usuario.estampaFavorita3 = (response.users.Stamps[2].foto===undefined) ? '' : response.users.Stamps[2].foto;
+        this.usuario.estampaFavorita1 = (response.users.Stamps[0].foto===undefined) ? '' : "data:image/png;base64," + response.users.Stamps[0].foto;
+        this.usuario.estampaFavorita2 = (response.users.Stamps[1].foto===undefined) ? '' : "data:image/png;base64," + response.users.Stamps[1].foto;
+        this.usuario.estampaFavorita3 = (response.users.Stamps[2].foto===undefined) ? '' : "data:image/png;base64," + response.users.Stamps[2].foto;
         console.log(this.usuario) // LOG:
       },
       error => {

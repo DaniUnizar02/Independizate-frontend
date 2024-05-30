@@ -2,7 +2,7 @@
  * Proyecto: Independizate
  * Descripción: Fichero encargado de gestionar las respuestas a las sugerencias.
  * 
- * Archivo: responder-sugerencia.component.ts
+ * Archivo: responder.component.ts
  * 
  * Autores: 
  *  - Daniel Carrizo
@@ -14,9 +14,9 @@ import { BackendService } from '../../../../../services/backend/backend.service'
 import { ErrorService } from '../../../../../services/error/error.service';
 
 @Component({
-  selector: 'app-responder-sugerencia',
-  templateUrl: './responder-sugerencia.component.html',
-  styleUrl: './responder-sugerencia.component.css'
+  selector: 'app-responder',
+  templateUrl: './responder.component.html',
+  styleUrl: './responder.component.css'
 })
 export class ResponderSugerenciaComponent {
   mensaje: string = '';

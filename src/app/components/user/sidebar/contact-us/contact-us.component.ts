@@ -27,8 +27,13 @@ export class ContactUsComponent {
 
 
   constructor(private router: Router, private location: Location, private backendService: BackendService, private errorService: ErrorService) {
-    if (this.backendService.cookie.esInvitado) {
-      router.navigate(['/']);
+    var cockie = this.backendService.getCookie();
+    var dataCockie = false;
+    if (cockie) {
+      dataCockie = cockie.esInvitado;
+    }
+    if (dataCockie) {
+      router.navigate(['home']);
     }
   }
 
@@ -37,6 +42,7 @@ export class ContactUsComponent {
     this.numCols = (window.innerWidth <= 1200) ? 1 : 4;
     this.colspan = (window.innerWidth <= 1200) ? 1 : 3;
     this.rowHeight = (window.innerWidth <= 1200) ? "8:1" : "2:1";
+    this.rowHeightTit = (window.innerWidth <= 1200) ? '1:2' : '2:1';
   }
 
   goBack(): void {
@@ -47,8 +53,13 @@ export class ContactUsComponent {
     if (!this.tipo.trim() || !this.titulo.trim() || !this.descripcion.trim()) {
       this.errorService.openDialogError("Todos los campos tienen que estar rellenos.");
     } else {
+      var cockie = this.backendService.getCookie();
+      var dataCockie = '';
+      if (cockie) {
+        dataCockie = cockie.usuario;
+      }
       const body = {
-        autor: this.backendService.cookie.usuario,
+        autor: dataCockie,
         tipo: this.tipo,
         titulo: this.titulo,
         descripcion: this.descripcion
@@ -80,10 +91,12 @@ export class ContactUsComponent {
   numCols: number = 2;
   colspan: number = 3;
   rowHeight: string = "2:1"
+  rowHeightTit: string = '2:1'
 
   onResize(event: any) {
     this.numCols = (event.target.innerWidth <= 1200) ? 1 : 4;
     this.colspan = (event.target.innerWidth <= 1200) ? 1 : 3;
     this.rowHeight = (event.target.innerWidth <= 1200) ? "8:1" : "2:1";
+    this.rowHeightTit = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
   }
 }

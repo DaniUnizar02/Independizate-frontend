@@ -44,6 +44,9 @@ export class InfoPisoComponent {
   }
 
   ngOnInit() {
+    // NOTE: Responsive
+    this.rowHeightTit = (window.innerWidth <= 1200) ? '1:2' : '2:1';
+
     this.backendService.getApartmentsId(this.id).subscribe(
       response => {
         this.respuesta = {
@@ -79,5 +82,12 @@ export class InfoPisoComponent {
 
   goBack(): void {
     this.location.back();
+  }
+
+  // NOTE: RESPONSIVE
+  rowHeightTit: string = '2:1'
+
+  onResize(event: any) {
+    this.rowHeightTit = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
   }
 }

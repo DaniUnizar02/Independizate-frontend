@@ -26,12 +26,30 @@ export class PerfilComponent {
   ];
 
   constructor(private backendService: BackendService, private location: Location, private router: Router) {
-    if (this.backendService.cookie.esInvitado) {
+    var cockie=this.backendService.getCookie();
+    var data = false;
+    if (cockie) {
+      data = cockie.esInvitado;
+    }
+
+    if (data) {
       router.navigate(['/']);
     }
   }
 
+  ngOnInit() {
+    // NOTE: Responsive
+    this.rowHeightTit = (window.innerWidth <= 1200) ? '1:2' : '2:1';
+  }
+
   goBack(): void {
     this.location.back();
+  }
+
+  // NOTE: RESPONSIVE
+  rowHeightTit: string = '2:1'
+
+  onResize(event: any) {
+    this.rowHeightTit = (event.target.innerWidth <= 1200) ? '1:2' : '1:1';
   }
 }

@@ -3,7 +3,7 @@
  * Descripción: Fichero encargado de gestionar los mensajes de contacto con
  * administración de los usuarios.
  * 
- * Archivo: contact-us-de-usuario.component.ts
+ * Archivo: contact-us.component.ts
  * 
  * Autores: 
  *  - Daniel Carrizo
@@ -13,13 +13,13 @@ import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { BackendService } from '../../../../services/backend/backend.service';
 import { ErrorService } from '../../../../services/error/error.service';
-import { ResponderSugerenciaComponent } from './responder-sugerencia/responder-sugerencia.component';
+import { ResponderSugerenciaComponent } from './responder/responder.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-contact-us-de-usuario',
-  templateUrl: './contact-us-de-usuario.component.html',
-  styleUrl: './contact-us-de-usuario.component.css'
+  selector: 'app-contact-us',
+  templateUrl: './contact-us.component.html',
+  styleUrl: './contact-us.component.css'
 })
 export class ContactUsDeUsuarioComponent {
   tipo = 'todos';
@@ -83,8 +83,8 @@ export class ContactUsDeUsuarioComponent {
       if (!item.completada) {
         var data = {
           id: item._id,
-          foto: item.profilePhoto, // TODO: Pedirle a backedn que me lo devuelva
-          username: item.username,  //TODO: Pedirle a backend que me lo devuelva
+          foto: "data:image/png;base64," + item.fotoPerfil, // TODO: Pedirle a backedn que me lo devuelva
+          username: item.usuario,  //TODO: Pedirle a backend que me lo devuelva
           usuario: item.autor,
           tipo: item.tipo,
           info: item.descripcion,

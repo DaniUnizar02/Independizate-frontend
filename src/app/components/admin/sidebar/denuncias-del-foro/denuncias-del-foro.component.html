@@ -25,8 +25,8 @@
         <mat-card-header>
           <mat-card-title-group>
             <mat-card-title style="color: white;">
-              <img mat-card-image src="/assets/img/badge1.png" alt="Foto de perfil" style="width: 10%;">
-              {{ denuncia.usuario }}
+              <img mat-card-image [src]="denuncia.foto" alt="Foto de perfil" style="width: 10%; border-radius: 50%;">
+              {{ denuncia.username }}
             </mat-card-title>
             <mat-card-subtitle style="color: white;">{{ denuncia.tipo }}</mat-card-subtitle>
           </mat-card-title-group>

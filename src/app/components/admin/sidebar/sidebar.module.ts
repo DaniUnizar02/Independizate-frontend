@@ -19,8 +19,8 @@ import { DenunciasDelForoComponent } from './denuncias-del-foro/denuncias-del-fo
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { EstadoUsuarioComponent } from './gestion-de-usuarios/estado-usuario/estado-usuario.component';
 import { MasDetallesComponent } from './denuncias-del-foro/mas-detalles/mas-detalles.component';
-import { ContactUsDeUsuarioComponent } from './contact-us-de-usuario/contact-us-de-usuario.component';
-import { ResponderSugerenciaComponent } from './contact-us-de-usuario/responder-sugerencia/responder-sugerencia.component';
+import { ContactUsDeUsuarioComponent } from './contact-us/contact-us.component';
+import { ResponderSugerenciaComponent } from './contact-us/responder/responder.component';
 
 
 @NgModule({

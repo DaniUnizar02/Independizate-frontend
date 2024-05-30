@@ -81,9 +81,10 @@ export class HomeComponent implements OnInit {
               //TODO: Verify if the user is already registered
               //TODO: Use modals for errors
               // this.router.navigate(['home','registes',true,profile.getId(),profile.getName(),googleAuthUser.getAuthResponse().id_token,profile.getEmail(),profile.getImageUrl()]);
-              this.router.navigate(['home/register'], { queryParams: { google: true, id: profile.getId(),  nombreApellidos: profile.getName(), contrasena: googleAuthUser.getAuthResponse().id_token, email: profile.getEmail(), fotoPerfil: profile.getImageUrl() } });
+              this.router.navigate(['home/register'], { queryParams: { google: true, id: profile.getId(), nombreApellidos: profile.getName(), contrasena: googleAuthUser.getAuthResponse().id_token, email: profile.getEmail(), fotoPerfil: profile.getImageUrl() } });
               this.backendService.getUsersGoogleIdGoogleExists(profile.getId()).subscribe(valor => {
-                if (valor.exists==true) {
+                if (valor.exists == true) {
+                  console.log("LoginGoogle login") //LOG:
                   var body = {
                     idGoogle: profile.getId(),
                     googleToken: googleAuthUser.getAuthResponse().id_token,
@@ -91,24 +92,27 @@ export class HomeComponent implements OnInit {
                   }
 
                   this.backendService.postAuthLogingoogle(body).subscribe(valor => {
-                    this.backendService.cookie.usuario = valor.id;
-                    this.backendService.cookie.nombreUsuario = profile.getId();
-                    this.backendService.cookie.token = valor.token;
-                    this.backendService.cookie.esInvitado = false;
+                    this.backendService.setCookie({
+                      usuario: valor.id,
+                      nombreUsuario: profile.getId(),
+                      token: valor.token,
+                      esInvitado: false
+                    });
                     this.backendService.setHeaders();
                     this.router.navigate(['sidebar']);
                   }, error => {
                     if (error.status === 400) {
                       this.errorService.openDialogError("Parámetros inválidos");
                     } else if (error.status === 401) {
-                      this.errorService.redirect("home");
+                      this.errorService.openDialogError("Parámetros inválidos");
                     } else if (error.status === 500) {
                       this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
                     }
                   });
                 } else {
+                  console.log("LoginGoogle registro") //LOG:
                   // this.router.navigate(['home/register'], { queryParams: { google: 'true', id: profile.getId(),  nombreApellidos: profile.getName(), contrasena: googleAuthUser.getAuthResponse().id_token, email: profile.getEmail(), fotoPerfil: profile.getImageUrl() } });
-                  
+
                 }
               }, error => {
                 if (error.status === 400) {
@@ -193,11 +197,12 @@ export class HomeComponent implements OnInit {
       }
 
       this.backendService.postAuthLogin(body).subscribe(valor => {
-        this.backendService.cookie.usuario = valor.id;
-        this.backendService.cookie.nombreUsuario = body.usuario;
-        this.backendService.cookie.token = valor.token;
-        console.log(this.backendService.cookie.token) //LOG:
-        this.backendService.cookie.esInvitado = false;
+        this.backendService.setCookie({
+          usuario: valor.id,
+          nombreUsuario: body.usuario,
+          token: valor.token,
+          esInvitado: false
+        });
         this.backendService.setHeaders();
 
         const socket = new WebSocket('ws://localhost:4000?clienteId=' + this.usuario);
@@ -226,7 +231,11 @@ export class HomeComponent implements OnInit {
    * Método que permite iniciar sesión como invitado.
    */
   loginGuest() {
-    this.backendService.cookie.esInvitado = true;
+    var cockie = this.backendService.getCookie();
+    if (cockie) {
+      cockie.esInvitado = true;
+      this.backendService.setCookie(cockie);
+    }
     this.router.navigate(['sidebar']);
   }
 }

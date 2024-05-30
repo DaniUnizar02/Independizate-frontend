@@ -13,7 +13,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SidebarComponentAdmin } from './sidebar.component';
 import { GestionDeUsuariosComponent } from './gestion-de-usuarios/gestion-de-usuarios.component';
 import { DenunciasDelForoComponent } from './denuncias-del-foro/denuncias-del-foro.component';
-import { ContactUsDeUsuarioComponent } from './contact-us-de-usuario/contact-us-de-usuario.component';
+import { ContactUsDeUsuarioComponent } from './contact-us/contact-us.component';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 
 const routes: Routes = [
@@ -22,7 +22,7 @@ const routes: Routes = [
     //{ path: 'gestion-de-usuarios', loadChildren: () => import('./gestion-de-usuarios/gestion-de-usuarios.module').then( x => x.GestionDeUsuariosModule )},
     { path: 'gestion-de-usuarios', component: GestionDeUsuariosComponent},
     { path: 'denuncias-del-foro', component: DenunciasDelForoComponent},
-    { path: 'contact-us-de-usuario', component: ContactUsDeUsuarioComponent},
+    { path: 'contact-us', component: ContactUsDeUsuarioComponent},
     { path: 'estadisticas', component: EstadisticasComponent},
     // { path: 'notificaciones', component: NotificacionesComponent },
   ] }

@@ -10,7 +10,7 @@
  */
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ContactUsDeUsuarioComponent } from './contact-us-de-usuario.component';
+import { ContactUsDeUsuarioComponent } from './contact-us.component';
 
 
 const routes: Routes = [

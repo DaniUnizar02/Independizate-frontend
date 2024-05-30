@@ -13,7 +13,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { VerUsuarioComponent } from './ver-usuario/ver-usuario.component';
-import { AnadirConversacionComponent } from './anadir-conversacion/anadir-conversacion.component';
+import { AnadirConversacionComponent } from './anadir/anadir.component';
 import { BackendService } from '../../../../../services/backend/backend.service';
 import { ErrorService } from '../../../../../services/error/error.service';
 import { ActivatedRoute } from '@angular/router';
@@ -44,7 +44,12 @@ export class ConversacionComponent {
   }
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog, private backendService: BackendService, private errorService: ErrorService) {
-    this.invitado = this.backendService.cookie.esInvitado;
+    var cockie = this.backendService.getCookie();
+    var dataCockie = false;
+    if (cockie) {
+      dataCockie = cockie.esInvitado;
+    }
+    this.invitado = dataCockie;
 
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
@@ -69,7 +74,7 @@ export class ConversacionComponent {
           id: respuesta.post._id,
           userName: respuesta.post.usuario,
           autor: respuesta.post.autor,
-          foto: respuesta.post.fotoPerfil,
+          foto: "data:image/png;base64," + respuesta.post.fotoPerfil,
           title: respuesta.post.titulo.toUpperCase(),
           description: respuesta.post.descripcion,
           categoria: respuesta.post.categoria,
@@ -101,7 +106,7 @@ export class ConversacionComponent {
         id: item._id,
         userName: item.usuario,
         autor: item.autor,
-        foto: item.fotoPerfil,
+        foto: "data:image/png;base64," + item.fotoPerfil,
         description: item.informacion,
         tabulado: tabulado // DONE: tiene que depender de un parámetro, aun no se como hacerlo NOTE: Hablarlo con backend
       };

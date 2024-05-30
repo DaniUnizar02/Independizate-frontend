@@ -23,6 +23,7 @@ import { SidebarComponent } from './components/user/sidebar/sidebar.component';
 import { BackendModule } from './components/backend/backend.module';
 import { ErrorComponent } from './components/error/error.component';
 import { HomeComponent } from './components/home/home.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { HomeComponent } from './components/home/home.component';
     BackendModule // Backend
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    CookieService,
   ],
   bootstrap: [AppComponent]
 })

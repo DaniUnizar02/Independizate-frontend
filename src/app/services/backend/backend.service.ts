@@ -2,37 +2,54 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as bcrypt from 'bcryptjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BackendService {
-  private apiUrl = "http://localhost:3000/api/";
+  private apiUrl = "http://backend-independizate.eggtf5e6dvh8hngq.spaincentral.azurecontainer.io:3000/api/";
 
-  public cookie = {
-    usuario: '',
-    nombreUsuario: '',
-    token: '',
-    esInvitado: true
+  private readonly COOKIE_KEY = 'user_info';
+
+  setCookie(cookie: { usuario: string; nombreUsuario: string; token: string; esInvitado: boolean }): void {
+    this.cookieService.set(this.COOKIE_KEY, JSON.stringify(cookie), 1, '/', '', false, 'Lax');
+  }
+
+  getCookie(): { usuario: string; nombreUsuario: string; token: string; esInvitado: boolean } | null {
+    const cookieValue = this.cookieService.get(this.COOKIE_KEY);
+    console.log("COOKIE: ", JSON.parse(cookieValue));
+    return cookieValue ? JSON.parse(cookieValue) : null;
+  }
+
+  clearCookie(): void {
+    this.cookieService.delete(this.COOKIE_KEY, '/', '');
   }
 
   // Define la cabecera con el token de autorización
   private headers = new HttpHeaders();
 
   public setHeaders() {
+    var cockie=this.getCookie();
+    var data = '';
+    if (cockie) {
+      data = cockie.token;
+    }
+
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'authorization': `Bearer ${this.cookie.token}`
+      'authorization': `Bearer ${data}`
     });
+
   }
 
   public hashPassword(contrasena: string) {
-    const fixedSalt = '$2a$10$abcdefghijklmnopqrstuv'; // TODO: Cambiar al pasar a producción
+    const fixedSalt = '$2a$10$abcdefghijklmnopqrstuv';
     return bcrypt.hashSync(contrasena, fixedSalt);
   }
 
   // REVIEW:
-  constructor(private http: HttpClient) { }
+  constructor(private cookieService: CookieService, private http: HttpClient) { }
 
   /* #region NOTE: Admin */
   getAdminReports(): Observable<any> {
@@ -181,6 +198,10 @@ export class BackendService {
   /* #region NOTE: Stamps */
   getStamps(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}stamps/`, { headers: this.headers });
+  }
+
+  getStampsUser(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}stamps/user/`, { headers: this.headers });
   }
   /* #endregion */
 

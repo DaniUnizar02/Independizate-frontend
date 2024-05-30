@@ -95,10 +95,12 @@ export class RegisterComponent {
             rememberMe: false
           }
           this.backendService.postAuthLogingoogle(body).subscribe(valor => {
-            this.backendService.cookie.usuario = valor.id;
-            this.backendService.cookie.nombreUsuario = bodyGoogle.usuario;
-            this.backendService.cookie.token = valor.token;
-            this.backendService.cookie.esInvitado = false;
+            this.backendService.setCookie({
+              usuario: valor.id,
+              nombreUsuario: bodyGoogle.usuario,
+              token: valor.token,
+              esInvitado: false
+            });
             this.backendService.setHeaders();
             this.router.navigate(['sidebar']);
           }, error => {
@@ -114,7 +116,7 @@ export class RegisterComponent {
           if (error.status === 400) {
             this.errorService.openDialogError("Parámetros inválidos");
           } else if (error.status === 404) {
-            this.errorService.openDialogError("Usuario no encontrado.");
+            this.errorService.openDialogError("Usuario ya existe.");
           } else if (error.status === 409) {
             this.errorService.openDialogError("Este usuario ya existe.");
           } else if (error.status === 500) {
@@ -148,10 +150,12 @@ export class RegisterComponent {
               rememberMe: false
             }
             this.backendService.postAuthLogin(body).subscribe(valor => {
-              this.backendService.cookie.usuario = valor.id;
-              this.backendService.cookie.nombreUsuario = body.usuario;
-              this.backendService.cookie.token = valor.token;
-              this.backendService.cookie.esInvitado = false;
+              this.backendService.setCookie({
+                usuario: valor.id,
+                nombreUsuario: body.usuario,
+                token: valor.token,
+                esInvitado: false
+              });
               this.backendService.setHeaders();
               this.router.navigate(['sidebar']);
             }, error => {
@@ -167,7 +171,7 @@ export class RegisterComponent {
             if (error.status === 400) {
               this.errorService.openDialogError("Parámetros inválidos");
             } else if (error.status === 404) {
-              this.errorService.openDialogError("Usuario no encontrado.");
+              this.errorService.openDialogError("Usuario ya existe.");
             } else if (error.status === 500) {
               this.errorService.openDialogError("Se ha producido un error en el servidor, por favor intentelo de nuevo más tarde.");
             }
@@ -176,26 +180,4 @@ export class RegisterComponent {
       }
     }
   }
-
-  // onSubmit(event?: Event) {
-  //   if (event) {
-  //     event.preventDefault();
-  //   }
-  //   console.log('Google: ', this.google);
-
-  //   console.log('Form submitted')
-  //   if (this.password === this.password2) {
-  //     console.log('Passwords match')
-  //     // Passwords match, navigate to registration page
-  //     this.router.navigateByUrl('');
-  //   } else {
-  //     console.log('Passwords do not match')
-  //     // Passwords don't match, display alert
-  //     this._snackBar.open('Las contraseñas no coinciden', 'Cerrar', {
-  //       duration: 3000, // Duration in milliseconds
-  //       horizontalPosition: 'center', // Positioning
-  //       verticalPosition: 'bottom',
-  //     });
-  //   }
-  // }
 }
