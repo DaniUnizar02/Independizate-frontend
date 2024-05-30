@@ -91,15 +91,11 @@ export class HomeComponent implements OnInit {
                   }
 
                   this.backendService.postAuthLogingoogle(body).subscribe(valor => {
-                    this.backendService.cookie.usuario = valor.id;
-                    this.backendService.cookie.nombreUsuario = profile.getId();
-                    this.backendService.cookie.token = valor.token;
-                    this.backendService.cookie.esInvitado = false;
                     this.backendService.setCookie({
                       usuario: valor.id,
                       nombreUsuario: profile.getId(),
                       token: valor.token,
-                      esInvitado: true
+                      esInvitado: false
                     });
                     this.backendService.setHeaders();
                     this.router.navigate(['sidebar']);
@@ -200,11 +196,12 @@ export class HomeComponent implements OnInit {
       }
 
       this.backendService.postAuthLogin(body).subscribe(valor => {
-        this.backendService.cookie.usuario = valor.id;
-        this.backendService.cookie.nombreUsuario = body.usuario;
-        this.backendService.cookie.token = valor.token;
-        console.log(this.backendService.cookie.token) //LOG:
-        this.backendService.cookie.esInvitado = false;
+        this.backendService.setCookie({
+          usuario: valor.id,
+          nombreUsuario: body.usuario,
+          token: valor.token,
+          esInvitado: false
+        });
         this.backendService.setHeaders();
 
         const socket = new WebSocket('ws://localhost:4000?clienteId=' + this.usuario);
@@ -233,7 +230,11 @@ export class HomeComponent implements OnInit {
    * Método que permite iniciar sesión como invitado.
    */
   loginGuest() {
-    this.backendService.cookie.esInvitado = true;
+    var cockie = this.backendService.getCookie();
+    if (cockie) {
+      cockie.esInvitado = true;
+      this.backendService.setCookie(cockie);
+    }
     this.router.navigate(['sidebar']);
   }
 }

@@ -39,10 +39,15 @@ export class AnadirPostComponent {
       console.log('No hay datos para añdir el post'); // LOG:
       this.errorService.openDialogError("Todos los campos deben estar rellenos.");
     } else {
+      var cockie = this.backendService.getCookie();
+      var dataCockie = '';
+      if (cockie) {
+        dataCockie = cockie.usuario;
+      }
       this.body = {
         titulo: this.titulo,
         descripcion: this.mensaje,
-        autor: this.backendService.cookie.usuario, // TODO: Este usuario es por defecto, realmente hay que sacarlo de algún lado
+        autor: dataCockie, 
         categoria: this.categoria
       }
       this.backendService.postPosts(this.body).subscribe(

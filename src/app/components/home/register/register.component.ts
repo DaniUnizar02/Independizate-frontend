@@ -95,10 +95,12 @@ export class RegisterComponent {
             rememberMe: false
           }
           this.backendService.postAuthLogingoogle(body).subscribe(valor => {
-            this.backendService.cookie.usuario = valor.id;
-            this.backendService.cookie.nombreUsuario = bodyGoogle.usuario;
-            this.backendService.cookie.token = valor.token;
-            this.backendService.cookie.esInvitado = false;
+            this.backendService.setCookie({
+              usuario: valor.id,
+              nombreUsuario: bodyGoogle.usuario,
+              token: valor.token,
+              esInvitado: false
+            });
             this.backendService.setHeaders();
             this.router.navigate(['sidebar']);
           }, error => {
@@ -148,10 +150,12 @@ export class RegisterComponent {
               rememberMe: false
             }
             this.backendService.postAuthLogin(body).subscribe(valor => {
-              this.backendService.cookie.usuario = valor.id;
-              this.backendService.cookie.nombreUsuario = body.usuario;
-              this.backendService.cookie.token = valor.token;
-              this.backendService.cookie.esInvitado = false;
+              this.backendService.setCookie({
+                usuario: valor.id,
+                nombreUsuario: body.usuario,
+                token: valor.token,
+                esInvitado: false
+              });
               this.backendService.setHeaders();
               this.router.navigate(['sidebar']);
             }, error => {
@@ -176,26 +180,4 @@ export class RegisterComponent {
       }
     }
   }
-
-  // onSubmit(event?: Event) {
-  //   if (event) {
-  //     event.preventDefault();
-  //   }
-  //   console.log('Google: ', this.google);
-
-  //   console.log('Form submitted')
-  //   if (this.password === this.password2) {
-  //     console.log('Passwords match')
-  //     // Passwords match, navigate to registration page
-  //     this.router.navigateByUrl('');
-  //   } else {
-  //     console.log('Passwords do not match')
-  //     // Passwords don't match, display alert
-  //     this._snackBar.open('Las contraseñas no coinciden', 'Cerrar', {
-  //       duration: 3000, // Duration in milliseconds
-  //       horizontalPosition: 'center', // Positioning
-  //       verticalPosition: 'bottom',
-  //     });
-  //   }
-  // }
 }

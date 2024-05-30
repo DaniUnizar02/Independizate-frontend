@@ -27,8 +27,13 @@ export class ContactUsComponent {
 
 
   constructor(private router: Router, private location: Location, private backendService: BackendService, private errorService: ErrorService) {
-    if (this.backendService.cookie.esInvitado) {
-      router.navigate(['/']);
+    var cockie = this.backendService.getCookie();
+    var dataCockie = false;
+    if (cockie) {
+      dataCockie = cockie.esInvitado;
+    }
+    if (dataCockie) {
+      router.navigate(['home']);
     }
   }
 
@@ -48,8 +53,13 @@ export class ContactUsComponent {
     if (!this.tipo.trim() || !this.titulo.trim() || !this.descripcion.trim()) {
       this.errorService.openDialogError("Todos los campos tienen que estar rellenos.");
     } else {
+      var cockie = this.backendService.getCookie();
+      var dataCockie = '';
+      if (cockie) {
+        dataCockie = cockie.usuario;
+      }
       const body = {
-        autor: this.backendService.cookie.usuario,
+        autor: dataCockie,
         tipo: this.tipo,
         titulo: this.titulo,
         descripcion: this.descripcion

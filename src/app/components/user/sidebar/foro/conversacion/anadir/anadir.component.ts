@@ -37,8 +37,13 @@ export class AnadirConversacionComponent {
       console.log('No hay datos para añdir el post'); // LOG:
       this.errorService.openDialogError("Todos los campos deben estar rellenos.");
     } else {
+      var cockie = this.backendService.getCookie();
+      var dataCockie = '';
+      if (cockie) {
+        dataCockie = cockie.usuario;
+      }
       this.body = {
-        autor: this.backendService.cookie.usuario, // NOTE: Cambiar por el usuario correcto, este es por defecto
+        autor: dataCockie, // NOTE: Cambiar por el usuario correcto, este es por defecto
         informacion: this.mensaje, 
         fechaPublicacion: '2024-05-09T16:00:50.260Z' // NOTE: La fecha de publicación la auto calcula el backend, no?
       }

@@ -32,7 +32,6 @@ export class ResponderMensajeComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ResponderMensajeComponent>, private backendService: BackendService, private errorService: ErrorService) {
     this.post_id = data.post_id;
     this.message_id = data.message_id;
-    console.log(this.post_id, "\n", this.message_id, "\n", this.backendService.cookie.usuario); // LOG:
   }
 
   responder() {
@@ -40,8 +39,13 @@ export class ResponderMensajeComponent {
       console.log('No hay datos para añdir el post'); // LOG:
       this.errorService.openDialogError("Todos los campos deben estar rellenos.");
     } else {
+      var cockie = this.backendService.getCookie();
+      var dataCockie = '';
+      if (cockie) {
+        dataCockie = cockie.usuario;
+      }
       this.body = {
-        autor: this.backendService.cookie.usuario, // NOTE: Cambiar por el usuario correcto, este es por defecto
+        autor: dataCockie, // NOTE: Cambiar por el usuario correcto, este es por defecto
         informacion: this.mensaje, 
       }
       this.backendService.postMessagesPostIdMessageIdReply(this.post_id, this.message_id, this.body).subscribe(

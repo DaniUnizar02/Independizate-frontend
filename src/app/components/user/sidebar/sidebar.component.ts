@@ -34,7 +34,12 @@ export class SidebarComponent {
   mostarStamp3 = false;
 
   constructor(private backendService: BackendService, private errorService: ErrorService) {
-    this.invitado = this.backendService.cookie.esInvitado;
+    var cockie=this.backendService.getCookie();
+    var data = false;
+    if (cockie) {
+      data = cockie.esInvitado;
+    } 
+    this.invitado = data;
 
     if (!this.invitado){
       this.getUsuario();
@@ -44,7 +49,13 @@ export class SidebarComponent {
   }
 
   getUsuario() {
-    this.backendService.getUsersIdBasic(this.backendService.cookie.usuario).subscribe(
+    var cockie=this.backendService.getCookie();
+    var data = '';
+    if (cockie) {
+      data = cockie.usuario;
+    }
+
+    this.backendService.getUsersIdBasic(data).subscribe(
       response => {
         console.log(response.users.fotoPerfil); //LOG:
         this.usuario = {

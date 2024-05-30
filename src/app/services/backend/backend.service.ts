@@ -11,12 +11,6 @@ export class BackendService {
   private apiUrl = "http://backend-independizate.eggtf5e6dvh8hngq.spaincentral.azurecontainer.io:3000/api/";
 
   private readonly COOKIE_KEY = 'user_info';
-  public cookie = {
-    usuario: '',
-    nombreUsuario: '',
-    token: '',
-    esInvitado: true
-  }
 
   setCookie(cookie: { usuario: string; nombreUsuario: string; token: string; esInvitado: boolean }): void {
     this.cookieService.set(this.COOKIE_KEY, JSON.stringify(cookie), 1, '/', '', false, 'Lax');
@@ -24,7 +18,7 @@ export class BackendService {
 
   getCookie(): { usuario: string; nombreUsuario: string; token: string; esInvitado: boolean } | null {
     const cookieValue = this.cookieService.get(this.COOKIE_KEY);
-    console.log()
+    console.log("COOKIE: ", JSON.parse(cookieValue));
     return cookieValue ? JSON.parse(cookieValue) : null;
   }
 
@@ -36,11 +30,17 @@ export class BackendService {
   private headers = new HttpHeaders();
 
   public setHeaders() {
+    var cockie=this.getCookie();
+    var data = '';
+    if (cockie) {
+      data = cockie.token;
+    }
+
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'authorization': `Bearer ${this.cookie.token}`
+      'authorization': `Bearer ${data}`
     });
-    
+
   }
 
   public hashPassword(contrasena: string) {

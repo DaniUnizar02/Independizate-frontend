@@ -26,7 +26,12 @@ export class DenunciasDelForoComponent {
   private todos: any[] = [];
 
   constructor(private location: Location, public dialog: MatDialog, private backendService: BackendService, private errorService: ErrorService) {
-    console.log(this.backendService.cookie.token); //LOG:
+    var cockie = this.backendService.getCookie();
+    var dataCockie = false;
+    if (cockie) {
+      dataCockie = cockie.esInvitado;
+    }
+    console.log(dataCockie); //LOG:
   }
 
   ngOnInit() {

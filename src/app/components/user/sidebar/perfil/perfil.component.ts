@@ -26,7 +26,13 @@ export class PerfilComponent {
   ];
 
   constructor(private backendService: BackendService, private location: Location, private router: Router) {
-    if (this.backendService.cookie.esInvitado) {
+    var cockie=this.backendService.getCookie();
+    var data = false;
+    if (cockie) {
+      data = cockie.esInvitado;
+    }
+
+    if (data) {
       router.navigate(['/']);
     }
   }

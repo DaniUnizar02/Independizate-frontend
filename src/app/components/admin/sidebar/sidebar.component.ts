@@ -28,10 +28,16 @@ export class SidebarComponentAdmin {
 
   constructor(private backendService: BackendService, private errorService: ErrorService) {
     this.getUsuario();
+    console.log("COOCKIE:", this.backendService.getCookie())
   }
 
   getUsuario() {
-    this.backendService.getUsersIdBasic(this.backendService.cookie.usuario).subscribe(
+    var cockie = this.backendService.getCookie();
+      var dataCockie = '';
+      if (cockie) {
+        dataCockie = cockie.usuario;
+      }
+    this.backendService.getUsersIdBasic(dataCockie).subscribe(
       response => {
         // console.log(response.users.fotoPerfil); //LOG:
         this.usuario = {

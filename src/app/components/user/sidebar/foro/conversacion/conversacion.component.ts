@@ -44,7 +44,12 @@ export class ConversacionComponent {
   }
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog, private backendService: BackendService, private errorService: ErrorService) {
-    this.invitado = this.backendService.cookie.esInvitado;
+    var cockie = this.backendService.getCookie();
+    var dataCockie = false;
+    if (cockie) {
+      dataCockie = cockie.esInvitado;
+    }
+    this.invitado = dataCockie;
 
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {

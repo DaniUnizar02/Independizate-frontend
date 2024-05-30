@@ -35,7 +35,12 @@ export class GuardadosComponent {
   value: string = '';
   
   constructor(public dialog: MatDialog, private router: Router, private backendService: BackendService, private errorService: ErrorService) {
-    this.invitado = this.backendService.cookie.esInvitado;
+    var cockie = this.backendService.getCookie();
+    var dataCockie = false;
+    if (cockie) {
+      dataCockie = cockie.esInvitado;
+    }
+    this.invitado = dataCockie;
   }
 
   ngOnInit() {
@@ -53,7 +58,12 @@ export class GuardadosComponent {
   private getMyPosts () {
     // Se ha insertado un usuario por defecto pero tiene que ser variable
     // console.log("USUARIO: ", this.backendService.user); // LOG:
-    this.backendService.getProfilesId(this.backendService.cookie.usuario).subscribe(
+    var cockie = this.backendService.getCookie();
+      var dataCockie = '';
+      if (cockie) {
+        dataCockie = cockie.usuario;
+      }
+    this.backendService.getProfilesId(dataCockie).subscribe(
       response => {
         console.log("response: ",response.user) // LOG:
         this.postsFavs = (response.user.forosFavoritos===undefined) ? [] : response.user.forosFavoritos;

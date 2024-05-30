@@ -54,7 +54,13 @@ export class DatosPersonalesComponent {
   }
 
   private getInfo() {
-    this.backendService.getProfilesId(this.backendService.cookie.usuario).subscribe(
+    var cockie = this.backendService.getCookie();
+    var dataCockie = '';
+    if (cockie) {
+      dataCockie = cockie.usuario;
+    }
+
+    this.backendService.getProfilesId(dataCockie).subscribe(
       response => {
         console.log(response.user); //LOG:
         this.infoUsuario = {
@@ -166,7 +172,13 @@ export class DatosPersonalesComponent {
     if (!this.infoUsuario.usuario.trim() || !this.infoUsuario.nombre.trim() || !this.infoUsuario.apellidos.trim() || !this.infoUsuario.correo.trim() || !this.infoUsuario.edad.toString().trim() || !this.infoUsuario.sexo.trim() || !this.infoUsuario.piso.trim() || !this.infoUsuario.ciudad.trim() || !this.infoUsuario.situacion.trim() || !this.infoUsuario.img.trim()) {
       this.errorService.openDialogError("Todos los campos tienen que estar rellenos.");
     } else {
-      this.backendService.putProfilesId(this.backendService.cookie.usuario, data).subscribe(
+      var cockie = this.backendService.getCookie();
+      var dataCockie = '';
+      if (cockie) {
+        dataCockie = cockie.usuario;
+      }
+
+      this.backendService.putProfilesId(dataCockie, data).subscribe(
         response => {
           this.getInfo();
           this.getStamps();

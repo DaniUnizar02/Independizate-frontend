@@ -33,14 +33,21 @@ export class NotificacionesComponent {
     this.numCols = (window.innerWidth <= 1200) ? 1 : 2;
     this.rowHeight = (window.innerWidth <= 1200) ? '2.5:1' : '3.5:1';
     this.rowHeightTit = (window.innerWidth <= 1200) ? '1:2' : '2:1';
-    
+
     this.getNotificaciones();
   }
 
   private getNotificaciones() {
     this.notiLeidas = [];
     this.notiNoLeidas = [];
-    this.backendService.getNotificationsAutorAutor(this.backendService.cookie.usuario).subscribe(
+
+    var cockie = this.backendService.getCookie();
+    var dataCockie = '';
+    if (cockie) {
+      dataCockie = cockie.usuario;
+    }
+
+    this.backendService.getNotificationsAutorAutor(dataCockie).subscribe(
       response => {
         this.respuesta = response.respuesta.notificaciones
         console.log('Notificaciones: ', this.respuesta); // LOG:
@@ -93,7 +100,7 @@ export class NotificacionesComponent {
     }
   }
 
-  notificacionLeida(notificacion_id: string, notificacion_color: string): void {   
+  notificacionLeida(notificacion_id: string, notificacion_color: string): void {
     // console.log(notificacion_color)
     if (notificacion_color == '') {
       this.backendService.putNotificationsIdRead(notificacion_id).subscribe(
@@ -131,7 +138,7 @@ export class NotificacionesComponent {
     });
 
     dialog.afterClosed().subscribe(() => {
-      this.getNotificaciones(); 
+      this.getNotificaciones();
     });
   }
 
